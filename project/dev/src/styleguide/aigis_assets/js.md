@@ -3,7 +3,7 @@
 name: data-is-active
 category: 0-2.JS
 tag:
-- data
+- data属性
 ---
 
 JSでcssスタイルの変更を行う場合、対象に`data-is-active="$boolean"`を付与し、値の可否でcssスタイルを変更する。基本的にはjsで操作するためのdata属性となっているが、初期値としてhtmlに記載してしまうことも可能。
@@ -24,7 +24,7 @@ JSでcssスタイルの変更を行う場合、対象に`data-is-active="$boolea
 name: data-is-parent
 category: 0-2.JS
 tag:
-- data
+- data属性
 ---
 汎用js`data-toggle, data-active, ...`で利用される。詳細は各項の解説を参照。
 */
@@ -34,7 +34,7 @@ tag:
 name: data-active
 category: 0-2.JS
 tag:
-- data
+- data属性
 ---
 `data-active`を付与することで、`data-is-active`の操作が可能。また、親要素に`data-is-parent`を付与することで、兄弟関係にある`data-active-**`の`data-is-active`を全て`false`にすることが可能。
 
@@ -59,7 +59,7 @@ tag:
 name: data-toggle
 category: 0-2.JS
 tag:
-- data
+- data属性
 ---
 `data-toggle`を付与することで、`data-is-active`のtoggle操作が可能。また、親要素に`data-is-parent`を付与することで、兄弟関係にある`data-toggle`の`data-is-active`を全て`false`にすることが可能。
 
