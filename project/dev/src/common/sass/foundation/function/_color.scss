@@ -1,0 +1,17 @@
+/* ============================================================================================== */
+/* foundation/function/color
+/* ============================================================================================== */
+/*
+---
+name: color
+category: 1.foundation/function
+---
+色の出力。`foundation $colorPalet`で設定。
+
+```scss
+color: color(text, dark);
+```
+*/
+@function color($name, $color: default) {
+	 @return map-get(map-get($colorPalet, $name), $color);
+}

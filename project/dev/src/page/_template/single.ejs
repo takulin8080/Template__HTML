@@ -1,0 +1,57 @@
+<%#
+// =================================================================================================
+// template/default
+// =================================================================================================
+%>
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			<%- title %>
+			|
+			<% if(parent){ %>
+				<% parent.reverse().forEach(function(value, key){ if (parent.length - 1 != key) {%>
+					<%- page[value].title %>
+					|
+				<% }}) %>
+				<% parent.reverse(); %>
+			<% } %>
+			<%- site.title %>
+		</title>
+		<meta name="description" content="<%- description %>">
+		<% if( site.author ){ %>
+			<meta name="author" content="<%- site.author %>"/>
+		<% } %>
+		<% if(dev){ %>
+			<link rel="stylesheet" href="<%- path.css %>vendor.css">
+			<link rel="stylesheet" href="<%- path.css %>foundation.css">
+			<link rel="stylesheet" href="<%- path.css %>component.css">
+			<link rel="stylesheet" href="<%- path.css %>project.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+			<link rel="stylesheet" href="<%- path.css %>dev.css">
+		<% } else { %>
+			<link rel="stylesheet" href="<%- path.css %>app.css">
+		<% } %>
+	</head>
+	<body data-modifier="<%- pageModifier %>">
+		<%- include("../_layout/header") %>
+		<%- include("../_module/global-nav") %>
+		<%- include("../_module/breadcrumb") %>
+		<!-- contents -->
+		<div class="contents">
+			<!-- main-contents -->
+			<div class="main-contents">
+				<%- include("../" + file) %>
+			</div>
+			<!-- /main-contents -->
+		</div>
+		<!-- /contents -->
+		<%- include("../_layout/footer") %>
+		<!-- script -->
+		<script src="<%- path.js %>app.js"></script>
+		<!-- /script -->
+		<%- include("../_dev/app") %>
+	</body>
+</html>

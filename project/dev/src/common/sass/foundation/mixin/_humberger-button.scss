@@ -1,0 +1,53 @@
+/* ============================================================================================== */
+/* foundation/mixin/butthumberger-button
+/* ============================================================================================== */
+/*
+---
+name: Humbergar Button
+category: 1.foundation/mixin
+---
+ハンバーガーボタン。
+- `data-is-active~='boolean`で操作。
+
+```scss
+@include hamburger-button($bgColor, $fontColor);
+```
+*/
+@mixin hamburger-button($bgColor: color(black), $fontColor: color(white)) {
+	position: relative;
+	width: size(6);
+	height: size(6);
+	background: $bgColor;
+	z-index: 3;
+	cursor: pointer;
+	span {
+		transition: all 0.4s;
+		position: absolute;
+		left: 25%;
+		width: 50%;
+		height: 2px;
+		background: $fontColor;
+		&:nth-of-type(1) {
+			top: 35%;
+		}
+		&:nth-of-type(2) {
+			top: 49%;
+		}
+		&:nth-of-type(3) {
+			bottom: 33%;
+		}
+	}
+	&[data-is-active~='true'] {
+		span {
+			&:nth-of-type(1) {
+				transform: translateY(size(.8)) rotate(-45deg);
+			}
+			&:nth-of-type(2) {
+				opacity: 0;
+			}
+			&:nth-of-type(3) {
+				transform: translateY(size(-.8)) rotate(45deg);
+			}
+		}
+	}
+}

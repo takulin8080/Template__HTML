@@ -1,0 +1,26 @@
+/* ============================================================================================== */
+/* foundation/extend/style-clear
+/* ============================================================================================== */
+/*
+---
+name: Style Clear
+category: 1.foundation/extend
+---
+`fundation base setup`で設定したhtmlタグの基本スタイルを全て解除する。なお`mixin respontdTo (media)`の中では利用できない。
+
+```scss
+.style {
+	@extend %style-clear;
+}
+```
+*/
+%style-clear {
+	background: transparent;
+	border: 0;
+	font-size: fontSize(1);
+	font-weight: normal;
+	list-style: none;
+	margin: 0;
+	outline: none;
+	padding: 0;
+}

@@ -1,0 +1,181 @@
+/* ============================================================================================== */
+/* component/button
+/* ============================================================================================== */
+/*
+---
+name: Button
+category: 2.component
+tag:
+- data
+---
+
+### Basic
+
+`$type`の設定により自動的に生成される。基本スタイルは`$design`にて設定。
+
+- `small`：小サイズボタン。
+- `large`：大サイズボタン。
+- `full`：横幅100%で表示。
+
+以下のサンプルは`component box`を利用してレイアウトしている。
+
+```html
+<div data-box="gutter-2 inline">
+	<div><button data-button>default</button></div>
+	<div><button data-button="primary">primary</button></div>
+	<div><button data-button="success">success</button></div>
+	<div><button data-button="warning">warning</button></div>
+	<div><button data-button="danger">danger</button></div>
+	<div><button data-button="disabled">disabled</button></div>
+</div>
+<div data-box="gutter-2 inline">
+	<div><button data-button="large">large</button></div>
+	<div><button data-button="primary large">primary large</button></div>
+	<div><button data-button="success large">success large</button></div>
+	<div><button data-button="warning large">warning large</button></div>
+	<div><button data-button="danger large">danger large</button></div>
+	<div><button data-button="disabled large">disabled large</button></div>
+</div>
+<div data-box="gutter-2 inline">
+	<div><button data-button="small">small</button></div>
+	<div><button data-button="primary small">primary small</button></div>
+	<div><button data-button="success small">success small</button></div>
+	<div><button data-button="warning small">warning small</button></div>
+	<div><button data-button="danger small">danger small</button></div>
+	<div><button data-button="disabled small">disabled small</button></div>
+</div>
+<div data-box="gutter-0-2 full">
+	<div><button data-button="large full mdAndOver-auto lg-full">full</button></div>
+</div>
+```
+*/
+[data-button] {
+	/* -------------------------------------------- */
+	/* variable
+	/* -------------------------------------------- */
+	$type: (
+		default: (
+			text: lighten(#546e7a, 50%),
+			bg: linear-gradient(#546e7a, 5%, #546e7a),
+			bgHover: darken(#546e7a, 5%),
+			border: #546e7a
+		),
+		primary: (
+			text: lighten(#1e88e5, 50%),
+			bg: linear-gradient(lighten(#1e88e5, 5%), #1e88e5),
+			bgHover: darken(#1e88e5, 5%),
+			border: darken(#1e88e5, 5%)
+		),
+		success: (
+			text: lighten(color(sign, success), 50%),
+			bg: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)),
+			bgHover: darken(color(sign, success), 5%),
+			border: darken(color(sign, success), 5%)
+		),
+		warning: (
+			text: lighten(color(sign, warning), 50%),
+			bg: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)),
+			bgHover: darken(color(sign, warning), 5%),
+			border: darken(color(sign, warning), 5%)
+		),
+		danger: (
+			text: lighten(color(sign, danger), 50%),
+			bg: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)),
+			bgHover: darken(color(sign, danger), 5%),
+			border: darken(color(sign, danger), 5%)
+		),
+		disabled: (
+			text: lighten(#9e9e9e, 20%),
+			bg: #9e9e9e,
+			bgHover: #9e9e9e
+		)
+	);
+	$style: (
+		borderRadius: size(.5),
+		borderWidth: size(.2),
+		fontSize: fontSize(1),
+		lineHeight: size(3),
+		padding: size(1) size(3),
+
+		largeBorderRadius: size(.5),
+		largeFontSize: fontSize(2),
+		largeLineHeight: size(5),
+		largePadding: size(1) size(4),
+
+		smallBorderRadius: size(.5),
+		smallFontSize: fontSize(-1),
+		smallLineHeight: size(3),
+		smallPadding: size(.5) size(2)
+	);
+	/* -------------------------------------------- */
+	/* setup
+	/* -------------------------------------------- */
+	border-radius: map-get($style, borderRadius);
+	cursor: pointer;
+	display: inline-block;
+	font-size: map-get($style, fontSize);
+	line-height: map-get($style, lineHeight);
+	padding: map-get($style, padding);
+	text-decoration: none;
+	vertical-align: top;
+	white-space: nowrap;
+	&:hover {
+		text-decoration: none;
+	}
+	@each $name, $color in $type {
+		&[data-button~='#{$name}'] {
+			@extend [data-button];
+			background: map-get($color, bg);
+			border: map-get($style, borderWidth) solid map-get($color, border);
+			box-shadow:  boxShadow();
+			color: map-get($color, text);
+			&:hover {
+				background: map-get($color, bgHover);
+			}
+		}
+	}
+	&[data-button] {
+		@extend [data-button~='default'];
+	}
+	&[data-button~='large'] {
+		border-radius: map-get($style, largeBorderRadius);
+		font-size: map-get($style, largeFontSize);
+		line-height: map-get($style, largeLineHeight);
+		padding: map-get($style, largePadding);
+	}
+	&[data-button~='small'] {
+		border-radius: map-get($style, smallBorderRadius);
+		font-size: map-get($style, smallFontSize);
+		line-height: map-get($style, smallLineHeight);
+		padding: map-get($style, smallPadding);
+	}
+	&[data-button~='full'] {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+	}
+	&[data-button~='auto'] {
+		width: auto;
+	}
+	@if $responsive {
+		 @each $key in $respondToKey{
+			@include respondTo($key) {
+				&[data-button~='#{$key}-full'] {
+					margin-left: 0;
+					margin-right: 0;
+					width: 100%;
+				}
+				&[data-button~='#{$key}-auto'] {
+					width: auto;
+				}
+			}
+		}
+	}
+	/* uniq
+	/* ------------------- */
+	&[data-button~='disabled'] {
+		box-shadow: none;
+		border: none;
+		cursor: default;
+	}
+}

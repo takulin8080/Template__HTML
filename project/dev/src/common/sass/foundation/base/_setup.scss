@@ -1,0 +1,120 @@
+/* ============================================================================================== */
+/* foundation/base/typography
+/* ============================================================================================== */
+/* -------------------------------------------- */
+/* base
+/* -------------------------------------------- */
+/*
+---
+name: Setup
+category: 1.foundation
+---
+
+```scss
+html {
+	font-size: 62.5%; // 1rem = 10pxとするための設定（変更不可）
+}
+body {
+	color: color(text);
+	font-family: fontFamily(sansSerif);
+	font-size: fontSize(1);
+	line-height: size(3);
+}
+img {
+	width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+```
+*/
+html {
+	font-size: 62.5%;
+}
+body {
+	color: color(text);
+	font-family: fontFamily(sansSerif);
+	font-size: fontSize(1);
+	line-height: size(3);
+}
+img {
+	width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+/* -------------------------------------------- */
+/* heading
+/* -------------------------------------------- */
+/*
+---
+name: Heading
+category: 0-3.TYPOGRAPHY
+---
+
+```html
+<h1>Heading1</h1>
+<h2>Heading2</h2>
+<h3>Heading3</h3>
+<h4>Heading4</h4>
+<h5>Heading5</h5>
+<h6>Heading6</h6>
+```
+*/
+h1 {
+	font-size: fontSize(3);
+	line-height: size(12);
+	margin: 0 0 size(3);
+}
+h2 {
+	font-size: fontSize(2);
+	line-height: size(3);
+	margin: 0 0 size(3);
+}
+h3 {
+	font-weight: bold;
+	margin: 0 0 size(3);
+}
+h4 {
+	margin: 0 0 size(3);
+}
+h5 {
+	margin: 0 0 size(3);
+}
+h6 {
+	margin: 0 0 size(3);
+}
+/* -------------------------------------------- */
+/* paragraph
+/* -------------------------------------------- */
+/*
+---
+name: Paragraph
+category: 0-3.TYPOGRAPHY
+---
+
+```html
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+```
+*/
+p {
+	margin: 0 0 size(3);
+}
+/* -------------------------------------------- */
+/* Anchor
+/* -------------------------------------------- */
+/*
+---
+name: Anchor
+category: 0-3.TYPOGRAPHY
+---
+
+```html
+<p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
+```
+*/
+a {
+	color: color(link);
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}

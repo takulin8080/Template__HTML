@@ -1,0 +1,23 @@
+/* ============================================================================================== */
+/* foundation/extend/wrap
+/* ============================================================================================== */
+/*
+---
+name: Wrap
+category: 1.foundation/extend
+---
+画面サイズが`fundation $siteWidth`以上の値になった場合、内包するコンテンツをブラウザ中央に配置。
+
+```scss
+.header {
+	@extend %wrap;
+}
+```
+*/
+%wrap {
+	 @include respondTo(lg){
+		margin-left: auto;
+		margin-right: auto;
+		width: $siteWidth;
+	}
+}

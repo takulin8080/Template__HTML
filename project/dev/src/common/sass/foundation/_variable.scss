@@ -1,0 +1,166 @@
+/* ============================================================================================== */
+/* foundation/variable
+/* ============================================================================================== */
+/*
+---
+name: Base
+category: 1.foundation/0.variable
+---
+基本設定。
+
+### $baseFontSize
+基本文字サイズの設定。単位は`rem`を使用。
+
+```scss
+$baseFontSize: 1.6rem; //16px相当
+```
+
+### $baseSize
+基本サイズの設定。
+
+```scss
+$baseSize: .8rem; //8px相当
+```
+
+### $siteWidth
+サイト最大幅の設定。
+- サイト全体のセンタリングする場合などに用いる。
+- 値を`100%`とすることで、Liquidレイアウトとなる。
+- 先の`$baseSize`をベースに設定することを推奨。
+
+```scss
+$siteWidth: $baseSize * 128;
+```
+
+### $imgPath
+`imgフォルダ`までのパス。
+
+```scss
+$imgPath: "../img/";
+```
+*/
+$baseFontSize: 1.6rem;
+$baseSize: .8rem;
+$siteWidth: $baseSize * 128;
+$imgPath: "../img/";
+/* -------------------------------------------- */
+/* $fontFamily
+/* -------------------------------------------- */
+/*
+---
+name: $fontFamily
+category: 1.foundation/0.variable
+---
+サイト内で使用するフォントの管理。
+
+```scss
+@import url(https://fonts.googleapis.com/css?family=Archivo);
+$fontFamily: (
+	sansSerif: ('SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
+	serif: (garamond, 'times new roman', '游明朝', 'yu mincho', '游明朝体', 'yumincho', 'ヒラギノ明朝 pro w3', 'hiragino mincho pro', 'hiraminpron-w3', 'hgs明朝e', 'ｍｓ ｐ明朝', 'ms pmincho', serif),
+	archivo: ('Archivo', sans-serif),
+	...
+);
+```
+*/
+$fontFamily: (
+	sansSerif: ('SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
+	serif: (garamond, 'times new roman', '游明朝', 'yu mincho', '游明朝体', 'yumincho', 'ヒラギノ明朝 pro w3', 'hiragino mincho pro', 'hiraminpron-w3', 'hgs明朝e', 'ｍｓ ｐ明朝', 'ms pmincho', serif)
+);
+/* -------------------------------------------- */
+/* $responsive
+/* -------------------------------------------- */
+/*
+---
+name: $responsive
+category: 1.foundation/0.variable
+---
+`componet box`, `utility margin`の値で使用する`breakpoint prefix(lg-**)`の使用の有効化。
+
+```scss
+$responsive: true;
+```
+*/
+$responsive: true;
+/* -------------------------------------------- */
+/* $boxShadow
+/* -------------------------------------------- */
+/*
+---
+name: $boxShadow
+category: 1.foundation/0.variable
+---
+`function boxShadow`の管理。
+
+```scss
+$boxShadow: (
+	default: 0 0 2px 0 rgba(#000, .3),
+	1: 0 0 5px 0 rgba(#000, .8)
+	...
+);
+```
+*/
+$boxShadow: (
+	default: 0 0 2px 0 rgba(0, 0, 0, .1)
+);
+/* ============================================================================================== */
+/* $colorPalet
+/* ============================================================================================== */
+/*
+---
+name: $colorPalet
+category: 1.foundation/0.variable
+---
+色の管理。プロジェクトで使用する色は全て本項で設定することを推奨。
+
+```scss
+$colorPalet: (
+	text: (
+		default: #424242,
+		dark: #000,
+		light: #9e9e9e
+	),
+	link: (
+		default: #1e88e5
+	),
+	...
+);
+```
+*/
+$colorPalet: (
+	project: (
+		blue: blue
+	),
+	white: (
+		default: #fff
+	),
+	black: (
+		default: #000,
+		1: #333,
+		2: #555
+	),
+	gray: (
+		1: #f8f8f8,
+		2: #f1f1f1,
+		3: #e5e5e5,
+		4: #e2e2e2,
+		5: #d3d3d3,
+		6: #ccc,
+		7: #999,
+		8: #666
+	),
+	text: (
+		default: #333,
+		dark: #000,
+		light: #9e9e9e
+	),
+	link: (
+		default: #1e88e5
+	),
+	sign: (
+		info: #1e88e5,
+		success: #43a047,
+		warning: #ffb300,
+		danger: #e53935
+	)
+);

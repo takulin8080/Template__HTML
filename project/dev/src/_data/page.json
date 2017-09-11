@@ -1,0 +1,32 @@
+{
+	"page": {
+		"index": {
+			"template": "home",
+			"title": "ホーム",
+			"description": "",
+			"pageModifier": "home",
+			"progress": "done"
+		},
+		"news/index": {
+			"template": "default",
+			"title": "ニュース",
+			"description": "",
+			"pageModifier": "",
+			"progress": "stop"
+		},
+		"sitemap": {
+			"template": "default",
+			"title": "サイトマップ",
+			"description": "",
+			"pageModifier": "",
+			"progress": ""
+		},
+		"_dev-sitemap": {
+			"template": "single",
+			"title": "開発用サイトマップ",
+			"description": "",
+			"pageModifier": "",
+			"progress": ""
+		}
+	}
+}

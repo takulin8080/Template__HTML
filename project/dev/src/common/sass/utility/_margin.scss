@@ -1,0 +1,133 @@
+/* ============================================================================================== */
+/* utility/margin
+/* ============================================================================================== */
+/*
+---
+name: Margin
+category: 6.utility
+tag: responsive
+---
+`margin`の付与。サイズは`function size`の計算に基づく。最大サイズ設定は`$maxnum`にて設定。
+
+- `half` : `size(.5)`と同サイズ。隣り合うコンテンツのmarginを`size(1)`にしたいときなどに利用。
+- `$num` : 上下左右に付与。
+- `top-$num` : 上に付与。
+- `bottom-$num` : 下に付与。
+- `left-$num` : 左に付与。
+- `right-$num` : 右に付与。
+- `topAndBottom-$num` : 上下に付与。
+- `leftAndRight-$num` : 左右に付与。
+- `neg-$num` : 負の値。
+
+```html
+<div data-margin="12" style="background: #99c; padding: 50px 0;">
+	<div data-margin="2 mdAndOver-leftAndRight-neg-10" style="background: #9c9;">fdsa</div>
+</div>
+```
+*/
+[data-margin] {
+	/* -------------------------------------------- */
+	/* variable
+	/* -------------------------------------------- */
+	$maxnum: 30;
+	/* -------------------------------------------- */
+	/* setup
+	/* -------------------------------------------- */
+	$marginTar: top, right, bottom, left, topAndBottom, leftAndRight;
+	/* ------------------- */
+	@mixin tarAndSize($tar, $size, $neg: false) {
+		 @if $neg == false{
+			@if $tar == topAndBottom {
+				margin-top: size($size);
+				margin-bottom: size($size);
+			}
+			@else if $tar == leftAndRight {
+				margin-left: size($size);
+				margin-right: size($size);
+			}
+			@else {
+				margin-#{$tar}: size($size);
+			}
+		}
+		@else {
+			 @if $tar == topAndBottom{
+				margin-top: size(-$size);
+				margin-bottom: size(-$size);
+			}
+			@else if $tar == leftAndRight {
+				margin-left: size(-$size);
+				margin-right: size(-$size);
+			}
+			@else {
+				margin-#{$tar}: size(-$size);
+			}
+		}
+	}
+	/* ------------------- */
+	&[data-margin~='half'] {
+		margin: size(.5);
+	}
+	&[data-margin~='neg-half'] {
+		margin: size(-.5);
+	}
+	@for $size from 1 through $maxnum {
+		&[data-margin~='#{$size}'] {
+			margin: size($size);
+		}
+		&[data-margin~='neg-#{$size}'] {
+			margin: size(-$size);
+		}
+	}
+	@each $tar in $marginTar {
+		&[data-margin~='#{$tar}-half'] {
+			@include tarAndSize($tar, .5);
+		}
+		&[data-margin~='#{$tar}-neg-half'] {
+			@include tarAndSize($tar, -.5);
+		}
+		@for $size from 1 through $maxnum {
+			&[data-margin~='#{$tar}-#{$size}'] {
+				@include tarAndSize($tar, $size);
+			}
+			&[data-margin~='#{$tar}-neg-#{$size}'] {
+				@include tarAndSize($tar, $size, true);
+			}
+		}
+	}
+	@if $responsive {
+		 @each $key in $respondToKey{
+			@include respondTo($key) {
+				&[data-margin~='#{$key}-half'] {
+					margin: size(.5);
+				}
+				&[data-margin~='#{$key}-neg-half'] {
+					margin: size(-.5);
+				}
+				@for $size from 1 through $maxnum {
+					&[data-margin~='#{$key}-#{$size}'] {
+						margin: size($size);
+					}
+					&[data-margin~='#{$key}-neg-#{$size}'] {
+						margin: size(-$size);
+					}
+				}
+				@each $tar in $marginTar {
+					&[data-margin~='#{$key}-#{$tar}-half'] {
+						@include tarAndSize($tar, .5);
+					}
+					&[data-margin~='#{$key}-#{$tar}-neg-half'] {
+						@include tarAndSize($tar, -.5);
+					}
+					@for $size from 1 through $maxnum {
+						&[data-margin~='#{$key}-#{$tar}-#{$size}'] {
+							@include tarAndSize($tar, $size);
+						}
+						&[data-margin~='#{$key}-#{$tar}-neg-#{$size}'] {
+							@include tarAndSize($tar, $size, true);
+						}
+					}
+				}
+			}
+		}
+	}
+}

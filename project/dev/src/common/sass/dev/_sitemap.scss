@@ -1,0 +1,53 @@
+/* ============================================================================================== */
+/* dev/sitemap
+/* ============================================================================================== */
+.dev-sitemap {
+	margin-bottom: size(4);
+	&__items {
+		display: none;
+		&[data-is-active~='true'] {
+			display: block;
+		}
+	}
+	&__item {
+		background: color(gray, 1);
+		border-bottom: 1px solid color(gray, 3);
+		color: color(black);
+		margin-bottom: size(1);
+		padding: size(1);
+		&[data-modifier~='done'] {
+			background: lighten(color(sign, success), 50%);
+			&:before {
+				@include fontAwesome( '\f00c');
+				color: color(sign, success);
+				float: left;
+				margin-right: size(1);
+			}
+		}
+		&[data-modifier~='stop'] {
+			background: lighten(color(sign, warning), 45%);
+			&:before {
+				@include fontAwesome( '\f05e');
+				color: color(sign, warning);
+				float: left;
+				margin-right: size(1);
+			}
+		}
+	}
+	&__link {
+		color: color(black);
+		display: block;
+	}
+	&__url {
+	}
+	&__title {
+		color: color(gray, 7);
+		font-size: fontSize(-1);
+		&:before {
+			content: '[ ';
+		}
+		&:after {
+			content: ' ]';
+		}
+	}
+}

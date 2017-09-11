@@ -1,0 +1,61 @@
+/* ============================================================================================== */
+/* module/movetotop
+/* ============================================================================================== */
+/*
+---
+name: Move to Top
+category: 4.module
+---
+
+`js`にて自動生成。`module movetotop`にてスタイル変更。
+*/
+@if responsive {
+	 @include respondTo(lg){
+		[data-movetotop] {
+			bottom: 0;
+			cursor: pointer;
+			display: none;
+			left: 50%;
+			margin-left: -$siteWidth/2;
+			position: fixed;
+			width: $siteWidth;
+			&:before {
+				background: #000;
+				bottom: 0;
+				color: #fff;
+				font-size: fontSize(3);
+				height: size(8);
+				line-height: size(8);
+				position: absolute;
+				right: 0;
+				text-align: center;
+				width: size(8);
+				@include fontAwesome( '\f106');
+			}
+		}
+	}
+}
+@else {
+	[data-movetotop] {
+		bottom: 0;
+		cursor: pointer;
+		display: none;
+		left: 50%;
+		margin-left: -$siteWidth/2;
+		position: fixed;
+		width: $siteWidth;
+		&:before {
+			background: #000;
+			bottom: 0;
+			color: #fff;
+			font-size: fontSize(3);
+			height: size(8);
+			line-height: size(8);
+			position: absolute;
+			right: 0;
+			text-align: center;
+			width: size(8);
+			@include fontAwesome( '\f106');
+		}
+	}
+}

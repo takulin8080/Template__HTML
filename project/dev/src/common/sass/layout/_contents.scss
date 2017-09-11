@@ -1,0 +1,37 @@
+/* ============================================================================================== */
+/* layout/contents
+/* ============================================================================================== */
+/*
+---
+name: Contents
+category: 3.layout
+---
+*/
+.contents {
+	@extend %wrap;
+	display: flex;
+	flex-wrap: wrap;
+	/* -------------------------------------------- */
+	/* main-contents
+	/* -------------------------------------------- */
+	.main-contents {
+		order: 1;
+		width: 100%;
+		@include respondTo(mdAndOver) {
+			flex: 1;
+		}
+		min-height: 100px;
+	}
+	/* -------------------------------------------- */
+	/* sub-contents
+	/* -------------------------------------------- */
+	.sub-contents {
+		order: 2;
+		width: 100%;
+		@include respondTo(mdAndOver) {
+			width: size(30);
+		}
+		min-height: 100px;
+		background: #0c0;
+	}
+}

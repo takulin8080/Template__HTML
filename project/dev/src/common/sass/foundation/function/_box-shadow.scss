@@ -1,0 +1,17 @@
+/* ============================================================================================== */
+/* foundation/function/boxShadow
+/* ============================================================================================== */
+/*
+---
+name: BoxShadow
+category: 1.foundation/function
+---
+`box-shadow`の出力。`foundation $boxShadow`で設定。
+
+```scss
+box-shadow: boxShadow($num);
+```
+*/
+@function boxShadow($key: default) {
+	 @return map-get($boxShadow, $key);
+}
