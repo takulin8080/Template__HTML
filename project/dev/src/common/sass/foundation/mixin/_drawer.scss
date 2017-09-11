@@ -18,7 +18,7 @@ category: 1.foundation/mixin
 	position: fixed;
 	transition: all 0.4s;
 	width: 100vw;
-	z-index: 2;
+	z-index: 3;
 	@if $pos == left {
 		left: -100vw;
 		top: 0;

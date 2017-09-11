@@ -48,6 +48,9 @@ category: 4.module
 			top: 0;
 		}
 	}
+	& > &__trg {
+		position: relative;
+	}
 	/* items
 	/* ------------------- */
 	&__items {

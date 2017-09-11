@@ -15,11 +15,11 @@ var tar = $('.global-nav');
 // -----------------------------------------------
 trg.click(function() {
 	if($(this).attr('data-is-active') == 'true') {
-		$(this).attr('data-is-active', 'false');
+		trg.attr('data-is-active', 'false');
 		tar.attr('data-is-active', 'false');
 		overlay(false);
 	} else {
-		$(this).attr('data-is-active', 'true');
+		trg.attr('data-is-active', 'true');
 		tar.attr('data-is-active', 'true');
 		overlay(true);
 	}
