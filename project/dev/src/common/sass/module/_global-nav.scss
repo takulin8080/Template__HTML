@@ -40,8 +40,9 @@ category: 4.module
 	/* trg
 	/* ------------------- */
 	&__trg {
+		display: none;
 		@include respondTo (mdAndUnder) {
-			 @include hamburger-button();
+			display: block;
 			position: fixed;
 			right: 0;
 			top: 0;

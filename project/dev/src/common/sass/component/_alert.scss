@@ -58,12 +58,12 @@ tag:
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
-	@each $name, $color in $type {
+	@each $name, $value in $type {
 		&[data-alert~='#{$name}'] {
-			$borderColor: map-get($color, border);
-			$bgColor: map-get($color, bg);
-			$borderColor: map-get($color, border);
-			$textColor: map-get($color, text);
+			$borderColor: map-get($value, border);
+			$bgColor: map-get($value, bg);
+			$borderColor: map-get($value, border);
+			$textColor: map-get($value, text);
 			background: $bgColor;
 			border: map-get($style, borderWidth) solid $borderColor;
 			border-radius: map-get($style, borderRadius);
