@@ -48,45 +48,70 @@ tag:
 	<div><button data-button="large full mdAndOver-auto lg-full">full</button></div>
 </div>
 ```
+
+### Hamburger
+三本線のメニュー（Hamburger button)スタイルを適用。`data-is-active`を付与することで三本線から☓に変化。`$type`の設定により自動的に生成される。
+
+- `data-is-active~='boolean`で操作。
+
+```html
+<div data-box="inline gutter-2">
+	<div>
+		<button data-button-hamburger>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+	<div>
+		<button data-button-hamburger="small">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+</div>
+```
 */
+
 [data-button] {
 	/* -------------------------------------------- */
 	/* variable
 	/* -------------------------------------------- */
 	$type: (
 		default: (
-			text: lighten(#546e7a, 50%),
-			bg: linear-gradient(#546e7a, 5%, #546e7a),
-			bgHover: darken(#546e7a, 5%),
-			border: #546e7a
+			textColor: lighten(#546e7a, 50%),
+			bgColor: linear-gradient(#546e7a, 5%, #546e7a),
+			bgHoverColor: darken(#546e7a, 5%),
+			borderColor: #546e7a
 		),
 		primary: (
-			text: lighten(#1e88e5, 50%),
-			bg: linear-gradient(lighten(#1e88e5, 5%), #1e88e5),
-			bgHover: darken(#1e88e5, 5%),
-			border: darken(#1e88e5, 5%)
+			textColor: lighten(#1e88e5, 50%),
+			bgColor: linear-gradient(lighten(#1e88e5, 5%), #1e88e5),
+			bgHoverColor: darken(#1e88e5, 5%),
+			borderColor: darken(#1e88e5, 5%)
 		),
 		success: (
-			text: lighten(color(sign, success), 50%),
-			bg: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)),
-			bgHover: darken(color(sign, success), 5%),
-			border: darken(color(sign, success), 5%)
+			textColor: lighten(color(sign, success), 50%),
+			bgColor: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)),
+			bgHoverColor: darken(color(sign, success), 5%),
+			borderColor: darken(color(sign, success), 5%)
 		),
 		warning: (
-			text: lighten(color(sign, warning), 50%),
-			bg: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)),
-			bgHover: darken(color(sign, warning), 5%),
-			border: darken(color(sign, warning), 5%)
+			textColor: lighten(color(sign, warning), 50%),
+			bgColor: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)),
+			bgHoverColor: darken(color(sign, warning), 5%),
+			borderColor: darken(color(sign, warning), 5%)
 		),
 		danger: (
-			text: lighten(color(sign, danger), 50%),
-			bg: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)),
-			bgHover: darken(color(sign, danger), 5%),
-			border: darken(color(sign, danger), 5%)
+			textColor: lighten(color(sign, danger), 50%),
+			bgColor: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)),
+			bgHoverColor: darken(color(sign, danger), 5%),
+			borderColor: darken(color(sign, danger), 5%)
 		),
 		disabled: (
-			text: lighten(#9e9e9e, 20%),
-			bg: #9e9e9e,
+			textColor: lighten(#9e9e9e, 20%),
+			bgHoverColor: #9e9e9e,
 			bgHover: #9e9e9e
 		)
 	);
@@ -122,15 +147,15 @@ tag:
 	&:hover {
 		text-decoration: none;
 	}
-	@each $name, $color in $type {
+	@each $name, $value in $type {
 		&[data-button~='#{$name}'] {
 			@extend [data-button];
-			background: map-get($color, bg);
-			border: map-get($style, borderWidth) solid map-get($color, border);
+			background: map-get($value, bgColor);
+			border: map-get($style, borderWidth) solid map-get($value, borderColor);
 			box-shadow:  boxShadow();
-			color: map-get($color, text);
+			color: map-get($value, textColor);
 			&:hover {
-				background: map-get($color, bgHover);
+				background: map-get($value, bgHoverColor);
 			}
 		}
 	}
@@ -177,5 +202,82 @@ tag:
 		box-shadow: none;
 		border: none;
 		cursor: default;
+	}
+}
+/* -------------------------------------------- */
+/* Humbergar
+/* -------------------------------------------- */
+[data-button-hamburger] {
+	/* -------------------------------------------- */
+	/* variable
+	/* -------------------------------------------- */
+	$type: (
+		default: (
+			bgColor: color(black),
+			lineColor: color(white),
+			lineSize: 2px,
+			size: size(8)
+		),
+		small: (
+			bgColor: color(black),
+			lineColor: color(white),
+			lineSize: 1px,
+			size: size(6)
+		)
+	);
+	/* -------------------------------------------- */
+	/* setup
+	/* -------------------------------------------- */
+	background: map-get(map-get($type, default), bgColor);
+	cursor: pointer;
+	height: map-get(map-get($type, default), size);
+	position: relative;
+	width: map-get(map-get($type, default), size);
+	z-index: 3;
+	span {
+		background: map-get(map-get($type, default), lineColor);
+		height: map-get(map-get($type, default), lineSize);
+		left: 25%;
+		position: absolute;
+		transition: all 0.4s;
+		width: 50%;
+		&:nth-of-type(1) {
+		margin-top: -12%;
+			top: 50%;
+		}
+		&:nth-of-type(2) {
+			top: 50%;
+		}
+		&:nth-of-type(3) {
+			margin-top: 12%;
+			top: 50%;
+		}
+	}
+	&[data-is-active~='true'] {
+		span {
+			&:nth-of-type(1) {
+				margin-top: 0;
+				transform: rotate(-45deg);
+			}
+			&:nth-of-type(2) {
+				opacity: 0;
+			}
+			&:nth-of-type(3) {
+				margin-top: 0;
+				transform: rotate(45deg);
+			}
+		}
+	}
+	@each $name, $value in $type {
+		&[data-button-hamburger~='#{$name}'] {
+			@extend [data-button-hamburger];
+			background: map-get($value, bgColor);
+			height: map-get($value, size);
+			width: map-get($value, size);
+			span {
+				background: map-get($value, lineColor);
+				height: map-get($value, lineSize);
+			}
+		}
 	}
 }

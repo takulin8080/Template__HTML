@@ -73,7 +73,7 @@ var path = {
 		componentSrc: ['src/common/sass/component.scss'],
 		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*'],
 		projectSrc: ['src/common/sass/project.scss'],
-		projectWatch: ['src/common/sass/**/*', '!src/common/sass/component/**/*', '!src/common/sass/utility/**/*'],
+		projectWatch: ['src/common/sass/**/*', '!src/common/sass/utility/**/*'],
 		utilitySrc: ['src/common/sass/utility.scss'],
 		utilityWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/utility/**/*'],
 		devSrc: ['src/common/sass/dev.scss'],
