@@ -74,14 +74,37 @@ $fontFamily: (
 ---
 name: $responsive
 category: 1.foundation/0.variable
+tag:
+- responsive
 ---
-`componet box`, `utility margin`の値で使用する`breakpoint prefix(lg-**)`の使用の有効化。
+レスポンシブ用。`componet box`, `utility margin`の値で使用する`breakpoint prefix(lg-**)`の使用の有効化。
 
 ```scss
 $responsive: true;
 ```
 */
 $responsive: true;
+/* -------------------------------------------- */
+/* breakpoint
+/* -------------------------------------------- */
+/*
+---
+name: $breakpoint
+category: 1.foundation/0.variable
+tag:
+- responsive
+---
+レスポンシブ用。`foudnation mixin respondTo`やbreakpoint`の値を`width`などに利用したい場合に使用。
+
+```scss
+$responsive: true;
+```
+*/
+$breakpoint: (
+	small: 480px,
+	medium: 768px,
+	large: 920px
+);
 /* -------------------------------------------- */
 /* $boxShadow
 /* -------------------------------------------- */

@@ -1,0 +1,54 @@
+/* ============================================================================================== */
+/* component/modal
+/* ============================================================================================== */
+/*
+---
+name: modal
+category: 2.component
+tag:
+- data属性
+---
+`data-modal`を付与することで、コンテンツをモーダル表示。
+- `data-modal-trg="$string"`クリックで`data-modal-tar`をモーダル表示。
+- `data-modal-tar="$string"`対象コンテンツ。
+
+```html
+<button data-modal-trg="modal" data-button>modal</button>
+<div data-modal-tar="modal">
+	<p style="background: #fff; padding: 2rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis auteirure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+```
+*/
+[data-modal-tar] {
+	/* -------------------------------------------- */
+	/* variable
+	/* -------------------------------------------- */
+	$maxWidth: map-get($breakpoint, medium);
+	$padding: size(2);
+	/* -------------------------------------------- */
+	/* setup
+	/* -------------------------------------------- */
+	left: 50%;
+	margin-left: -($maxWidth / 2);
+	max-height: 0;
+	max-width: $maxWidth;
+	opacity: 0;
+	overflow: hidden;
+	padding: $padding;
+	position: fixed;
+	top: -($padding * 2);
+	transition: all 0.4s;
+	z-index: 3;
+	@if $responsive {
+		 @include respondTo(smAndUnder){
+			left: 0;
+			margin: 0;
+			max-width: none;
+		}
+	}
+	&[data-is-active~='true'] {
+		max-height: none;
+		opacity: 1;
+		top: 0;
+	}
+}

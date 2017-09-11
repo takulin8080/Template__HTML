@@ -42,14 +42,6 @@ responsive対応の`component data-***`および`utility data-***`に`breakpoint
 /* mixin
 /* -------------------------------------------- */
 @mixin respondTo($key) {
-	/* -------------------------------------------- */
-	/* variable
-	/* -------------------------------------------- */
-	$breakpoint: (
-		small: 480px,
-		medium: 768px,
-		large: 920px
-	);
 	$breakpointSmall: map-get($breakpoint, small);
 	$breakpointMedium: map-get($breakpoint, medium);
 	$breakpointLarge: map-get($breakpoint, large);

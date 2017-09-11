@@ -6,9 +6,11 @@
 name: Icon
 category: 2.component
 ---
+
 `src/assets/icon/*.svg`から自動生成。
 
 ### data-icon
+
 `data-icon`値に`*.svg`のファイル名を指定する。
 
 ```html
@@ -16,6 +18,7 @@ category: 2.component
 ```
 
 ### Mixin
+
 `$char`には`*.svg`のファイル名を指定。`$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
 
 ```scss

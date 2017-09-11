@@ -233,7 +233,6 @@ tag:
 	height: map-get(map-get($type, default), size);
 	position: relative;
 	width: map-get(map-get($type, default), size);
-	z-index: 3;
 	span {
 		background: map-get(map-get($type, default), lineColor);
 		height: map-get(map-get($type, default), lineSize);
