@@ -131,6 +131,20 @@ $colorPalet: (
 	project: (
 		blue: blue
 	),
+	text: (
+		default: #333,
+		dark: #000,
+		light: #9e9e9e
+	),
+	link: (
+		default: #1e88e5
+	),
+	sign: (
+		info: #1e88e5,
+		success: #43a047,
+		warning: #ffb300,
+		danger: #e53935
+	),
 	white: (
 		default: #fff
 	),
@@ -148,19 +162,5 @@ $colorPalet: (
 		6: #ccc,
 		7: #999,
 		8: #666
-	),
-	text: (
-		default: #333,
-		dark: #000,
-		light: #9e9e9e
-	),
-	link: (
-		default: #1e88e5
-	),
-	sign: (
-		info: #1e88e5,
-		success: #43a047,
-		warning: #ffb300,
-		danger: #e53935
 	)
 );

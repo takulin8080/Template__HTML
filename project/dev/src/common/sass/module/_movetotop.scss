@@ -6,7 +6,6 @@
 name: Move to Top
 category: 4.module
 ---
-
 `js`にて自動生成。`module movetotop`にてスタイル変更。
 */
 @if responsive {
@@ -20,9 +19,9 @@ category: 4.module
 			position: fixed;
 			width: $siteWidth;
 			&:before {
-				background: #000;
+				background: color(black);
 				bottom: 0;
-				color: #fff;
+				color: color(white);
 				font-size: fontSize(3);
 				height: size(8);
 				line-height: size(8);
@@ -45,9 +44,9 @@ category: 4.module
 		position: fixed;
 		width: $siteWidth;
 		&:before {
-			background: #000;
+			background: color(black);
 			bottom: 0;
-			color: #fff;
+			color: color(white);
 			font-size: fontSize(3);
 			height: size(8);
 			line-height: size(8);

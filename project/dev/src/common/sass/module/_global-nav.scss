@@ -34,7 +34,7 @@ category: 4.module
 	@include respondTo (mdAndUnder) {
 		@include drawer(right);
 		height: 100vh;
-		max-width: size(40);
+		max-width: size(48);
 		overflow-y: auto;
 	}
 	/* trg

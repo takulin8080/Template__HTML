@@ -20,7 +20,6 @@ category: 3.layout
 		@include respondTo(mdAndOver) {
 			flex: 1;
 		}
-		min-height: 100px;
 	}
 	/* -------------------------------------------- */
 	/* sub-contents
@@ -31,7 +30,5 @@ category: 3.layout
 		@include respondTo(mdAndOver) {
 			width: size(30);
 		}
-		min-height: 100px;
-		background: #0c0;
 	}
 }
