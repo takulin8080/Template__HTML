@@ -24,12 +24,15 @@ tat:
 ```
 */
 [data-drawer-tar] {
+	left: -100vw;
+	max-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
 	position: fixed;
+	top: 0;
 	transition: all 0.4s;
 	width: 100vw;
 	z-index: 3;
-	left: -100vw;
-	top: 0;
 	&[data-is-active~="true"] {
 		left: 0;
 	}
@@ -44,17 +47,24 @@ tat:
 	}
 	&[data-drawer-tar~='top'] {
 		left: 0;
+		opacity: 0;
 		top: -100vh;
+		visibility: hidden;
 		&[data-is-active~="true"] {
+			opacity: 1;
 			top: 0;
+			visibility: visible;
 		}
 	}
 	&[data-drawer-tar~='bottom'] {
 		bottom: -100vh;
 		left: 0;
 		top: auto;
+		visibility: hidden;
 		&[data-is-active~="true"] {
+			opacity: 1;
 			bottom: 0;
+			visibility: visible;
 		}
 	}
 }
