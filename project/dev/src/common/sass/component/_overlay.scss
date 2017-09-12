@@ -10,8 +10,6 @@ category: 2.component
 */
 body {
 	&[data-overlay] {
-		position: fixed;
-		width: 100%;
 		& [data-overlay-layer] {
 			background: color(black);
 			content: '';
@@ -26,6 +24,8 @@ body {
 			z-index: 1;
 		}
 		&[data-overlay~="true"] {
+			position: fixed;
+			width: 100%;
 			& [data-overlay-layer] {
 				opacity: 0.8;
 				visibility: visible;
