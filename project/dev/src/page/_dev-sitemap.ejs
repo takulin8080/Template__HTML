@@ -24,6 +24,9 @@
 					Stop</button>
 			</div>
 			<div>
+				<button data-button="small disabled" data-active-trg="dev-sitemap-none add">None</button>
+			</div>
+			<div>
 				<button data-button="small info" data-active-trg="dev-sitemap-undone add">Undone</button>
 			</div>
 		</div>
@@ -54,6 +57,18 @@
 		<ul class="dev-sitemap__items" data-modifier="stop" data-active-tar="dev-sitemap-stop">
 			<% Object.keys(page).forEach(function(value, key){ %>
 				<% if (value != '_dev-sitemap' && page[value].progress == 'stop') { %>
+					<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
+						<a class="dev-sitemap__link" href="<%- page[value].url %>">
+							<span class="dev-sitemap__url"><%- page[value].url %></span>
+							<span class="dev-sitemap__title"><%- page[value].title %></span>
+						</a>
+					</li>
+				<% } %>
+			<% }) %>
+		</ul>
+		<ul class="dev-sitemap__items" data-modifier="none" data-active-tar="dev-sitemap-none">
+			<% Object.keys(page).forEach(function(value, key){ %>
+				<% if (value != '_dev-sitemap' && page[value].progress == 'none') { %>
 					<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 						<a class="dev-sitemap__link" href="<%- page[value].url %>">
 							<span class="dev-sitemap__url"><%- page[value].url %></span>
