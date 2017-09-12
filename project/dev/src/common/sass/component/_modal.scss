@@ -24,31 +24,30 @@ tag:
 	/* variable
 	/* -------------------------------------------- */
 	$maxWidth: map-get($breakpoint, medium);
-	$padding: size(2);
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
 	left: 50%;
 	margin-left: -($maxWidth / 2);
-	max-height: 0;
 	max-width: $maxWidth;
 	opacity: 0;
 	overflow: hidden;
-	padding: $padding;
+	padding: size(4);
 	position: fixed;
-	top: -($padding * 2);
+	top: 0;
 	transition: all 0.4s;
+	visibility: hidden;
 	z-index: 3;
 	@if $responsive {
 		 @include respondTo(smAndUnder){
 			left: 0;
 			margin: 0;
 			max-width: none;
+			padding: size(2);
 		}
 	}
 	&[data-is-active~='true'] {
-		max-height: none;
 		opacity: 1;
-		top: 0;
+		visibility: visible;
 	}
 }
