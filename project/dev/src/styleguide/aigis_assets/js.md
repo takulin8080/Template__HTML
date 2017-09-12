@@ -38,7 +38,7 @@ tag:
 ---
 `data-active`を付与することで、`data-is-active`の操作が可能。また、親要素に`data-parent`を付与することで、アクション時に兄弟関係にある`data-active-**`の`data-is-active`を全て`false`にすることが可能。
 
-- `data-active-trg="$string toggle"`クリックで`data-active-tar`および自身の`data-is-active`をtoggle。
+- `data-active-trg="$string toggle"`クリックで`data-active-tar`および自身の`data-is-active`をtoggle。初期値。
 - `data-active-trg="$string add"`クリックで`data-active-tar`の`data-is-active`を`true`に変更。
 - `data-active-trg="$string remove"`クリックで`data-active-tar`の`data-is-active`を`false`に変更。
 - `data-active-tar="$string"`操作対象コンテンツ。

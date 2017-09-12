@@ -12,7 +12,7 @@ var active = 'data-is-active';
 // function
 // -----------------------------------------------
 $('[' + trgName + ']').click(function() {
-	var id = $(this).attr(trgName).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
+	var id = $(this).attr(trgName);
 	if($(this).parents('[' + parentName + ']').length) {
 		var parent = $(this).parents('[' + parentName + ']');
 		parent.find('[' + trgName + ']').attr(active, 'false');
