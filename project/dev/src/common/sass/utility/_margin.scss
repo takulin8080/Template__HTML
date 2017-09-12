@@ -5,7 +5,9 @@
 ---
 name: Margin
 category: 6.utility
-tag: responsive
+tag:
+- data属性
+- responsive
 ---
 `margin`の付与。サイズは`function size`の計算に基づく。最大サイズ設定は`$maxnum`にて設定。
 
