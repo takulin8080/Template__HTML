@@ -6,14 +6,14 @@
 // -----------------------------------------------
 var trg = $('[data-toggle-trg]');
 var tar = $('[data-toggle-tar]');
-var isParent = '[data-is-parent]';
+var parentName = '[data-parent]';
 // -----------------------------------------------
 // function
 // -----------------------------------------------
 trg.click(function() {
 	var id = $(this).attr('data-toggle-trg');
-	if($(this).parents(isParent).length == 1) {
-		var parent = $(this).parents(isParent);
+	if($(this).parents(parentName).length == 1) {
+		var parent = $(this).parents(parentName);
 		parent.find('[data-toggle-trg]').attr('data-is-active', 'false');
 		parent.find('[data-toggle-tar]').attr('data-is-active', 'false');
 	}
