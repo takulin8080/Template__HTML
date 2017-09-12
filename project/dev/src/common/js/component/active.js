@@ -4,24 +4,31 @@
 // -----------------------------------------------
 // variable
 // -----------------------------------------------
-var trg = $('[data-active-trg]');
-var tar = $('[data-active-tar]');
-var parentName = '[data-parent]';
+var trgName = 'data-active-trg';
+var tarName = 'data-active-tar';
+var parentName = 'data-parent';
+var active = 'data-is-active';
 // -----------------------------------------------
 // function
 // -----------------------------------------------
-trg.click(function() {
-	var id = $(this).attr('data-active-trg');
-	if($(this).parents(parentName).length == 1) {
-		var parent = $(this).parents(parentName);
-		parent.find('[data-active-trg]').attr('data-is-active', 'false');
-		parent.find('[data-active-tar]').attr('data-is-active', 'false');
+$('[' + trgName + ']').click(function() {
+	var id = $(this).attr(trgName).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
+	if($(this).parents('[' + parentName + ']').length) {
+		var parent = $(this).parents('[' + parentName + ']');
+		parent.find('[' + trgName + ']').attr(active, 'false');
+		parent.find('[' + tarName + ']').attr(active, 'false');
 	}
-	if($(this).attr('data-is-active') == 'true') {
-		$(this).attr('data-is-active', 'false');
-		$('[data-active-tar~="' + id + '"]').attr('data-is-active', 'false');
+	if(~$(this).attr(trgName).indexOf('add')) {
+		$('[' + tarName + '~=' + id + ']').attr(active, 'true');
+	} else if(~$(this).attr(trgName).indexOf('remove')) {
+		$('[' + tarName + '~=' + id + ']').attr(active, 'false');
 	} else {
-		$(this).attr('data-is-active', 'true');
-		$('[data-active-tar~="' + id + '"]').attr('data-is-active', 'true');
+		if($(this).attr(active) == 'true') {
+			$(this).attr(active, 'false');
+			$('[' + tarName + '~=' + id + ']').attr(active, 'false');
+		} else {
+			$(this).attr(active, 'true');
+			$('[' + tarName + '~=' + id + ']').attr(active, 'true');
+		}
 	}
 });
