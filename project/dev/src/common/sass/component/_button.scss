@@ -49,6 +49,23 @@ tag:
 </div>
 ```
 
+### Control
+`close`, `next`, `prev`など、汎用的に利用される可能性のある操作系ボタンの定義。基本的に`component icon`あるいは`vendor-extension fontAwesome`で定義しているものを利用する。
+
+```html
+<div data-box="inline gutter-2">
+	<div>
+		<button data-button-ctrl="close"></button>
+	</div>
+	<div>
+		<button data-button-ctrl="next"></button>
+	</div>
+	<div>
+		<button data-button-ctrl="prev"></button>
+	</div>
+</div>
+```
+
 ### Hamburger
 三本線のメニュー（Hamburger button)スタイルを適用。`data-is-active`を付与することで三本線から☓に変化。`$type`の設定により自動的に生成される。
 
@@ -74,10 +91,12 @@ tag:
 ```
 */
 
+/* -------------------------------------------- */
+/* basic
+/* -------------------------------------------- */
 [data-button] {
-	/* -------------------------------------------- */
 	/* variable
-	/* -------------------------------------------- */
+	/* ------------------- */
 	$type: (
 		default: (
 			textColor: lighten(#546e7a, 50%),
@@ -132,9 +151,8 @@ tag:
 		smallLineHeight: size(3),
 		smallPadding: size(.5) size(2)
 	);
-	/* -------------------------------------------- */
 	/* setup
-	/* -------------------------------------------- */
+	/* ------------------- */
 	border-radius: map-get($style, borderRadius);
 	cursor: pointer;
 	display: inline-block;
@@ -205,12 +223,50 @@ tag:
 	}
 }
 /* -------------------------------------------- */
+/* Ctrl
+/* -------------------------------------------- */
+[data-button-ctrl] {
+	cursor: pointer;
+	&[data-button-ctrl~='close'] {
+		&:hover {
+			opacity: 0.7;
+		}
+		&:before {
+			@include fontAwesome( '\f057');
+			color: color(black);
+			font-size: size(4);
+			line-height: size(4);
+		}
+	}
+	&[data-button-ctrl~='next'] {
+		&:hover {
+			opacity: 0.7;
+		}
+		&:before {
+			@include fontAwesome( '\f105');
+			color: color(black);
+			font-size: size(4);
+			line-height: size(4);
+		}
+	}
+	&[data-button-ctrl~='prev'] {
+		&:hover {
+			opacity: 0.7;
+		}
+		&:before {
+			@include fontAwesome( '\f104');
+			color: color(black);
+			font-size: size(4);
+			line-height: size(4);
+		}
+	}
+}
+/* -------------------------------------------- */
 /* Humbergar
 /* -------------------------------------------- */
 [data-button-hamburger] {
-	/* -------------------------------------------- */
 	/* variable
-	/* -------------------------------------------- */
+	/* ------------------- */
 	$type: (
 		default: (
 			bgColor: color(black),
@@ -225,9 +281,8 @@ tag:
 			size: size(6)
 		)
 	);
-	/* -------------------------------------------- */
 	/* setup
-	/* -------------------------------------------- */
+	/* ------------------- */
 	background: map-get(map-get($type, default), bgColor);
 	cursor: pointer;
 	height: map-get(map-get($type, default), size);
