@@ -23,4 +23,7 @@ category: 1.foundation/extend
 	margin: 0;
 	outline: none;
 	padding: 0;
+	&:hover {
+		text-decoration: none;
+	}
 }
