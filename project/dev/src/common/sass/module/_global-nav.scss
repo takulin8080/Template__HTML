@@ -32,7 +32,7 @@ category: 4.module
 	background: color(project, blue);
 	@extend %wrap;
 	@include respondTo (mdAndUnder) {
-		@include drawer(right);
+		 @include drawer(right);
 		height: 100vh;
 		max-width: size(48);
 		width: 100%;
@@ -46,10 +46,10 @@ category: 4.module
 			position: fixed;
 			right: 0;
 			top: 0;
+			&[data-is-active~='true'] {
+				z-index: 4;
+			}
 		}
-	}
-	& > &__trg {
-		position: relative;
 	}
 	/* items
 	/* ------------------- */
@@ -60,8 +60,7 @@ category: 4.module
 	}
 	/* item
 	/* ------------------- */
-	&__item {
-	}
+	&__item {}
 	/* link
 	/* ------------------- */
 	&__link {
