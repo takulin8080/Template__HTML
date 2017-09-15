@@ -24,7 +24,9 @@ sample {
 }
 ```
 */
-@mixin fontAwesome($char) {
-	font-family: FontAwesome;
-	content: $char;
+@mixin fontAwesome($char, $insert: before) {
+	&:#{$insert} {
+		font-family: FontAwesome;
+		content: $char;
+	}
 }
