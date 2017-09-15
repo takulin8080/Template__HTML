@@ -134,7 +134,7 @@ $boxShadow: (
 name: $colorPalet
 category: 1.foundation/0.variable
 ---
-色の管理。プロジェクトで使用する色は全て本項で設定することを推奨。
+基本的に色は`$colorPalet`での管理を推奨するが、プロジェクトによっては逆に難解になる場合があるため、要素の性質にあわせて設計すること。
 
 ```scss
 $colorPalet: (
