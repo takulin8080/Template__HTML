@@ -9,8 +9,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			<%- title %>
-			|
+			<% if(title){ %>
+				<%- title %>
+				|
+			<% } %>
 			<% if(parent){ %>
 				<% parent.reverse().forEach(function(value, key){ if (parent.length - 1 != key) {%>
 					<% if (page[value] && value != 'index') { %>
