@@ -13,8 +13,10 @@
 			|
 			<% if(parent){ %>
 				<% parent.reverse().forEach(function(value, key){ if (parent.length - 1 != key) {%>
-					<%- page[value].title %>
-					|
+					<% if (page[value]) { %>
+						<%- page[value].title %>
+						|
+					<% } %>
 				<% }}) %>
 				<% parent.reverse(); %>
 			<% } %>
