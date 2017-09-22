@@ -175,6 +175,14 @@ tag:
 				padding-right: size($size / 2);
 			}
 		}
+		&[data-box~='gutter-none'] {
+			margin: 0;
+			& > * {
+				padding-bottom: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
 	}
 	@for $size from 1 through map-get($box, gutterMaxnum) {
 		 @for $bottomSize from 1 through map-get($box, gutterMaxnum){
@@ -184,6 +192,22 @@ tag:
 					padding-bottom: size($bottomSize);
 					padding-left: size($size / 2);
 					padding-right: size($size / 2);
+				}
+			}
+			&[data-box~='gutter-#{$size}-none'] {
+				margin: 0 size(-$size / 2);
+				& > * {
+					padding-bottom: 0;
+					padding-left: size($size / 2);
+					padding-right: size($size / 2);
+				}
+			}
+			&[data-box~='gutter-none-#{$bottomSize}'] {
+				margin: 0;
+				& > * {
+					padding-bottom: size($bottomSize);
+					padding-left: 0;
+					padding-right: 0;
 				}
 			}
 		}
@@ -207,6 +231,14 @@ tag:
 							margin: 0 size(-$size / 2);
 							& > * {
 								padding-bottom: size($size);
+								padding-left: size($size / 2);
+								padding-right: size($size / 2);
+							}
+						}
+						&[data-box~='#{$key}-gutter-#{$size}-none'] {
+							margin: 0 size(-$size / 2);
+							& > * {
+								padding-bottom: 0;
 								padding-left: size($size / 2);
 								padding-right: size($size / 2);
 							}
