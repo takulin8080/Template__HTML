@@ -118,3 +118,15 @@ a {
 		text-decoration: underline;
 	}
 }
+/* -------------------------------------------- */
+/* uniq
+/* -------------------------------------------- */
+*[class~="__title"] {
+	@extend %style-clear;
+}
+*[class~="__items"] {
+	@extend %style-clear;
+}
+*[class~="__item"] {
+	@extend %style-clear;
+}
