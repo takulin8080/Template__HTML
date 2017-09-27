@@ -411,9 +411,15 @@ gulp.task('img', function() {
 	var imageminOptions = {
 		optimizationLevel: 7
 	}
-	return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-		stream: true
-	}));
+	if(imagemin) {
+		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
+			stream: true
+		}));
+	} else {
+		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
+			stream: true
+		}));
+	}
 });
 // =================================================================================================
 // clean
@@ -483,6 +489,7 @@ gulp.task('watch', ['browserSync'], function() {
 // =================================================================================================
 gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = path.dst.dev;
+	imagemin = false;
 	dev = true;
 	runSequence('clean', 'jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
@@ -491,6 +498,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 // =================================================================================================
 gulp.task('2 ============== TEST', function(callback) {
 	dstDir = path.dst.test;
+	imagemin = true;
 	dev = false;
 	runSequence('jsonData', 'page', 'post', 'font', 'sass', 'js', 'img', 'browserSync', callback);
 });
