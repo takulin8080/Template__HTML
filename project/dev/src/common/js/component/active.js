@@ -13,8 +13,8 @@ var active = 'data-is-active';
 // -----------------------------------------------
 $('[' + trgName + ']').click(function() {
 	var id = $(this).attr(trgName).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
-	if($(this).parents('[' + parentName + ']').length) {
-		var parent = $(this).parents('[' + parentName + ']');
+	if($(this).closest('[' + parentName + ']').length) {
+		var parent = $(this).closest('[' + parentName + ']');
 		parent.find('[' + trgName + ']').attr(active, 'false');
 		parent.find('[' + tarName + ']').attr(active, 'false');
 	}
