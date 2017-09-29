@@ -11,11 +11,11 @@ tag:
 
 ### Basic
 
-`$type`の設定により自動的に生成される。基本スタイルは`$style`にて設定。
+`$type`の設定により自動的に生成される。基本スタイルは`$style`にて設定。また、defaultでは横幅100%に設定されている。
 
 - `small`：小サイズボタン。
 - `large`：大サイズボタン。
-- `full`：横幅100%で表示。
+- `inline`：テキスト量に応じて可変。
 
 以下のサンプルは`component box`を利用してレイアウトしている。
 
@@ -163,6 +163,7 @@ tag:
 	text-decoration: none;
 	vertical-align: top;
 	white-space: nowrap;
+	width: 100%;
 	&:hover {
 		text-decoration: none;
 	}
@@ -193,12 +194,7 @@ tag:
 		line-height: map-get($style, smallLineHeight);
 		padding: map-get($style, smallPadding);
 	}
-	&[data-button~='full'] {
-		margin-left: 0;
-		margin-right: 0;
-		width: 100%;
-	}
-	&[data-button~='auto'] {
+	&[data-button~='inline'] {
 		width: auto;
 	}
 	@if $responsive {
