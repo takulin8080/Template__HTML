@@ -92,7 +92,7 @@ var path = {
 		watch: ['src/common/img/**']
 	}
 }
-var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/uE**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
+var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
 // =================================================================================================
 // jsonData
 // =================================================================================================
@@ -150,6 +150,7 @@ gulp.task('page', ['ejsSetup'], function() {
 		}
 		data.file = filename;
 		data.site = jsonData.site;
+		data.contents = jsonData.contents;
 		data.path = {
 			css: '/' + path.common.css,
 			img: '/' + path.common.img,
@@ -441,6 +442,15 @@ gulp.task('browserSync', function() {
 	});
 });
 // =================================================================================================
+// test
+// =================================================================================================
+gulp.task('test', function() {
+	return gulp.src(
+		[path.dst.dev + path.common.font + '**/*'], {
+			base: path.dst.dev
+		}).pipe($.changed(path.dst.test)).pipe(gulp.dest(path.dst.test));
+});
+// =================================================================================================
 // stage
 // =================================================================================================
 gulp.task('stage', function() {
@@ -491,7 +501,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = path.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('clean', 'jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
@@ -500,7 +510,7 @@ gulp.task('2 ============== TEST', function(callback) {
 	dstDir = path.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('jsonData', 'page', 'post', 'font', 'sass', 'js', 'img', 'browserSync', callback);
+	runSequence('test', 'jsonData', 'page', 'post', 'sass', 'js', 'img', 'test', 'browserSync', callback);
 });
 // =================================================================================================
 // STAGE

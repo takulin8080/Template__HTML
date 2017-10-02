@@ -31,7 +31,13 @@ category: 2.component
 ---
 様々なプロジェクトで利用できるような、汎用パーツを定義。色、サイズなどのスタイルは`function $variable`で設定するため、直接`componentファイル`を直接触ることは少ない。`button, alert ...`
 */
-@import 'component/**';
+@import 'component/icon';
+@import 'component/alert';
+@import 'component/box';
+@import 'component/button';
+@import 'component/drawer';
+@import 'component/modal';
+@import 'component/overlay';
 /* ============================================================================================== */
 /* layout
 /* ============================================================================================== */
