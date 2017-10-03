@@ -71,7 +71,7 @@ var path = {
 		foundationSrc: ['src/common/sass/foundation.scss'],
 		foundationWatch: ['src/common/sass/foundation/**/*'],
 		componentSrc: ['src/common/sass/component.scss'],
-		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*'],
+		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
 		projectSrc: ['src/common/sass/project.scss'],
 		projectWatch: ['src/common/sass/**/*', '!src/common/sass/utility/**/*'],
 		utilitySrc: ['src/common/sass/utility.scss'],
@@ -504,9 +504,18 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	runSequence('jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
+// DEVELOPMENT__CLEANUP
+// =================================================================================================
+gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
+	dstDir = path.dst.dev;
+	imagemin = false;
+	dev = true;
+	runSequence('clean', 'jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+});
+// =================================================================================================
 // TEST
 // =================================================================================================
-gulp.task('2 ============== TEST', function(callback) {
+gulp.task('3 ============== TEST', function(callback) {
 	dstDir = path.dst.test;
 	imagemin = true;
 	dev = false;
@@ -515,12 +524,12 @@ gulp.task('2 ============== TEST', function(callback) {
 // =================================================================================================
 // STAGE
 // =================================================================================================
-gulp.task('3 ============== STAGING', function(callback) {
+gulp.task('4 ============== STAGING', function(callback) {
 	runSequence('stage', callback);
 });
 // =================================================================================================
 // PRODUCTION
 // =================================================================================================
-gulp.task('4 ============== PRODUCTION', function(callback) {
+gulp.task('5 ============== PRODUCTION', function(callback) {
 	runSequence('prod', callback);
 });
