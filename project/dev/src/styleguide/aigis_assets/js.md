@@ -55,3 +55,17 @@ tag:
 </dl>
 ```
 */
+
+/*
+---
+name: data-hoverimg
+category: 0-2.JS
+tag:
+- data属性
+---
+`data-hoverimg="$imgpath"`を付与することでロールオーバー時に画像を変更。
+
+```html
+<img src="test.png" data-hoverimg="test--hover.png">
+```
+*/

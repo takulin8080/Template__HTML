@@ -6,6 +6,7 @@ require('./component/active');
 require('./component/modal');
 require('./component/drawer');
 require('./component/maxlength');
+require('./component/hoverimg');
 // ==============================================================================================
 // module
 // ==============================================================================================
