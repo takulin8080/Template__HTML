@@ -69,19 +69,19 @@ var path = {
 		src: ['src/common/sass/app.scss'],
 		vendorSrc: ['src/common/sass/vendor.scss'],
 		foundationSrc: ['src/common/sass/foundation.scss'],
-		foundationWatch: ['src/common/sass/foundation/**/*'],
+		foundationWatch: ['src/common/sass/foundation/**/*', '!src/common/sass/component/_icon.scss'],
 		componentSrc: ['src/common/sass/component.scss'],
 		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
 		projectSrc: ['src/common/sass/project.scss'],
-		projectWatch: ['src/common/sass/**/*', '!src/common/sass/utility/**/*'],
+		projectWatch: ['src/common/sass/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
 		utilitySrc: ['src/common/sass/utility.scss'],
-		utilityWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/utility/**/*'],
+		utilityWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
 		devSrc: ['src/common/sass/dev.scss'],
-		devWatch: ['src/common/sass/dev/**/*']
+		devWatch: ['src/common/sass/dev/**/*', '!src/common/sass/component/_icon.scss']
 	},
 	styleGuide: {
 		src: 'src/styleguide/aigis_config.yml',
-		watch: ['dst/common/css/**/*', 'src/styleguide/**/*']
+		watch: ['dst/common/css/**/*', 'src/styleguide/**/*', '!src/common/sass/component/_icon.scss']
 	},
 	js: {
 		src: 'src/common/js/*.js',
