@@ -169,10 +169,7 @@ tag:
 	@for $size from 1 through map-get($box, gutterMaxnum) {
 		&[data-box~='gutter-#{$size}'] {
 			margin-left: size(-$size / 2);
-<<<<<<< HEAD
 			margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 			& > * {
 				padding-bottom: size($size);
 				padding-left: size($size / 2);
@@ -192,10 +189,7 @@ tag:
 		 @for $bottomSize from 1 through map-get($box, gutterMaxnum){
 			&[data-box~='gutter-#{$size}-#{$bottomSize}'] {
 				margin-left: size(-$size / 2);
-<<<<<<< HEAD
 				margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 				& > * {
 					padding-bottom: size($bottomSize);
 					padding-left: size($size / 2);
@@ -204,10 +198,7 @@ tag:
 			}
 			&[data-box~='gutter-#{$size}-none'] {
 				margin-left: size(-$size / 2);
-<<<<<<< HEAD
 				margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 				& > * {
 					padding-bottom: 0;
 					padding-left: size($size / 2);
@@ -230,10 +221,7 @@ tag:
 				 @for $size from 1 through map-get($box, gutterMaxnum){
 					&[data-box~='#{$key}-gutter-#{$size}'] {
 						margin-left: size(-$size / 2);
-<<<<<<< HEAD
 						margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 						& > * {
 							padding-bottom: size($size);
 							padding-left: size($size / 2);
@@ -245,10 +233,7 @@ tag:
 					 @for $bottomSize from 1 through map-get($box, gutterMaxnum){
 						&[data-box~='#{$key}-gutter-#{$size}-#{$bottomSize}'] {
 							margin-left: size(-$size / 2);
-<<<<<<< HEAD
 							margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 							& > * {
 								padding-bottom: size($size);
 								padding-left: size($size / 2);
@@ -257,10 +242,7 @@ tag:
 						}
 						&[data-box~='#{$key}-gutter-#{$size}-none'] {
 							margin-left: size(-$size / 2);
-<<<<<<< HEAD
 							margin-right: size(-$size / 2);
-=======
->>>>>>> 52defa104cda6b1a3b1d973f654f7782dfd664bf
 							& > * {
 								padding-bottom: 0;
 								padding-left: size($size / 2);
