@@ -3,6 +3,7 @@
 		"index": {
 			"template": "home",
 			"title": "ホーム",
+			"keyword": "",
 			"description": "",
 			"pageModifier": "home",
 			"progress": "done"
@@ -10,6 +11,7 @@
 		"news/index": {
 			"template": "default",
 			"title": "ニュース",
+			"keyword": "",
 			"description": "",
 			"pageModifier": "",
 			"progress": "stop"
@@ -17,6 +19,7 @@
 		"sitemap": {
 			"template": "default",
 			"title": "サイトマップ",
+			"keyword": "",
 			"description": "",
 			"pageModifier": "",
 			"progress": ""
@@ -24,6 +27,7 @@
 		"_dev-sitemap": {
 			"template": "single",
 			"title": "開発用サイトマップ",
+			"keyword": "",
 			"description": "",
 			"pageModifier": "",
 			"progress": ""

@@ -119,6 +119,7 @@ gulp.task('page', ['ejsSetup'], function() {
 	for(var key in jsonData.page) {
 		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
 		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
+		var postsData = [];
 		var dirHierarchy;
 		var data = jsonData.page[key];
 		var template = data.template;
@@ -180,20 +181,29 @@ gulp.task('page', ['ejsSetup'], function() {
 			pages[urlKey].url = urlData;
 		}
 		data.page = pages;
-		for(var groupKey in posts) {
-			var postCat = posts[groupKey];
-			for(var postKey in postCat) {
-				var post = postCat[postKey];
-				post.url = dirHierarchy + post.pagename + '.html';
-				if(!post.date) {
-					post.date = post.updatedAt.replace(/T.*$/, '');
-				}
-				pages[post.pagename] = post;
+		for(var postKey in posts) {
+			var post = posts[postKey];
+			var postPagename = post.pagename;
+			var postCatArray = postPagename.split('/');
+			post.url = dirHierarchy + postPagename + '.html';
+			if(!post.date) {
+				post.date = post.updatedAt.replace(/T.*$/, '');
 			}
+			if(!post.cat) {
+				var postCat = '';
+				if(postCatArray != 1) {
+					for(var postCatKey in postCatArray) {
+						if(postCatKey != postCatArray.length - 1) {
+							postCat += postCatArray[postCatKey] + '/';
+						}
+					}
+					postCat = postCat.slice(0, -1);
+					post.cat = postCat;
+				}
+			}
+			postsData[postPagename] = post;
 		}
-		data.post = posts;
-		pageData = data.page;
-		postData = data.post;
+		data.post = postsData;
 		data.file = filename;
 		data.site = jsonData.site;
 		data.contents = jsonData.contents;
@@ -246,98 +256,124 @@ gulp.task('post', function() {
 	var src = path.post.src;
 	var dst = dstDir;
 	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	for(var groupKey in jsonData.post) {
-		var postCat = jsonData.post[groupKey];
-		for(var postKey in postCat) {
-			var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-			var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-			var dirHierarchy;
-			var data = postCat[postKey];
-			var template = data.template;
-			var parentArray = data.pagename.split('/');
-			var pagename;
-			var parent = ['index'];
-			for(var i in parentArray) {
-				if(i == 0) {
-					pagename = parentArray[i];
-				} else {
-					pagename += '/' + parentArray[i];
-				}
-				parent.push(pagename + '/index');
-				if(i == parentArray.length - 1) {
-					parent.pop();
-				}
-			}
-			filename = pagename;
-			if(relativePath) {
-				if(parentArray.length == 1) {
-					dirHierarchy = '';
-				} else {
-					parentArray.forEach(function(value, key) {
-						if(key == 0) {
-							dirHierarchy = '';
-						} else {
-							dirHierarchy += '../';
-						}
-					});
+	for(var key in jsonData.post) {
+		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
+		var postsData = [];
+		var dirHierarchy;
+		var data = jsonData.post[key];
+		var template = data.template;
+		var filename = data.pagename;
+		var pagename = data.pagename;
+		var parentArray = filename.split('/');
+		var paretnData = function(file) {
+			var parentName;
+			var parent = [];
+			if(parentArray.length == 1) {
+				if(parentArray == 'index') {
+					parent.push('index');
+					return parent;
 				}
 			} else {
-				dirHierarchy = '/';
-			}
-			data.path = {
-				css: dirHierarchy + path.common.css,
-				img: dirHierarchy + path.common.img,
-				js: dirHierarchy + path.common.js
-			}
-			for(var urlKey in pages) {
-				var urlData = dirHierarchy + urlKey + '.html';
-				if(!relativePath) {
-					urlData = urlData.replace('index.html', '');
-				}
-				pages[urlKey].url = urlData;
-			}
-			data.page = pages;
-			for(var groupKey in posts) {
-				var postCat = posts[groupKey];
-				for(var postKey in postCat) {
-					var post = postCat[postKey];
-					post.url = dirHierarchy + post.pagename + '.html';
-					if(!post.date) {
-						post.date = post.updatedAt.replace(/T.*$/, '');
+				parent.push('index');
+				parentArray.forEach(function(value, key) {
+					if(key == 0) {
+						parentName = value;
+						parent.push(parentName + '/index');
+					} else if(value == 'index') {
+						return parent;
+					} else {
+						parentName += '/' + value;
+						parent.push(parentName + '/index');
 					}
-					pages[post.pagename] = post;
-				}
+				});
+				parent.pop();
+				return parent;
 			}
-			data.post = posts;
-			data.url = pagename + '.html';
-			data.parent = parent;
-			data.site = jsonData.site;
-			if(!data.keyword) {
-				data.keyword = data.site.keyword;
-			}
-			if(!data.description) {
-				data.description = data.site.description;
-			}
-			if(!data.pageModifier) {
-				var pageModifierArray = pagename.split('/');
-				var pageModifierName = '';
-				for(var i in pageModifierArray) {
-					pageModifierName += pageModifierArray[i] + ' ';
-				}
-				data.pageModifier = pageModifierName;
-			}
-			data.dev = dev;
-			gulp.src(src + template + ".ejs").pipe($.plumber({
-				errorHandler: $.notify.onError('<%= error.message %>')
-			})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
-				indent_char: '\t',
-				indent_size: 1
-			})).pipe($.changed(dst, {
-				hasChanged: $.changed.compareSha1Digest
-			})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-				stream: true
-			}));
 		}
+		if(relativePath) {
+			if(parentArray.length == 1) {
+				dirHierarchy = '';
+			} else {
+				parentArray.forEach(function(value, key) {
+					if(key == 0) {
+						dirHierarchy = '';
+					} else {
+						dirHierarchy += '../';
+					}
+				});
+			}
+		} else {
+			dirHierarchy = '/';
+		}
+		data.path = {
+			css: dirHierarchy + path.common.css,
+			img: dirHierarchy + path.common.img,
+			js: dirHierarchy + path.common.js
+		}
+		for(var urlKey in pages) {
+			var urlData = dirHierarchy + urlKey + '.html';
+			if(!relativePath) {
+				urlData = urlData.replace('index.html', '');
+			}
+			pages[urlKey].url = urlData;
+		}
+		data.page = pages;
+		for(var postKey in posts) {
+			var post = posts[postKey];
+			var postPagename = post.pagename;
+			var postCatArray = postPagename.split('/');
+			post.url = dirHierarchy + postPagename + '.html';
+			if(!post.date) {
+				post.date = post.updatedAt.replace(/T.*$/, '');
+			}
+			if(!post.cat) {
+				var postCat = '';
+				if(postCatArray != 1) {
+					for(var postCatKey in postCatArray) {
+						if(postCatKey != postCatArray.length - 1) {
+							postCat += postCatArray[postCatKey] + '/';
+						}
+					}
+					postCat = postCat.slice(0, -1);
+					post.cat = postCat;
+				}
+			}
+			postsData[postPagename] = post;
+		}
+		data.post = postsData;
+		data.file = filename;
+		data.site = jsonData.site;
+		data.contents = jsonData.contents;
+		data.parent = paretnData(filename);
+		if(!data.keyword) {
+			data.keyword = data.site.keyword;
+		}
+		if(!data.description) {
+			data.description = data.site.description;
+		}
+		if(!data.date) {
+			data.date = data.updatedAt.replace(/T.*$/, '');
+		}
+		if(!data.pageModifier) {
+			var pageModifierArray = pagename.split('/');
+			var pageModifierName = '';
+			for(var i in pageModifierArray) {
+				pageModifierName += pageModifierArray[i] + ' ';
+			}
+			data.pageModifier = pageModifierName;
+		}
+		data.dev = dev;
+		gulp.src(src + template + ".ejs").pipe($.plumber({
+			errorHandler: $.notify.onError('<%= error.message %>')
+		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
+			indent_char: '\t',
+			indent_size: 1
+		})).pipe($.changed(dst, {
+			hasChanged: $.changed.compareSha1Digest
+		})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
+			stream: true
+		}));
 	}
 });
 // =================================================================================================

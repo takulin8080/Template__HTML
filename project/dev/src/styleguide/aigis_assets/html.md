@@ -70,20 +70,21 @@ name: Markdown(post)
 category: 0-1.HTML
 ---
 
-`*.md`ファイルを`src/post/**`フォルダ以下に作成し、必須情報を入力することでhtmlが生成される。なお階層対応はしていないため必ず`src/post/**`フォルダ直下に配置すること。`ejs`でのページ変数の利用は`<%- page['category/postname'] %>`または`page.category['postname'] %>`両方で出力が可能。
+`*.md`ファイルを`src/post/**`フォルダ以下に作成し、必須情報を入力することでhtmlが生成される。なお階層対応はしていないため必ず`src/post/**`フォルダ直下に配置すること。`ejs`でのページ変数の利用は`<%- page['pagename'] %>`で出力が可能。
 
 任意でページ独自の変数を追加することも可能。`例：size: 88cm`
 
 ```
 ---
-pagename: cast/sakurako //生成するhtmlパスを設定。併せて階層情報の設定もされるため同階層に`index.html`の設置が必要となる（必須）。
-template: post--cast //利用する`src/_template/*.ejs`を指定（必須）。
-title: sakurako //ページタイトルを指定（必須）。
-tag: //記事のtag。リスト表示の振り分けなどに利用する。
+pagename: news/20171212 //生成するhtmlパスを設定。併せて階層情報の設定もされる。
+template: post__news //利用する`src/_template/*.ejs`を指定（必須）。
+title: news 20171212 //ページタイトルを指定（必須）。
+keyword: 未設定の場合`site.keyword`が設定される。
+description: 未設定の場合`site.description`が設定される。
 date: 作成日。設定ががない場合、ファイル更新日が表示される。
-keyword: //未設定の場合`site.keyword`が設定される。
-description: //未設定の場合`site.description`が設定される。
-bodyclass: //未設定の場合ファイル名から設定される。
+pageModifier: 未設定の場合pagenameから設定される。
+cat: 記事のcategory。未設定の場合pagenameから設定される。
+tag: 記事のtag。リスト表示の振り分けなどに利用する。
 ...
 ---
 
