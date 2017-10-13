@@ -38,8 +38,7 @@
 		color: color(black);
 		display: block;
 	}
-	&__url {
-	}
+	&__url {}
 	&__title {
 		color: color(gray, 7);
 		font-size: fontSize(-1);
@@ -48,6 +47,39 @@
 		}
 		&:after {
 			content: ' ]';
+		}
+	}
+}
+/* -------------------------------------------- */
+/* progressbar
+/* -------------------------------------------- */
+.dev-progressbar {
+	display: flex;
+	margin-bottom: size(2);
+	&__item {
+		color: #fff;
+		font-size: 8px;
+		padding: 0 size(1);
+		line-height: size(4);
+		white-space: nowrap;
+		overflow: hidden;
+		&:first-child {
+			border-radius: size(2) 0 0 size(2);
+		}
+		&:last-child {
+			border-radius: 0 size(2) size(2) 0;
+		}
+		&[data-modifier~='done'] {
+			background: color(sign, success);
+		}
+		&[data-modifier~='stop'] {
+			background: color(sign, warning);
+		}
+		&[data-modifier~='none'] {
+			background: color(gray, 7);
+		}
+		&[data-modifier~='undone'] {
+			background: color(sign, danger);
 		}
 	}
 }
