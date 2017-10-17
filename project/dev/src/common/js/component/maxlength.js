@@ -9,7 +9,7 @@ var trgName = 'data-maxlength';
 // function
 // -----------------------------------------------
 $('[' + trgName + ']').each(function() {
-	var num = $('[' + trgName + ']').attr(trgName);
+	var num = $(this).attr(trgName);
 	if($(this).text().length > num) {
 		$(this).text($(this).text().substr(0, num));
 	}
