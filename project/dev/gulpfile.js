@@ -45,12 +45,17 @@ var path = {
 		watch: ['src/_data/**/*.json', 'src/page/_data.json', 'src/post/_data.json']
 	},
 	jsonPost: {
-		src: ['src/**/*.md', '!' + 'src/styleguide/**/*.md'],
-		watch: ['src/**/*.md', '!' + 'src/styleguide/**/*.md']
+		src: ['src/**/*.md', '!src/styleguide/**/*.md'],
+		watch: ['src/**/*.md', '!src/styleguide/**/*.md']
+	},
+	devPage: {
+		src: 'src/page/dev/**/*.ejs',
+		dst: 'dst/dev/',
+		watch: ['src/_data.json', 'src/page/**/*.ejs']
 	},
 	page: {
 		src: 'src/page/_template/',
-		watch: ['src/_data.json', 'src/page/**/*.ejs']
+		watch: ['src/_data.json', 'src/page/**/*.ejs', '!src/page/dev/workpage.ejs']
 	},
 	ejsSetup: {
 		src: 'src/page/_data.json'
@@ -376,6 +381,67 @@ gulp.task('post', function() {
 		}));
 	}
 });
+gulp.task('devPage', function() {
+	var src = path.devPage.src;
+	var dst = path.devPage.dst;
+	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
+	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
+	var postsData = [];
+	var dirHierarchy = '../';
+	var data = [];
+	if(!relativePath) {
+		dirHierarchy = '/';
+	}
+	data.path = {
+		css: dirHierarchy + path.common.css,
+		img: dirHierarchy + path.common.img,
+		js: dirHierarchy + path.common.js
+	}
+	for(var urlKey in pages) {
+		var urlData = dirHierarchy + urlKey + '.html';
+		if(!relativePath) {
+			urlData = urlData.replace('index.html', '');
+		}
+		pages[urlKey].url = urlData;
+	}
+	data.page = pages;
+	for(var postKey in posts) {
+		var post = posts[postKey];
+		var postPagename = post.pagename;
+		var postCatArray = postPagename.split('/');
+		post.url = dirHierarchy + postPagename + '.html';
+		if(!post.date) {
+			post.date = post.updatedAt.replace(/T.*$/, '');
+		}
+		if(!post.cat) {
+			var postCat = '';
+			if(postCatArray != 1) {
+				for(var postCatKey in postCatArray) {
+					if(postCatKey != postCatArray.length - 1) {
+						postCat += postCatArray[postCatKey] + '/';
+					}
+				}
+				postCat = postCat.slice(0, -1);
+				post.cat = postCat;
+			}
+		}
+		postsData[postPagename] = post;
+	}
+	data.post = postsData;
+	data.site = jsonData.site;
+	data.contents = jsonData.contents;
+	gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('<%= error.message %>')
+	})).pipe($.ejs(data)).pipe($.rename({
+		extname: '.html'
+	})).pipe($.prettify({
+		indent_char: '\t',
+		indent_size: 1
+	})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
+		stream: true
+	}));
+});
 // =================================================================================================
 // font
 // =================================================================================================
@@ -520,6 +586,15 @@ gulp.task('img', function() {
 	}
 });
 // =================================================================================================
+// robots
+// =================================================================================================
+gulp.task('robots', function() {
+	return gulp.src(
+		[path.dst.src + 'robots.txt'], {
+			base: path.dst.src
+		}).pipe($.changed(path.dst.dev)).pipe(gulp.dest(path.dst.dev));
+});
+// =================================================================================================
 // clean
 // =================================================================================================
 gulp.task('clean', function() {
@@ -531,8 +606,7 @@ gulp.task('clean', function() {
 gulp.task('browserSync', function() {
 	return browserSync({
 		server: {
-			baseDir: dstDir,
-			index: 'index.html'
+			baseDir: dstDir
 		},
 		open: 'external',
 		port: 9000
@@ -543,7 +617,7 @@ gulp.task('browserSync', function() {
 // =================================================================================================
 gulp.task('test', function() {
 	return gulp.src(
-		[path.dst.dev + path.common.font + '**/*'], {
+		[path.dst.dev + path.common.font + '**/*', path.dst.dev + 'robots.txt'], {
 			base: path.dst.dev
 		}).pipe($.changed(path.dst.test)).pipe(gulp.dest(path.dst.test));
 });
@@ -569,7 +643,7 @@ gulp.task('prod', ['prodCopy'], function() {
 });
 gulp.task('prodCopy', function() {
 	return gulp.src(
-		[path.dst.stage + '**/*'], {
+		[path.dst.stage + '**/*', '!' + path.dst.stage + 'robots.txt'], {
 			base: path.dst.stage
 		}).pipe($.changed(path.dst.prod)).pipe(gulp.dest(path.dst.prod));
 });
@@ -579,6 +653,7 @@ gulp.task('prodCopy', function() {
 gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(path.jsonData.watch, ['jsonData']);
 	gulp.watch(path.jsonPost.watch, ['jsonPost']);
+	gulp.watch(path.devPage.watch, ['devPage']);
 	gulp.watch(path.page.watch, ['page']);
 	gulp.watch(path.post.watch, ['post']);
 	gulp.watch(path.font.watch, ['font']);
@@ -598,7 +673,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = path.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('jsonData', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // DEVELOPMENT__CLEANUP
@@ -607,7 +682,7 @@ gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
 	dstDir = path.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('clean', 'jsonData', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('clean', 'jsonData', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
