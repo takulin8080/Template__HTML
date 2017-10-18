@@ -1,0 +1,10 @@
+{
+	"site": {
+		"title": "テスト.com",
+		"description": "description",
+		"author": "",
+		"publicationDate": "2017",
+		"copyright": "test.com",
+		"url": "http://www.test.com"
+	}
+}

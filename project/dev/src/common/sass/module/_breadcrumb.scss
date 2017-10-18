@@ -1,0 +1,40 @@
+/* ============================================================================================== */
+/* module/breadcrumb
+/* ============================================================================================== */
+/*
+---
+name: Breadcrumb
+category: 4.module
+---
+`_data/page.json`から自動生成。第2階層以降は同フォルダの`index.html`が親リンクとなる。`index.html`が無い場合はスルー。
+
+```html
+<div class="breadcrumb">
+	<ul class="breadcrumb__items">
+		<li class="breadcrumb__item">
+			<a class="breadcrumb__link" href="/index.html">ホーム</a>
+		</li>
+		<li class="breadcrumb__item">
+			<a class="breadcrumb__link" href="/sample/index.html">sample</a>
+		</li>
+		<li class="breadcrumb__item">sample__sample</li>
+	</ul>
+</div>
+```
+*/
+.breadcrumb {
+	$this: &;
+	margin: 0 auto size(2);
+	max-width: $siteWidth;
+	&__items {
+	}
+	&__item {
+		display: inline-block;
+	}
+	&__link {
+		display: block;
+		line-height: size(5);
+		padding: 0 size(2);
+		text-decoration: none;
+	}
+}

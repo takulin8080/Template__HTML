@@ -1,0 +1,72 @@
+/* ============================================================================================== */
+/* module/global-nav
+/* ============================================================================================== */
+/*
+---
+name: Global Navigation
+category: 4.module
+---
+
+```html
+<!-- global-nav -->
+<div class="global-nav__trg" style="position: relative;">
+	<span></span>
+	<span></span>
+	<span></span>
+</div>
+<nav class="global-nav">
+	<ul class="global-nav__list">
+		<li class="global-nav__item" data-modifier="index">
+			<a class="global-nav__link" href="/">ホーム</a>
+		</li>
+		<li class="global-nav__item" data-modifier="news/index">
+			<a class="global-nav__link" href="/news/">ニュース</a>
+		</li>
+	</ul>
+</nav>
+<!-- /global-nav -->
+```
+*/
+.global-nav {
+	$this: &;
+	background: color(project, blue);
+	@extend %wrap;
+	@include respondTo (mdAndUnder) {
+		 @include drawer(right);
+		height: 100vh;
+		max-width: size(48);
+		width: 100%;
+	}
+	/* trg
+	/* ------------------- */
+	&__trg {
+		display: none;
+		@include respondTo (mdAndUnder) {
+			display: block;
+			position: fixed;
+			right: 0;
+			top: 0;
+			&[data-is-active~='true'] {
+				z-index: 4;
+			}
+		}
+	}
+	/* items
+	/* ------------------- */
+	&__items {
+		@include respondTo(lg) {
+			display: flex;
+		}
+	}
+	/* item
+	/* ------------------- */
+	&__item {}
+	/* link
+	/* ------------------- */
+	&__link {
+		background: color(white);
+		cursor: pointer;
+		display: block;
+		padding: size(2);
+	}
+}

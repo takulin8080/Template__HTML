@@ -1,0 +1,35 @@
+/* ============================================================================================== */
+/* component/overlay
+/* ============================================================================================== */
+/*
+---
+name: Overlay
+category: 2.component
+---
+モーダルやスマホ用ナビゲーション利用時などに表示するマスクレイヤー。
+*/
+body {
+	&[data-overlay] {
+		& [data-overlay-layer] {
+			background: color(black);
+			content: '';
+			height: 100vh;
+			left: 0;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			transition: all 0.4s;
+			visibility: hidden;
+			width: 100%;
+			z-index: 1;
+		}
+		&[data-overlay~="true"] {
+			position: fixed;
+			width: 100%;
+			& [data-overlay-layer] {
+				opacity: 0.8;
+				visibility: visible;
+			}
+		}
+	}
+}

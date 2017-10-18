@@ -1,0 +1,36 @@
+{
+	"page": {
+		"index": {
+			"template": "home",
+			"title": "ホーム",
+			"keyword": "",
+			"description": "",
+			"pageModifier": "home",
+			"progress": "done"
+		},
+		"index": {
+			"template": "home",
+			"title": "ホーム",
+			"keyword": "",
+			"description": "",
+			"pageModifier": "home",
+			"progress": "done"
+		},
+		"news/index": {
+			"template": "default",
+			"title": "ニュース",
+			"keyword": "",
+			"description": "",
+			"pageModifier": "",
+			"progress": "stop"
+		},
+		"sitemap": {
+			"template": "default",
+			"title": "サイトマップ",
+			"keyword": "",
+			"description": "",
+			"pageModifier": "",
+			"progress": ""
+		}
+	}
+}

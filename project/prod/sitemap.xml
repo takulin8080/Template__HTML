@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://www.test.com/</loc>
+        <lastmod>2017-10-17T04:23:57.084Z</lastmod>
+    </url>
+    <url>
+        <loc>http://www.test.com/sitemap.html</loc>
+        <lastmod>2017-10-17T04:23:57.090Z</lastmod>
+    </url>
+    <url>
+        <loc>http://www.test.com/news/20171212.html</loc>
+        <lastmod>2017-10-17T04:23:57.095Z</lastmod>
+    </url>
+    <url>
+        <loc>http://www.test.com/news/</loc>
+        <lastmod>2017-10-17T04:23:57.097Z</lastmod>
+    </url>
+    <url>
+        <loc>http://www.test.com/product/myProdact.html</loc>
+        <lastmod>2017-10-17T04:23:57.098Z</lastmod>
+    </url>
+    <url>
+        <loc>http://www.test.com/news/event/20191212.html</loc>
+        <lastmod>2017-10-17T04:23:57.099Z</lastmod>
+    </url>
+</urlset>

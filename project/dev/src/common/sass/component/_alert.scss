@@ -1,0 +1,84 @@
+/* ============================================================================================== */
+/* component/alert
+/* ============================================================================================== */
+/*
+---
+name: Alert
+category: 2.component
+tag:
+- data属性
+---
+`$type`の設定により自動的に生成される。基本スタイルは`$style`にて設定。
+
+```html
+<div data-alert>default</div>
+<div data-alert="info">information</div>
+<div data-alert="success">success</div>
+<div data-alert="warning">warning</div>
+<div data-alert="danger">danger</div>
+```
+*/
+[data-alert] {
+	/* -------------------------------------------- */
+	/* variable
+	/* -------------------------------------------- */
+	$type: (
+		default: (
+			text: lighten(#546e7a, 50%),
+			bg: lighten(#546e7a, 5%),
+			border: #546e7a
+		),
+		info: (
+			text: lighten(color(sign, info), 50%),
+			bg: lighten(color(sign, info), 5%),
+			border: color(sign, info)
+		),
+		success: (
+			text: lighten(color(sign, success), 50%),
+			bg: lighten(color(sign, success), 5%),
+			border: color(sign, success)
+		),
+		warning: (
+			text: lighten(color(sign, warning), 50%),
+			bg: lighten(color(sign, warning), 5%),
+			border: color(sign, warning)
+		),
+		danger: (
+			text: lighten(color(sign, danger), 50%),
+			bg: lighten(color(sign, danger), 5%),
+			border: color(sign, danger)
+		)
+	);
+	$style: (
+		borderWidth: size(.2),
+		borderRadius: size(.5),
+		padding: size(1) size(2),
+		margin: 0 0 size(2)
+	);
+	/* -------------------------------------------- */
+	/* setup
+	/* -------------------------------------------- */
+	@each $name, $value in $type {
+		&[data-alert~='#{$name}'] {
+			$borderColor: map-get($value, border);
+			$bgColor: map-get($value, bg);
+			$borderColor: map-get($value, border);
+			$textColor: map-get($value, text);
+			background: $bgColor;
+			border: map-get($style, borderWidth) solid $borderColor;
+			border-radius: map-get($style, borderRadius);
+			box-shadow: boxShadow();
+			color: $textColor;
+			padding: map-get($style, padding);
+			margin: map-get($style, margin);
+			@extend [data-alert];
+			a {
+				color: $textColor;
+				text-decoration: underline;
+			}
+		}
+	}
+	&[data-alert] {
+		@extend [data-alert~='default']
+	}
+}

@@ -1,0 +1,33 @@
+/* ============================================================================================== */
+/* foundation/function/fontSize
+/* ============================================================================================== */
+/*
+---
+name: Font Size
+category: 1.foundation/function
+---
+`font-size`は`function fontSize($num)`で指定する。現バージョンでは`-1〜4`までの値があり、値が大きいほどサイズが大きい。`1`は基本フォントサイズである`foundation $baseFontSize`と同サイズとなる。また`line-height`を指定する場合も`function size($num)`を利用する。
+
+```scss
+contents {
+	font-size: fontSize(3);
+	line-height: size(4);
+}
+```
+*/
+@function fontSize($size: 1) {
+	$fontSizeSet: $baseFontSize;
+	@if $size == -1 {
+		$fontSizeSet: 1.2rem;
+	}
+	@else if $size == 2 {
+		$fontSizeSet: $fontSizeSet * 1.5;
+	}
+	@else if $size == 3 {
+		$fontSizeSet: $fontSizeSet * 2.25;
+	}
+	@else if $size == 4 {
+		$fontSizeSet: $fontSizeSet * 3.375;
+	}
+	@return $fontSizeSet;
+}

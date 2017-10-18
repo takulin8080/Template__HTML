@@ -1,0 +1,30 @@
+/* ============================================================================================== */
+/* utility/hide
+/* ============================================================================================== */
+/*
+---
+name: Hide
+category: 6.utility
+tag:
+- data属性
+- responsive
+---
+`breakpoint prefix`を付けることで任意の画面サイズで非表示。
+
+```html
+<div data-hide="md">
+	<p>contents</p>
+</div>
+```
+*/
+[data-hide] {
+	@if $responsive {
+		 @each $key in $respondToKey{
+			&[data-hide~='#{$key}'] {
+				@include respondTo($key) {
+					display: none;
+				}
+			}
+		}
+	}
+}

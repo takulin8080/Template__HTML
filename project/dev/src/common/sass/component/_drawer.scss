@@ -1,0 +1,69 @@
+/* ============================================================================================== */
+/* componet/drawer
+/* ============================================================================================== */
+/*
+---
+name: Drawer
+category: 2.component
+tat:
+- data属性
+---
+画面外からスライド表示するコンテンツを生成。
+- `data-drawer-trg="$string"`クリックで対象コンテンツを表示。
+- `data-drawer-tar="$string $string"`対象コンテンツ。
+- `data-drawer-tar="$string left"` : `data-drawer-tar`が左からスライド表示選択。初期値。
+- `data-drawer-tar="$string right"` : `data-drawer-tar`が右からスライド表示選択。
+- `data-drawer-tar="$string top"` : `data-drawer-tar`が上からスライド表示選択。
+- `data-drawer-tar="$string bottom"` : `data-drawer-tar`が下からスライド表示選択。
+
+```html
+<button data-drawer-trg="drawer" data-button>drawer</button>
+<div data-drawer-tar="drawer top">
+	<p style="background: #fff; padding: 2rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis auteirure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+```
+*/
+[data-drawer-tar] {
+	left: -100vw;
+	max-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	transition: all 0.4s;
+	z-index: 3;
+	&[data-is-active~="true"] {
+		left: 0;
+	}
+	&[data-drawer-tar~='right'] {
+		left: auto;
+		right: -100vw;
+		top: 0;
+		&[data-is-active~="true"] {
+			left: auto;
+			right: 0;
+		}
+	}
+	&[data-drawer-tar~='top'] {
+		left: 0;
+		opacity: 0;
+		top: -100vh;
+		visibility: hidden;
+		&[data-is-active~="true"] {
+			opacity: 1;
+			top: 0;
+			visibility: visible;
+		}
+	}
+	&[data-drawer-tar~='bottom'] {
+		bottom: -100vh;
+		left: 0;
+		top: auto;
+		visibility: hidden;
+		&[data-is-active~="true"] {
+			opacity: 1;
+			bottom: 0;
+			visibility: visible;
+		}
+	}
+}
