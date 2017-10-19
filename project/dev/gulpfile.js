@@ -102,6 +102,11 @@ var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/found
 // =================================================================================================
 // jsonData
 // =================================================================================================
+gulp.task('json', ['jsonData'], function() {
+	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
+	jsonPage = JSON.parse(fs.readFileSync('src/_data.json')).page;
+	jsonPost = JSON.parse(fs.readFileSync('src/_data.json')).post;
+});
 gulp.task('jsonData', ['jsonPost'], function() {
 	var src = path.jsonData.src;
 	var dst = path.dst.src;
@@ -117,102 +122,27 @@ gulp.task('jsonPost', function() {
 // =================================================================================================
 // page
 // =================================================================================================
-gulp.task('page', ['ejsSetup'], function() {
+// -----------------------------------------------
+// page
+// -----------------------------------------------
+gulp.task('page', ['ejsPageSetup'], function() {
 	var src = path.page.src;
 	var dst = dstDir;
-	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	for(var key in jsonData.page) {
-		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-		var postsData = [];
-		var dirHierarchy;
-		var data = jsonData.page[key];
+	for(var key in jsonPage) {
+		var data = jsonPage[key];
 		var template = data.template;
 		var filename = key;
-		var pagename = key;
-		var parentArray = filename.split('/');
-		var paretnData = function(file) {
-			var parentName;
-			var parent = [];
-			if(parentArray.length == 1) {
-				if(parentArray == 'index') {
-					return parent;
-				} else {
-					parent.push('index');
-					return parent;
-				}
-			} else {
-				parent.push('index');
-				parentArray.forEach(function(value, key) {
-					if(key == 0) {
-						parentName = value;
-						parent.push(parentName + '/index');
-					} else if(value == 'index') {
-						return parent;
-					} else {
-						parentName += '/' + value;
-						parent.push(parentName + '/index');
-					}
-				});
-				parent.pop();
-				return parent;
-			}
-		}
-		if(relativePath) {
-			if(parentArray.length == 1) {
-				dirHierarchy = '';
-			} else {
-				parentArray.forEach(function(value, key) {
-					if(key == 0) {
-						dirHierarchy = '';
-					} else {
-						dirHierarchy += '../';
-					}
-				});
-			}
-		} else {
-			dirHierarchy = '/';
-		}
-		data.path = {
-			css: dirHierarchy + path.common.css,
-			img: dirHierarchy + path.common.img,
-			js: dirHierarchy + path.common.js
-		}
-		for(var urlKey in pages) {
-			var urlData = dirHierarchy + urlKey + '.html';
-			if(!relativePath) {
-				urlData = urlData.replace('index.html', '');
-			}
-			pages[urlKey].url = urlData;
-		}
-		data.page = pages;
-		for(var postKey in posts) {
-			var post = posts[postKey];
-			var postPagename = post.pagename;
-			var postCatArray = postPagename.split('/');
-			post.url = dirHierarchy + postPagename + '.html';
-			if(!post.date) {
-				post.date = post.updatedAt.replace(/T.*$/, '');
-			}
-			if(!post.cat) {
-				var postCat = '';
-				if(postCatArray != 1) {
-					for(var postCatKey in postCatArray) {
-						if(postCatKey != postCatArray.length - 1) {
-							postCat += postCatArray[postCatKey] + '/';
-						}
-					}
-					postCat = postCat.slice(0, -1);
-					post.cat = postCat;
-				}
-			}
-			postsData[postPagename] = post;
-		}
-		data.post = postsData;
+		var pagename = filename;
+		var parentArray = pagename.split('/');
+		var hierarchy = ejsHierarchy(parentArray);
+		data.page = ejsPages(jsonPage, hierarchy);
+		data.post = ejsPosts(jsonPost, hierarchy);
+		data.path = ejsCommon(hierarchy);
+		data.parent = ejsParent(parentArray);;
 		data.file = filename;
 		data.site = jsonData.site;
 		data.contents = jsonData.contents;
-		data.parent = paretnData(filename);
+		data.dev = dev;
 		if(!data.keyword) {
 			data.keyword = data.site.keyword;
 		}
@@ -227,7 +157,6 @@ gulp.task('page', ['ejsSetup'], function() {
 			}
 			data.pageModifier = pageModifierName;
 		}
-		data.dev = dev;
 		gulp.src(src + template + ".ejs").pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
 		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
@@ -240,12 +169,11 @@ gulp.task('page', ['ejsSetup'], function() {
 		}));
 	}
 });
-gulp.task('ejsSetup', function() {
+gulp.task('ejsPageSetup', function() {
 	var src = path.ejsSetup.src;
 	var dst = path.dst.src + 'page/';
-	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 	var dirname = require("path").dirname;
-	for(var key in jsonData.page) {
+	for(var key in jsonPage) {
 		function appendEjs(path, contents, callback) {
 			mkdirp(dirname(path), function(err) {
 				if(err) return cb(err)
@@ -257,100 +185,27 @@ gulp.task('ejsSetup', function() {
 		});
 	}
 });
+// -----------------------------------------------
+// post
+// -----------------------------------------------
 gulp.task('post', function() {
 	var src = path.post.src;
 	var dst = dstDir;
-	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	for(var key in jsonData.post) {
-		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-		var postsData = [];
-		var dirHierarchy;
-		var data = jsonData.post[key];
+	for(var key in jsonPost) {
+		var data = jsonPost[key];
 		var template = data.template;
 		var filename = data.pagename;
 		var pagename = data.pagename;
 		var parentArray = filename.split('/');
-		var paretnData = function(file) {
-			var parentName;
-			var parent = [];
-			if(parentArray.length == 1) {
-				if(parentArray == 'index') {
-					parent.push('index');
-					return parent;
-				}
-			} else {
-				parent.push('index');
-				parentArray.forEach(function(value, key) {
-					if(key == 0) {
-						parentName = value;
-						parent.push(parentName + '/index');
-					} else if(value == 'index') {
-						return parent;
-					} else {
-						parentName += '/' + value;
-						parent.push(parentName + '/index');
-					}
-				});
-				parent.pop();
-				return parent;
-			}
-		}
-		if(relativePath) {
-			if(parentArray.length == 1) {
-				dirHierarchy = '';
-			} else {
-				parentArray.forEach(function(value, key) {
-					if(key == 0) {
-						dirHierarchy = '';
-					} else {
-						dirHierarchy += '../';
-					}
-				});
-			}
-		} else {
-			dirHierarchy = '/';
-		}
-		data.path = {
-			css: dirHierarchy + path.common.css,
-			img: dirHierarchy + path.common.img,
-			js: dirHierarchy + path.common.js
-		}
-		for(var urlKey in pages) {
-			var urlData = dirHierarchy + urlKey + '.html';
-			if(!relativePath) {
-				urlData = urlData.replace('index.html', '');
-			}
-			pages[urlKey].url = urlData;
-		}
-		data.page = pages;
-		for(var postKey in posts) {
-			var post = posts[postKey];
-			var postPagename = post.pagename;
-			var postCatArray = postPagename.split('/');
-			post.url = dirHierarchy + postPagename + '.html';
-			if(!post.date) {
-				post.date = post.updatedAt.replace(/T.*$/, '');
-			}
-			if(!post.cat) {
-				var postCat = '';
-				if(postCatArray != 1) {
-					for(var postCatKey in postCatArray) {
-						if(postCatKey != postCatArray.length - 1) {
-							postCat += postCatArray[postCatKey] + '/';
-						}
-					}
-					postCat = postCat.slice(0, -1);
-					post.cat = postCat;
-				}
-			}
-			postsData[postPagename] = post;
-		}
-		data.post = postsData;
+		var hierarchy = ejsHierarchy(parentArray);
+		data.page = ejsPages(jsonPage, hierarchy);
+		data.post = ejsPosts(jsonPost, hierarchy);
+		data.path = ejsCommon(hierarchy);
+		data.parent = ejsParent(parentArray);
 		data.file = filename;
 		data.site = jsonData.site;
 		data.contents = jsonData.contents;
-		data.parent = paretnData(filename);
+		data.dev = dev;
 		if(!data.keyword) {
 			data.keyword = data.site.keyword;
 		}
@@ -368,7 +223,6 @@ gulp.task('post', function() {
 			}
 			data.pageModifier = pageModifierName;
 		}
-		data.dev = dev;
 		gulp.src(src + template + ".ejs").pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
 		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
@@ -381,54 +235,21 @@ gulp.task('post', function() {
 		}));
 	}
 });
+// -----------------------------------------------
+// devPage
+// -----------------------------------------------
 gulp.task('devPage', function() {
 	var src = path.devPage.src;
 	var dst = path.devPage.dst;
-	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-	var postsData = [];
-	var dirHierarchy = '../';
 	var data = [];
-	if(!relativePath) {
-		dirHierarchy = '/';
+	if(relativePath) {
+		var hierarchy = '/';
+	} else {
+		var hierarchy = '../';
 	}
-	data.path = {
-		css: dirHierarchy + path.common.css,
-		img: dirHierarchy + path.common.img,
-		js: dirHierarchy + path.common.js
-	}
-	for(var urlKey in pages) {
-		var urlData = dirHierarchy + urlKey + '.html';
-		if(!relativePath) {
-			urlData = urlData.replace('index.html', '');
-		}
-		pages[urlKey].url = urlData;
-	}
-	data.page = pages;
-	for(var postKey in posts) {
-		var post = posts[postKey];
-		var postPagename = post.pagename;
-		var postCatArray = postPagename.split('/');
-		post.url = dirHierarchy + postPagename + '.html';
-		if(!post.date) {
-			post.date = post.updatedAt.replace(/T.*$/, '');
-		}
-		if(!post.cat) {
-			var postCat = '';
-			if(postCatArray != 1) {
-				for(var postCatKey in postCatArray) {
-					if(postCatKey != postCatArray.length - 1) {
-						postCat += postCatArray[postCatKey] + '/';
-					}
-				}
-				postCat = postCat.slice(0, -1);
-				post.cat = postCat;
-			}
-		}
-		postsData[postPagename] = post;
-	}
-	data.post = postsData;
+	data.page = ejsPages(jsonPage, hierarchy);
+	data.post = ejsPosts(jsonPost, hierarchy);
+	data.path = ejsCommon(hierarchy);
 	data.site = jsonData.site;
 	data.contents = jsonData.contents;
 	gulp.src(src).pipe($.plumber({
@@ -442,6 +263,97 @@ gulp.task('devPage', function() {
 		stream: true
 	}));
 });
+// -----------------------------------------------
+// function
+// -----------------------------------------------
+var ejsHierarchy = function(parentArray) {
+	var hierarchy;
+	if(relativePath) {
+		hierarchy = '';
+		if(parentArray.length != 1) {
+			for(var key in parentArray) {
+				if(key != 0) {
+					hierarchy += '../';
+				}
+			}
+		}
+	} else {
+		hierarchy = '/';
+	}
+	return hierarchy;
+}
+var ejsPages = function(pages, hierarchy) {
+	var url;
+	for(var key in pages) {
+		if(relativePath) {
+			url = hierarchy + key + '.html';
+		} else {
+			url = url.replace('index.html', '');
+		}
+		pages[key].url = url;
+	}
+	return pages;
+}
+var ejsPosts = function(posts, hierarchy) {
+	for(var key in posts) {
+		var post = posts[key];
+		var pagename = post.pagename;
+		post.url = hierarchy + pagename + '.html';
+		if(!post.date) {
+			post.date = post.updatedAt.replace(/T.*$/, '');
+		}
+		if(!post.cat) {
+			var cat;
+			var catArray = pagename.split('/');
+			if(catArray != 1) {
+				for(var catKey in catArray) {
+					if(catKey != catArray.length - 1) {
+						cat += catArray[catKey] + '/';
+					}
+				}
+				cat = cat.slice(0, -1);
+				post.cat = cat;
+			}
+		}
+		posts[pagename] = post;
+	}
+	return posts;
+}
+var ejsParent = function(parentArray) {
+	var pagename;
+	var parents = [];
+	if(parentArray.length == 1) {
+		if(parentArray == 'index') {
+			return parents;
+		} else {
+			parents.push('index');
+			return parents;
+		}
+	} else {
+		parents.push('index');
+		parentArray.forEach(function(value, key) {
+			if(key == 0) {
+				pagename = value;
+				parents.push(pagename + '/index');
+			} else if(value == 'index') {
+				return parents;
+			} else {
+				pagename += '/' + value;
+				parents.push(pagename + '/index');
+			}
+		});
+		parents.pop();
+		return parents;
+	}
+}
+var ejsCommon = function(hierarchy) {
+	var common = {
+		css: hierarchy + path.common.css,
+		img: hierarchy + path.common.img,
+		js: hierarchy + path.common.js
+	}
+	return common;
+}
 // =================================================================================================
 // font
 // =================================================================================================
@@ -673,7 +585,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = path.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('jsonData', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // DEVELOPMENT__CLEANUP
@@ -682,7 +594,7 @@ gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
 	dstDir = path.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('clean', 'jsonData', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('clean', 'json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
@@ -691,7 +603,7 @@ gulp.task('3 ============== TEST', function(callback) {
 	dstDir = path.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('test', 'jsonData', 'page', 'post', 'sass', 'js', 'img', 'test', 'browserSync', callback);
+	runSequence('test', 'json', 'page', 'post', 'sass', 'js', 'img', 'test', 'browserSync', callback);
 });
 // =================================================================================================
 // STAGE
