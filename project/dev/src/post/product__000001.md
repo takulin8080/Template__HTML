@@ -5,7 +5,7 @@ title: My Product
 keyword:
 description:
 date:
-pageModifier:
+modifier:
 cat:
 tag:
 ---

@@ -3,25 +3,18 @@
 // home
 // =================================================================================================
 %>
-<h2>all</h2>
-<% Object.keys(post).forEach(function(value, key){ %>
-	<li>
-		<a href="<%- post[value].url %>"><%- post[value].title %></a>
-	</li>
-<% }) %>
-<h2>news</h2>
-<% Object.keys(post).forEach(function(value, key){ %>
-	<% if(post[value].cat.indexOf('news') != -1) { %>
+<h2><%- title %>fdsfsfdsfsfs</h2>
+<ul>
+	<% Object.keys(page).forEach(function(value, key){ %>
+		<li>
+			<a href="<%- page[value].url %>"><%- page[value].title %></a>
+		</li>
+	<% }) %>
+</ul>
+<ul>
+	<% Object.keys(post).forEach(function(value, key){ %>
 		<li>
 			<a href="<%- post[value].url %>"><%- post[value].title %></a>
 		</li>
-	<% } %>
-<% }) %>
-<h2>product</h2>
-<% Object.keys(post).forEach(function(value, key){ %>
-	<% if(post[value].cat.indexOf('product') != -1) { %>
-		<li>
-			<a href="<%- post[value].url %>"><%- post[value].title %></a>
-		</li>
-	<% } %>
-<% }) %>
+	<% }) %>
+</ul>

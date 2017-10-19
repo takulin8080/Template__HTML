@@ -6,8 +6,8 @@ var browserSync = require('browser-sync');
 var del = require('del');
 var gulp = require('gulp');
 var marked = require('marked');
-var mkdirp = require("mkdirp");
-var path = require("path");
+var mkdirp = require('mkdirp');
+var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack-stream');
 var webpackConfig = require('./webpack.config.js');
@@ -23,7 +23,7 @@ var dstDir = {
 	prod: '../prod/'
 }
 var relativePath = true;
-var path = {
+var filepath = {
 	dst: {
 		src: 'src/',
 		dev: 'dst/',
@@ -40,9 +40,9 @@ var path = {
 		sass: 'common/sass/',
 		icon: 'common/icon/'
 	},
-	jsonData: {
+	json: {
 		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json', 'src/page/_data.json', 'src/post/_data.json']
+		watch: ['src/_data/**/*.json']
 	},
 	jsonPost: {
 		src: ['src/**/*.md', '!src/styleguide/**/*.md'],
@@ -54,11 +54,8 @@ var path = {
 		watch: ['src/_data.json', 'src/page/**/*.ejs']
 	},
 	page: {
-		src: 'src/page/_template/',
+		src: ["src/page/**/*.ejs", "!src/page/_**/*"],
 		watch: ['src/_data.json', 'src/page/**/*.ejs', '!src/page/dev/workpage.ejs']
-	},
-	ejsSetup: {
-		src: 'src/page/_data.json'
 	},
 	post: {
 		src: 'src/page/_template/',
@@ -100,7 +97,7 @@ var path = {
 }
 var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
 // =================================================================================================
-// jsonData
+// json
 // =================================================================================================
 gulp.task('json', ['jsonData'], function() {
 	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
@@ -108,15 +105,15 @@ gulp.task('json', ['jsonData'], function() {
 	jsonPost = JSON.parse(fs.readFileSync('src/_data.json')).post;
 });
 gulp.task('jsonData', ['jsonPost'], function() {
-	var src = path.jsonData.src;
-	var dst = path.dst.src;
+	var src = filepath.json.src;
+	var dst = filepath.dst.src;
 	return gulp.src(src).pipe($.mergeJson({
 		fileName: '_data.json'
 	})).pipe(gulp.dest(dst));
 });
 gulp.task('jsonPost', function() {
-	var src = path.jsonPost.src;
-	var dst = path.dst.src + '_data';
+	var src = filepath.jsonPost.src;
+	var dst = filepath.dst.src + '_data';
 	return gulp.src(src).pipe($.util.buffer()).pipe($.markdownToJson(marked, '_post.json')).pipe(gulp.dest(dst));
 });
 // =================================================================================================
@@ -125,54 +122,38 @@ gulp.task('jsonPost', function() {
 // -----------------------------------------------
 // page
 // -----------------------------------------------
-gulp.task('page', ['ejsPageSetup'], function() {
-	var src = path.page.src;
+gulp.task('page', ['pageSetup'], function() {
+	// TODO: リロード方法考察
+	// TODO: templateを利用しないでheader, footerなどをスマートに読み込む
+	var src = filepath.page.src;
 	var dst = dstDir;
-	for(var key in jsonPage) {
-		var data = jsonPage[key];
-		var template = data.template;
-		var filename = key;
-		var pagename = filename;
-		var parentArray = pagename.split('/');
+	gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('<%= error.message %>')
+	})).pipe($.data(function(file) {
+		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
+		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
-		data.page = ejsPages(jsonPage, hierarchy);
-		data.post = ejsPosts(jsonPost, hierarchy);
-		data.path = ejsCommon(hierarchy);
-		data.parent = ejsParent(parentArray);;
-		data.file = filename;
-		data.site = jsonData.site;
-		data.contents = jsonData.contents;
-		data.dev = dev;
-		if(!data.keyword) {
-			data.keyword = data.site.keyword;
-		}
-		if(!data.description) {
-			data.description = data.site.description;
-		}
-		if(!data.pageModifier) {
-			var pageModifierArray = pagename.split('/');
-			var pageModifierName = '';
-			for(var i in pageModifierArray) {
-				pageModifierName += pageModifierArray[i] + ' ';
-			}
-			data.pageModifier = pageModifierName;
-		}
-		gulp.src(src + template + ".ejs").pipe($.plumber({
-			errorHandler: $.notify.onError('<%= error.message %>')
-		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
-			indent_char: '\t',
-			indent_size: 1
-		})).pipe($.changed(dst, {
-			hasChanged: $.changed.compareSha1Digest
-		})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-			stream: true
-		}));
-	}
+		var pagedata = [];
+		pagedata['page'] = ejsPages(jsonPage, hierarchy);
+		pagedata['post'] = ejsPosts(jsonPost, hierarchy);
+		pagedata['path'] = ejsCommon(hierarchy);
+		pagedata['parent'] = ejsParent(parentArray);
+		pagedata['site'] = jsonData.site;
+		pagedata['contents'] = jsonData.contents;
+		pagedata['dev'] = dev;
+		Object.assign(pagedata, jsonPage[filename]);
+		pagedata = pagedataCheck(pagedata, filename);
+		return pagedata;
+	})).pipe($.ejs()).pipe($.rename({
+		extname: '.html'
+	})).pipe($.prettify({
+		indent_char: '\t',
+		indent_size: 1
+	})).pipe(gulp.dest(dst));
 });
-gulp.task('ejsPageSetup', function() {
-	var src = path.ejsSetup.src;
-	var dst = path.dst.src + 'page/';
-	var dirname = require("path").dirname;
+gulp.task('pageSetup', function() {
+	var dst = filepath.dst.src + 'page/';
+	var dirname = path.dirname;
 	for(var key in jsonPage) {
 		function appendEjs(path, contents, callback) {
 			mkdirp(dirname(path), function(err) {
@@ -189,79 +170,59 @@ gulp.task('ejsPageSetup', function() {
 // post
 // -----------------------------------------------
 gulp.task('post', function() {
-	var src = path.post.src;
+	var src = filepath.post.src;
 	var dst = dstDir;
 	for(var key in jsonPost) {
-		var data = jsonPost[key];
-		var template = data.template;
-		var filename = data.pagename;
-		var pagename = data.pagename;
+		var postdata = jsonPost[key];
+		var template = postdata.template;
+		var filename = postdata.pagename;
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
-		data.page = ejsPages(jsonPage, hierarchy);
-		data.post = ejsPosts(jsonPost, hierarchy);
-		data.path = ejsCommon(hierarchy);
-		data.parent = ejsParent(parentArray);
-		data.file = filename;
-		data.site = jsonData.site;
-		data.contents = jsonData.contents;
-		data.dev = dev;
-		if(!data.keyword) {
-			data.keyword = data.site.keyword;
-		}
-		if(!data.description) {
-			data.description = data.site.description;
-		}
-		if(!data.date) {
-			data.date = data.updatedAt.replace(/T.*$/, '');
-		}
-		if(!data.pageModifier) {
-			var pageModifierArray = pagename.split('/');
-			var pageModifierName = '';
-			for(var i in pageModifierArray) {
-				pageModifierName += pageModifierArray[i] + ' ';
-			}
-			data.pageModifier = pageModifierName;
-		}
+		postdata.page = ejsPages(jsonPage, hierarchy);
+		postdata.post = ejsPosts(jsonPost, hierarchy);
+		postdata.path = ejsCommon(hierarchy);
+		postdata.parent = ejsParent(parentArray);
+		postdata.file = filename;
+		postdata.site = jsonData.site;
+		postdata.contents = jsonData.contents;
+		postdata.dev = dev;
+		postdata = postdataCheck(postdata, filename);
 		gulp.src(src + template + ".ejs").pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
-		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
+		})).pipe($.ejs(postdata)).pipe($.rename(filename + '.html')).pipe($.prettify({
 			indent_char: '\t',
 			indent_size: 1
 		})).pipe($.changed(dst, {
 			hasChanged: $.changed.compareSha1Digest
-		})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-			stream: true
-		}));
+		})).pipe(gulp.dest(dst));
 	}
 });
 // -----------------------------------------------
 // devPage
 // -----------------------------------------------
 gulp.task('devPage', function() {
-	var src = path.devPage.src;
-	var dst = path.devPage.dst;
-	var data = [];
+	// TODO: 必要なければ削除
+	var src = filepath.devPage.src;
+	var dst = filepath.devPage.dst;
+	var pagedata = [];
 	if(relativePath) {
 		var hierarchy = '/';
 	} else {
 		var hierarchy = '../';
 	}
-	data.page = ejsPages(jsonPage, hierarchy);
-	data.post = ejsPosts(jsonPost, hierarchy);
-	data.path = ejsCommon(hierarchy);
-	data.site = jsonData.site;
-	data.contents = jsonData.contents;
+	pagedata.page = ejsPages(jsonPage, hierarchy);
+	pagedata.post = ejsPosts(jsonPost, hierarchy);
+	pagedata.path = ejsCommon(hierarchy);
+	pagedata.site = jsonData.site;
+	pagedata.contents = jsonData.contents;
 	gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
-	})).pipe($.ejs(data)).pipe($.rename({
+	})).pipe($.ejs(pagedata)).pipe($.rename({
 		extname: '.html'
 	})).pipe($.prettify({
 		indent_char: '\t',
 		indent_size: 1
-	})).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-		stream: true
-	}));
+	})).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // function
@@ -348,28 +309,63 @@ var ejsParent = function(parentArray) {
 }
 var ejsCommon = function(hierarchy) {
 	var common = {
-		css: hierarchy + path.common.css,
-		img: hierarchy + path.common.img,
-		js: hierarchy + path.common.js
+		css: hierarchy + filepath.common.css,
+		img: hierarchy + filepath.common.img,
+		js: hierarchy + filepath.common.js
 	}
 	return common;
+}
+var pagedataCheck = function(data, filename) {
+	var pagedata = data;
+	if(!pagedata.description) {
+		pagedata.description = jsonData.site.description;
+	}
+	if(!pagedata.modifier) {
+		pagedata.modifier = '';
+		var modifierArray = filename.split('/');
+		for(var i in modifierArray) {
+			pagedata.modifier += modifierArray[i] + ' ';
+		}
+	}
+	return pagedata;
+}
+var postdataCheck = function(data, filename) {
+	var postdata = data;
+	if(!postdata.keyword) {
+		postdata.keyword = postdata.site.keyword;
+	}
+	if(!postdata.description) {
+		postdata.description = postdata.site.description;
+	}
+	if(!postdata.date) {
+		postdata.date = postdata.updatedAt.replace(/T.*$/, '');
+	}
+	if(!postdata.modifier) {
+		var modifierArray = filename.split('/');
+		var modifier = '';
+		for(var i in modifierArray) {
+			modifier += modifierArray[i] + ' ';
+		}
+		postdata.modifier = modifier;
+	}
+	return postdata;
 }
 // =================================================================================================
 // font
 // =================================================================================================
 gulp.task('font', ['icon', 'fontAwesome'], function() {
-	var src = path.font.src;
-	var dst = dstDir + path.common.font;
+	var src = filepath.font.src;
+	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // icon
 // -----------------------------------------------
 gulp.task('icon', function() {
-	var src = path.icon.src;
-	var dst = path.dst.src + path.common.font;
+	var src = filepath.icon.src;
+	var dst = filepath.dst.src + filepath.common.font;
 	var fontName = 'icon';
-	var template = path.dst.src + path.common.icon + '_icon.scss';
+	var template = filepath.dst.src + filepath.common.icon + '_icon.scss';
 	var scss = '../sass/component/_icon.scss';
 	var fontPath = '../font/'
 	gulp.src(src).pipe($.svgmin()).pipe($.plumber()).pipe($.iconfontCss({
@@ -387,7 +383,7 @@ gulp.task('icon', function() {
 // fontAwesome
 // -----------------------------------------------
 gulp.task('fontAwesome', function() {
-	var dst = dstDir + path.common.font;
+	var dst = dstDir + filepath.common.font;
 	var fontAwewome = [
 		fontAwesome.fonts
 	];
@@ -397,8 +393,8 @@ gulp.task('fontAwesome', function() {
 // sass
 // =================================================================================================
 gulp.task('sass', function() {
-	var src = path.sass.src;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.src;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.sourcemaps.init()).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass({
@@ -410,8 +406,8 @@ gulp.task('sass', function() {
 	}));
 });
 gulp.task('sassVendor', function() {
-	var src = path.sass.vendorSrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.vendorSrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass({
@@ -421,36 +417,36 @@ gulp.task('sassVendor', function() {
 	})).pipe($.autoprefixer()).pipe(gulp.dest(dst))
 });
 gulp.task('sassFoundation', function() {
-	var src = path.sass.foundationSrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.foundationSrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst))
 });
 gulp.task('sassComponent', function() {
-	var src = path.sass.componentSrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.componentSrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst))
 });
 gulp.task('sassProject', function() {
-	var src = path.sass.projectSrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.projectSrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst))
 });
 gulp.task('sassUtility', function() {
-	var src = path.sass.utilitySrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.utilitySrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst))
 });
 gulp.task('sassDev', function() {
-	var src = path.sass.devSrc;
-	var dst = dstDir + path.common.css;
+	var src = filepath.sass.devSrc;
+	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst))
@@ -459,7 +455,7 @@ gulp.task('sassDev', function() {
 // styleGuide
 // =================================================================================================
 gulp.task('styleGuide', function() {
-	var src = path.styleGuide.src;
+	var src = filepath.styleGuide.src;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.aigis()).pipe(browserSync.reload({
@@ -470,8 +466,8 @@ gulp.task('styleGuide', function() {
 // js
 // =================================================================================================
 gulp.task('js', function() {
-	var src = path.js.src;
-	var dst = dstDir + path.common.js;
+	var src = filepath.js.src;
+	var dst = dstDir + filepath.common.js;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe(webpack(webpackConfig)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
@@ -482,8 +478,8 @@ gulp.task('js', function() {
 // img
 // =================================================================================================
 gulp.task('img', function() {
-	var src = path.img.src;
-	var dst = dstDir + path.common.img;
+	var src = filepath.img.src;
+	var dst = dstDir + filepath.common.img;
 	var imageminOptions = {
 		optimizationLevel: 7
 	}
@@ -502,9 +498,9 @@ gulp.task('img', function() {
 // =================================================================================================
 gulp.task('robots', function() {
 	return gulp.src(
-		[path.dst.src + 'robots.txt'], {
-			base: path.dst.src
-		}).pipe($.changed(path.dst.dev)).pipe(gulp.dest(path.dst.dev));
+		[filepath.dst.src + 'robots.txt'], {
+			base: filepath.dst.src
+		}).pipe($.changed(filepath.dst.dev)).pipe(gulp.dest(filepath.dst.dev));
 });
 // =================================================================================================
 // clean
@@ -529,60 +525,59 @@ gulp.task('browserSync', function() {
 // =================================================================================================
 gulp.task('test', function() {
 	return gulp.src(
-		[path.dst.dev + path.common.font + '**/*', path.dst.dev + 'robots.txt'], {
-			base: path.dst.dev
-		}).pipe($.changed(path.dst.test)).pipe(gulp.dest(path.dst.test));
+		[filepath.dst.dev + filepath.common.font + '**/*', filepath.dst.dev + 'robots.txt'], {
+			base: filepath.dst.dev
+		}).pipe($.changed(filepath.dst.test)).pipe(gulp.dest(filepath.dst.test));
 });
 // =================================================================================================
 // stage
 // =================================================================================================
 gulp.task('stage', function() {
 	return gulp.src(
-		[path.dst.test + '**/*', '!' + path.dst.test + path.common.css + 'app.css.map', '!' + path.dst.test + '_dev-sitemap.html'], {
-			base: path.dst.test
-		}).pipe($.changed(path.dst.stage)).pipe(gulp.dest(path.dst.stage));
+		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html'], {
+			base: filepath.dst.test
+		}).pipe($.changed(filepath.dst.stage)).pipe(gulp.dest(filepath.dst.stage));
 });
 // =================================================================================================
 // prod
 // =================================================================================================
 gulp.task('prod', ['prodCopy'], function() {
 	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	gulp.src(path.dst.prod + '**/*.html', {
+	gulp.src(filepath.dst.prod + '**/*.html', {
 		read: false
 	}).pipe($.sitemap({
 		siteUrl: jsonData.site.url
-	})).pipe(gulp.dest(path.dst.prod));
+	})).pipe(gulp.dest(filepath.dst.prod));
 });
 gulp.task('prodCopy', function() {
 	return gulp.src(
-		[path.dst.stage + '**/*', '!' + path.dst.stage + 'robots.txt'], {
-			base: path.dst.stage
-		}).pipe($.changed(path.dst.prod)).pipe(gulp.dest(path.dst.prod));
+		[filepath.dst.stage + '**/*', '!' + filepath.dst.stage + 'robots.txt'], {
+			base: filepath.dst.stage
+		}).pipe($.changed(filepath.dst.prod)).pipe(gulp.dest(filepath.dst.prod));
 });
 // =================================================================================================
 // watch
 // =================================================================================================
 gulp.task('watch', ['browserSync'], function() {
-	gulp.watch(path.jsonData.watch, ['jsonData']);
-	gulp.watch(path.jsonPost.watch, ['jsonPost']);
-	gulp.watch(path.devPage.watch, ['devPage']);
-	gulp.watch(path.page.watch, ['page']);
-	gulp.watch(path.post.watch, ['post']);
-	gulp.watch(path.font.watch, ['font']);
-	gulp.watch(path.sass.foundationWatch, ['sassFoundation']);
-	gulp.watch(path.sass.componentWatch, ['sassComponent']);
-	gulp.watch(path.sass.projectWatch, ['sassProject']);
-	gulp.watch(path.sass.utilityWatch, ['sassUtility']);
-	gulp.watch(path.sass.devWatch, ['sassDev']);
-	gulp.watch(path.styleGuide.watch, ['styleGuide']);
-	gulp.watch(path.js.watch, ['js']);
-	gulp.watch(path.img.watch, ['img']);
+	gulp.watch(filepath.json.watch, ['json']);
+	gulp.watch(filepath.devPage.watch, ['devPage']);
+	gulp.watch(filepath.page.watch, ['page']);
+	gulp.watch(filepath.post.watch, ['post']);
+	gulp.watch(filepath.font.watch, ['font']);
+	gulp.watch(filepath.sass.foundationWatch, ['sassFoundation']);
+	gulp.watch(filepath.sass.componentWatch, ['sassComponent']);
+	gulp.watch(filepath.sass.projectWatch, ['sassProject']);
+	gulp.watch(filepath.sass.utilityWatch, ['sassUtility']);
+	gulp.watch(filepath.sass.devWatch, ['sassDev']);
+	gulp.watch(filepath.styleGuide.watch, ['styleGuide']);
+	gulp.watch(filepath.js.watch, ['js']);
+	gulp.watch(filepath.img.watch, ['img']);
 });
 // =================================================================================================
 // DEVELOPMENT
 // =================================================================================================
 gulp.task('1 ============== DEVELOPMENT', function(callback) {
-	dstDir = path.dst.dev;
+	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
 	runSequence('json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
@@ -591,7 +586,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 // DEVELOPMENT__CLEANUP
 // =================================================================================================
 gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
-	dstDir = path.dst.dev;
+	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
 	runSequence('clean', 'json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
@@ -600,7 +595,7 @@ gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
 // TEST
 // =================================================================================================
 gulp.task('3 ============== TEST', function(callback) {
-	dstDir = path.dst.test;
+	dstDir = filepath.dst.test;
 	imagemin = true;
 	dev = false;
 	runSequence('test', 'json', 'page', 'post', 'sass', 'js', 'img', 'test', 'browserSync', callback);
