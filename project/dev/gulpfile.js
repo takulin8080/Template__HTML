@@ -16,12 +16,6 @@ var $ = require('gulp-load-plugins')();
 // =================================================================================================
 // setup
 // =================================================================================================
-var dstDir = {
-	dev: 'dst/',
-	test: '../test/',
-	stage: '../stage/',
-	prod: '../prod/'
-}
 var relativePath = true;
 var filepath = {
 	dst: {
@@ -120,7 +114,7 @@ gulp.task('page', ['pageSetup'], function() {
 	var dst = dstDir;
 	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
 	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-	gulp.src(src).pipe($.plumber({
+	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
 		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
@@ -347,7 +341,7 @@ gulp.task('icon', function() {
 	var template = filepath.dst.src + filepath.common.icon + '_icon.scss';
 	var scss = '../sass/component/_icon.scss';
 	var fontPath = '../font/'
-	gulp.src(src).pipe($.svgmin()).pipe($.plumber()).pipe($.iconfontCss({
+	return gulp.src(src).pipe($.svgmin()).pipe($.plumber()).pipe($.iconfontCss({
 		fontName: fontName,
 		path: 'src/common/icon/_icon.scss',
 		targetPath: scss,
@@ -512,7 +506,7 @@ gulp.task('stage', function() {
 // =================================================================================================
 gulp.task('prod', ['prodCopy'], function() {
 	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	gulp.src(filepath.dst.prod + '**/*.html', {
+	return gulp.src(filepath.dst.prod + '**/*.html', {
 		read: false
 	}).pipe($.sitemap({
 		siteUrl: jsonData.site.url
