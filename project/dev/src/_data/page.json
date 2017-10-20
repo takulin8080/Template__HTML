@@ -1,12 +1,14 @@
 {
 	"page": {
 		"index": {
+			"template": "home",
 			"title": "ホーム",
-			"description": "11111fdafa",
+			"description": "home",
 			"modifier": "home",
 			"progress": "done"
 		},
 		"news/index": {
+			"template": "default",
 			"title": "ニュース",
 			"keyword": "",
 			"description": "",
@@ -14,6 +16,7 @@
 			"progress": "stop"
 		},
 		"sitemap": {
+			"template": "default",
 			"title": "サイトマップ",
 			"keyword": "",
 			"description": "",

@@ -48,11 +48,6 @@ var filepath = {
 		src: ['src/**/*.md', '!src/styleguide/**/*.md'],
 		watch: ['src/**/*.md', '!src/styleguide/**/*.md']
 	},
-	devPage: {
-		src: 'src/page/dev/**/*.ejs',
-		dst: 'dst/dev/',
-		watch: ['src/_data.json', 'src/page/**/*.ejs']
-	},
 	page: {
 		src: ["src/page/**/*.ejs", "!src/page/_**/*"],
 		watch: ['src/_data.json', 'src/page/**/*.ejs', '!src/page/dev/workpage.ejs']
@@ -123,7 +118,6 @@ gulp.task('jsonPost', function() {
 // page
 // -----------------------------------------------
 gulp.task('page', ['pageSetup'], function() {
-	// TODO: リロード方法考察
 	// TODO: templateを利用しないでheader, footerなどをスマートに読み込む
 	var src = filepath.page.src;
 	var dst = dstDir;
@@ -133,17 +127,18 @@ gulp.task('page', ['pageSetup'], function() {
 		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
-		var pagedata = [];
-		pagedata['page'] = ejsPages(jsonPage, hierarchy);
-		pagedata['post'] = ejsPosts(jsonPost, hierarchy);
-		pagedata['path'] = ejsCommon(hierarchy);
-		pagedata['parent'] = ejsParent(parentArray);
-		pagedata['site'] = jsonData.site;
-		pagedata['contents'] = jsonData.contents;
-		pagedata['dev'] = dev;
-		Object.assign(pagedata, jsonPage[filename]);
-		pagedata = pagedataCheck(pagedata, filename);
-		return pagedata;
+		var data = [];
+		data['page'] = ejsPages(jsonPage, hierarchy);
+		data['post'] = ejsPosts(jsonPost, hierarchy);
+		data['path'] = ejsCommon(hierarchy);
+		data['parent'] = ejsParent(parentArray);
+		data['site'] = jsonData.site;
+		data['contents'] = jsonData.contents;
+		data['dev'] = dev;
+		Object.assign(data, jsonPage[filename]);
+		data = pagedataCheck(data, filename);
+		data['data'] = data;
+		return data;
 	})).pipe($.ejs()).pipe($.rename({
 		extname: '.html'
 	})).pipe($.prettify({
@@ -173,56 +168,30 @@ gulp.task('post', function() {
 	var src = filepath.post.src;
 	var dst = dstDir;
 	for(var key in jsonPost) {
-		var postdata = jsonPost[key];
-		var template = postdata.template;
-		var filename = postdata.pagename;
+		var data = jsonPost[key];
+		var template = data.template;
+		var filename = data.pagename;
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
-		postdata.page = ejsPages(jsonPage, hierarchy);
-		postdata.post = ejsPosts(jsonPost, hierarchy);
-		postdata.path = ejsCommon(hierarchy);
-		postdata.parent = ejsParent(parentArray);
-		postdata.file = filename;
-		postdata.site = jsonData.site;
-		postdata.contents = jsonData.contents;
-		postdata.dev = dev;
-		postdata = postdataCheck(postdata, filename);
+		data['page'] = ejsPages(jsonPage, hierarchy);
+		data['post'] = ejsPosts(jsonPost, hierarchy);
+		data['path'] = ejsCommon(hierarchy);
+		data['parent'] = ejsParent(parentArray);
+		data['file'] = filename;
+		data['site'] = jsonData.site;
+		data['contents'] = jsonData.contents;
+		data['dev'] = dev;
+		data = postdataCheck(data, filename);
+		data['data'] = data;
 		gulp.src(src + template + ".ejs").pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
-		})).pipe($.ejs(postdata)).pipe($.rename(filename + '.html')).pipe($.prettify({
+		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
 			indent_char: '\t',
 			indent_size: 1
 		})).pipe($.changed(dst, {
 			hasChanged: $.changed.compareSha1Digest
 		})).pipe(gulp.dest(dst));
 	}
-});
-// -----------------------------------------------
-// devPage
-// -----------------------------------------------
-gulp.task('devPage', function() {
-	// TODO: 必要なければ削除
-	var src = filepath.devPage.src;
-	var dst = filepath.devPage.dst;
-	var pagedata = [];
-	if(relativePath) {
-		var hierarchy = '/';
-	} else {
-		var hierarchy = '../';
-	}
-	pagedata.page = ejsPages(jsonPage, hierarchy);
-	pagedata.post = ejsPosts(jsonPost, hierarchy);
-	pagedata.path = ejsCommon(hierarchy);
-	pagedata.site = jsonData.site;
-	pagedata.contents = jsonData.contents;
-	gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('<%= error.message %>')
-	})).pipe($.ejs(pagedata)).pipe($.rename({
-		extname: '.html'
-	})).pipe($.prettify({
-		indent_char: '\t',
-		indent_size: 1
-	})).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // function
@@ -401,9 +370,7 @@ gulp.task('sass', function() {
 		includePaths: [
 			fontAwesome.scssPath
 		]
-	})).pipe($.autoprefixer()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-		stream: true
-	}));
+	})).pipe($.autoprefixer()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('sassVendor', function() {
 	var src = filepath.sass.vendorSrc;
@@ -458,9 +425,7 @@ gulp.task('styleGuide', function() {
 	var src = filepath.styleGuide.src;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.aigis()).pipe(browserSync.reload({
-		stream: true
-	}));
+	})).pipe($.aigis());
 });
 // =================================================================================================
 // js
@@ -470,9 +435,7 @@ gulp.task('js', function() {
 	var dst = dstDir + filepath.common.js;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe(webpack(webpackConfig)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-		stream: true
-	}));
+	})).pipe(webpack(webpackConfig)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // img
@@ -484,13 +447,9 @@ gulp.task('img', function() {
 		optimizationLevel: 7
 	}
 	if(imagemin) {
-		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-			stream: true
-		}));
+		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	} else {
-		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst)).pipe(browserSync.reload({
-			stream: true
-		}));
+		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
 	}
 });
 // =================================================================================================
@@ -560,7 +519,6 @@ gulp.task('prodCopy', function() {
 // =================================================================================================
 gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.json.watch, ['json']);
-	gulp.watch(filepath.devPage.watch, ['devPage']);
 	gulp.watch(filepath.page.watch, ['page']);
 	gulp.watch(filepath.post.watch, ['post']);
 	gulp.watch(filepath.font.watch, ['font']);
@@ -580,7 +538,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('json', 'robots', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // DEVELOPMENT__CLEANUP
@@ -589,7 +547,7 @@ gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('clean', 'json', 'robots', 'devPage', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('clean', 'json', 'robots', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
