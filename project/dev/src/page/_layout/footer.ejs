@@ -3,7 +3,10 @@
 // layout/footer
 // =================================================================================================
 %>
-<% if (typeof modifier === 'undefined') { var modifier = ''; }; %>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
 <%#
 // -----------------------------------------------
 // html
@@ -11,7 +14,7 @@
 %>
 <!-- footer -->
 <footer class="footer">
-	<%- include("../_module/footer-link") %>
-	<%- include("../_module/copyright") %>
+	<%- include(ejspath + '/_module/footer-link') %>
+	<%- include(ejspath + '/_module/copyright') %>
 </footer>
 <!-- /footer -->

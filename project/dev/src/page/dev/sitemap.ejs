@@ -3,6 +3,15 @@
 // dev/sitemap
 // =================================================================================================
 %>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
+<%#
+// -----------------------------------------------
+// html
+// -----------------------------------------------
+%>
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
@@ -160,6 +169,6 @@
 		<!-- script -->
 		<script src="<%- path.js %>app.js"></script>
 		<!-- /script -->
-		<%- include('../_dev/app') %>
+		<%- include(ejspath + '/_dev/app') %>
 	</body>
 </html>

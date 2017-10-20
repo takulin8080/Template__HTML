@@ -1,6 +1,6 @@
 <%#
 // =================================================================================================
-// layout/sub-contents
+// template/after
 // =================================================================================================
 %>
 <%
@@ -12,10 +12,15 @@
 // html
 // -----------------------------------------------
 %>
-<!-- sub-contents -->
-<div class="sub-contents">
-	<% if(!modifier){ %>
-		<p>sub-contents</p>
-	<% }; %>
+</main>
+<!-- /main-contents -->
+<%- include(ejspath + '_layout/sub-contents') %>
 </div>
-<!-- /sub-contents -->
+<!-- /contents -->
+<%- include(ejspath + '_layout/footer') %>
+<!-- script -->
+<script src="<%- path.js %>app.js"></script>
+<!-- /script -->
+<%- include(ejspath + '_dev/app') %>
+</body>
+</html>

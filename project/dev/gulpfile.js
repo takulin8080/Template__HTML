@@ -49,11 +49,11 @@ var filepath = {
 		watch: ['src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	page: {
-		src: ["src/page/**/*.ejs", "!src/page/_**/*"],
+		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
 		watch: ['src/_data.json', 'src/page/**/*.ejs', '!src/page/dev/workpage.ejs']
 	},
 	post: {
-		src: 'src/page/_template/',
+		src: 'src/page/',
 		watch: ['src/_data.json', 'src/**/*.ejs']
 	},
 	font: {
@@ -96,8 +96,6 @@ var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/found
 // =================================================================================================
 gulp.task('json', ['jsonData'], function() {
 	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	jsonPage = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	jsonPost = JSON.parse(fs.readFileSync('src/_data.json')).post;
 });
 gulp.task('jsonData', ['jsonPost'], function() {
 	var src = filepath.json.src;
@@ -118,9 +116,10 @@ gulp.task('jsonPost', function() {
 // page
 // -----------------------------------------------
 gulp.task('page', ['pageSetup'], function() {
-	// TODO: templateを利用しないでheader, footerなどをスマートに読み込む
 	var src = filepath.page.src;
 	var dst = dstDir;
+	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
 	gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
@@ -128,16 +127,16 @@ gulp.task('page', ['pageSetup'], function() {
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
 		var data = [];
-		data['page'] = ejsPages(jsonPage, hierarchy);
-		data['post'] = ejsPosts(jsonPost, hierarchy);
+		data['page'] = ejsPages(pages, hierarchy);
+		data['post'] = ejsPosts(posts, hierarchy);
 		data['path'] = ejsCommon(hierarchy);
+		data['ejspath'] = ejsPath(parentArray);
 		data['parent'] = ejsParent(parentArray);
 		data['site'] = jsonData.site;
 		data['contents'] = jsonData.contents;
 		data['dev'] = dev;
-		Object.assign(data, jsonPage[filename]);
+		Object.assign(data, pages[filename]);
 		data = pagedataCheck(data, filename);
-		data['data'] = data;
 		return data;
 	})).pipe($.ejs()).pipe($.rename({
 		extname: '.html'
@@ -149,7 +148,7 @@ gulp.task('page', ['pageSetup'], function() {
 gulp.task('pageSetup', function() {
 	var dst = filepath.dst.src + 'page/';
 	var dirname = path.dirname;
-	for(var key in jsonPage) {
+	for(var key in jsonData.page) {
 		function appendEjs(path, contents, callback) {
 			mkdirp(dirname(path), function(err) {
 				if(err) return cb(err)
@@ -167,22 +166,24 @@ gulp.task('pageSetup', function() {
 gulp.task('post', function() {
 	var src = filepath.post.src;
 	var dst = dstDir;
-	for(var key in jsonPost) {
-		var data = jsonPost[key];
+	for(var key in jsonData.post) {
+		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
+		var data = posts[key];
 		var template = data.template;
-		var filename = data.pagename;
+		var filename = data.filename;
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
-		data['page'] = ejsPages(jsonPage, hierarchy);
-		data['post'] = ejsPosts(jsonPost, hierarchy);
+		data['page'] = ejsPages(pages, hierarchy);
+		data['post'] = ejsPosts(posts, hierarchy);
 		data['path'] = ejsCommon(hierarchy);
+		data['ejspath'] = ejsPath(parentArray);
 		data['parent'] = ejsParent(parentArray);
 		data['file'] = filename;
 		data['site'] = jsonData.site;
 		data['contents'] = jsonData.contents;
 		data['dev'] = dev;
 		data = postdataCheck(data, filename);
-		data['data'] = data;
 		gulp.src(src + template + ".ejs").pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
 		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
@@ -197,9 +198,8 @@ gulp.task('post', function() {
 // function
 // -----------------------------------------------
 var ejsHierarchy = function(parentArray) {
-	var hierarchy;
 	if(relativePath) {
-		hierarchy = '';
+		var hierarchy = '';
 		if(parentArray.length != 1) {
 			for(var key in parentArray) {
 				if(key != 0) {
@@ -208,7 +208,7 @@ var ejsHierarchy = function(parentArray) {
 			}
 		}
 	} else {
-		hierarchy = '/';
+		var hierarchy = '/';
 	}
 	return hierarchy;
 }
@@ -227,14 +227,14 @@ var ejsPages = function(pages, hierarchy) {
 var ejsPosts = function(posts, hierarchy) {
 	for(var key in posts) {
 		var post = posts[key];
-		var pagename = post.pagename;
-		post.url = hierarchy + pagename + '.html';
+		var filename = post.filename;
+		post.url = hierarchy + filename + '.html';
 		if(!post.date) {
 			post.date = post.updatedAt.replace(/T.*$/, '');
 		}
 		if(!post.cat) {
 			var cat;
-			var catArray = pagename.split('/');
+			var catArray = filename.split('/');
 			if(catArray != 1) {
 				for(var catKey in catArray) {
 					if(catKey != catArray.length - 1) {
@@ -245,12 +245,11 @@ var ejsPosts = function(posts, hierarchy) {
 				post.cat = cat;
 			}
 		}
-		posts[pagename] = post;
 	}
 	return posts;
 }
 var ejsParent = function(parentArray) {
-	var pagename;
+	var filename;
 	var parents = [];
 	if(parentArray.length == 1) {
 		if(parentArray == 'index') {
@@ -263,13 +262,13 @@ var ejsParent = function(parentArray) {
 		parents.push('index');
 		parentArray.forEach(function(value, key) {
 			if(key == 0) {
-				pagename = value;
-				parents.push(pagename + '/index');
+				filename = value;
+				parents.push(filename + '/index');
 			} else if(value == 'index') {
 				return parents;
 			} else {
-				pagename += '/' + value;
-				parents.push(pagename + '/index');
+				filename += '/' + value;
+				parents.push(filename + '/index');
 			}
 		});
 		parents.pop();
@@ -283,6 +282,17 @@ var ejsCommon = function(hierarchy) {
 		js: hierarchy + filepath.common.js
 	}
 	return common;
+}
+var ejsPath = function(parentArray) {
+	var hierarchy = '';
+	if(parentArray.length != 1) {
+		for(var key in parentArray) {
+			if(key != 0) {
+				hierarchy += '../';
+			}
+		}
+	}
+	return hierarchy;
 }
 var pagedataCheck = function(data, filename) {
 	var pagedata = data;
