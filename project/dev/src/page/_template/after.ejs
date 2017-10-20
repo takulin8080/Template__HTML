@@ -1,0 +1,26 @@
+<%#
+// =================================================================================================
+// template/after
+// =================================================================================================
+%>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
+<%#
+// -----------------------------------------------
+// html
+// -----------------------------------------------
+%>
+</main>
+<!-- /main-contents -->
+<%- include(ejspath + '_layout/sub-contents') %>
+</div>
+<!-- /contents -->
+<%- include(ejspath + '_layout/footer') %>
+<!-- script -->
+<script src="<%- path.js %>app.js"></script>
+<!-- /script -->
+<%- include(ejspath + '_dev/app') %>
+</body>
+</html>

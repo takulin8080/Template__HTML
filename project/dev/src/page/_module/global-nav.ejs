@@ -3,7 +3,10 @@
 // module/global-nav
 // =================================================================================================
 %>
-<% if (typeof modifier === 'undefined') { var modifier = ''; }; %>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
 <%#
 // -----------------------------------------------
 // function
@@ -27,7 +30,7 @@
 </div>
 <nav class="global-nav">
 	<ul class="global-nav__items">
-		<%- item("index") %>
+		<%- item('index') %>
 </ul>
 </nav>
 <!-- /global-nav -->

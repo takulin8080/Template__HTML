@@ -3,17 +3,8 @@
 		"index": {
 			"template": "home",
 			"title": "ホーム",
-			"keyword": "",
-			"description": "",
-			"pageModifier": "home",
-			"progress": "done"
-		},
-		"index": {
-			"template": "home",
-			"title": "ホーム",
-			"keyword": "",
-			"description": "",
-			"pageModifier": "home",
+			"description": "home",
+			"modifier": "home",
 			"progress": "done"
 		},
 		"news/index": {
@@ -21,7 +12,7 @@
 			"title": "ニュース",
 			"keyword": "",
 			"description": "",
-			"pageModifier": "",
+			"modifier": "",
 			"progress": "stop"
 		},
 		"sitemap": {
@@ -29,7 +20,7 @@
 			"title": "サイトマップ",
 			"keyword": "",
 			"description": "",
-			"pageModifier": "",
+			"modifier": "",
 			"progress": ""
 		}
 	}

@@ -1,7 +1,16 @@
 <%#
 // =================================================================================================
-// template/default
+// template/before
 // =================================================================================================
+%>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
+<%#
+// -----------------------------------------------
+// html
+// -----------------------------------------------
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,7 +18,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			<% if(title){ %>
+			<% if( template != 'home'){ %>
 				<%- title %>
 				|
 			<% } %>
@@ -39,24 +48,13 @@
 			<link rel="stylesheet" href="<%- path.css %>app.css">
 		<% } %>
 	</head>
-	<body data-modifier="<%- pageModifier %>">
-		<%- include("../_layout/header") %>
-		<%- include("../_module/global-nav") %>
-		<%- include("../_module/breadcrumb") %>
+	<body data-modifier="<%- modifier %>">
+		<%- include(ejspath + '_layout/header') %>
+		<%- include(ejspath + '_module/global-nav') %>
+		<% if( template != 'home'){ %>
+			<%- include(ejspath + '_module/breadcrumb') %>
+		<% } %>
 		<!-- contents -->
 		<div class="contents">
 			<!-- main-contents -->
-			<div class="main-contents">
-				<%- include("../" + file) %>
-			</div>
-			<!-- /main-contents -->
-			<%- include("../_layout/sub-contents") %>
-		</div>
-		<!-- /contents -->
-		<%- include("../_layout/footer") %>
-		<!-- script -->
-		<script src="<%- path.js %>app.js"></script>
-		<!-- /script -->
-		<%- include("../_dev/app") %>
-	</body>
-</html>
+			<main class="main-contntes">

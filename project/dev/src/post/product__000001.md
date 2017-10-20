@@ -1,11 +1,10 @@
 ---
-pagename: product/myProdact
-template: post
-title: My Product
-keyword:
+filename: product/000001
+template: product/_post
+title: product[000001]
 description:
 date:
-pageModifier:
+modifier:
 cat:
 tag:
 ---

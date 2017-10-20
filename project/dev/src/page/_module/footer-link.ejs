@@ -3,7 +3,10 @@
 // module/footer-link
 // =================================================================================================
 %>
-<% if (typeof modifier === 'undefined') { var modifier = ''; }; %>
+<%
+	if (typeof modifier === 'undefined') { var modifier = ''; };
+	var ejspath = '../';
+%>
 <%#
 // -----------------------------------------------
 // function
@@ -22,7 +25,7 @@
 <!-- footer-link -->
 <div class="footer-link">
 	<ul class="footer-link__items">
-		<%- item("index") %>
+		<%- item('index') %>
 </ul>
 </div>
 <!-- /footer-link -->
