@@ -54,6 +54,7 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
+	/* ------------------- */
 	/* only
 	/* ------------------- */
 	@if $key == xs {
@@ -76,6 +77,7 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 			@content;
 		}
 	}
+	/* ------------------- */
 	/* over
 	/* ------------------- */
 	@else if $key == smAndOver {
@@ -88,6 +90,7 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 			@content;
 		}
 	}
+	/* ------------------- */
 	/* under
 	/* ------------------- */
 	@else if $key == smAndUnder {

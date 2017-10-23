@@ -95,6 +95,7 @@ tag:
 /* basic
 /* -------------------------------------------- */
 [data-button] {
+	/* ------------------- */
 	/* variable
 	/* ------------------- */
 	$type: (
@@ -152,6 +153,7 @@ tag:
 		smallLineHeight: size(3),
 		smallPadding: size(.5) size(2)
 	);
+	/* ------------------- */
 	/* setup
 	/* ------------------- */
 	border-radius: map-get($style, borderRadius);
@@ -211,6 +213,7 @@ tag:
 			}
 		}
 	}
+	/* ------------------- */
 	/* uniq
 	/* ------------------- */
 	&[data-button~='disabled'] {
@@ -261,6 +264,7 @@ tag:
 /* Humbergar
 /* -------------------------------------------- */
 [data-button-hamburger] {
+	/* ------------------- */
 	/* variable
 	/* ------------------- */
 	$type: (
@@ -277,6 +281,7 @@ tag:
 			size: size(6)
 		)
 	);
+	/* ------------------- */
 	/* setup
 	/* ------------------- */
 	background: map-get(map-get($type, default), bgColor);
