@@ -44,10 +44,10 @@ html
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- dev-progressbar -->
 <div class="dev-progressbar">
-	<div class="dev-progressbar__item" data-modifier="done" style="width: <%- pageDoneRatio %>;"><%- pageDoneRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="undone" style="width: <%- pageUndoneRatio %>;"><%- pageUndoneRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="stop" style="width: <%- pageStopRatio %>;"><%- pageStopRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="none" style="width: <%- pageNoneRatio %>;"><%- pageNoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="done" <% if( pageDone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageDoneRatio %>;" <% } %>><%- pageDoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="undone" <% if( pageUndone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageUndoneRatio %>;" <% } %>><%- pageUndoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="stop" <% if( pageStop == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageStopRatio %>;" <% } %>><%- pageStopRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="none" <% if( pageNone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageNoneRatio %>;" <% } %>><%- pageNoneRatio %></div>
 </div>
 <!-- /dev-progressbar -->
 <!-- dev-sitemap -->
