@@ -84,7 +84,7 @@ var filepath = {
 		watch: ['src/common/img/**']
 	}
 }
-var cleanDir = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
+var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -326,11 +326,6 @@ var postdataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['icon', 'fontAwesome'], function() {
-	var src = filepath.font.src;
-	var dst = dstDir + filepath.common.font;
-	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
-});
 // -----------------------------------------------
 // icon
 // -----------------------------------------------
@@ -356,7 +351,7 @@ gulp.task('icon', function() {
 // fontAwesome
 // -----------------------------------------------
 gulp.task('fontAwesome', function() {
-	var dst = dstDir + filepath.common.font;
+	var dst = filepath.dst.dev + filepath.common.font;
 	var fontAwewome = [
 		fontAwesome.fonts
 	];
@@ -466,12 +461,6 @@ gulp.task('robots', function() {
 		}).pipe($.changed(filepath.dst.dev)).pipe(gulp.dest(filepath.dst.dev));
 });
 // =================================================================================================
-// clean
-// =================================================================================================
-gulp.task('clean', function() {
-	return del(cleanDir);
-});
-// =================================================================================================
 // browserSync
 // =================================================================================================
 gulp.task('browserSync', function() {
@@ -536,22 +525,27 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.img.watch, ['img']);
 });
 // =================================================================================================
+// CLEAN
+// =================================================================================================
+gulp.task('.1 ============= CLEAN', function(callback) {
+	return del(cleanFile);
+});
+// =================================================================================================
+// BUILD ICON
+// =================================================================================================
+gulp.task('.2 ============= BUILD ICON', ['icon', 'fontAwesome'], function(callback) {
+	var src = filepath.font.src;
+	var dst = filepath.dst.dev + filepath.common.font;
+	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+});
+// =================================================================================================
 // DEVELOPMENT
 // =================================================================================================
 gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('json', 'robots', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
-});
-// =================================================================================================
-// DEVELOPMENT__CLEANUP
-// =================================================================================================
-gulp.task('2 ============== DEVELOPMENT__CLEANUP', function(callback) {
-	dstDir = filepath.dst.dev;
-	imagemin = false;
-	dev = true;
-	runSequence('clean', 'json', 'robots', 'page', 'post', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('json', 'robots', 'page', 'post', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
