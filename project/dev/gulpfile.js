@@ -527,13 +527,13 @@ gulp.task('watch', ['browserSync'], function() {
 // =================================================================================================
 // CLEAN
 // =================================================================================================
-gulp.task('.1 ============= CLEAN', function(callback) {
+gulp.task('================ CLEAN', function(callback) {
 	return del(cleanFile);
 });
 // =================================================================================================
 // BUILD ICON
 // =================================================================================================
-gulp.task('.2 ============= BUILD ICON', ['icon', 'fontAwesome'], function(callback) {
+gulp.task('================ BUILD ICON', ['icon', 'fontAwesome'], function(callback) {
 	var src = filepath.font.src;
 	var dst = filepath.dst.dev + filepath.common.font;
 	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
