@@ -44,7 +44,7 @@ var filepath = {
 	},
 	page: {
 		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
-		watch: ['src/_data.json', 'src/page/**/*.ejs', '!src/page/dev/workpage.ejs']
+		watch: ['src/_data.json', 'src/page/**/*.ejs']
 	},
 	post: {
 		src: 'src/page/',

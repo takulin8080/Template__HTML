@@ -5,45 +5,15 @@ dev/workpage
 %>
 <%
 	var ejspath = '../';
+	var template = 'dev';
+	var title = '開発用ページ';
 %>
 <%#
 -----------------------------------------------
 html
 -----------------------------------------------
 %>
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="robots" content="noindex">
-		<title>
-			dev/workpage |
-			<%- site.title %>
-		</title>
-		<% if( site.author ){ %>
-			<meta name="author" content="<%- site.author %>"/>
-		<% } %>
-		<% if(dev){ %>
-			<link rel="stylesheet" href="<%- path.css %>vendor.css">
-			<link rel="stylesheet" href="<%- path.css %>foundation.css">
-			<link rel="stylesheet" href="<%- path.css %>component.css">
-			<link rel="stylesheet" href="<%- path.css %>project.css">
-			<link rel="stylesheet" href="<%- path.css %>utility.css">
-			<link rel="stylesheet" href="<%- path.css %>dev.css">
-		<% } else { %>
-			<link rel="stylesheet" href="<%- path.css %>app.css">
-		<% } %>
-	</head>
-	<body data-modifier="dev">
-		<!-- dev-contents -->
-		<main class="dev-contents">
-			<h1 class="dev-contents__title">dev/workpage</h1>
-		</main>
-		<!-- /dev-contents -->
-		<!-- script -->
-		<script src="<%- path.js %>app.js"></script>
-		<!-- /script -->
-		<%- include(ejspath + '/_dev/app') %>
-	</body>
-</html>
+<%- include(ejspath + '_template/' + template, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_template/' + template, {modifier: 'after'}) %>
