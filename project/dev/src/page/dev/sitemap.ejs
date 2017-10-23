@@ -1,16 +1,42 @@
 <%#
-// =================================================================================================
-// dev/sitemap
-// =================================================================================================
+=====================================================================================================
+dev/sitemap
+=====================================================================================================
 %>
 <%
-	if (typeof modifier === 'undefined') { var modifier = ''; };
 	var ejspath = '../';
 %>
 <%#
-// -----------------------------------------------
-// html
-// -----------------------------------------------
+-----------------------------------------------
+function
+-----------------------------------------------
+%>
+<%
+	pageAll = Object.keys(page).length -1;
+	pageDone = 0;
+	pageUndone = 0;
+	pageStop = 0;
+	pageNone = 0;
+	Object.keys(page).forEach(function(value, key){
+	if(page[value].progress == 'done') {
+		pageDone++;
+	} else if(page[value].progress == 'stop') {
+		pageStop++;
+	} else if(page[value].progress == 'none') {
+		pageNone++;
+	} else {
+		pageUndone++;
+	}
+	});
+	pageDoneRatio = Math.round(pageDone/pageAll*100) + '%';
+	pageUndoneRatio = Math.round(pageUndone/pageAll*100) + '%';
+	pageStopRatio = Math.round(pageStop/pageAll*100) + '%';
+	pageNoneRatio = Math.round(pageNone/pageAll*100) + '%';
+%>
+<%#
+-----------------------------------------------
+html
+-----------------------------------------------
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -40,33 +66,6 @@
 		<!-- dev-contents -->
 		<main class="dev-contents">
 			<h1 class="dev-contents__title">dev/sitemap</h1>
-			<%#
-			// -----------------------------------------------
-			// page-num function
-			// -----------------------------------------------
-			%>
-		<%
-				pageAll = Object.keys(page).length -1;
-				pageDone = 0;
-				pageUndone = 0;
-				pageStop = 0;
-				pageNone = 0;
-				Object.keys(page).forEach(function(value, key){
-						if(page[value].progress == 'done') {
-							pageDone++;
-						} else if(page[value].progress == 'stop') {
-							pageStop++;
-						} else if(page[value].progress == 'none') {
-							pageNone++;
-						} else {
-							pageUndone++;
-						}
-				});
-				pageDoneRatio = Math.round(pageDone/pageAll*100) + '%';
-				pageUndoneRatio = Math.round(pageUndone/pageAll*100) + '%';
-				pageStopRatio = Math.round(pageStop/pageAll*100) + '%';
-				pageNoneRatio = Math.round(pageNone/pageAll*100) + '%';
-			%>
 			<!-- dev-progressbar -->
 			<div class="dev-progressbar">
 				<div class="dev-progressbar__item" data-modifier="done" style="width: <%- pageDoneRatio %>;"><%- pageDoneRatio %></div>

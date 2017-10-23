@@ -1,5 +1,12 @@
 {
 	"page": {
+		"test": {
+			"template": "default",
+			"title": "テスト",
+			"description": "",
+			"modifier": "",
+			"progress": ""
+		},
 		"index": {
 			"template": "home",
 			"title": "ホーム",
