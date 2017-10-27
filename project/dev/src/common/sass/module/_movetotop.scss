@@ -6,7 +6,7 @@
 name: Move to Top
 category: 4.module
 ---
-`js`にて自動生成。
+`js`にて自動生成。`module movetotop`にてスタイル変更。
 */
 @if responsive {
 	 @include respondTo(lg){
@@ -18,18 +18,18 @@ category: 4.module
 			margin-left: -$siteWidth/2;
 			position: fixed;
 			width: $siteWidth;
+			@include fontAwesome( '\f106');
 			&:before {
 				background: #000;
 				bottom: 0;
 				color: #fff;
-				font-size: fontSize(3);
+				font-size: size(4);
 				height: size(8);
 				line-height: size(8);
 				position: absolute;
 				right: 0;
 				text-align: center;
 				width: size(8);
-				@include fontAwesome( '\f106');
 			}
 		}
 	}
@@ -43,18 +43,18 @@ category: 4.module
 		margin-left: -$siteWidth/2;
 		position: fixed;
 		width: $siteWidth;
+		@include fontAwesome( '\f106');
 		&:before {
 			background: #000;
 			bottom: 0;
 			color: #fff;
-			font-size: fontSize(3);
+			font-size: size(4);
 			height: size(8);
 			line-height: size(8);
 			position: absolute;
 			right: 0;
 			text-align: center;
 			width: size(8);
-			@include fontAwesome( '\f106');
 		}
 	}
 }
