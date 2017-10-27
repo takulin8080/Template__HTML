@@ -6,5 +6,11 @@
 name: Footer
 category: 3.layout
 ---
+`class="footer"`のレイアウトおよび、利用されるmodule郡。
 */
-.footer {}
+.footer {
+	/* -------------------------------------------- */
+	/* copyright
+	/* -------------------------------------------- */
+	.copyright {}
+}
