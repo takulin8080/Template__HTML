@@ -13,7 +13,7 @@ body[data-modifier~='dev'] {
 		&__item {
 			background: color(gray, 1);
 			border-bottom: 1px solid color(gray, 3);
-			color: color(black);
+			color: #000;
 			margin-bottom: size(1);
 			padding: size(1);
 			&[data-modifier~='done'] {
@@ -36,7 +36,7 @@ body[data-modifier~='dev'] {
 			}
 		}
 		&__link {
-			color: color(black);
+			color: #000;
 			display: block;
 		}
 		&__url {}

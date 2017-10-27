@@ -7,49 +7,7 @@ name: Footer
 category: 4.module
 ---
 `class="footer"`で利用されるmodule郡。
-
-### footer-link
-
-```
-footer-link
-```
-
-### copyright
-
-```
-copyright
-```
 */
-/* -------------------------------------------- */
-/* footer-link
-/* -------------------------------------------- */
-.footer-link {
-	$this: &;
-	/* ------------------- */
-	/* list
-	/* ------------------- */
-	&__list {
-		display: flex;
-		flex-wrap: wrap;
-		font-size: fontSize(-1);
-	}
-	/* ------------------- */
-	/* item
-	/* ------------------- */
-	&__item {
-		width: 50%;
-		@include respondTo(smAndOver) {
-			width: auto;
-			margin-right: size(1);
-		}
-	}
-	/* ------------------- */
-	/* link
-	/* ------------------- */
-	&__link {
-		display: block;
-	}
-}
 /* -------------------------------------------- */
 /* copyright
 /* -------------------------------------------- */

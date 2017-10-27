@@ -6,10 +6,10 @@
 name: color
 category: 1.foundation/function
 ---
-色の出力。`foundation $colorPalet`で設定。
+色の出力。`foundation $colorPalet`で設定し、基本的に色を指定する場合はこれを利用する。ただし、#000と#fffに関しては例外的に使用可。また、色の明度、再度などを設定する場合は、`darken`や`darken`の使用を推奨。
 
 ```scss
-color: color(text, dark);
+color: color(project, blue);
 ```
 */
 @function color($name, $color: default) {
