@@ -40,10 +40,12 @@ category: 0-1.HTML
 
 ```
 変数一覧
+<%- filename %> //ページのfilename。
 <%- url %> //ページURL。
 <%- title %> //タイトル。
 <%- description %> //ページ解説。
 <%- modifier %> //modifier
+<%- page['filename'].filename %> //指定したページのfilename。
 <%- page['filename'].url %> //指定したページのURL。
 <%- page['filename'].title %> //指定したページのタイトル。
 <%- page['filename'].description %> //指定したページのdescription。

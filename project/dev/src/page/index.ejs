@@ -6,23 +6,6 @@ home
 <%- include(ejspath + '_template/' + template, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <h2><%- title %></h2>
-<ul>
-	<% Object.keys(page).forEach(function(value, key){ %>
-		<li>
-			<a href="<%- page[value].url %>">
-				<%- page[value].title %>
-			</a>
-		</li>
-	<% }) %>
-</ul>
-<ul>
-	<% Object.keys(post).forEach(function(value, key){ %>
-		<li>
-			<a href="<%- post[value].url %>">
-				<%- post[value].title %>
-			</a>
-		</li>
-	<% }) %>
-</ul>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_template/' + template, {modifier: 'after'}) %>

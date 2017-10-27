@@ -13,9 +13,9 @@ tag:
 
 ```scss
 @include respondTo(smAndUnder) { smallサイズ以下のみ適用};
-@include respondTo(mdAndUnder) { mediulサイズ以下のみ適用};
 @include respondTo(smAndOver) { smallサイズ以上のみ適用};
-@include respondTo(smAndUnder) { mediulサイズ以上のみ適用};
+@include respondTo(mdAndUnder) { mediulサイズ以下のみ適用};
+@include respondTo(mdAndOver) { mediulサイズ以上のみ適用};
 @include respondTo(xs) { xsmallサイズ(small未満)のみ適用};
 @include respondTo(sm) { smallサイズのみ適用};
 @include respondTo(md) { mediumサイズのみ適用};
@@ -32,10 +32,9 @@ tag: responsive
 responsive対応の`component data-**`および`utility data-**`に`breakpoint prefix`を付けることで画面サイズによる処理の振り分けが可能。
 
 - `smAndOver-`:`breakpointSmall`以上の画面サイズに適用。
-- `mdAndOver-`:`breakpointMedium`以上の画面サイズに適用。
 - `smAndUnder-`:`breakpointSmall`未満の画面サイズに適用。
 - `mdAndUnder-`:`breakpointMedium`未満の画面サイズに適用。
-- `smAndUnder-`:`breakpointSmall`未満の画面サイズに適用。
+- `mdAndOver-`:`breakpointMedium`以上の画面サイズに適用。
 - `xs-`:`breakpointXSmall`の画面サイズのみ適用。
 - `sm-`:`breakpointSmall`の画面サイズのみ適用。
 - `md-`:`breakpointMedium`の画面サイズのみ適用。
@@ -48,9 +47,9 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 	$breakpointSmall: map-get($breakpoint, small);
 	$breakpointMedium: map-get($breakpoint, medium);
 	$breakpointLarge: map-get($breakpoint, large);
-	$breakpointXSmallMax: ($breakpointSmall - 1);
-	$breakpointSmallMax: ($breakpointMedium - 1);
-	$breakpointMediumMax: ($breakpointLarge - 1);
+	$breakpointXSmallMax: ($breakpointSmall);
+	$breakpointSmallMax: ($breakpointMedium);
+	$breakpointMediumMax: ($breakpointLarge);
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */

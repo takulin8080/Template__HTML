@@ -232,7 +232,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f057');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -243,7 +243,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f105');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -254,7 +254,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f104');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -269,14 +269,14 @@ tag:
 	/* ------------------- */
 	$type: (
 		default: (
-			bgColor: color(black),
-			lineColor: color(white),
+			bgColor: #000,
+			lineColor: #fff,
 			lineSize: 2px,
 			size: size(8)
 		),
 		small: (
-			bgColor: color(black),
-			lineColor: color(white),
+			bgColor: #000,
+			lineColor: #fff,
 			lineSize: 1px,
 			size: size(6)
 		)
