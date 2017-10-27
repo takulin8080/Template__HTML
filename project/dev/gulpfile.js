@@ -121,6 +121,7 @@ gulp.task('page', ['pageSetup'], function() {
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
 		var data = [];
+		data['filename'] = filename;
 		data['page'] = ejsPages(pages, hierarchy);
 		data['post'] = ejsPosts(posts, hierarchy);
 		data['path'] = ejsCommon(hierarchy);
@@ -168,6 +169,7 @@ gulp.task('post', function() {
 		var filename = data.filename;
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
+		data['filename'] = filename;
 		data['page'] = ejsPages(pages, hierarchy);
 		data['post'] = ejsPosts(posts, hierarchy);
 		data['path'] = ejsCommon(hierarchy);
