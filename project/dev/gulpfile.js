@@ -304,11 +304,11 @@ var pagedataCheck = function(data, filename) {
 	if(!pagedata.description) {
 		pagedata.description = jsonData.site.description;
 	}
-	if(!pagedata.modifier) {
-		pagedata.modifier = '';
-		var modifierArray = filename.split('/');
-		for(var i in modifierArray) {
-			pagedata.modifier += modifierArray[i] + ' ';
+	if(!pagedata.pageModifier) {
+		pagedata.pageModifier = '';
+		var pageModifierArray = filename.split('/');
+		for(var i in pageModifierArray) {
+			pagedata.pageModifier += pageModifierArray[i] + ' ';
 		}
 	}
 	return pagedata;
@@ -324,13 +324,13 @@ var postdataCheck = function(data, filename) {
 	if(!postdata.date) {
 		postdata.date = postdata.updatedAt.replace(/T.*$/, '');
 	}
-	if(!postdata.modifier) {
-		var modifierArray = filename.split('/');
-		var modifier = '';
-		for(var i in modifierArray) {
-			modifier += modifierArray[i] + ' ';
+	if(!postdata.pageModifier) {
+		var pageModifierArray = filename.split('/');
+		var pageModifier = '';
+		for(var i in pageModifierArray) {
+			pageModifier += pageModifierArray[i] + ' ';
 		}
-		postdata.modifier = modifier;
+		postdata.pageModifier = pageModifier;
 	}
 	return postdata;
 }

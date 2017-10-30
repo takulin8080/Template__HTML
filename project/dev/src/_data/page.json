@@ -4,7 +4,7 @@
 			"template": "home",
 			"title": "ホーム",
 			"description": "home",
-			"modifier": "home",
+			"pageModifier": "home",
 			"progress": ""
 		}
 	}
