@@ -112,7 +112,7 @@ gulp.task('jsonPost', function() {
 // -----------------------------------------------
 // page
 // -----------------------------------------------
-gulp.task('page', ['pageSetup'], function() {
+gulp.task('page', ['fileSetup'], function() {
 	var src = filepath.page.src;
 	var dst = dstDir;
 	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
@@ -143,8 +143,9 @@ gulp.task('page', ['pageSetup'], function() {
 		indent_size: 1
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('pageSetup', function() {
-	var dst = filepath.dst.src + 'page/';
+gulp.task('fileSetup', function() {
+	var ejsDst = filepath.dst.src + 'page/';
+	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/_';
 	var dirname = path.dirname;
 	for(var key in jsonData.page) {
 		function appendEjs(path, contents, callback) {
@@ -153,7 +154,12 @@ gulp.task('pageSetup', function() {
 				fs.appendFileSync(path, contents, callback)
 			})
 		}
-		appendEjs(dst + key + '.ejs', '', function(err) {
+		appendEjs(ejsDst + key + '.ejs', '', function(err) {
+			if(err) throw err;
+		});
+		var sassDirArray = key.split('/');
+		var sassFileName = sassDirArray[0];
+		appendEjs(sassDst + sassFileName + '.scss', '', function(err) {
 			if(err) throw err;
 		});
 	}
