@@ -95,6 +95,7 @@ tag:
 /* basic
 /* -------------------------------------------- */
 [data-button] {
+	/* ------------------- */
 	/* variable
 	/* ------------------- */
 	$type: (
@@ -152,6 +153,7 @@ tag:
 		smallLineHeight: size(3),
 		smallPadding: size(.5) size(2)
 	);
+	/* ------------------- */
 	/* setup
 	/* ------------------- */
 	border-radius: map-get($style, borderRadius);
@@ -211,6 +213,7 @@ tag:
 			}
 		}
 	}
+	/* ------------------- */
 	/* uniq
 	/* ------------------- */
 	&[data-button~='disabled'] {
@@ -229,7 +232,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f057');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -240,7 +243,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f105');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -251,7 +254,7 @@ tag:
 		}
 		&:before {
 			@include fontAwesome( '\f104');
-			color: color(black);
+			color: #000;
 			font-size: size(4);
 			line-height: size(4);
 		}
@@ -261,22 +264,24 @@ tag:
 /* Humbergar
 /* -------------------------------------------- */
 [data-button-hamburger] {
+	/* ------------------- */
 	/* variable
 	/* ------------------- */
 	$type: (
 		default: (
-			bgColor: color(black),
-			lineColor: color(white),
+			bgColor: #000,
+			lineColor: #fff,
 			lineSize: 2px,
 			size: size(8)
 		),
 		small: (
-			bgColor: color(black),
-			lineColor: color(white),
+			bgColor: #000,
+			lineColor: #fff,
 			lineSize: 1px,
 			size: size(6)
 		)
 	);
+	/* ------------------- */
 	/* setup
 	/* ------------------- */
 	background: map-get(map-get($type, default), bgColor);

@@ -1,6 +1,6 @@
 <%#
 =====================================================================================================
-template/default
+template/dev
 =====================================================================================================
 %>
 <%
@@ -22,21 +22,12 @@ before
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="robots" content="noindex">
 			<title>
 				<%- title %>
 				|
-				<% if(parent){ %>
-					<% parent.reverse().forEach(function(value, key){ if (parent.length - 1 != key) {%>
-						<% if (page[value] && value != 'index') { %>
-							<%- page[value].title %>
-							|
-						<% } %>
-					<% }}) %>
-					<% parent.reverse(); %>
-				<% } %>
 				<%- site.title %>
 			</title>
-			<meta name="description" content="<%- description %>">
 			<% if( site.author ){ %>
 				<meta name="author" content="<%- site.author %>"/>
 			<% } %>
@@ -51,31 +42,23 @@ before
 				<link rel="stylesheet" href="<%- path.css %>app.css">
 			<% } %>
 		</head>
-		<body data-modifier="<%- pageModifier %>">
-			<%- include(ejspath + '_layout/header') %>
-			<%- include(ejspath + '_module/global-nav') %>
-			<%- include(ejspath + '_module/breadcrumb') %>
-			<!-- contents -->
-			<div class="contents">
-				<!-- main-contents -->
-				<main class="main-contntes">
-				<% } %>
-				<%#
-				----------------------
-				after
-				----------------------
-				%>
-				<% if( modifier == 'after' ){ %>
-				</main>
-				<!-- /main-contents -->
-				<%- include(ejspath + '_layout/sub-contents') %>
-			</div>
-			<!-- /contents -->
-			<%- include(ejspath + '_layout/footer') %>
+		<body data-modifier="dev">
+			<!-- dev-contents -->
+			<main class="dev-contents">
+				<h1 class="dev-contents__title"><%- title %></h1>
+			<% } %>
+			<%#
+			----------------------
+			after
+			----------------------
+			%>
+			<% if( modifier == 'after' ){ %>
+			</main>
+			<!-- /dev-contents -->
 			<!-- script -->
 			<script src="<%- path.js %>app.js"></script>
 			<!-- /script -->
-			<%- include(ejspath + '_dev/app') %>
+			<%- include(ejspath + '/_dev/app') %>
 		</body>
 	</html>
 <% } %>

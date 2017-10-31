@@ -11,7 +11,7 @@ category: 2.component
 body {
 	&[data-overlay] {
 		& [data-overlay-layer] {
-			background: color(black);
+			background: #000;
 			content: '';
 			height: 100vh;
 			left: 0;

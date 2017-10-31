@@ -6,26 +6,6 @@
 name: Global Navigation
 category: 4.module
 ---
-
-```html
-<!-- global-nav -->
-<div class="global-nav__trg" style="position: relative;">
-	<span></span>
-	<span></span>
-	<span></span>
-</div>
-<nav class="global-nav">
-	<ul class="global-nav__list">
-		<li class="global-nav__item" data-modifier="index">
-			<a class="global-nav__link" href="/">ホーム</a>
-		</li>
-		<li class="global-nav__item" data-modifier="news/index">
-			<a class="global-nav__link" href="/news/">ニュース</a>
-		</li>
-	</ul>
-</nav>
-<!-- /global-nav -->
-```
 */
 .global-nav {
 	$this: &;
@@ -37,6 +17,7 @@ category: 4.module
 		max-width: size(48);
 		width: 100%;
 	}
+	/* ------------------- */
 	/* trg
 	/* ------------------- */
 	&__trg {
@@ -51,6 +32,7 @@ category: 4.module
 			}
 		}
 	}
+	/* ------------------- */
 	/* items
 	/* ------------------- */
 	&__items {
@@ -58,13 +40,15 @@ category: 4.module
 			display: flex;
 		}
 	}
+	/* ------------------- */
 	/* item
 	/* ------------------- */
 	&__item {}
+	/* ------------------- */
 	/* link
 	/* ------------------- */
 	&__link {
-		background: color(white);
+		background: #fff;
 		cursor: pointer;
 		display: block;
 		padding: size(2);

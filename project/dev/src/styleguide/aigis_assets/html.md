@@ -12,25 +12,23 @@ category: 0-1.HTML
 {
 	"page": {
 		"index": {
-			"template": "index", //利用する`src/_template/*.ejs`を指定（必須）。
+			"template": "home", //各ejsをincludeする際の振り分けなどに利用する（必須）。
 			"title": "home", //ページタイトルを指定（必須）。
-			"keyword": "", //未設定の場合`site.keyword`が設定される。
 			"description": "", //未設定の場合`site.description`が設定される。
-			"bodyclass": "home" //`body data-modifier`の値を設定。未設定の場合ファイル名から自動で付与。
+			"modifier": "home", //`body data-modifier`の値を設定。未設定の場合ファイル名から自動で付与。
+			"progress": "done" //`done`, `stop`, `none`を設定可能。`/dev/sitemap`で進捗表示に利用される（入力推奨）。
 		},
-		"hoge/index": { //階層を利用する場合、必ず同フォルダ内に`index.html`が必要。
+		"hoge/index": {
 			"template": "default",
 			"title": "hoge",
-			"keyword": "",
 			"description": "",
-			"bodyclass": ""
+			"modifier": ""
 		},
 		"hoge/fuga": {
 			"template": "default",
 			"title": "hoge-fuga",
-			"keyword": "",
 			"description": "",
-			"bodyclass": ""
+			"modifier": ""
 		}
 		...
 	}
@@ -42,25 +40,35 @@ category: 0-1.HTML
 
 ```
 変数一覧
-<%- title %> //タイトル。
-<%- keyword %> //ページキーワード。
-<%- description %> //ページ解説。
-<%- bodyclass %> //ページclass。
+<%- filename %> //ページのfilename。
 <%- url %> //ページURL。
-<%- page['ejsファイルパス'].title %> //指定した[ejsファイルパス]のタイトル。
-<%- page['ejsファイルパス'].url %> //指定した[ejsファイルパス]のURL。
-<%- parent[i].title %> //親ページがある場合のみ対応指定した親のタイトルを表示。
-<%- page[i].url %> //親ページがある場合のみ対応指定した親のURLを表示。
+<%- title %> //タイトル。
+<%- description %> //ページ解説。
+<%- modifier %> //modifier
+<%- page['filename'].filename %> //指定したページのfilename。
+<%- page['filename'].url %> //指定したページのURL。
+<%- page['filename'].title %> //指定したページのタイトル。
+<%- page['filename'].description %> //指定したページのdescription。
+<%- page['filename'].modifier %> //指定したページのmodifier。
+<%- post['filename'].url %> //指定した記事のURL。
+<%- post['filename'].title %> //指定した記事のタイトル。
+<%- post['filename'].body %> //指定した記事の本文。
+<%- post['filename'].description %> //指定したページのdescription。
+<%- post['filename'].modifier %> //指定した記事のmodifier。
+<%- post['filename'].date %> //指定した記事の作成日。
+<%- post['filename'].cat %> //指定した記事のカテゴリー。
+<%- post['filename'].tag %> //指定した記事のタグ。
+<%- parent[i] %> //親ページがある場合のみ指定可能。親のfilenameを表示。
+<%- site.url %> //サイトURL。
 <%- site.title %> //サイトタイトル。
-<%- site.keyword %> //サイトキーワード。
 <%- site.description %> //サイト解説。
 <%- site.author %> //サイト制作者。
 <%- site.publicationDate %> //公開日。
 <%- site.copyright %> //コピーライト。
-<%- site.url %> //サイトURL。
-<%- img %> //imgフォルダまでのパス。
-<%- css %> //cssフォルダまでのパス。
-<%- js %> //jsフォルダまでのパス。
+<%- path.img %> //imgフォルダまでのパス。
+<%- path.css %> //cssフォルダまでのパス。
+<%- path.js %> //jsフォルダまでのパス。
+<%- ejspath %> //ejsのルートパス。<%- include(ejspath + '_module/**') %>のように使用。
 ```
 */
 
@@ -70,32 +78,24 @@ name: Markdown(post)
 category: 0-1.HTML
 ---
 
-`*.md`ファイルを`src/post/**`フォルダ以下に作成し、必須情報を入力することでhtmlが生成される。なお階層対応はしていないため必ず`src/post/**`フォルダ直下に配置すること。`ejs`でのページ変数の利用は`<%- page['pagename'] %>`で出力が可能。
+`*.md`ファイルを`src/post/**`フォルダ以下に作成し、必須情報を入力することでhtmlが生成される。`ejs`での記事の利用は`<%- post['filename'] %>で出力が可能。
 
 任意でページ独自の変数を追加することも可能。`例：size: 88cm`
 
 ```
 ---
-pagename: news/20171212 //生成するhtmlパスを設定。併せて階層情報の設定もされる。
-template: post__news //利用する`src/_template/*.ejs`を指定（必須）。
+filename: news/20171212 //生成するhtmlパスを設定。併せて階層情報の設定もされる。
+template: news/_post //利用するtemplateを指定。`_template`フォルダ以外のファイルも指定可能だが必ずファイル名の前に`_`を付与する事（必須）。
 title: news 20171212 //ページタイトルを指定（必須）。
-keyword: 未設定の場合`site.keyword`が設定される。
 description: 未設定の場合`site.description`が設定される。
 date: 作成日。設定ががない場合、ファイル更新日が表示される。
-pageModifier: 未設定の場合pagenameから設定される。
-cat: 記事のcategory。未設定の場合pagenameから設定される。
-tag: 記事のtag。リスト表示の振り分けなどに利用する。
+modifier: 未設定の場合filenameから設定される。
+cat: 記事のcategory。
+tag: 記事のtag。
 ...
 ---
 
-`markdown`本文
-
-```
-
-```
-どちらも同じページのタイトルを出力
-<%- page['news/postname'].title %>
-<%- post.news['postname'].title %>
+`markdown`本文 //<%- body %>で呼び出し。
 
 ```
 */
