@@ -162,6 +162,7 @@ gulp.task('fileSetup', function() {
 		appendEjs(sassDst + sassFileName + '.scss', '', function(err) {
 			if(err) throw err;
 		});
+		// TODO: imgフォルダも自動生成。
 	}
 });
 // -----------------------------------------------
@@ -572,7 +573,7 @@ gulp.task('2 ============== TEST', function(callback) {
 	dstDir = filepath.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('test', 'json', 'page', 'post', 'sass', 'js', 'img', 'test', ', browserSync', callback);
+	runSequence('test', 'json', 'page', 'post', 'sass', 'js', 'img', 'browserSync', callback);
 });
 // =================================================================================================
 // STAGE
