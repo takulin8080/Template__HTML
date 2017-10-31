@@ -146,23 +146,32 @@ gulp.task('page', ['fileSetup'], function() {
 gulp.task('fileSetup', function() {
 	var ejsDst = filepath.dst.src + 'page/';
 	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/_';
+	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
 	for(var key in jsonData.page) {
-		function appendEjs(path, contents, callback) {
+		function appendFile(path, contents, callback) {
 			mkdirp(dirname(path), function(err) {
 				if(err) return cb(err)
 				fs.appendFileSync(path, contents, callback)
 			})
-		}
-		appendEjs(ejsDst + key + '.ejs', '', function(err) {
+		};
+		appendFile(ejsDst + key + '.ejs', '', function(err) {
 			if(err) throw err;
 		});
-		var sassDirArray = key.split('/');
-		var sassFileName = sassDirArray[0];
-		appendEjs(sassDst + sassFileName + '.scss', '', function(err) {
+		var sassdirArray = key.split('/');
+		var sassFileName = sassdirArray[0];
+		appendFile(sassDst + sassFileName + '.scss', '', function(err) {
 			if(err) throw err;
 		});
-		// TODO: imgフォルダも自動生成。
+		appendFile(imgDst + 'layout/.gitkeep', '', function(err) {
+			if(err) throw err;
+		});
+		appendFile(imgDst + 'module/.gitkeep', '', function(err) {
+			if(err) throw err;
+		});
+		appendFile(imgDst + '/scope/' + key + '/.gitkeep', '', function(err) {
+			if(err) throw err;
+		});
 	}
 });
 // -----------------------------------------------
@@ -338,6 +347,14 @@ var postdataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
+// -----------------------------------------------
+// buildIcon
+// -----------------------------------------------
+gulp.task('buildIcon', ['icon', 'fontAwesome'], function(callback) {
+	var src = filepath.font.src;
+	var dst = filepath.dst.dev + filepath.common.font;
+	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+});
 // -----------------------------------------------
 // icon
 // -----------------------------------------------
@@ -526,6 +543,12 @@ gulp.task('prodCopy', function() {
 		}).pipe($.changed(filepath.dst.prod)).pipe(gulp.dest(filepath.dst.prod));
 });
 // =================================================================================================
+// devDstClean
+// =================================================================================================
+gulp.task('devDstClean', function(callback) {
+	return del(cleanFile);
+});
+// =================================================================================================
 // watch
 // =================================================================================================
 gulp.task('watch', ['browserSync'], function() {
@@ -542,20 +565,6 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
 	gulp.watch(filepath.bsReload.watch, ['bsReload']);
-});
-// =================================================================================================
-// CLEAN
-// =================================================================================================
-gulp.task('================ CLEAN', function(callback) {
-	return del(cleanFile);
-});
-// =================================================================================================
-// BUILD ICON
-// =================================================================================================
-gulp.task('================ BUILD ICON', ['icon', 'fontAwesome'], function(callback) {
-	var src = filepath.font.src;
-	var dst = filepath.dst.dev + filepath.common.font;
-	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // DEVELOPMENT
@@ -586,4 +595,10 @@ gulp.task('3 ============== STAGING', function(callback) {
 // =================================================================================================
 gulp.task('4 ============== PRODUCTION', function(callback) {
 	runSequence('prod', callback);
+});
+// =================================================================================================
+// CLEAN-UP
+// =================================================================================================
+gulp.task('X ============== CLEAN-UP', function(callback) {
+	runSequence('devDstClean', 'buildIcon');
 });
