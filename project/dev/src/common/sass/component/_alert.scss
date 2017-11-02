@@ -23,31 +23,11 @@ tag:
 	/* variable
 	/* -------------------------------------------- */
 	$type: (
-		default: (
-			text: lighten(#546e7a, 50%),
-			bg: lighten(#546e7a, 5%),
-			border: #546e7a
-		),
-		info: (
-			text: lighten(color(sign, info), 50%),
-			bg: lighten(color(sign, info), 5%),
-			border: color(sign, info)
-		),
-		success: (
-			text: lighten(color(sign, success), 50%),
-			bg: lighten(color(sign, success), 5%),
-			border: color(sign, success)
-		),
-		warning: (
-			text: lighten(color(sign, warning), 50%),
-			bg: lighten(color(sign, warning), 5%),
-			border: color(sign, warning)
-		),
-		danger: (
-			text: lighten(color(sign, danger), 50%),
-			bg: lighten(color(sign, danger), 5%),
-			border: color(sign, danger)
-		)
+		default: (text: lighten(#546e7a, 50%), bg: lighten(#546e7a, 5%), border: #546e7a),
+		info: (text: lighten(color(sign, info), 50%), bg: lighten(color(sign, info), 5%), border: color(sign, info)),
+		success: (text: lighten(color(sign, success), 50%), bg: lighten(color(sign, success), 5%), border: color(sign, success)),
+		warning: (text: lighten(color(sign, warning), 50%), bg: lighten(color(sign, warning), 5%), border: color(sign, warning)),
+		danger: (text: lighten(color(sign, danger), 50%), bg: lighten(color(sign, danger), 5%), border: color(sign, danger))
 	);
 	$style: (
 		borderWidth: size(.2),

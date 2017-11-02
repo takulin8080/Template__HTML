@@ -40,9 +40,9 @@ $imgPath: "../img/";
 ```
 */
 $baseFontSize: 1.6rem;
-$baseSize: .8rem;
+$baseSize: 0.8rem;
 $siteWidth: 1000px;
-$imgPath: "../img/";
+$imgPath: '../img/';
 /* -------------------------------------------- */
 /* $fontFamily
 /* -------------------------------------------- */
@@ -151,32 +151,9 @@ $colorPalet: (
 ```
 */
 $colorPalet: (
-	project: (
-		blue: blue
-	),
-	text: (
-		default: #333,
-		dark: #000,
-		light: #9e9e9e
-	),
-	link: (
-		default: #1e88e5
-	),
-	sign: (
-		info: #1e88e5,
-		success: #43a047,
-		warning: #ffb300,
-		danger: #e53935
-	),
-	gray: (
-		1: #f8f8f8,
-		2: #f1f1f1,
-		3: #e5e5e5,
-		4: #e2e2e2,
-		5: #d3d3d3,
-		6: #ccc,
-		7: #999,
-		8: #666,
-		9: #333
-	)
+	project: (blue: blue),
+	text: (default: #333, dark: #000, light: #9e9e9e),
+	link: (default: #1e88e5),
+	sign: (info: #1e88e5, success: #43a047, warning: #ffb300, danger: #e53935),
+	gray: (1: #f8f8f8, 2: #f1f1f1, 3: #e5e5e5, 4: #e2e2e2, 5: #d3d3d3, 6: #ccc, 7: #999, 8: #666, 9: #333)
 );

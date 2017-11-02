@@ -25,29 +25,21 @@ contents {
 	}
 	@elseif $size == -1 {
 		$fontSizeSet: 1.2rem;
-	}
-	@else if $size == 2 {
+	} @else if $size == 2 {
 		$fontSizeSet: 1.6rem;
-	}
-	@else if $size == 4 {
+	} @else if $size == 4 {
 		$fontSizeSet: 1.8rem;
-	}
-	@else if $size == 5 {
+	} @else if $size == 5 {
 		$fontSizeSet: 2.4rem;
-	}
-	@else if $size == 6 {
+	} @else if $size == 6 {
 		$fontSizeSet: 3rem;
-	}
-	@else if $size == 7 {
+	} @else if $size == 7 {
 		$fontSizeSet: 3.6rem;
-	}
-	@else if $size == 7 {
+	} @else if $size == 7 {
 		$fontSizeSet: 4.8rem;
-	}
-	@else if $size == 8 {
+	} @else if $size == 8 {
 		$fontSizeSet: 6rem;
-	}
-	@else if $size == 9 {
+	} @else if $size == 9 {
 		$fontSizeSet: 7.2rem;
 	}
 	@return $fontSizeSet;

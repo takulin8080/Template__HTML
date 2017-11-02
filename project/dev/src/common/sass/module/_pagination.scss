@@ -31,7 +31,7 @@ category: 4.module
 			border-radius: size(1) 0 0 size(1);
 			font-size: fontSize(-1);
 			&:before {
-				@include fontAwesome( '\f100');
+				@include fontAwesome('\f100');
 				margin-right: size(.5);
 			}
 		}
@@ -39,7 +39,7 @@ category: 4.module
 			border-radius: 0 size(1) size(1) 0;
 			font-size: fontSize(-1);
 			&:after {
-				@include fontAwesome( '\f101');
+				@include fontAwesome('\f101');
 				margin-left: size(.5);
 			}
 		}

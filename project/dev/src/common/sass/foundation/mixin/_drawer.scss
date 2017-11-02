@@ -29,15 +29,13 @@ tag:
 		&[data-is-active~="true"] {
 			left: 0;
 		}
-	}
-	@else if $pos == right {
+	} @else if $pos == right {
 		right: -100vw;
 		top: 0;
 		&[data-is-active~="true"] {
 			right: 0;
 		}
-	}
-	@else if $pos == top {
+	} @else if $pos == top {
 		left: 0;
 		opacity: 0;
 		top: -100vh;
@@ -47,8 +45,7 @@ tag:
 			top: 0;
 			visibility: visible;
 		}
-	}
-	@else if $pos == bottom {
+	} @else if $pos == bottom {
 		bottom: -100vh;
 		left: 0;
 		visibility: hidden;

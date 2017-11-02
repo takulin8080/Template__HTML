@@ -39,7 +39,7 @@ tag:
 	visibility: hidden;
 	z-index: 3;
 	@if $responsive {
-		 @include respondTo(smAndUnder){
+		@include respondTo(smAndUnder) {
 			left: 0;
 			margin: 0;
 			max-width: none;

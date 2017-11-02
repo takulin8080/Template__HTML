@@ -38,29 +38,24 @@ tag:
 	$marginTar: top, right, bottom, left, topAndBottom, leftAndRight;
 	/* ------------------- */
 	@mixin tarAndSize($tar, $size, $neg: false) {
-		 @if $neg == false{
+		@if $neg == false {
 			@if $tar == topAndBottom {
 				margin-top: size($size);
 				margin-bottom: size($size);
-			}
-			@else if $tar == leftAndRight {
+			} @else if $tar == leftAndRight {
 				margin-left: size($size);
 				margin-right: size($size);
-			}
-			@else {
+			} @else {
 				margin-#{$tar}: size($size);
 			}
-		}
-		@else {
-			 @if $tar == topAndBottom{
+		} @else {
+			@if $tar == topAndBottom {
 				margin-top: size(-$size);
 				margin-bottom: size(-$size);
-			}
-			@else if $tar == leftAndRight {
+			} @else if $tar == leftAndRight {
 				margin-left: size(-$size);
 				margin-right: size(-$size);
-			}
-			@else {
+			} @else {
 				margin-#{$tar}: size(-$size);
 			}
 		}
@@ -82,7 +77,7 @@ tag:
 	}
 	@each $tar in $marginTar {
 		&[data-margin~='#{$tar}-half'] {
-			@include tarAndSize($tar, .5);
+			@include tarAndSize($tar, 0.5);
 		}
 		&[data-margin~='#{$tar}-neg-half'] {
 			@include tarAndSize($tar, -.5);
@@ -97,7 +92,7 @@ tag:
 		}
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
 				&[data-margin~='#{$key}-half'] {
 					margin: size(.5);
@@ -115,7 +110,7 @@ tag:
 				}
 				@each $tar in $marginTar {
 					&[data-margin~='#{$key}-#{$tar}-half'] {
-						@include tarAndSize($tar, .5);
+						@include tarAndSize($tar, 0.5);
 					}
 					&[data-margin~='#{$key}-#{$tar}-neg-half'] {
 						@include tarAndSize($tar, -.5);

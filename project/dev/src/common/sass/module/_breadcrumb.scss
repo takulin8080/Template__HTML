@@ -12,8 +12,7 @@ category: 4.module
 	$this: &;
 	margin: 0 auto size(2);
 	max-width: $siteWidth;
-	&__items {
-	}
+	&__items {}
 	&__item {
 		display: inline-block;
 	}

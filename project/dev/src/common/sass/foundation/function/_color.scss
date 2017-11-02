@@ -13,5 +13,5 @@ color: color(project, blue);
 ```
 */
 @function color($name, $color: default) {
-	 @return map-get(map-get($colorPalet, $name), $color);
+	@return map-get(map-get($colorPalet, $name), $color);
 }
