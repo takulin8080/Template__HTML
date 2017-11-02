@@ -10,6 +10,8 @@ var overlay = require('../component/overlay');
 // -----------------------------------------------
 var trg = $('.global-nav__trg');
 var tar = $('.global-nav');
+var catTrg = $('.global-nav .cat__title');
+var catTar = $('.global-nav .cat__items');
 // -----------------------------------------------
 // function
 // -----------------------------------------------
@@ -27,7 +29,10 @@ trg.click(function() {
 $(window).resize(function() {
 	trg.attr('data-is-active', 'false');
 	tar.attr('data-is-active', 'false');
+	catTrg.attr('data-is-active', 'false');
+	catTar.attr('data-is-active', 'false');
 	overlay(false);
+	trg
 });
 $('[data-overlay-layer]').click(function() {
 	trg.attr('data-is-active', 'false');

@@ -3,54 +3,170 @@
 /* ============================================================================================== */
 /*
 ---
-name: Global Navigation
+name: global-nav
 category: 4.module
 ---
 */
 .global-nav {
 	$this: &;
-	background: color(project, blue);
-	@extend %wrap;
-	@include respondTo (mdAndUnder) {
+	/* -------------------------------------------- */
+	/* mdAndUnder
+	/* -------------------------------------------- */
+	@include respondTo(mdAndUnder) {
 		@include drawer(right);
+		background: #fff;
 		height: 100vh;
 		max-width: size(48);
 		width: 100%;
-	}
-	/* ------------------- */
-	/* trg
-	/* ------------------- */
-	&__trg {
-		display: none;
-		@include respondTo (mdAndUnder) {
-			display: block;
+		padding-bottom: size(4);
+		/* ------------------- */
+		/* trg
+		/* ------------------- */
+		&__trg {
 			position: fixed;
 			right: 0;
 			top: 0;
-			&[data-is-active~='true'] {
-				z-index: 4;
+			z-index: 4;
+		}
+		/* ------------------- */
+		/* items
+		/* ------------------- */
+		&__items {}
+		/* ------------------- */
+		/* item
+		/* ------------------- */
+		&__item {
+			margin: 0 size(1);
+			padding: 0 size(1);
+			border-bottom: 1px solid color(gray, 5);
+		}
+		/* ------------------- */
+		/* link
+		/* ------------------- */
+		&__link {
+			display: block;
+			padding: size(2) 0;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		/* ------------------- */
+		/* cat
+		/* ------------------- */
+		&-cat {
+			&__title {
+				cursor: pointer;
+				display: block;
+				padding: size(2) 0;
+			}
+			&__items {
+				box-sizing: border-box;
+				transition: all 0.4s;
+				visibility: hidden;
+				overflow: hidden;
+				height: 0;
+				line-height: 0;
+				padding: 0 size(1);
+				opacity: 0;
+				&[data-is-active~='true'] {
+					background: color(gray, 1);
+					padding: size(1);
+					margin-bottom: size(2);
+					height: auto;
+					overflow: inherit;
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+			&__item {}
+			#{$this}__link {
+				font-size: fontSize(-1);
+				border-bottom: 1px dotted color(gray, 3);
+			}
+			&__item {
+				&:last-child {
+					#{$this}__link {
+						border: 0;
+					}
+				}
 			}
 		}
 	}
-	/* ------------------- */
-	/* items
-	/* ------------------- */
-	&__items {
-		@include respondTo(lg) {
+	/* -------------------------------------------- */
+	/* lg
+	/* -------------------------------------------- */
+	@include respondTo(lg) {
+		width: $siteWidth;
+		margin: 0 auto size(2);
+		/* ------------------- */
+		/* trg
+		/* ------------------- */
+		&__trg {
+			display: none;
+		}
+		/* ------------------- */
+		/* items
+		/* ------------------- */
+		&__items {
+			background: color(gray, 1);
 			display: flex;
 		}
-	}
-	/* ------------------- */
-	/* item
-	/* ------------------- */
-	&__item {}
-	/* ------------------- */
-	/* link
-	/* ------------------- */
-	&__link {
-		background: #fff;
-		cursor: pointer;
-		display: block;
-		padding: size(2);
+		/* ------------------- */
+		/* item
+		/* ------------------- */
+		&__item {
+			padding: 0 size(3);
+			border-right: 1px solid color(gray, 5);
+			&:last-child {
+				border: 0;
+			}
+		}
+		/* ------------------- */
+		/* link
+		/* ------------------- */
+		&__link {
+			display: block;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		/* ------------------- */
+		/* cat
+		/* ------------------- */
+		&-cat {
+			position: relative;
+			&__title {
+				display: block;
+			}
+			&__items {
+				transition: all 0.4s;
+				position: absolute;
+				background: #fff;
+				left: 0;
+				top: size(4);
+				opacity: 0;
+				height: 0;
+				line-height: 0;
+				visibility: hidden;
+				box-shadow: boxShadow(1);
+				z-index: 1;
+			}
+			&:hover {
+				.global-nav-cat__items {
+					opacity: 1;
+					visibility: visible;
+					height: auto;
+				}
+			}
+			&__item {}
+			#{$this}__link {
+				line-height: size(4);
+			}
+			&__item {
+				&:last-child {
+					#{$this}__link {}
+				}
+			}
+		}
 	}
 }

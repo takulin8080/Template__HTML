@@ -17,6 +17,11 @@ function
 		<a class="global-nav__link" href="<%- page[file].url %>"><%- page[file].title %></a>
 	</li>
 <% } %>
+<% var catItem = function(file){ %>
+	<li class="global-nav-cat__item" data-modifier="<%- file %>">
+		<a class="global-nav__link" href="<%- page[file].url %>"><%- page[file].title %></a>
+	</li>
+<% } %>
 <%#
 -----------------------------------------------
 html
@@ -31,6 +36,14 @@ html
 <nav class="global-nav">
 	<ul class="global-nav__items">
 		<%- item('index') %>
-</ul>
+		<div class="global-nav__item">
+			<div class="global-nav-cat">
+				<span class="global-nav-cat__title" data-active-trg="global-nav__category">カテゴリー</span>
+				<ul class="global-nav-cat__items" data-active-tar="global-nav__category">
+					<%- catItem('category/sample') %>
+				</ul>
+			</div>
+		</div>
+	</ul>
 </nav>
 <!-- /global-nav -->
