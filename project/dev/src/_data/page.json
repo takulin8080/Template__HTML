@@ -6,6 +6,13 @@
 			"description": "home",
 			"pageModifier": "home",
 			"progress": ""
+		},
+		"category/sample": {
+			"template": "default",
+			"title": "サンプル",
+			"description": "",
+			"pageModifier": "",
+			"progress": ""
 		}
 	}
 }
