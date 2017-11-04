@@ -15,5 +15,5 @@ contents {
 ```
 */
 @function fontFamily($name) {
-	 @return map-get($fontFamily, $name);
+	@return map-get($fontFamily, $name);
 }

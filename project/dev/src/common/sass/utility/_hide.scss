@@ -19,7 +19,7 @@ tag:
 */
 [data-hide] {
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			&[data-hide~='#{$key}'] {
 				@include respondTo($key) {
 					display: none;

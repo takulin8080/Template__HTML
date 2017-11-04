@@ -19,7 +19,7 @@ body[data-modifier~='dev'] {
 			&[data-modifier~='done'] {
 				background: lighten(color(sign, success), 50%);
 				&:before {
-					@include fontAwesome( '\f00c');
+					@include fontAwesome('\f00c');
 					color: color(sign, success);
 					float: left;
 					margin-right: size(1);
@@ -28,7 +28,7 @@ body[data-modifier~='dev'] {
 			&[data-modifier~='stop'] {
 				background: lighten(color(sign, warning), 45%);
 				&:before {
-					@include fontAwesome( '\f05e');
+					@include fontAwesome('\f05e');
 					color: color(sign, warning);
 					float: left;
 					margin-right: size(1);

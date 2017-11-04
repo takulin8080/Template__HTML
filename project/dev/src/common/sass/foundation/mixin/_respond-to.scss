@@ -57,48 +57,45 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 	/* only
 	/* ------------------- */
 	@if $key == xs {
-		 @media (max-width: $breakpointXSmallMax){
+		@media (max-width: $breakpointXSmallMax) {
 			@content;
 		}
-	}
-	@else if $key == sm {
-		 @media (min-width: $breakpointSmall) and (max-width: $breakpointSmallMax){
+	} @else if $key == sm {
+		@media (min-width: $breakpointSmall) and (max-width: $breakpointSmallMax) {
 			@content;
 		}
-	}
-	@else if $key == md {
-		 @media (min-width: $breakpointMedium) and (max-width: $breakpointMediumMax){
+	} @else if $key == md {
+		@media (min-width: $breakpointMedium) and (max-width: $breakpointMediumMax) {
 			@content;
 		}
-	}
-	@else if $key == lg {
-		 @media (min-width: $breakpointLarge){
+	} @else if $key == lg {
+		@media (min-width: $breakpointLarge) {
 			@content;
 		}
 	}
 	/* ------------------- */
 	/* over
 	/* ------------------- */
-	@else if $key == smAndOver {
-		 @media (min-width: $breakpointSmall){
+@else
+	if $key == smAndOver {
+		@media (min-width: $breakpointSmall) {
 			@content;
 		}
-	}
-	@else if $key == mdAndOver {
-		 @media (min-width: $breakpointMedium){
+	} @else if $key == mdAndOver {
+		@media (min-width: $breakpointMedium) {
 			@content;
 		}
 	}
 	/* ------------------- */
 	/* under
 	/* ------------------- */
-	@else if $key == smAndUnder {
-		 @media (max-width: $breakpointSmallMax){
+@else
+	if $key == smAndUnder {
+		@media (max-width: $breakpointSmallMax) {
 			@content;
 		}
-	}
-	@else if $key == mdAndUnder {
-		 @media (max-width: $breakpointMediumMax){
+	} @else if $key == mdAndUnder {
+		@media (max-width: $breakpointMediumMax) {
 			@content;
 		}
 	}
@@ -106,4 +103,13 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 /* -------------------------------------------- */
 /* respondToKeyArray
 /* -------------------------------------------- */
-$respondToKey: ( smAndOver, mdAndOver, smAndUnder, mdAndUnder, xs, sm, md, lg);
+$respondToKey: (
+	smAndOver,
+	mdAndOver,
+	smAndUnder,
+	mdAndUnder,
+	xs,
+	sm,
+	md,
+	lg
+);

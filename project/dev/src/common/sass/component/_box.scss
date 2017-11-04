@@ -86,7 +86,10 @@ tag:
 	/* -------------------------------------------- */
 	/* variable
 	/* -------------------------------------------- */
-	$box: ( denom: 12, gutterMaxnum: 8 );
+	$box: (
+		denom: 12,
+		gutterMaxnum: 8
+	);
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
@@ -118,7 +121,7 @@ tag:
 		}
 	}
 	@for $i from 1 through map-get($box, denom) {
-		 @for $c from 1 through map-get($box, denom){
+		@for $c from 1 through map-get($box, denom) {
 			@if $c <= $i {
 				&[data-box~='#{$c}/#{$i}'] {
 					& > * {
@@ -130,11 +133,11 @@ tag:
 		}
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
-				 @for $i from 1 through map-get($box, denom){
+				@for $i from 1 through map-get($box, denom) {
 					@for $c from 1 through map-get($box, denom) {
-						 @if $c <= $i{
+						@if $c <= $i {
 							&[data-box~='#{$key}-auto'] {
 								& > * {
 									flex: 1;
@@ -188,7 +191,7 @@ tag:
 		}
 	}
 	@for $size from 1 through map-get($box, gutterMaxnum) {
-		 @for $bottomSize from 1 through map-get($box, gutterMaxnum){
+		@for $bottomSize from 1 through map-get($box, gutterMaxnum) {
 			&[data-box~='gutter-#{$size}-#{$bottomSize}'] {
 				margin-left: size(-$size / 2);
 				margin-right: size(-$size / 2);
@@ -218,9 +221,9 @@ tag:
 		}
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
-				 @for $size from 1 through map-get($box, gutterMaxnum){
+				@for $size from 1 through map-get($box, gutterMaxnum) {
 					&[data-box~='#{$key}-gutter-#{$size}'] {
 						margin-left: size(-$size / 2);
 						margin-right: size(-$size / 2);
@@ -232,7 +235,7 @@ tag:
 					}
 				}
 				@for $size from 1 through map-get($box, gutterMaxnum) {
-					 @for $bottomSize from 1 through map-get($box, gutterMaxnum){
+					@for $bottomSize from 1 through map-get($box, gutterMaxnum) {
 						&[data-box~='#{$key}-gutter-#{$size}-#{$bottomSize}'] {
 							margin-left: size(-$size / 2);
 							margin-right: size(-$size / 2);
@@ -269,7 +272,7 @@ tag:
 		justify-content: flex-end;
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
 				&[data-box~='#{$key}-left'] {
 					justify-content: flex-start;
@@ -311,7 +314,7 @@ tag:
 		margin-left: auto;
 	}
 	@for $i from 1 through map-get($box, denom) {
-		 @for $c from 1 through map-get($box, denom){
+		@for $c from 1 through map-get($box, denom) {
 			& > [data-box-item~='#{$c}/#{$i}'] {
 				flex: 0 0 auto;
 				width: 100% / ($i / $c);
@@ -319,7 +322,7 @@ tag:
 		}
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
 				& > [data-box-item~='#{$key}-auto'] {
 					flex: 1;
@@ -343,7 +346,7 @@ tag:
 					margin: 0 auto;
 				}
 				@for $i from 1 through map-get($box, denom) {
-					 @for $c from 1 through map-get($box, denom){
+					@for $c from 1 through map-get($box, denom) {
 						& > [data-box-item~='#{$key}-#{$c}/#{$i}'] {
 							flex: 0 0 auto;
 							width: 100% / ($i / $c);

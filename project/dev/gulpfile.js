@@ -17,6 +17,7 @@ var $ = require('gulp-load-plugins')();
 // setup
 // =================================================================================================
 var relativePath = true;
+var sitemap = true;
 var filepath = {
 	dst: {
 		src: 'src/',
@@ -530,11 +531,17 @@ gulp.task('stage', function() {
 // =================================================================================================
 gulp.task('prod', ['prodCopy'], function() {
 	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	return gulp.src(filepath.dst.prod + '**/*.html', {
-		read: false
-	}).pipe($.sitemap({
-		siteUrl: jsonData.site.url
-	})).pipe(gulp.dest(filepath.dst.prod));
+	if(sitemap) {
+		return gulp.src(filepath.dst.prod + '**/*.html', {
+			read: false
+		}).pipe($.sitemap({
+			siteUrl: jsonData.site.url
+		})).pipe(gulp.dest(filepath.dst.prod));
+	} else {
+		return gulp.src(filepath.dst.prod + '**/*.html', {
+			read: false
+		}).pipe(gulp.dest(filepath.dst.prod));
+	}
 });
 gulp.task('prodCopy', function() {
 	return gulp.src(

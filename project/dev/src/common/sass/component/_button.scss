@@ -90,7 +90,6 @@ tag:
 </div>
 ```
 */
-
 /* -------------------------------------------- */
 /* basic
 /* -------------------------------------------- */
@@ -99,42 +98,12 @@ tag:
 	/* variable
 	/* ------------------- */
 	$type: (
-		default: (
-			textColor: lighten(#546e7a, 50%),
-			bgColor: linear-gradient(#546e7a, 5%, #546e7a),
-			bgHoverColor: darken(#546e7a, 5%),
-			borderColor: #546e7a
-		),
-		primary: (
-			textColor: lighten(#1e88e5, 50%),
-			bgColor: linear-gradient(lighten(#1e88e5, 5%), #1e88e5),
-			bgHoverColor: darken(#1e88e5, 5%),
-			borderColor: darken(#1e88e5, 5%)
-		),
-		success: (
-			textColor: lighten(color(sign, success), 50%),
-			bgColor: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)),
-			bgHoverColor: darken(color(sign, success), 5%),
-			borderColor: darken(color(sign, success), 5%)
-		),
-		warning: (
-			textColor: lighten(color(sign, warning), 50%),
-			bgColor: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)),
-			bgHoverColor: darken(color(sign, warning), 5%),
-			borderColor: darken(color(sign, warning), 5%)
-		),
-		danger: (
-			textColor: lighten(color(sign, danger), 50%),
-			bgColor: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)),
-			bgHoverColor: darken(color(sign, danger), 5%),
-			borderColor: darken(color(sign, danger), 5%)
-		),
-		disabled: (
-			textColor: color(gray, 5),
-			bgColor: color(gray, 7),
-			bgHoverColor: color(gray, 7),
-			borderColor: color(gray, 7)
-		)
+		default: (textColor: lighten(#546e7a, 50%), bgColor: linear-gradient(#546e7a, 5%, #546e7a), bgHoverColor: darken(#546e7a, 5%), borderColor: #546e7a),
+		primary: (textColor: lighten(#1e88e5, 50%), bgColor: linear-gradient(lighten(#1e88e5, 5%), #1e88e5), bgHoverColor: darken(#1e88e5, 5%), borderColor: darken(#1e88e5, 5%)),
+		success: (textColor: lighten(color(sign, success), 50%), bgColor: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)), bgHoverColor: darken(color(sign, success), 5%), borderColor: darken(color(sign, success), 5%)),
+		warning: (textColor: lighten(color(sign, warning), 50%), bgColor: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)), bgHoverColor: darken(color(sign, warning), 5%), borderColor: darken(color(sign, warning), 5%)),
+		danger: (textColor: lighten(color(sign, danger), 50%), bgColor: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)), bgHoverColor: darken(color(sign, danger), 5%), borderColor: darken(color(sign, danger), 5%)),
+		disabled: (textColor: color(gray, 5), bgColor: color(gray, 7), bgHoverColor: color(gray, 7), borderColor: color(gray, 7))
 	);
 	$style: (
 		borderRadius: size(.5),
@@ -142,12 +111,10 @@ tag:
 		fontSize: fontSize(1),
 		lineHeight: size(3),
 		padding: size(1) size(3),
-
 		largeBorderRadius: size(.5),
 		largeFontSize: fontSize(2),
 		largeLineHeight: size(5),
 		largePadding: size(1) size(4),
-
 		smallBorderRadius: size(.5),
 		smallFontSize: fontSize(-1),
 		smallLineHeight: size(3),
@@ -174,7 +141,7 @@ tag:
 			@extend [data-button];
 			background: map-get($value, bgColor);
 			border: map-get($style, borderWidth) solid map-get($value, borderColor);
-			box-shadow:  boxShadow();
+			box-shadow: boxShadow();
 			color: map-get($value, textColor);
 			&:hover {
 				background: map-get($value, bgHoverColor);
@@ -200,7 +167,7 @@ tag:
 		width: auto;
 	}
 	@if $responsive {
-		 @each $key in $respondToKey{
+		@each $key in $respondToKey {
 			@include respondTo($key) {
 				&[data-button~='#{$key}-full'] {
 					margin-left: 0;
@@ -231,7 +198,7 @@ tag:
 			opacity: 0.7;
 		}
 		&:before {
-			@include fontAwesome( '\f057');
+			@include fontAwesome('\f057');
 			color: #000;
 			font-size: size(4);
 			line-height: size(4);
@@ -242,7 +209,7 @@ tag:
 			opacity: 0.7;
 		}
 		&:before {
-			@include fontAwesome( '\f105');
+			@include fontAwesome('\f105');
 			color: #000;
 			font-size: size(4);
 			line-height: size(4);
@@ -253,7 +220,7 @@ tag:
 			opacity: 0.7;
 		}
 		&:before {
-			@include fontAwesome( '\f104');
+			@include fontAwesome('\f104');
 			color: #000;
 			font-size: size(4);
 			line-height: size(4);
@@ -268,18 +235,8 @@ tag:
 	/* variable
 	/* ------------------- */
 	$type: (
-		default: (
-			bgColor: #000,
-			lineColor: #fff,
-			lineSize: 2px,
-			size: size(8)
-		),
-		small: (
-			bgColor: #000,
-			lineColor: #fff,
-			lineSize: 1px,
-			size: size(6)
-		)
+		default: (bgColor: #000, lineColor: #fff, lineSize: 2px, size: size(8)),
+		small: (bgColor: #000, lineColor: #fff, lineSize: 1px, size: size(6))
 	);
 	/* ------------------- */
 	/* setup
@@ -297,7 +254,7 @@ tag:
 		transition: all 0.4s;
 		width: 50%;
 		&:nth-of-type(1) {
-		margin-top: -12%;
+			margin-top: -12%;
 			top: 50%;
 		}
 		&:nth-of-type(2) {

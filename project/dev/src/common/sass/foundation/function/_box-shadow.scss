@@ -13,5 +13,5 @@ box-shadow: boxShadow($num);
 ```
 */
 @function boxShadow($key: default) {
-	 @return map-get($boxShadow, $key);
+	@return map-get($boxShadow, $key);
 }

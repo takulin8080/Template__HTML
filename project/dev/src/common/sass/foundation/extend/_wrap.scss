@@ -15,7 +15,7 @@ category: 1.foundation/extend
 ```
 */
 %wrap {
-	 @include respondTo(lg){
+	@include respondTo(lg) {
 		margin-left: auto;
 		margin-right: auto;
 		width: $siteWidth;
