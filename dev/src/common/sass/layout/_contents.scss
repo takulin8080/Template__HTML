@@ -11,6 +11,12 @@ category: 3.layout
 	@extend %wrap;
 	display: flex;
 	flex-wrap: wrap;
+	padding-left: size(2);
+	padding-right: size(2);
+	@include respondTo(lg) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 	/* -------------------------------------------- */
 	/* main-contents
 	/* -------------------------------------------- */
