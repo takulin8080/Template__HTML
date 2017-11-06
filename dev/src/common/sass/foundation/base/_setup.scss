@@ -9,23 +9,6 @@
 name: Setup
 category: 1.foundation
 ---
-
-```scss
-html {
-	font-size: 62.5%; // 1rem = 10pxとするための設定（変更不可）
-}
-body {
-	color: color(text);
-	font-family: fontFamily(sansSerif);
-	font-size: fontSize(1);
-	line-height: size(3);
-}
-img {
-	width: 100%;
-	height: auto;
-	vertical-align: middle;
-}
-```
 */
 html {
 	font-size: 62.5%;
@@ -33,8 +16,7 @@ html {
 body {
 	color: color(text);
 	font-family: fontFamily(sansSerif);
-	font-size: fontSize(1);
-	line-height: size(3);
+	@include fontSize(1);
 }
 img {
 	max-width: 100%;

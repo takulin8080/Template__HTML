@@ -53,9 +53,6 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
-	/* ------------------- */
-	/* only
-	/* ------------------- */
 	@if $key == xs {
 		@media (max-width: $breakpointXSmallMax) {
 			@content;
@@ -72,12 +69,7 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 		@media (min-width: $breakpointLarge) {
 			@content;
 		}
-	}
-	/* ------------------- */
-	/* over
-	/* ------------------- */
-@else
-	if $key == smAndOver {
+	} @else if $key == smAndOver {
 		@media (min-width: $breakpointSmall) {
 			@content;
 		}
@@ -85,12 +77,7 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 		@media (min-width: $breakpointMedium) {
 			@content;
 		}
-	}
-	/* ------------------- */
-	/* under
-	/* ------------------- */
-@else
-	if $key == smAndUnder {
+	} @else if $key == smAndUnder {
 		@media (max-width: $breakpointSmallMax) {
 			@content;
 		}
