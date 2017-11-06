@@ -522,7 +522,7 @@ gulp.task('test', function() {
 // =================================================================================================
 gulp.task('stage', function() {
 	return gulp.src(
-		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html'], {
+		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html', '!' + filepath.dst.test + 'dev'], {
 			base: filepath.dst.test
 		}).pipe($.changed(filepath.dst.stage)).pipe(gulp.dest(filepath.dst.stage));
 });
