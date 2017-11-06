@@ -31,14 +31,18 @@ sample {
 ```
 */
 @font-face {
-	font-family: 'icon';
+	font-family: "icon";
 	src: url('../font/icon.eot');
-	src: url('../font/icon.eot?#iefix') format('eot'), url('../font/icon.woff') format('woff'), url('../font/icon.ttf') format('truetype'), url('../font/icon.svg#icon') format('svg');
+	src: url('../font/icon.eot?#iefix') format('eot'),
+		url('../font/icon.woff') format('woff'),
+		url('../font/icon.ttf') format('truetype'),
+		url('../font/icon.svg#icon') format('svg');
 }
+
 @mixin icon-styles {
-	font-family: 'icon';
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	font-family: "icon";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
@@ -46,22 +50,27 @@ sample {
 	text-decoration: none;
 	text-transform: none;
 }
+
 %icon {
 	@include icon-styles;
 }
+
 @function icon-char($filename) {
-	$char: '';
+	$char: "";
+
 	@if $filename == facebook {
-		$char: '\E001';
+		$char: "\E001";
 	}
 	@if $filename == google-plus {
-		$char: '\E002';
+		$char: "\E002";
 	}
 	@if $filename == twitter {
-		$char: '\E003';
+		$char: "\E003";
 	}
+
 	@return $char;
 }
+
 @mixin icon($filename, $insert: before, $extend: true) {
 	&:#{$insert} {
 		@if $extend {
@@ -72,6 +81,7 @@ sample {
 		content: icon-char($filename);
 	}
 }
+
 [data-icon~="facebook"] {
 	@include icon(facebook);
 }
