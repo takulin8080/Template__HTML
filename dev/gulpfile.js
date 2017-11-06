@@ -45,6 +45,7 @@ var filepath = {
 	},
 	page: {
 		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
+		testSrc: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs", "!src/page/dev/**/*"],
 		watch: ['src/_data.json', 'src/page/**/*.ejs']
 	},
 	post: {
@@ -114,7 +115,11 @@ gulp.task('jsonPost', function() {
 // page
 // -----------------------------------------------
 gulp.task('page', ['fileSetup'], function() {
-	var src = filepath.page.src;
+	if (dev == 'true') {
+		var src = filepath.page.src;
+	} else {
+		var src = filepath.page.testSrc;
+	};
 	var dst = dstDir;
 	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
 	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
@@ -149,29 +154,29 @@ gulp.task('fileSetup', function() {
 	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/_';
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
-	for(var key in jsonData.page) {
+	for (var key in jsonData.page) {
 		function appendFile(path, contents, callback) {
 			mkdirp(dirname(path), function(err) {
-				if(err) return cb(err)
+				if (err) return cb(err)
 				fs.appendFileSync(path, contents, callback)
 			})
 		};
 		appendFile(ejsDst + key + '.ejs', '', function(err) {
-			if(err) throw err;
+			if (err) throw err;
 		});
 		var sassdirArray = key.split('/');
 		var sassFileName = sassdirArray[0];
 		appendFile(sassDst + sassFileName + '.scss', '', function(err) {
-			if(err) throw err;
+			if (err) throw err;
 		});
 		appendFile(imgDst + 'layout/.gitkeep', '', function(err) {
-			if(err) throw err;
+			if (err) throw err;
 		});
 		appendFile(imgDst + 'module/.gitkeep', '', function(err) {
-			if(err) throw err;
+			if (err) throw err;
 		});
 		appendFile(imgDst + '/scope/' + key + '/.gitkeep', '', function(err) {
-			if(err) throw err;
+			if (err) throw err;
 		});
 	}
 });
@@ -181,7 +186,7 @@ gulp.task('fileSetup', function() {
 gulp.task('post', function() {
 	var src = filepath.post.src;
 	var dst = dstDir;
-	for(var key in jsonData.post) {
+	for (var key in jsonData.post) {
 		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
 		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
 		var data = posts[key];
@@ -214,11 +219,11 @@ gulp.task('post', function() {
 // function
 // -----------------------------------------------
 var ejsHierarchy = function(parentArray) {
-	if(relativePath) {
+	if (relativePath) {
 		var hierarchy = '';
-		if(parentArray.length != 1) {
-			for(var key in parentArray) {
-				if(key != 0) {
+		if (parentArray.length != 1) {
+			for (var key in parentArray) {
+				if (key != 0) {
 					hierarchy += '../';
 				}
 			}
@@ -230,8 +235,8 @@ var ejsHierarchy = function(parentArray) {
 }
 var ejsPages = function(pages, hierarchy) {
 	var url;
-	for(var key in pages) {
-		if(relativePath) {
+	for (var key in pages) {
+		if (relativePath) {
 			url = hierarchy + key + '.html';
 		} else {
 			url = url.replace('index.html', '');
@@ -241,19 +246,19 @@ var ejsPages = function(pages, hierarchy) {
 	return pages;
 }
 var ejsPosts = function(posts, hierarchy) {
-	for(var key in posts) {
+	for (var key in posts) {
 		var post = posts[key];
 		var filename = post.filename;
 		post.url = hierarchy + filename + '.html';
-		if(!post.date) {
+		if (!post.date) {
 			post.date = post.updatedAt.replace(/T.*$/, '');
 		}
-		if(!post.cat) {
+		if (!post.cat) {
 			var cat;
 			var catArray = filename.split('/');
-			if(catArray != 1) {
-				for(var catKey in catArray) {
-					if(catKey != catArray.length - 1) {
+			if (catArray != 1) {
+				for (var catKey in catArray) {
+					if (catKey != catArray.length - 1) {
 						cat += catArray[catKey] + '/';
 					}
 				}
@@ -267,8 +272,8 @@ var ejsPosts = function(posts, hierarchy) {
 var ejsParent = function(parentArray) {
 	var filename;
 	var parents = [];
-	if(parentArray.length == 1) {
-		if(parentArray == 'index') {
+	if (parentArray.length == 1) {
+		if (parentArray == 'index') {
 			return parents;
 		} else {
 			parents.push('index');
@@ -277,10 +282,10 @@ var ejsParent = function(parentArray) {
 	} else {
 		parents.push('index');
 		parentArray.forEach(function(value, key) {
-			if(key == 0) {
+			if (key == 0) {
 				filename = value;
 				parents.push(filename + '/index');
-			} else if(value == 'index') {
+			} else if (value == 'index') {
 				return parents;
 			} else {
 				filename += '/' + value;
@@ -301,9 +306,9 @@ var ejsCommon = function(hierarchy) {
 }
 var ejsPath = function(parentArray) {
 	var hierarchy = '';
-	if(parentArray.length != 1) {
-		for(var key in parentArray) {
-			if(key != 0) {
+	if (parentArray.length != 1) {
+		for (var key in parentArray) {
+			if (key != 0) {
 				hierarchy += '../';
 			}
 		}
@@ -312,13 +317,13 @@ var ejsPath = function(parentArray) {
 }
 var pagedataCheck = function(data, filename) {
 	var pagedata = data;
-	if(!pagedata.description) {
+	if (!pagedata.description) {
 		pagedata.description = jsonData.site.description;
 	}
-	if(!pagedata.pageModifier) {
+	if (!pagedata.pageModifier) {
 		pagedata.pageModifier = '';
 		var pageModifierArray = filename.split('/');
-		for(var i in pageModifierArray) {
+		for (var i in pageModifierArray) {
 			pagedata.pageModifier += pageModifierArray[i] + ' ';
 		}
 	}
@@ -326,19 +331,19 @@ var pagedataCheck = function(data, filename) {
 }
 var postdataCheck = function(data, filename) {
 	var postdata = data;
-	if(!postdata.keyword) {
+	if (!postdata.keyword) {
 		postdata.keyword = postdata.site.keyword;
 	}
-	if(!postdata.description) {
+	if (!postdata.description) {
 		postdata.description = postdata.site.description;
 	}
-	if(!postdata.date) {
+	if (!postdata.date) {
 		postdata.date = postdata.updatedAt.replace(/T.*$/, '');
 	}
-	if(!postdata.pageModifier) {
+	if (!postdata.pageModifier) {
 		var pageModifierArray = filename.split('/');
 		var pageModifier = '';
-		for(var i in pageModifierArray) {
+		for (var i in pageModifierArray) {
 			pageModifier += pageModifierArray[i] + ' ';
 		}
 		postdata.pageModifier = pageModifier;
@@ -475,7 +480,7 @@ gulp.task('img', function() {
 	var imageminOptions = {
 		optimizationLevel: 7
 	}
-	if(imagemin) {
+	if (imagemin) {
 		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	} else {
 		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
@@ -522,7 +527,7 @@ gulp.task('test', function() {
 // =================================================================================================
 gulp.task('stage', function() {
 	return gulp.src(
-		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html', '!' + filepath.dst.test + 'dev'], {
+		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html'], {
 			base: filepath.dst.test
 		}).pipe($.changed(filepath.dst.stage)).pipe(gulp.dest(filepath.dst.stage));
 });
@@ -531,7 +536,7 @@ gulp.task('stage', function() {
 // =================================================================================================
 gulp.task('prod', ['prodCopy'], function() {
 	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	if(sitemap) {
+	if (sitemap) {
 		return gulp.src(filepath.dst.prod + '**/*.html', {
 			read: false
 		}).pipe($.sitemap({
@@ -580,7 +585,7 @@ gulp.task('1 ============== DEVELOPMENT', function(callback) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('json', 'robots', 'page', 'post', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('json', 'robots', 'page', 'buildIcon', 'post', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
 });
 // =================================================================================================
 // TEST
@@ -607,5 +612,5 @@ gulp.task('4 ============== PRODUCTION', function(callback) {
 // CLEAN-UP
 // =================================================================================================
 gulp.task('X ============== CLEAN-UP', function(callback) {
-	runSequence('devDstClean', 'buildIcon');
+	runSequence('devDstClean');
 });
