@@ -65,30 +65,6 @@ tag:
 	</div>
 </div>
 ```
-
-### Hamburger
-三本線のメニュー（Hamburger button)スタイルを適用。`data-is-active`を付与することで三本線から☓に変化。`$type`の設定により自動的に生成される。
-
-- `data-is-active~='boolean`で操作。
-
-```html
-<div data-box="inline gutter-2">
-	<div>
-		<button data-button-hamburger>
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
-	</div>
-	<div>
-		<button data-button-hamburger="small">
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
-	</div>
-</div>
-```
 */
 /* -------------------------------------------- */
 /* basic
@@ -224,72 +200,6 @@ tag:
 			color: #000;
 			font-size: size(4);
 			line-height: size(4);
-		}
-	}
-}
-/* -------------------------------------------- */
-/* Humbergar
-/* -------------------------------------------- */
-[data-button-hamburger] {
-	/* ------------------- */
-	/* variable
-	/* ------------------- */
-	$type: (
-		default: (bgColor: #000, lineColor: #fff, lineSize: 2px, size: size(8)),
-		small: (bgColor: #000, lineColor: #fff, lineSize: 1px, size: size(6))
-	);
-	/* ------------------- */
-	/* setup
-	/* ------------------- */
-	background: map-get(map-get($type, default), bgColor);
-	cursor: pointer;
-	height: map-get(map-get($type, default), size);
-	position: relative;
-	width: map-get(map-get($type, default), size);
-	span {
-		background: map-get(map-get($type, default), lineColor);
-		height: map-get(map-get($type, default), lineSize);
-		left: 25%;
-		position: absolute;
-		transition: all 0.4s;
-		width: 50%;
-		&:nth-of-type(1) {
-			margin-top: -12%;
-			top: 50%;
-		}
-		&:nth-of-type(2) {
-			top: 50%;
-		}
-		&:nth-of-type(3) {
-			margin-top: 12%;
-			top: 50%;
-		}
-	}
-	&[data-is-active~='true'] {
-		span {
-			&:nth-of-type(1) {
-				margin-top: 0;
-				transform: rotate(-45deg);
-			}
-			&:nth-of-type(2) {
-				opacity: 0;
-			}
-			&:nth-of-type(3) {
-				margin-top: 0;
-				transform: rotate(45deg);
-			}
-		}
-	}
-	@each $name, $value in $type {
-		&[data-button-hamburger~='#{$name}'] {
-			@extend [data-button-hamburger];
-			background: map-get($value, bgColor);
-			height: map-get($value, size);
-			width: map-get($value, size);
-			span {
-				background: map-get($value, lineColor);
-				height: map-get($value, lineSize);
-			}
 		}
 	}
 }
