@@ -11,10 +11,6 @@ category: 1.foundation/0.variable
 ### $baseFontSize
 基本文字サイズの設定。単位は`rem`を使用。
 
-```scss
-$baseFontSize: 1.6rem; //16px相当
-```
-
 ### $baseSize
 基本サイズの設定。
 
@@ -39,7 +35,6 @@ $siteWidth: $baseSize * 128;
 $imgPath: "../img/";
 ```
 */
-$baseFontSize: 1.6rem;
 $baseSize: 0.8rem;
 $siteWidth: 1000px;
 $imgPath: '../img/';

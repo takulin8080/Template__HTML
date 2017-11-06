@@ -6,41 +6,32 @@
 name: Font Size
 category: 1.foundation/function
 ---
-`font-size`は`function fontSize($num)`で指定する。`-3〜9`までの値があり、値が大きいほどサイズが大きい。`1`は基本フォントサイズである`foundation $baseFontSize`と同サイズとなる。また`line-height`を指定する場合は`function size($num)`を利用することを推奨。
-
-```scss
-contents {
-	font-size: fontSize(3);
-	line-height: size(4);
-}
-```
+`font-size`は`function fontSize($num)`で指定する。`-3〜8`までの値があり、値が大きいほどサイズが大きい。`1`はサイト本文の基本サイズとし、`body`に付与されている。文章に利用する際は`fucntion fontSize`ではなく、line-heightが調整されている`mixin fontSize`を利用することを推奨。
 */
 @function fontSize($size) {
-	$fontSizeSet: $baseFontSize;
+	$fontSize: 1.4rem;
 	@if $size == -3 {
-		$fontSizeSet: 1rem;
-	}
-	@elseif $size == -2 {
-		$fontSizeSet: 1.1rem;
-	}
-	@elseif $size == -1 {
-		$fontSizeSet: 1.2rem;
+		$fontSize: 1rem;
+	} @else if $size == -2 {
+		$fontSize: 1.1rem;
+	} @else if $size == -1 {
+		$fontSize: 1.2rem;
+	} @else if $size == 1 {
+		$fontSize: 1.4rem;
 	} @else if $size == 2 {
-		$fontSizeSet: 1.6rem;
+		$fontSize: 1.8rem;
+	} @else if $size == 3 {
+		$fontSize: 2.4rem;
 	} @else if $size == 4 {
-		$fontSizeSet: 1.8rem;
+		$fontSize: 3rem;
 	} @else if $size == 5 {
-		$fontSizeSet: 2.4rem;
+		$fontSize: 3.6rem;
 	} @else if $size == 6 {
-		$fontSizeSet: 3rem;
+		$fontSize: 4.8rem;
 	} @else if $size == 7 {
-		$fontSizeSet: 3.6rem;
-	} @else if $size == 7 {
-		$fontSizeSet: 4.8rem;
+		$fontSize: 6rem;
 	} @else if $size == 8 {
-		$fontSizeSet: 6rem;
-	} @else if $size == 9 {
-		$fontSizeSet: 7.2rem;
+		$fontSize: 7.2rem;
 	}
-	@return $fontSizeSet;
+	@return $fontSize;
 }

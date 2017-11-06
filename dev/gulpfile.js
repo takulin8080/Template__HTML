@@ -115,7 +115,7 @@ gulp.task('jsonPost', function() {
 // page
 // -----------------------------------------------
 gulp.task('page', ['fileSetup'], function() {
-	if (dev == 'true') {
+	if (dev == true) {
 		var src = filepath.page.src;
 	} else {
 		var src = filepath.page.testSrc;
