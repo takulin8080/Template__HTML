@@ -84,9 +84,9 @@ tag:
 `mixin respondTo`のサイズ管理。
 */
 $breakpoint: (
-	small: 480px,
-	medium: 768px,
-	large: $siteWidth
+	sm: 480px,
+	md: 768px,
+	lg: $siteWidth
 );
 /* -------------------------------------------- */
 /* $boxShadow

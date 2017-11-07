@@ -44,12 +44,12 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 /* mixin
 /* -------------------------------------------- */
 @mixin respondTo($key) {
-	$breakpointSmall: map-get($breakpoint, small);
-	$breakpointMedium: map-get($breakpoint, medium);
-	$breakpointLarge: map-get($breakpoint, large);
-	$breakpointXSmallMax: ($breakpointSmall);
-	$breakpointSmallMax: ($breakpointMedium);
-	$breakpointMediumMax: ($breakpointLarge);
+	$breakpointSmall: map-get($breakpoint, sm);
+	$breakpointMedium: map-get($breakpoint, md);
+	$breakpointLarge: map-get($breakpoint, lg);
+	$breakpointXSmallMax: ($breakpointSmall) - 1;
+	$breakpointSmallMax: ($breakpointMedium) - 1;
+	$breakpointMediumMax: ($breakpointLarge) - 1;
 	/* -------------------------------------------- */
 	/* setup
 	/* -------------------------------------------- */
