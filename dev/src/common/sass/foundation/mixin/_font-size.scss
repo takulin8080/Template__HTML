@@ -8,45 +8,20 @@ category: 1.foundation/mixin
 tag:
 - mixin
 ---
-フォントサイズを変更。`foundation/function/font-size`とは違い、mixinの場合、サイズに基づいて`line-height`も調整される。そのため`foundation/function/font-size`と同様、`-3〜8`の値を設定することが可能。文章に利用する際は`mixin fontSize`の利用を推奨。
-
-```scss
-@include fontSize($num);
-```
+フォントサイズを変更。`foundation/function/fontSize`とは違い、サイズに基づいて`line-height`も同時に調整される。文章に利用する際は`mixin fontSize`の利用を推奨。なお`1`はサイト本文の基本サイズとし、`body`に付与されている。サイズパターンは`foundation/_variable/$fontSize`で設定されている。
 */
-@mixin fontSize($size) {
-	@if $size == -3 {
-		font-size: fontSize(-3);
-		line-height: size(2);
-	} @else if $size == -2 {
-		font-size: fontSize(-2);
-		line-height: size(2.25);
-	} @else if $size == -1 {
-		font-size: fontSize(-1);
-		line-height: size(2.5);
-	} @else if $size == 1 {
-		font-size: fontSize(1);
-		line-height: size(3);
-	} @else if $size == 2 {
-		font-size: fontSize(2);
-		line-height: size(3.25);
-	} @else if $size == 3 {
-		font-size: fontSize(3);
-		line-height: size(4.25);
-	} @else if $size == 4 {
-		font-size: fontSize(4);
-		line-height: fontSize(4) * 1.4;
-	} @else if $size == 5 {
-		font-size: fontSize(6);
-		line-height: fontSize(6) * 1.4;
-	} @else if $size == 6 {
-		font-size: fontSize(6);
-		line-height: fontSize(6) * 1.4;
-	} @else if $size == 7 {
-		font-size: fontSize(7);
-		line-height: fontSize(7) * 1.4;
-	} @else if $size == 8 {
-		font-size: fontSize(8);
-		line-height: fontSize(8) * 1.4;
-	}
+@mixin fontSize($num) {
+	font-size: fontSize($num);
+	line-height: fontSize($num) * 1.5;
+	@if $num == -3 {
+	} @else if == -2 {
+	} @else if == -1 {
+	} @else if == 1 {
+	} @else if == 2 {
+	} @else if == 3 {
+	} @else if == 4 {
+	} @else if == 5 {
+	} @else if == 6 {
+	} @else if == 7 {
+	} @else if == 8 {}
 }
