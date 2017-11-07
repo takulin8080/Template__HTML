@@ -6,32 +6,8 @@
 name: Font Size
 category: 1.foundation/function
 ---
-`font-size`は`function fontSize($num)`で指定する。`-3〜8`までの値があり、値が大きいほどサイズが大きい。`1`はサイト本文の基本サイズとし、`body`に付与されている。文章に利用する際は`fucntion fontSize`ではなく、line-heightが調整されている`mixin fontSize`を利用することを推奨。
+`font-size`は`function fontSize($num)`で指定する。文章に利用する際は`fucntion fontSize`ではなく、line-heightが調整されている`mixin fontSize`を利用することを推奨。サイズパターンは`foundation/_variable/$fontSize`で設定されている。
 */
-@function fontSize($size) {
-	$fontSize: 1.4rem;
-	@if $size == -3 {
-		$fontSize: 1rem;
-	} @else if $size == -2 {
-		$fontSize: 1.1rem;
-	} @else if $size == -1 {
-		$fontSize: 1.2rem;
-	} @else if $size == 1 {
-		$fontSize: 1.4rem;
-	} @else if $size == 2 {
-		$fontSize: 1.8rem;
-	} @else if $size == 3 {
-		$fontSize: 2.4rem;
-	} @else if $size == 4 {
-		$fontSize: 3rem;
-	} @else if $size == 5 {
-		$fontSize: 3.6rem;
-	} @else if $size == 6 {
-		$fontSize: 4.8rem;
-	} @else if $size == 7 {
-		$fontSize: 6rem;
-	} @else if $size == 8 {
-		$fontSize: 7.2rem;
-	}
-	@return $fontSize;
+@function fontSize($num) {
+	@return map-get($fontSize, $num);
 }

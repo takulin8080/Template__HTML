@@ -8,32 +8,14 @@ category: 1.foundation/0.variable
 ---
 基本設定。
 
-### $baseFontSize
-基本文字サイズの設定。単位は`rem`を使用。
-
 ### $baseSize
 基本サイズの設定。
 
-```scss
-$baseSize: .8rem; //8px相当
-```
-
 ### $siteWidth
 サイト最大幅の設定。
-- サイト全体のセンタリングする場合などに用いる。
-- 値を`100%`とすることで、Liquidレイアウトとなる。
-- 先の`$baseSize`をベースに設定することを推奨。
-
-```scss
-$siteWidth: $baseSize * 128;
-```
 
 ### $imgPath
 `imgフォルダ`までのパス。
-
-```scss
-$imgPath: "../img/";
-```
 */
 $baseSize: 0.8rem;
 $siteWidth: 1000px;
@@ -47,20 +29,34 @@ name: $fontFamily
 category: 1.foundation/0.variable
 ---
 サイト内で使用するフォントの管理。
-
-```scss
-@import url(https://fonts.googleapis.com/css?family=Archivo);
-$fontFamily: (
-	sansSerif: ('SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
-	serif: (garamond, 'times new roman', '游明朝', 'yu mincho', '游明朝体', 'yumincho', 'ヒラギノ明朝 pro w3', 'hiragino mincho pro', 'hiraminpron-w3', 'hgs明朝e', 'ｍｓ ｐ明朝', 'ms pmincho', serif),
-	archivo: ('Archivo', sans-serif),
-	...
-);
-```
 */
 $fontFamily: (
-	sansSerif: ('SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
-	serif: (garamond, 'times new roman', '游明朝', 'yu mincho', '游明朝体', 'yumincho', 'ヒラギノ明朝 pro w3', 'hiragino mincho pro', 'hiraminpron-w3', 'hgs明朝e', 'ｍｓ ｐ明朝', 'ms pmincho', serif)
+	sansSerif: (-apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック Medium", YuGothic,YuGothicM, "Hiragino Kaku Gothic ProN", メイリオ, Meiryo, sans-serif),
+	serif: (Georgia, 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, serif)
+);
+/* -------------------------------------------- */
+/* $fontSize
+/* -------------------------------------------- */
+/*
+---
+name: $fontSize
+category: 1.foundation/0.variable
+---
+サイト内で使用するフォントサイズの管理
+*/
+$fontSize: (
+	-4: 1rem,
+	-3: 1.1rem,
+	-2: 1.2rem,
+	-1: 1.4rem,
+	1: 1.6rem,
+	2: 1.8rem,
+	3: 2.4rem,
+	4: 3rem,
+	5: 3.6rem,
+	6: 4.8rem,
+	7: 6rem,
+	8: 7.2rem
 );
 /* -------------------------------------------- */
 /* $responsive
@@ -73,10 +69,6 @@ tag:
 - responsive
 ---
 レスポンシブ用。`componet box`, `utility margin`の値で使用する`breakpoint prefix(lg-**)`の使用の有効化。
-
-```scss
-$responsive: true;
-```
 */
 $responsive: true;
 /* -------------------------------------------- */
@@ -89,16 +81,12 @@ category: 1.foundation/0.variable
 tag:
 - responsive
 ---
-レスポンシブ用。`foudnation mixin respondTo`や`breakpoint`の値を`width`などに利用したい場合に使用。
-
-```scss
-$responsive: true;
-```
+`mixin respondTo`のサイズ管理。
 */
 $breakpoint: (
-	small: 480px,
-	medium: 768px,
-	large: $siteWidth
+	sm: 480px,
+	md: 768px,
+	lg: $siteWidth
 );
 /* -------------------------------------------- */
 /* $boxShadow
@@ -109,14 +97,6 @@ name: $boxShadow
 category: 1.foundation/0.variable
 ---
 `function boxShadow`の管理。
-
-```scss
-$boxShadow: (
-	default: 0 0 2px 0 rgba(#000, .3),
-	1: 0 0 5px 0 rgba(#000, .8)
-	...
-);
-```
 */
 $boxShadow: (
 	default: 0 0 2px 0 rgba(0, 0, 0, .1),
