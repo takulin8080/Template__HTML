@@ -31,8 +31,8 @@ category: 1.foundation/0.variable
 サイト内で使用するフォントの管理。
 */
 $fontFamily: (
-	sansSerif: ('SF Pro JP', 'SF Pro Display', 'SF Pro Icons', 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif),
-	serif: (garamond, 'times new roman', '游明朝', 'yu mincho', '游明朝体', 'yumincho', 'ヒラギノ明朝 pro w3', 'hiragino mincho pro', 'hiraminpron-w3', 'hgs明朝e', 'ｍｓ ｐ明朝', 'ms pmincho', serif)
+	sansSerif: (-apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック Medium", YuGothic,YuGothicM, "Hiragino Kaku Gothic ProN", メイリオ, Meiryo, sans-serif),
+	serif: (Georgia, 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, serif)
 );
 /* -------------------------------------------- */
 /* $fontSize

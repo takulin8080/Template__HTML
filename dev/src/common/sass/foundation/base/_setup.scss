@@ -14,9 +14,13 @@ html {
 	font-size: 62.5%;
 }
 body {
-	color: color(text);
+	@font-face {
+		font-family: YuGothicM;
+		src: local("Yu Gothic Medium");
+	}
 	font-family: fontFamily(sansSerif);
 	@include fontSize(1);
+	color: color(text);
 }
 img {
 	max-width: 100%;
