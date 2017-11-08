@@ -147,6 +147,8 @@ gulp.task('page', ['fileSetup'], function() {
 	})).pipe($.prettify({
 		indent_char: '\t',
 		indent_size: 1
+	})).pipe($.changed(dst, {
+		hasChanged: $.changed.compareSha1Digest
 	})).pipe(gulp.dest(dst));
 });
 gulp.task('fileSetup', function() {
