@@ -17,7 +17,6 @@ body {
 	font-family: fontFamily(sansSerif);
 	@include fontSize(1);
 	color: color(text);
-	font-feature-settings: 'palt';
 }
 img {
 	max-width: 100%;
