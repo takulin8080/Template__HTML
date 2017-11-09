@@ -8,9 +8,7 @@ category: 3.layout
 ---
 */
 :root {
-	@if respondTo {
-		overflow-x: hidden;
-	}
+	overflow-x: hidden;
 }
 html {}
 body {}
