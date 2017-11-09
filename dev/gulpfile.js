@@ -18,6 +18,7 @@ var $ = require('gulp-load-plugins')();
 // =================================================================================================
 var relativePath = true;
 var sitemap = true;
+var bsReload = false;
 var filepath = {
 	dst: {
 		src: 'src/',
@@ -576,7 +577,9 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.styleGuide.watch, ['styleGuide']);
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
-	gulp.watch(filepath.bsReload.watch, ['bsReload']);
+	if (bsReload == true) {
+		gulp.watch(filepath.bsReload.watch, ['bsReload']);
+	}
 });
 // =================================================================================================
 // DEVELOPMENT
