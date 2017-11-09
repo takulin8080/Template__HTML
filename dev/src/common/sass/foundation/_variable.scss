@@ -30,8 +30,18 @@ category: 1.foundation/0.variable
 ---
 サイト内で使用するフォントの管理。
 */
+@font-face {
+	font-family: 'YuGothic-M';
+	font-weight: normal;
+	src: local("YuGothic-Medium"), local("Yu Gothic Medium"), local("YuGothic-Regular");
+}
+@font-face {
+	font-family: 'YuGothic-M';
+	font-weight: bold;
+	src: local("YoGothic-Bold"), local("Yu Gothic");
+}
 $fontFamily: (
-	sansSerif: (-apple-system, BlinkMacSystemFont, "Helvetica Neue", "游ゴシック Medium", YuGothic,YuGothicM, "Hiragino Kaku Gothic ProN", メイリオ, Meiryo, sans-serif),
+	sansSerif: (-apple-system, blinkMacSystemFont, YuGothic-M, YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif),
 	serif: (Georgia, 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, serif)
 );
 /* -------------------------------------------- */
