@@ -42,16 +42,16 @@ before
 				<link rel="stylesheet" href="<%- path.css %>app.css">
 			<% } %>
 		</head>
-		<body data-modifier="dev">
+		<body data-modifier="<%- pageModifier %>">
 			<!-- dev-contents -->
 			<main class="dev-contents">
 				<h1 class="dev-contents__title"><%- title %></h1>
 			<% } %>
-			<%#
-			----------------------
-			after
-			----------------------
-			%>
+<%#
+----------------------
+after
+----------------------
+%>
 			<% if( modifier == 'after' ){ %>
 			</main>
 			<!-- /dev-contents -->
