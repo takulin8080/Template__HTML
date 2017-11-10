@@ -8,7 +8,17 @@ category: 3.template
 ---
 */
 :root {
-	overflow-x: hidden;
+	@if $responsive {
+		overflow-x: hidden;
+	}
 }
-html {}
-body {}
+html {
+}
+body {
+	margin: 0 auto;
+	@if $responsive {
+		max-width: $siteWidth;
+	} @else {
+		width: $siteWidth;
+	}
+}
