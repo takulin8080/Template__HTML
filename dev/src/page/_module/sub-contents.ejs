@@ -1,6 +1,6 @@
 <%#
 =====================================================================================================
-layout/header
+module/sub-contents
 =====================================================================================================
 %>
 <%
@@ -12,8 +12,10 @@ layout/header
 html
 -----------------------------------------------
 %>
-<!-- header -->
-<header class="header">
-	<div class="logo"><%- site.title %></div>
-</header>
-<!-- /header -->
+<!-- sub-contents -->
+<div class="sub-contents">
+	<% if(!modifier){ %>
+		<p>sub-contents</p>
+	<% }; %>
+</div>
+<!-- /sub-contents -->

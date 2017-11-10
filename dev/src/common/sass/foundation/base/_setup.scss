@@ -1,12 +1,12 @@
 /* ============================================================================================== */
-/* foundation/base/typography
+/* foundation/base/setup
 /* ============================================================================================== */
 /* -------------------------------------------- */
 /* base
 /* -------------------------------------------- */
 /*
 ---
-name: Setup
+name: setup
 category: 1.foundation
 ---
 */
@@ -87,11 +87,11 @@ a {
 /* uniq
 /* -------------------------------------------- */
 *[class~="__title"] {
-	@extend %style-clear;
+	@extend %styleClear;
 }
 *[class~="__items"] {
-	@extend %style-clear;
+	@extend %styleClear;
 }
 *[class~="__item"] {
-	@extend %style-clear;
+	@extend %styleClear;
 }

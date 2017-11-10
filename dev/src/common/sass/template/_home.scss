@@ -1,14 +1,10 @@
 /* ============================================================================================== */
-/* layout/base
+/* template/home
 /* ============================================================================================== */
 /*
 ---
-name: Base
-category: 3.layout
+name: home
+category: 3.template
 ---
 */
-:root {
-	overflow-x: hidden;
-}
-html {}
-body {}
+body[data-modifier~='home'] {}

@@ -52,26 +52,26 @@ before
 			<% } %>
 		</head>
 		<body data-modifier="<%- pageModifier %>">
-			<%- include(ejspath + '_layout/header') %>
+			<%- include(ejspath + '_module/header') %>
 			<%- include(ejspath + '_module/global-nav') %>
 			<%- include(ejspath + '_module/breadcrumb') %>
 			<!-- contents -->
 			<div class="contents">
 				<!-- main-contents -->
 				<main class="main-contents">
-				<% } %>
+<% } %>
 <%#
 ----------------------
 after
 ----------------------
 %>
-				<% if( modifier == 'after' ){ %>
+<% if( modifier == 'after' ){ %>
 				</main>
 				<!-- /main-contents -->
-				<%- include(ejspath + '_layout/sub-contents') %>
+				<%- include(ejspath + '_module/sub-contents') %>
 			</div>
 			<!-- /contents -->
-			<%- include(ejspath + '_layout/footer') %>
+			<%- include(ejspath + '_module/footer') %>
 			<!-- script -->
 			<script src="<%- path.js %>app.js"></script>
 			<!-- /script -->
