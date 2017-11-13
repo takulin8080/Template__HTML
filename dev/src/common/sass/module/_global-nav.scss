@@ -33,7 +33,6 @@ category: 4.module
 			cursor: pointer;
 			height: $trgSize;
 			width: $trgSize;
-			background: #000;
 			&:before {
 				transition: all 0.4s;
 				position: absolute;
@@ -44,7 +43,6 @@ category: 4.module
 				line-height: $trgSize;
 				width: 4em;
 				text-align: right;
-				background: #000;
 				color: #fff;
 			}
 			span {

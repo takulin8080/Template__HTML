@@ -9,26 +9,27 @@ var overlay = require('../component/overlay');
 // variable
 // -----------------------------------------------
 var trg = $('.global-nav-trg');
-var trgOffset = trg.offset().top;
-var trgHeight = trg.height();
 var tar = $('.global-nav');
 var catTrg = $('.global-nav-cat__title');
 var catTar = $('.global-nav-cat__items');
+var header = $('.header');
+var hdrOffset = header.offset().top;
+var hdrHeight = header.height();
 var winWidth = $(window).width();
 var winWidthResized;
 // -----------------------------------------------
 // function
 // -----------------------------------------------
 trg.attr('data-is-active', 'false');
-var trgVisibleTimer;
+var gnavVisibleTimer;
 $(window).scroll(function() {
-	if (trg.attr('data-is-active') != 'true') {
-		clearTimeout(trgVisibleTimer);
-		if ($(window).scrollTop() > trgOffset + trgHeight) {
+	if(trg.attr('data-is-active') != 'true') {
+		clearTimeout(gnavVisibleTimer);
+		if($(window).scrollTop() > hdrOffset + hdrHeight) {
 			trg.attr('data-modifier', 'hide');
-			trgVisibleTimer = setTimeout(function() {
+			gnavVisibleTimer = setTimeout(function() {
 				trg.attr('data-modifier', 'visible');
-			}, 1000);
+			}, 800);
 		} else {
 			trg.attr('data-modifier', 'visible');
 		}
@@ -37,7 +38,7 @@ $(window).scroll(function() {
 trg.click(function() {
 	catTrg.attr('data-is-active', 'false');
 	catTar.attr('data-is-active', 'false');
-	if ($(this).attr('data-is-active') == 'true') {
+	if($(this).attr('data-is-active') == 'true') {
 		trg.attr('data-is-active', 'false');
 		tar.attr('data-is-active', 'false');
 		overlay(false);
@@ -49,7 +50,7 @@ trg.click(function() {
 });
 $(window).resize(function() {
 	winWidthResized = $(window).width();
-	if (winWidth != winWidthResized) {
+	if(winWidth != winWidthResized) {
 		trg.attr('data-is-active', 'false');
 		tar.attr('data-is-active', 'false');
 		catTrg.attr('data-is-active', 'false');
