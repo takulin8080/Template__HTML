@@ -30,6 +30,7 @@ category: 1.foundation/0.variable
 ---
 サイト内で使用するフォントの管理。
 */
+@import url(https://fonts.googleapis.com/earlyaccess/sawarabimincho.css);
 @font-face {
 	font-family: 'YuGothic-M';
 	font-weight: normal;
@@ -42,7 +43,7 @@ category: 1.foundation/0.variable
 }
 $fontFamily: (
 	sansSerif: (-apple-system, blinkMacSystemFont, YuGothic-M, YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif),
-	serif: (Georgia, 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, serif)
+	serif: (游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho ProN", HGS明朝E, メイリオ, Meiryo, "Sawarabi Mincho", serif)
 );
 /* -------------------------------------------- */
 /* $fontSize
