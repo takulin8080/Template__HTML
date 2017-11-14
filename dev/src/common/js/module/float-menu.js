@@ -13,7 +13,7 @@ var hdrHeight = header.height();
 // -----------------------------------------------
 $(window).on('load resize scroll', function() {
 	var winWidth = $(window).width();
-	if(winWidth > 1000) {
+	if(winWidth > lg) {
 		if($(window).scrollTop() > hdrOffset + hdrHeight) {
 			fmenu.attr('data-modifier', 'true');
 		} else {
