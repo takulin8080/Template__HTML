@@ -4,22 +4,22 @@
 // -----------------------------------------------
 // variable
 // -----------------------------------------------
-var menu = $('.float-menu');
+var fmenu = $('.float-menu');
 var header = $('.header');
 var hdrOffset = header.offset().top;
 var hdrHeight = header.height();
 // -----------------------------------------------
 // function
 // -----------------------------------------------
-var fmenuVisibleTimer;
-$(window).scroll(function() {
-	clearTimeout(fmenuVisibleTimer);
-	if($(window).scrollTop() > hdrOffset + hdrHeight) {
-		menu.attr('data-modifier', 'hide');
-		fmenuVisibleTimer = setTimeout(function() {
-			menu.attr('data-modifier', 'visible');
-		}, 800);
+$(window).on('load resize scroll', function() {
+	var winWidth = $(window).width();
+	if(winWidth > 1000) {
+		if($(window).scrollTop() > hdrOffset + hdrHeight) {
+			fmenu.attr('data-modifier', 'true');
+		} else {
+			fmenu.attr('data-modifier', 'false');
+		}
 	} else {
-		menu.attr('data-modifier', 'visible');
+		fmenu.attr('data-modifier', 'true');
 	}
 });

@@ -13,34 +13,31 @@ category: 4.module
 	/* mdAndUnder
 	/* -------------------------------------------- */
 	@include respondTo(mdAndUnder) {
-		$trgSize: size(5);
 		@include drawer(right);
 		background: #fff;
 		height: 100vh;
 		max-width: size(48);
 		width: 100%;
 		padding-bottom: size(4);
-		border-top: $trgSize solid #000;
+		border-top: size(5) solid #cce;
 		/* ------------------- */
 		/* trg
 		/* ------------------- */
 		&-trg {
-			transition: all 0.4s;
 			position: fixed;
 			right: 0;
 			top: 0;
 			z-index: 4;
 			cursor: pointer;
-			height: $trgSize;
-			width: $trgSize;
+			height: size(5);
+			width: size(5);
 			&:before {
-				transition: all 0.4s;
 				position: absolute;
 				top: 0;
-				right: $trgSize;
+				right: size(5);
 				content: 'MENU';
 				font-size: fontSize(-2);
-				line-height: $trgSize;
+				line-height: size(5);
 				width: 4em;
 				text-align: right;
 				color: #fff;
@@ -78,12 +75,6 @@ category: 4.module
 						transform: rotate(45deg);
 					}
 				}
-			}
-			&[data-modifier~='hide'] {
-				top: -#{$trgSize};
-			}
-			&[data-modifier~='visible'] {
-				top: 0;
 			}
 		}
 		/* ------------------- */
