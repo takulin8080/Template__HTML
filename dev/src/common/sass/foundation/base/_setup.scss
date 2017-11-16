@@ -84,6 +84,19 @@ a {
 	}
 }
 /* -------------------------------------------- */
+/* form
+/* -------------------------------------------- */
+input[type='text'] {
+	border: 1px solid color(gray, 6);
+	box-shadow: boxShadow(inset);
+	padding: size(.5);
+}
+textarea {
+	border: 1px solid color(gray, 6);
+	box-shadow: boxShadow(inset);
+	padding: size(.5);
+}
+/* -------------------------------------------- */
 /* uniq
 /* -------------------------------------------- */
 *[class~="__title"] {
