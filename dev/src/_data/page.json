@@ -7,9 +7,9 @@
 			"pageModifier": "home",
 			"progress": ""
 		},
-		"category/sample": {
+		"post/index": {
 			"template": "default",
-			"title": "サンプル",
+			"title": "post index",
 			"description": "",
 			"pageModifier": "",
 			"progress": ""
