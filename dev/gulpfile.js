@@ -170,7 +170,7 @@ gulp.task('fileSetup', function() {
 		appendFile(sassDst + sassFileName + '.scss', '', function(err) {
 			if(err) throw err;
 		});
-		appendFile(imgDst + 'layout/.gitkeep', '', function(err) {
+		appendFile(imgDst + 'template/.gitkeep', '', function(err) {
 			if(err) throw err;
 		});
 		appendFile(imgDst + 'module/.gitkeep', '', function(err) {
