@@ -155,13 +155,14 @@ gulp.task('fileSetup', function() {
 	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/';
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
+
+	function appendFile(path, contents, callback) {
+		mkdirp(dirname(path), function(err) {
+			if(err) return cb(err)
+			fs.appendFileSync(path, contents, callback)
+		})
+	};
 	for(var key in jsonData.page) {
-		function appendFile(path, contents, callback) {
-			mkdirp(dirname(path), function(err) {
-				if(err) return cb(err)
-				fs.appendFileSync(path, contents, callback)
-			})
-		};
 		appendFile(ejsDst + key + '.ejs', '', function(err) {
 			if(err) throw err;
 		});
@@ -192,6 +193,11 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 		appendFile(imgDst + '/scope/' + key + '/.gitkeep', '', function(err) {
+			if(err) throw err;
+		});
+	}
+	for(var key in jsonData.post) {
+		appendFile(imgDst + '/post/' + key + '/.gitkeep', '', function(err) {
 			if(err) throw err;
 		});
 	}
