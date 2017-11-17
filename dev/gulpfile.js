@@ -511,9 +511,13 @@ gulp.task('img', function() {
 		optimizationLevel: 7
 	}
 	if(imagemin) {
-		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
+		return gulp.src(src).pipe($.ignore.include({
+			isFile: true
+		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	} else {
-		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+		return gulp.src(src).pipe($.ignore.include({
+			isFile: true
+		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 	}
 });
 // =================================================================================================
