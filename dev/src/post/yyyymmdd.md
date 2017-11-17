@@ -1,7 +1,7 @@
 ---
-filename: post/sample
+filename: post/yyyymmdd
 template: _template/post
-title: sample post
+title: yyyymmdd post
 description:
 date:
 modifier:

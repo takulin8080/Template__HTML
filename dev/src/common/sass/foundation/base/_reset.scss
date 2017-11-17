@@ -6,34 +6,6 @@
 name: reset
 category: 1.foundation
 ---
-
-```scss
-*,
-*:after,
-*:before {
-	background: 0;
-	border: 0;
-	box-sizing: inherit;
-	margin: 0;
-	outline: none;
-	padding: 0;
-	word-break: break-all
-}
-html {
-	box-sizing: border-box;
-}
-ol,
-ul {
-	list-style: none;
-}
-a:hover {
-	text-decoration: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-```
 */
 *,
 *:after,
@@ -50,6 +22,9 @@ table {
 }
 html {
 	box-sizing: border-box;
+}
+body {
+	-webkit-text-size-adjust: 100%;
 }
 ol,
 ul {
