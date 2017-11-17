@@ -152,24 +152,40 @@ gulp.task('page', ['fileSetup'], function() {
 });
 gulp.task('fileSetup', function() {
 	var ejsDst = filepath.dst.src + 'page/';
-	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/_';
+	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/';
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
+
+	function appendFile(path, contents, callback) {
+		mkdirp(dirname(path), function(err) {
+			if(err) return cb(err)
+			fs.appendFileSync(path, contents, callback)
+		})
+	};
 	for(var key in jsonData.page) {
-		function appendFile(path, contents, callback) {
-			mkdirp(dirname(path), function(err) {
-				if(err) return cb(err)
-				fs.appendFileSync(path, contents, callback)
-			})
-		};
 		appendFile(ejsDst + key + '.ejs', '', function(err) {
 			if(err) throw err;
 		});
-		var sassdirArray = key.split('/');
-		var sassFileName = sassdirArray[0];
-		appendFile(sassDst + sassFileName + '.scss', '', function(err) {
-			if(err) throw err;
-		});
+		var sassDirArray = key.split('/');
+		var sassFileName = sassDirArray[sassDirArray.length - 1];
+		if(sassDirArray.length == 1) {
+			appendFile(sassDst + '_' + sassFileName + '.scss', '', function(err) {
+				if(err) throw err;
+			});
+		} else {
+			sassDirArray.pop();
+			var sassDir = '';
+			for(var sassDirKey in sassDirArray) {
+				var sassDirName = sassDirArray[sassDirKey] + '/';
+				sassDir += sassDirName;
+			}
+			appendFile(sassDst + sassDir + '_base.scss', '', function(err) {
+				if(err) throw err;
+			});
+			appendFile(sassDst + sassDir + '_' + sassFileName + '.scss', '', function(err) {
+				if(err) throw err;
+			});
+		}
 		appendFile(imgDst + 'template/.gitkeep', '', function(err) {
 			if(err) throw err;
 		});
@@ -177,6 +193,11 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 		appendFile(imgDst + '/scope/' + key + '/.gitkeep', '', function(err) {
+			if(err) throw err;
+		});
+	}
+	for(var key in jsonData.post) {
+		appendFile(imgDst + '/post/' + key + '/.gitkeep', '', function(err) {
 			if(err) throw err;
 		});
 	}
@@ -325,7 +346,11 @@ var pagedataCheck = function(data, filename) {
 		pagedata.pageModifier = '';
 		var pageModifierArray = filename.split('/');
 		for(var i in pageModifierArray) {
-			pagedata.pageModifier += pageModifierArray[i] + ' ';
+			if(i != pageModifierArray.length - 1) {
+				pagedata.pageModifier += pageModifierArray[i] + ' ';
+			} else {
+				pagedata.pageModifier += pageModifierArray[i];
+			}
 		}
 	}
 	return pagedata;
@@ -345,7 +370,11 @@ var postdataCheck = function(data, filename) {
 		var pageModifierArray = filename.split('/');
 		var pageModifier = '';
 		for(var i in pageModifierArray) {
-			pageModifier += pageModifierArray[i] + ' ';
+			if(i != pageModifierArray.length - 1) {
+				pageModifier += pageModifierArray[i] + ' ';
+			} else {
+				pageModifier += pageModifierArray[i];
+			}
 		}
 		postdata.pageModifier = pageModifier;
 	}
@@ -482,9 +511,13 @@ gulp.task('img', function() {
 		optimizationLevel: 7
 	}
 	if(imagemin) {
-		return gulp.src(src).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
+		return gulp.src(src).pipe($.ignore.include({
+			isFile: true
+		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	} else {
-		return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+		return gulp.src(src).pipe($.ignore.include({
+			isFile: true
+		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 	}
 });
 // =================================================================================================
