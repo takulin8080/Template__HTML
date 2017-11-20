@@ -38,11 +38,10 @@ var filepath = {
 	},
 	json: {
 		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json']
+		watch: ['src/_data/**/*.json', 'src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	jsonPost: {
-		src: ['src/**/*.md', '!src/styleguide/**/*.md'],
-		watch: ['src/**/*.md', '!src/styleguide/**/*.md']
+		src: ['src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	page: {
 		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
@@ -84,7 +83,7 @@ var filepath = {
 	},
 	img: {
 		src: 'src/common/img/**/*',
-		watch: ['src/common/img/**']
+		watch: ['src/common/img/**/*']
 	},
 	bsReload: {
 		watch: ['dst/**/*']
