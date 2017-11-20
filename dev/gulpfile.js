@@ -38,11 +38,10 @@ var filepath = {
 	},
 	json: {
 		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json']
+		watch: ['src/_data/**/*.json', 'src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	jsonPost: {
-		src: ['src/**/*.md', '!src/styleguide/**/*.md'],
-		watch: ['src/**/*.md', '!src/styleguide/**/*.md']
+		src: ['src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	page: {
 		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
@@ -84,7 +83,7 @@ var filepath = {
 	},
 	img: {
 		src: 'src/common/img/**/*',
-		watch: ['src/common/img/**']
+		watch: ['src/common/img/**/*']
 	},
 	bsReload: {
 		watch: ['dst/**/*']
@@ -162,6 +161,12 @@ gulp.task('fileSetup', function() {
 			fs.appendFileSync(path, contents, callback)
 		})
 	};
+
+	function appendDir(path, callback) {
+		mkdirp(path, function(err) {
+			if(err) return cb(err)
+		})
+	};
 	for(var key in jsonData.page) {
 		appendFile(ejsDst + key + '.ejs', '', function(err) {
 			if(err) throw err;
@@ -186,18 +191,18 @@ gulp.task('fileSetup', function() {
 				if(err) throw err;
 			});
 		}
-		appendFile(imgDst + 'template/.gitkeep', '', function(err) {
+		appendDir(imgDst + 'template', function(err) {
 			if(err) throw err;
 		});
-		appendFile(imgDst + 'module/.gitkeep', '', function(err) {
+		appendDir(imgDst + 'module', function(err) {
 			if(err) throw err;
 		});
-		appendFile(imgDst + '/scope/' + key + '/.gitkeep', '', function(err) {
+		appendDir(imgDst + '/scope/' + key, function(err) {
 			if(err) throw err;
 		});
 	}
 	for(var key in jsonData.post) {
-		appendFile(imgDst + '/post/' + key + '/.gitkeep', '', function(err) {
+		appendDir(imgDst + '/post/' + key, function(err) {
 			if(err) throw err;
 		});
 	}
