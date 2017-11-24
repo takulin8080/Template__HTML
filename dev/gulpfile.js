@@ -635,7 +635,7 @@ gulp.task('2 ============== TEST', function(callback) {
 	dstDir = filepath.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('test', 'json', 'page', 'post', 'sass', 'js', 'img', 'browserSync', callback);
+	runSequence('json', 'test', 'page', 'post', 'sass', 'js', 'img', 'browserSync', callback);
 });
 // =================================================================================================
 // STAGE
