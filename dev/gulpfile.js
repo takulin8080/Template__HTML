@@ -151,7 +151,7 @@ gulp.task('page', ['fileSetup'], function() {
 });
 gulp.task('fileSetup', function() {
 	var ejsDst = filepath.dst.src + 'page/';
-	var sassDst = filepath.dst.src + filepath.common.sass + 'scope/';
+	var sassDst = filepath.dst.src + filepath.common.sass;
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
 
@@ -167,6 +167,9 @@ gulp.task('fileSetup', function() {
 			if(err) return cb(err)
 		})
 	};
+	appendDir(imgDst + 'template', function(err) {
+		if(err) throw err;
+	});
 	for(var key in jsonData.page) {
 		appendFile(ejsDst + key + '.ejs', '', function(err) {
 			if(err) throw err;
@@ -174,7 +177,7 @@ gulp.task('fileSetup', function() {
 		var sassDirArray = key.split('/');
 		var sassFileName = sassDirArray[sassDirArray.length - 1];
 		if(sassDirArray.length == 1) {
-			appendFile(sassDst + '_' + sassFileName + '.scss', '', function(err) {
+			appendFile(sassDst + 'scope/' + '_' + sassFileName + '.scss', '', function(err) {
 				if(err) throw err;
 			});
 		} else {
@@ -184,20 +187,43 @@ gulp.task('fileSetup', function() {
 				var sassDirName = sassDirArray[sassDirKey] + '/';
 				sassDir += sassDirName;
 			}
-			appendFile(sassDst + sassDir + '_base.scss', '', function(err) {
+			appendFile(sassDst + 'scope/' + sassDir + '_base.scss', '', function(err) {
 				if(err) throw err;
 			});
-			appendFile(sassDst + sassDir + '_' + sassFileName + '.scss', '', function(err) {
+			appendFile(sassDst + 'scope/' + sassDir + '_' + sassFileName + '.scss', '', function(err) {
 				if(err) throw err;
 			});
 		}
-		appendDir(imgDst + 'template', function(err) {
-			if(err) throw err;
-		});
-		appendDir(imgDst + 'module', function(err) {
-			if(err) throw err;
-		});
 		appendDir(imgDst + '/scope/' + key, function(err) {
+			if(err) throw err;
+		});
+	}
+	for(var i in jsonData.module) {
+		var key = jsonData.module[i];
+		appendFile(ejsDst + '_module/' + key + '.ejs', '', function(err) {
+			if(err) throw err;
+		});
+		var sassDirArray = key.split('/');
+		var sassFileName = sassDirArray[sassDirArray.length - 1];
+		if(sassDirArray.length == 1) {
+			appendFile(sassDst + 'module/_' + sassFileName + '.scss', '', function(err) {
+				if(err) throw err;
+			});
+		} else {
+			sassDirArray.pop();
+			var sassDir = '';
+			for(var sassDirKey in sassDirArray) {
+				var sassDirName = sassDirArray[sassDirKey] + '/';
+				sassDir += sassDirName;
+			}
+			appendFile(sassDst + 'module/' + sassDir + '_base.scss', '', function(err) {
+				if(err) throw err;
+			});
+			appendFile(sassDst + 'module/' + sassDir + '_' + sassFileName + '.scss', '', function(err) {
+				if(err) throw err;
+			});
+		}
+		appendDir(imgDst + 'module/' + key, function(err) {
 			if(err) throw err;
 		});
 	}
