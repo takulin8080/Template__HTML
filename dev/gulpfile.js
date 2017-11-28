@@ -44,8 +44,8 @@ var filepath = {
 		src: ['src/**/*.md', '!src/styleguide/**/*.md']
 	},
 	page: {
-		src: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs"],
-		testSrc: ["src/page/**/*.ejs", "!src/page/_**/*", "!src/page/**/_*.ejs", "!src/page/dev/**/*"],
+		src: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs'],
+		testSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*'],
 		watch: ['src/_data.json', 'src/page/**/*.ejs']
 	},
 	post: {
@@ -232,7 +232,7 @@ gulp.task('post', function() {
 		data['contents'] = jsonData.contents;
 		data['dev'] = dev;
 		data = postdataCheck(data, filename);
-		gulp.src(src + template + ".ejs").pipe($.plumber({
+		gulp.src(src + template + '.ejs').pipe($.plumber({
 			errorHandler: $.notify.onError('<%= error.message %>')
 		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
 			indent_char: '\t',
