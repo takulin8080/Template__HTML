@@ -1,0 +1,11 @@
+{
+	"module": [
+		"header",
+		"footer",
+		"sub-contents",
+		"global-nav",
+		"breadcrumb",
+		"pagination",
+		"float-menu"
+	]
+}
