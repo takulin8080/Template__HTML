@@ -99,7 +99,7 @@ var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foun
 // json
 // =================================================================================================
 gulp.task('json', ['jsonData', 'jsonPost'], function() {
-	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
+	return jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 });
 gulp.task('jsonData', function() {
 	var src = filepath.json.src;
@@ -117,7 +117,7 @@ gulp.task('jsonPost', function() {
 // html
 // =================================================================================================
 gulp.task('html', function(cb) {
-	runSequence('fileSetup', 'page', 'post', cb);
+	runSequence('json', 'fileSetup', 'page', 'post', cb);
 });
 // -----------------------------------------------
 // fileSetup
