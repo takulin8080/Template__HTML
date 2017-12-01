@@ -82,7 +82,7 @@ var filepath = {
 		watch: ['src/common/js/**/*.js', 'webpack.config.js']
 	},
 	design: {
-		src: 'design/',
+		src: 'design/**/*.+(jpg|jpeg|png|gif|svg)',
 		dst: 'src/common/img/',
 		watch: ['design/**/*.+(jpg|jpeg|png|gif|svg)']
 	},
@@ -98,8 +98,7 @@ var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foun
 // =================================================================================================
 // json
 // =================================================================================================
-gulp.task('json', function(cb) {
-	runSequence('jsonData', 'jsonPost', cb);
+gulp.task('json', ['jsonData', 'jsonPost'], function() {
 	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 });
 gulp.task('jsonData', function() {
@@ -424,20 +423,17 @@ var postdataCheck = function(data, filename) {
 	return postdata;
 }
 // =================================================================================================
-// font
+// icon
 // =================================================================================================
-// -----------------------------------------------
-// buildIcon
-// -----------------------------------------------
-gulp.task('buildIcon', ['icon', 'fontAwesome'], function(cb) {
+gulp.task('icon', ['projectIcon', 'fontAwesome'], function(cb) {
 	var src = filepath.font.src;
 	var dst = filepath.dst.dev + filepath.common.font;
 	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
-// icon
+// projectIcon
 // -----------------------------------------------
-gulp.task('icon', function() {
+gulp.task('projectIcon', function() {
 	var src = filepath.icon.src;
 	var dst = filepath.dst.src + filepath.common.font;
 	var fontName = 'icon';
@@ -547,20 +543,13 @@ gulp.task('js', function() {
 // =================================================================================================
 // design
 // =================================================================================================
-gulp.task('design', function(cb) {
-	for(var key in jsonData.page) {
-		var scopeDir = 'scope/' + key;
-		var src = filepath.design.src + scopeDir + '-assets/**/*.+(jpg|jpeg|png|gif|svg)';
-		var dst = filepath.design.dst + scopeDir;
-		gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	};
-	for(var i in jsonData.module) {
-		var moduleDir = 'module/' + jsonData.module[i];
-		var src = filepath.design.src + moduleDir + '-assets/**/*.+(jpg|jpeg|png|gif|svg)';
-		var dst = filepath.design.dst + moduleDir;
-		gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	};
-	cb();
+gulp.task('design', function() {
+	var src = filepath.design.src;
+	var dst = filepath.design.dst;
+	gulp.src(src).pipe($.rename(function(path) {
+		var dir = path.dirname.replace('-assets', '');
+		path.dirname = dir;
+	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // img
@@ -683,7 +672,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('json', 'html', 'buildIcon', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'design', 'img', 'robots', 'watch', 'browserSync', cb);
+	runSequence('json', 'icon', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'html', 'js', 'design', 'img', 'robots', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // TEST
@@ -692,7 +681,7 @@ gulp.task('2 ============== TEST', function(cb) {
 	dstDir = filepath.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('json', 'test', 'html', 'sass', 'js', 'img', 'browserSync', cb);
+	runSequence('json', 'test', 'sass', 'html', 'js', 'design', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // STAGE
