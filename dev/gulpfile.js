@@ -81,9 +81,14 @@ var filepath = {
 		src: 'src/common/js/*.js',
 		watch: ['src/common/js/**/*.js', 'webpack.config.js']
 	},
+	design: {
+		src: 'design/',
+		dst: 'src/common/img/',
+		watch: ['design/**/*.+(jpg|jpeg|png|gif|svg)']
+	},
 	img: {
-		src: 'src/common/img/**/*',
-		watch: ['src/common/img/**/*']
+		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
+		watch: ['src/common/img/**/*.+(jpg|jpeg|png|gif|svg)']
 	},
 	bsReload: {
 		watch: ['dst/**/*']
@@ -93,10 +98,11 @@ var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foun
 // =================================================================================================
 // json
 // =================================================================================================
-gulp.task('json', ['jsonData'], function() {
+gulp.task('json', function(cb) {
+	runSequence('jsonData', 'jsonPost', cb);
 	jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 });
-gulp.task('jsonData', ['jsonPost'], function() {
+gulp.task('jsonData', function() {
 	var src = filepath.json.src;
 	var dst = filepath.dst.src;
 	return gulp.src(src).pipe($.mergeJson({
@@ -109,60 +115,28 @@ gulp.task('jsonPost', function() {
 	return gulp.src(src).pipe($.util.buffer()).pipe($.markdownToJson(marked, '_post.json')).pipe(gulp.dest(dst));
 });
 // =================================================================================================
-// page
+// html
 // =================================================================================================
-// -----------------------------------------------
-// page
-// -----------------------------------------------
-gulp.task('page', ['fileSetup'], function() {
-	if(dev == true) {
-		var src = filepath.page.src;
-	} else {
-		var src = filepath.page.testSrc;
-	};
-	var dst = dstDir;
-	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('<%= error.message %>')
-	})).pipe($.data(function(file) {
-		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
-		var parentArray = filename.split('/');
-		var hierarchy = ejsHierarchy(parentArray);
-		var data = [];
-		data['filename'] = filename;
-		data['page'] = ejsPages(pages, hierarchy);
-		data['post'] = ejsPosts(posts, hierarchy);
-		data['path'] = ejsCommon(hierarchy);
-		data['ejspath'] = ejsPath(parentArray);
-		data['parent'] = ejsParent(parentArray);
-		data['site'] = jsonData.site;
-		data['contents'] = jsonData.contents;
-		data['dev'] = dev;
-		Object.assign(data, pages[filename]);
-		data = pagedataCheck(data, filename);
-		return data;
-	})).pipe($.ejs()).pipe($.rename({
-		extname: '.html'
-	})).pipe($.prettify({
-		indent_char: '\t',
-		indent_size: 1
-	})).pipe(gulp.dest(dst));
+gulp.task('html', function(cb) {
+	runSequence('fileSetup', 'page', 'post', cb);
 });
+// -----------------------------------------------
+// fileSetup
+// -----------------------------------------------
 gulp.task('fileSetup', function() {
 	var ejsDst = filepath.dst.src + 'page/';
 	var sassDst = filepath.dst.src + filepath.common.sass;
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
 
-	function appendFile(path, contents, callback) {
+	function appendFile(path, contents, cb) {
 		mkdirp(dirname(path), function(err) {
 			if(err) return cb(err)
-			fs.appendFileSync(path, contents, callback)
+			fs.appendFileSync(path, contents, cb)
 		})
 	};
 
-	function appendDir(path, callback) {
+	function appendDir(path, cb) {
 		mkdirp(path, function(err) {
 			if(err) return cb(err)
 		})
@@ -232,6 +206,44 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 	}
+});
+// -----------------------------------------------
+// page
+// -----------------------------------------------
+gulp.task('page', function() {
+	if(dev == true) {
+		var src = filepath.page.src;
+	} else {
+		var src = filepath.page.testSrc;
+	};
+	var dst = dstDir;
+	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
+	return gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('<%= error.message %>')
+	})).pipe($.data(function(file) {
+		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
+		var parentArray = filename.split('/');
+		var hierarchy = ejsHierarchy(parentArray);
+		var data = [];
+		data['filename'] = filename;
+		data['page'] = ejsPages(pages, hierarchy);
+		data['post'] = ejsPosts(posts, hierarchy);
+		data['path'] = ejsCommon(hierarchy);
+		data['ejspath'] = ejsPath(parentArray);
+		data['parent'] = ejsParent(parentArray);
+		data['site'] = jsonData.site;
+		data['contents'] = jsonData.contents;
+		data['dev'] = dev;
+		Object.assign(data, pages[filename]);
+		data = pagedataCheck(data, filename);
+		return data;
+	})).pipe($.ejs()).pipe($.rename({
+		extname: '.html'
+	})).pipe($.prettify({
+		indent_char: '\t',
+		indent_size: 1
+	})).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // post
@@ -417,7 +429,7 @@ var postdataCheck = function(data, filename) {
 // -----------------------------------------------
 // buildIcon
 // -----------------------------------------------
-gulp.task('buildIcon', ['icon', 'fontAwesome'], function(callback) {
+gulp.task('buildIcon', ['icon', 'fontAwesome'], function(cb) {
 	var src = filepath.font.src;
 	var dst = filepath.dst.dev + filepath.common.font;
 	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
@@ -533,6 +545,24 @@ gulp.task('js', function() {
 	})).pipe(webpack(webpackConfig)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
+// design
+// =================================================================================================
+gulp.task('design', function(cb) {
+	for(var key in jsonData.page) {
+		var scopeDir = 'scope/' + key;
+		var src = filepath.design.src + scopeDir + '-assets/**/*.+(jpg|jpeg|png|gif|svg)';
+		var dst = filepath.design.dst + scopeDir;
+		gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+	};
+	for(var i in jsonData.module) {
+		var moduleDir = 'module/' + jsonData.module[i];
+		var src = filepath.design.src + moduleDir + '-assets/**/*.+(jpg|jpeg|png|gif|svg)';
+		var dst = filepath.design.dst + moduleDir;
+		gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+	};
+	cb();
+});
+// =================================================================================================
 // img
 // =================================================================================================
 gulp.task('img', function() {
@@ -622,7 +652,7 @@ gulp.task('prodCopy', function() {
 // =================================================================================================
 // devDstClean
 // =================================================================================================
-gulp.task('devDstClean', function(callback) {
+gulp.task('devDstClean', function(cb) {
 	return del(cleanFile);
 });
 // =================================================================================================
@@ -640,6 +670,7 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.sass.devWatch, ['sassDev']);
 	gulp.watch(filepath.styleGuide.watch, ['styleGuide']);
 	gulp.watch(filepath.js.watch, ['js']);
+	gulp.watch(filepath.design.watch, ['design']);
 	gulp.watch(filepath.img.watch, ['img']);
 	if(bsReload == true) {
 		gulp.watch(filepath.bsReload.watch, ['bsReload']);
@@ -648,36 +679,36 @@ gulp.task('watch', ['browserSync'], function() {
 // =================================================================================================
 // DEVELOPMENT
 // =================================================================================================
-gulp.task('1 ============== DEVELOPMENT', function(callback) {
+gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	imagemin = false;
 	dev = true;
-	runSequence('json', 'robots', 'page', 'buildIcon', 'post', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'watch', 'browserSync', callback);
+	runSequence('json', 'html', 'buildIcon', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'design', 'img', 'robots', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // TEST
 // =================================================================================================
-gulp.task('2 ============== TEST', function(callback) {
+gulp.task('2 ============== TEST', function(cb) {
 	dstDir = filepath.dst.test;
 	imagemin = true;
 	dev = false;
-	runSequence('json', 'test', 'page', 'post', 'sass', 'js', 'img', 'browserSync', callback);
+	runSequence('json', 'test', 'html', 'sass', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // STAGE
 // =================================================================================================
-gulp.task('3 ============== STAGING', function(callback) {
-	runSequence('stage', callback);
+gulp.task('3 ============== STAGING', function(cb) {
+	runSequence('stage', cb);
 });
 // =================================================================================================
 // PRODUCTION
 // =================================================================================================
-gulp.task('4 ============== PRODUCTION', function(callback) {
-	runSequence('prod', callback);
+gulp.task('4 ============== PRODUCTION', function(cb) {
+	runSequence('prod', cb);
 });
 // =================================================================================================
 // CLEAN-UP
 // =================================================================================================
-gulp.task('X ============== CLEAN-UP', function(callback) {
+gulp.task('X ============== CLEAN-UP', function(cb) {
 	runSequence('devDstClean');
 });
