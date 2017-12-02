@@ -59,7 +59,7 @@ var filepath = {
 		iconDst: 'src/common/font/',
 		src: 'src/common/font/**/*',
 		dst: 'dst/common/font/',
-		watch: ['src/common/font/**', 'src/common/icon/**', 'design/icon/**/*.svg']
+		watch: ['src/common/font/**/*', 'src/common/icon/**/*', 'design/icon/**/*']
 	},
 	sass: {
 		src: ['src/common/sass/app.scss'],
@@ -93,7 +93,7 @@ var filepath = {
 		designDst: 'src/common/img/',
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
 		dst: 'dst/common/img/',
-		watch: ['src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/icon/**/*']
+		watch: ['src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**/*', '!design/icon']
 	},
 	bsReload: {
 		watch: ['dst/**/*']
@@ -430,7 +430,7 @@ var postdataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['fontAwesome', 'icon'], function(cb) {
+gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function(cb) {
 	var src = filepath.font.src;
 	var dst = filepath.font.dst;
 	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
@@ -448,7 +448,7 @@ gulp.task('fontAwesome', function() {
 // -----------------------------------------------
 // icon
 // -----------------------------------------------
-gulp.task('icon', ['designIconDst'], function() {
+gulp.task('icon', function() {
 	var src = filepath.font.iconSrc;
 	var dst = filepath.font.iconDst;
 	var fontName = 'icon';
@@ -466,14 +466,14 @@ gulp.task('icon', ['designIconDst'], function() {
 		appendCodepoints: false
 	})).pipe(gulp.dest(dst));
 });
+// -----------------------------------------------
 // designIconDst
-// ----------------------
+// -----------------------------------------------
 gulp.task('designIconDst', function() {
 	var src = filepath.font.designSrc;
 	var dst = filepath.font.designDst;
-	gulp.src(src).pipe($.rename(function(path) {
+	return gulp.src(src).pipe($.rename(function(path) {
 		path.dirname = '';
-		console.log(path);
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
