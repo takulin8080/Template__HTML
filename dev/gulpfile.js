@@ -83,11 +83,6 @@ var filepath = {
 		src: 'src/common/js/*.js',
 		watch: ['src/common/js/**/*.js', 'webpack.config.js']
 	},
-	design: {
-		iconSrc: ['design/icon/**/*.svg'],
-		iconDst: 'src/common/icon/',
-		watch: ['design/**/*.+(jpg|jpeg|png|gif|svg)']
-	},
 	img: {
 		designSrc: ['design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/icon/**/*'],
 		designDst: 'src/common/img/',
@@ -490,7 +485,7 @@ gulp.task('sass', ['font'], function() {
 		]
 	})).pipe($.autoprefixer()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
-gulp.task('sassVendor', ['font'], function() {
+gulp.task('sassVendor', function() {
 	var src = filepath.sass.vendorSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -508,7 +503,7 @@ gulp.task('sassFoundation', function() {
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer()).pipe(gulp.dest(dst));
 });
-gulp.task('sassComponent', function() {
+gulp.task('sassComponent', ['font'], function() {
 	var src = filepath.sass.componentSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -564,14 +559,14 @@ gulp.task('img', ['designImgDst'], function() {
 	var imageminOptions = {
 		optimizationLevel: 7
 	}
-	if(imagemin) {
-		return gulp.src(src).pipe($.ignore.include({
-			isFile: true
-		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
-	} else {
+	if(dev) {
 		return gulp.src(src).pipe($.ignore.include({
 			isFile: true
 		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
+	} else {
+		return gulp.src(src).pipe($.ignore.include({
+			isFile: true
+		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	}
 });
 // -----------------------------------------------
@@ -686,7 +681,6 @@ gulp.task('watch', ['browserSync'], function() {
 // =================================================================================================
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
-	imagemin = false;
 	dev = true;
 	runSequence('json', 'html', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'robots', 'watch', 'browserSync', cb);
 });
@@ -695,7 +689,6 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 // =================================================================================================
 gulp.task('2 ============== TEST', function(cb) {
 	dstDir = filepath.dst.test;
-	imagemin = true;
 	dev = false;
 	runSequence('json', 'test', 'html', 'sass', 'js', 'img', 'browserSync', cb);
 });
