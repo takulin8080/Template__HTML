@@ -5,13 +5,8 @@ dev/design/*
 dev/dst
 dev/src/_data.json
 dev/src/_data/_post.json
-dev/src/assets/sass/component/_icon.scss
-dev/src/assets/sass/foundation/mixin/_icon.scss
-dev/src/assets/font
-dev/src/common/font/icon.woff
-dev/src/common/font/icon.ttf
-dev/src/common/font/icon.eot
-dev/src/common/font/icon.svg
+dev/src/common/sass/component/_icon.scss
+dev/src/common/font
 /dev/package-lock.json
 /test
 /stage
