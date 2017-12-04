@@ -18,7 +18,6 @@ var $ = require('gulp-load-plugins')();
 // =================================================================================================
 var relativePath = true;
 var sitemap = true;
-var bsReload = false;
 var filepath = {
 	dst: {
 		src: 'src/',
@@ -59,7 +58,7 @@ var filepath = {
 		iconDst: 'src/common/font/',
 		src: 'src/common/font/**/*',
 		dst: 'dst/common/font/',
-		watch: ['src/common/font/**/*', 'src/common/icon/**/*', 'design/icon/**/*']
+		watch: ['src/common/font/**/*', 'src/common/icon/**', 'design/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)']
 	},
 	sass: {
 		src: ['src/common/sass/app.scss'],
@@ -88,9 +87,9 @@ var filepath = {
 		designDst: 'src/common/img/',
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
 		dst: 'dst/common/img/',
-		watch: ['src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**/*', '!design/icon']
+		watch: ['src/common/img/**', 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/**/*.+(psd|ai)', '!design/icon']
 	},
-	bsReload: {
+	browserSync: {
 		watch: ['dst/**/*']
 	}
 }
@@ -425,10 +424,12 @@ var postdataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function(cb) {
+gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function() {
 	var src = filepath.font.src;
 	var dst = filepath.font.dst;
-	return gulp.src(src).pipe($.changed(dst)).pipe(gulp.dest(dst));
+	return gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('Error: <%= error.message %>')
+	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // fontAwesome
@@ -450,7 +451,7 @@ gulp.task('icon', function() {
 	var template = filepath.dst.src + filepath.common.icon + '_icon.scss';
 	var scss = '../sass/component/_icon.scss';
 	var fontPath = '../font/'
-	return gulp.src(src).pipe($.svgmin()).pipe($.plumber()).pipe($.iconfontCss({
+	return gulp.src(src).pipe($.svgmin()).pipe($.iconfontCss({
 		fontName: fontName,
 		path: 'src/common/icon/_icon.scss',
 		targetPath: scss,
@@ -575,7 +576,7 @@ gulp.task('img', ['designImgDst'], function() {
 gulp.task('designImgDst', function() {
 	var designSrc = filepath.img.designSrc;
 	var designDst = filepath.img.designDst;
-	gulp.src(designSrc).pipe($.rename(function(path) {
+	return gulp.src(designSrc).pipe($.rename(function(path) {
 		var filename = path.dirname.replace('-assets', '');
 		path.dirname = filename;
 	})).pipe($.changed(designDst)).pipe(gulp.dest(designDst));
@@ -598,14 +599,9 @@ gulp.task('browserSync', function() {
 			baseDir: dstDir
 		},
 		open: 'external',
-		port: 9000
+		port: 9000,
+		files: filepath.browserSync.watch
 	});
-});
-// -----------------------------------------------
-// bsReload
-// -----------------------------------------------
-gulp.task('bsReload', function() {
-	browserSync.reload();
 });
 // =================================================================================================
 // test
@@ -672,9 +668,6 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.styleGuide.watch, ['styleGuide']);
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
-	if(bsReload == true) {
-		gulp.watch(filepath.bsReload.watch, ['bsReload']);
-	}
 });
 // =================================================================================================
 // DEVELOPMENT
