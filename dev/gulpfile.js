@@ -69,15 +69,15 @@ var filepath = {
 		componentSrc: ['src/common/sass/component.scss'],
 		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
 		projectSrc: ['src/common/sass/project.scss'],
-		projectWatch: ['src/common/sass/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
+		projectWatch: ['src/common/sass/**/*', '!src/common/sass/scope/dev/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
 		utilitySrc: ['src/common/sass/utility.scss'],
 		utilityWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
 		devSrc: ['src/common/sass/dev.scss'],
-		devWatch: ['src/common/sass/dev/**/*', '!src/common/sass/component/_icon.scss']
+		devWatch: ['src/common/sass/scope/dev/**/*', '!src/common/sass/component/_icon.scss']
 	},
 	styleGuide: {
 		src: 'src/styleguide/aigis_config.yml',
-		watch: ['dst/common/css/**/*', 'src/styleguide/**/*', '!src/common/sass/component/_icon.scss']
+		watch: ['dst/common/css/**/*', 'src/styleguide/**/*', '!dst/common/css/dev.css', '!src/common/sass/component/_icon.scss']
 	},
 	js: {
 		src: 'src/common/js/*.js',
@@ -129,91 +129,145 @@ gulp.task('fileSetup', function() {
 	var dirname = path.dirname;
 
 	function appendFile(path, contents, cb) {
-		mkdirp(dirname(path), function(err) {
-			if(err) return cb(err)
-			fs.appendFileSync(path, contents, cb)
+		fs.access(path, function(err) {
+			if(err) {
+				mkdirp(dirname(path), function(err) {
+					if(err) return cb(err)
+					fs.appendFileSync(path, contents, cb)
+				})
+			}
 		})
 	};
 
 	function appendDir(path, cb) {
-		mkdirp(path, function(err) {
-			if(err) return cb(err)
+		fs.access(path, function(err) {
+			if(err) {
+				mkdirp(path, function(err) {
+					if(err) return cb(err)
+				})
+			}
 		})
 	};
 	// page
 	// ----------------------
+	var sassBaseArray = [];
 	for(var key in jsonData.page) {
-		appendFile(ejsDst + key + '.ejs', '', function(err) {
+		var dataPath = key;
+		var dataPathArray = dataPath.split('/');
+		var dataHierarchy = ejsHierarchy(dataPathArray);
+		if(dataHierarchy) {
+			var ejspath = "ejspath = '" + dataHierarchy + "'";
+		} else {
+			var ejspath = "ejspath = './'";
+		}
+		var dataName = dataPathArray[dataPathArray.length - 1];
+		var dataDir = '';
+		for(var i in dataPathArray) {
+			if(i != dataPathArray.length - 1) {
+				dataDir += dataPathArray[i] + '/';
+			}
+		}
+		if(sassBaseArray.indexOf(dataDir) == -1) {
+			sassBaseArray.push(dataDir);
+		}
+		// ejs
+		var ejscode = jsonData.fileSetup.ejscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
+		appendFile(ejsDst + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
 		});
-		var sassDirArray = key.split('/');
-		var sassFilename = sassDirArray[sassDirArray.length - 1];
-		if(sassDirArray.length == 1) {
-			appendFile(sassDst + 'scope/' + '_' + sassFilename + '.scss', '', function(err) {
+		// sass
+		if(dataPathArray.length == 1) {
+			var sasscode = jsonData.fileSetup.sasscode.replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
+			appendFile(sassDst + 'scope/_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
 		} else {
-			sassDirArray.pop();
-			var sassDir = '';
-			for(var sassDirKey in sassDirArray) {
-				var sassDirName = sassDirArray[sassDirKey] + '/';
-				sassDir += sassDirName;
+			var modifierArray = dataPathArray;
+			modifierArray.pop();
+			var baseModifier = '';
+			for(var c in modifierArray) {
+				if(c != modifierArray.length - 1) {
+					baseModifier += modifierArray[c] + ' ';
+				} else {
+					baseModifier += modifierArray[c];
+				}
 			}
-			appendFile(sassDst + 'scope/' + sassDir + '_base.scss', '', function(err) {
-				if(err) throw err;
-			});
-			appendFile(sassDst + 'scope/' + sassDir + '_' + sassFilename + '.scss', '', function(err) {
+			var sasscode = jsonData.fileSetup.sasscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + baseModifier + ' ' + dataName + "'").replace(/(\r\n)/g, '\n');
+			appendFile(sassDst + 'scope/' + dataDir + '_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
 		}
-		appendDir(imgDst + '/scope/' + key, function(err) {
+		// img
+		appendDir(imgDst + 'scope/' + dataPath, function(err) {
 			if(err) throw err;
 		});
+	}
+	for(var i in sassBaseArray) {
+		var dataDir = sassBaseArray[i];
+		var baseModifier = dataDir.slice(0, -1);
+		if(baseModifier) {
+			var sasscode = jsonData.fileSetup.sasscode.replace(/filename/g, dataDir + 'base').replace('modifier', "data-modifier^='" + baseModifier + "'").replace(/(\r\n)/g, '\n');
+			appendFile(sassDst + 'scope/' + dataDir + '_base.scss', sasscode, function(err) {
+				if(err) throw err;
+			});
+		}
 	}
 	// post
 	// ----------------------
 	for(var key in jsonData.post) {
-		var filename = jsonData.post[key].filename;
-		appendDir(imgDst + '/post/' + filename, function(err) {
+		var dataPath = jsonData.post[key].filename;
+		// sass
+		appendDir(imgDst + 'post/' + dataPath, function(err) {
 			if(err) throw err;
 		});
 	}
 	// module
 	// ----------------------
 	for(var i in jsonData.module) {
-		var key = jsonData.module[i];
-		appendFile(ejsDst + '_module/' + key + '.ejs', '', function(err) {
+		var dataPath = jsonData.module[i];
+		for(var c in dataPathArray) {
+			if(c != dataPathArray.length) {
+				dataDir += dataPathArray[c];
+			}
+		}
+		var dataHierarchy = ejsHierarchy(dataPathArray);
+		var ejspath = "ejspath = '" + dataHierarchy + "'";
+		// ejs
+		var ejscode = jsonData.fileSetup.modEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
+		appendFile(ejsDst + '_module/' + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
 		});
-		var sassDirArray = key.split('/');
-		var sassFilename = sassDirArray[sassDirArray.length - 1];
-		if(sassDirArray.length == 1) {
-			appendFile(sassDst + 'module/_' + sassFilename + '.scss', '', function(err) {
-				if(err) throw err;
-			});
-		} else {
-			sassDirArray.pop();
-			var sassDir = '';
-			for(var sassDirKey in sassDirArray) {
-				var sassDirName = sassDirArray[sassDirKey] + '/';
-				sassDir += sassDirName;
-			}
-			appendFile(sassDst + 'module/' + sassDir + '_base.scss', '', function(err) {
-				if(err) throw err;
-			});
-			appendFile(sassDst + 'module/' + sassDir + '_' + sassFilename + '.scss', '', function(err) {
-				if(err) throw err;
-			});
-		}
-		appendDir(imgDst + 'module/' + key, function(err) {
+		// sass
+		var sasscode = jsonData.fileSetup.modSasscode.replace(/filename/g, dataPath).replace(/(\r\n)/g, '\n');
+		appendFile(sassDst + 'module/_' + dataPath + '.scss', sasscode, function(err) {
+			if(err) throw err;
+		});
+		// img
+		appendDir(imgDst + 'module/' + dataPath, function(err) {
 			if(err) throw err;
 		});
 	}
-	// img/template
+	// template, layout
 	// ----------------------
-	appendDir(imgDst + 'template', function(err) {
-		if(err) throw err;
-	});
+	for(var i in jsonData.template) {
+		var dataPath = jsonData.template[i];
+		var dataHierarchy = ejsHierarchy(dataPathArray);
+		var ejspath = "ejspath = '" + dataHierarchy + "'";
+		// ejs
+		var ejscode = jsonData.fileSetup.templateEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
+		appendFile(ejsDst + '_template/' + dataPath + '.ejs', ejscode, function(err) {
+			if(err) throw err;
+		});
+		// sass
+		var sasscode = jsonData.fileSetup.layoutSasscode.replace(/filename/g, dataPath).replace(/(\r\n)/g, '\n');
+		appendFile(sassDst + 'layout/_' + dataPath + '.scss', sasscode, function(err) {
+			if(err) throw err;
+		});
+		// img
+		appendDir(imgDst + 'layout/' + dataPath, function(err) {
+			if(err) throw err;
+		});
+	}
 });
 // -----------------------------------------------
 // page
