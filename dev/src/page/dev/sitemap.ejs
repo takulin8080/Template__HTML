@@ -15,20 +15,23 @@ function
 -----------------------------------------------
 %>
 <%
-	pageAll = Object.keys(page).length;
+	pageAll = 0;
 	pageDone = 0;
 	pageUndone = 0;
 	pageStop = 0;
 	pageNone = 0;
 	Object.keys(page).forEach(function(value, key){
-		if(page[value].progress == 'done') {
-			pageDone++;
-		} else if(page[value].progress == 'stop') {
-			pageStop++;
-		} else if(page[value].progress == 'none') {
-			pageNone++;
-		} else {
-			pageUndone++;
+		if (page[value].progress == 'dev') {
+			pageAll++;
+			if(page[value].progress == 'done') {
+				pageDone++;
+			} else if(page[value].progress == 'stop') {
+				pageStop++;
+			} else if(page[value].progress == 'none') {
+				pageNone++;
+			} else {
+				pageUndone++;
+			}
 		}
 	});
 	pageDoneRatio = Math.round(pageDone/pageAll*100) + '%';
@@ -53,28 +56,28 @@ html
 <!-- /dev-progressbar -->
 <!-- dev-sitemap -->
 <div class="dev-sitemap" data-parent>
-	<div data-box="inline gutter-1-2">
-		<div>
+	<div class="row">
+		<div class="col-xs-2">
 			<button data-button="small primary" data-active-trg="dev-sitemap-all add" data-is-active="true">
 				<i class="fa fa-list" aria-hidden="true"></i>
 				ALL[<%- pageAll %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small success" data-active-trg="dev-sitemap-done add">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 				Done[<%- pageDone %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small danger" data-active-trg="dev-sitemap-undone add">
 				<i class="fa fa-square-o" aria-hidden="true"></i>
 				Undone[<%- pageUndone %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small warning" data-active-trg="dev-sitemap-stop add">
 				<i class="fa fa-ban" aria-hidden="true"></i>
 				Stop[<%- pageStop %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small disabled" data-active-trg="dev-sitemap-none add">None[<%- pageNone %>]</button>
 		</div>
 	</div>
