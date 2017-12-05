@@ -1,19 +1,5 @@
 {
 	"page": {
-		"dev/sitemap": {
-			"template": "",
-			"title": "",
-			"description": "",
-			"pageModifier": "",
-			"progress": "dev"
-		},
-		"dev/workpage": {
-			"template": "",
-			"title": "",
-			"description": "",
-			"pageModifier": "",
-			"progress": "dev"
-		},
 		"index": {
 			"template": "home",
 			"title": "ホーム",

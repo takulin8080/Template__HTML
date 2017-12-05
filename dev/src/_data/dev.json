@@ -1,0 +1,14 @@
+{
+	"page": {
+		"dev/sitemap": {
+			"template": "dev",
+			"title": "サイトマップ[進行状況]",
+			"progress": "dev"
+		},
+		"dev/workpage": {
+			"template": "dev",
+			"title": "開発用ページ",
+			"progress": "dev"
+		}
+	}
+}
