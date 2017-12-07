@@ -1,13 +1,13 @@
 /* ============================================================================================== */
-/* template/dev
+/* layout/dev
 /* ============================================================================================== */
 /*
 ---
 name: dev
-category: 3.template
+category: 3.layout
 ---
 */
-body[data-modifier~='dev'] {
+body[data-modifier^='dev'] {
 	background: color(gray, 2);
 	.dev-contents {
 		@extend %wrap;
