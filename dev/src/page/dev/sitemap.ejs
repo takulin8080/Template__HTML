@@ -3,84 +3,77 @@
 dev/sitemap
 =====================================================================================================
 %>
-<%
-	var ejspath = '../';
-	var template = 'dev';
-	var title = 'サイトマップ[進行状況]';
-	var pageModifier = 'dev sitemap';
-%>
-<%#
------------------------------------------------
-function
------------------------------------------------
 %>
 <%
-	pageAll = Object.keys(page).length;
-	pageDone = 0;
-	pageUndone = 0;
-	pageStop = 0;
-	pageNone = 0;
+var ejspath = '../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%
+	pageAllNum = 0;
+	pageDoneNum = 0;
+	pageUndoneNum = 0;
+	pageStopNum = 0;
+	pageNoneNum = 0;
 	Object.keys(page).forEach(function(value, key){
-		if(page[value].progress == 'done') {
-			pageDone++;
-		} else if(page[value].progress == 'stop') {
-			pageStop++;
-		} else if(page[value].progress == 'none') {
-			pageNone++;
-		} else {
-			pageUndone++;
+		if (page[value].progress == 'dev') {
+			pageAllNum++;
+			if(page[value].progress == 'done') {
+				pageDoneNum++;
+			} else if(page[value].progress == 'stop') {
+				pageStopNum++;
+			} else if(page[value].progress == 'none') {
+				pageNoneNum++;
+			} else {
+				pageUndoneNum++;
+			}
 		}
 	});
-	pageDoneRatio = Math.round(pageDone/pageAll*100) + '%';
-	pageUndoneRatio = Math.round(pageUndone/pageAll*100) + '%';
-	pageStopRatio = Math.round(pageStop/pageAll*100) + '%';
-	pageNoneRatio = Math.round(pageNone/pageAll*100) + '%';
+	pageDoneRatio = Math.round(pageDoneNum/pageAllNum*100) + '%';
+	pageUndoneRatio = Math.round(pageUndoneNum/pageAllNum*100) + '%';
+	pageStopRatio = Math.round(pageStopNum/pageAllNum*100) + '%';
+	pageNoneRatio = Math.round(pageNoneNum/pageAllNum*100) + '%';
 %>
-<%#
------------------------------------------------
-html
------------------------------------------------
-%>
+<%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_template/' + template, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- dev-progressbar -->
 <div class="dev-progressbar">
-	<div class="dev-progressbar__item" data-modifier="done" <% if( pageDone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageDoneRatio %>;" <% } %>><%- pageDoneRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="undone" <% if( pageUndone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageUndoneRatio %>;" <% } %>><%- pageUndoneRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="stop" <% if( pageStop == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageStopRatio %>;" <% } %>><%- pageStopRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="none" <% if( pageNone == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageNoneRatio %>;" <% } %>><%- pageNoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="done" <% if( pageDoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageDoneRatio %>;" <% } %>><%- pageDoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="undone" <% if( pageUndoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageUndoneRatio %>;" <% } %>><%- pageUndoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="stop" <% if( pageStopNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageStopRatio %>;" <% } %>><%- pageStopRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="none" <% if( pageNoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageNoneRatio %>;" <% } %>><%- pageNoneRatio %></div>
 </div>
 <!-- /dev-progressbar -->
 <!-- dev-sitemap -->
 <div class="dev-sitemap" data-parent>
-	<div data-box="inline gutter-1-2">
-		<div>
+	<div class="row" data-margin="bottom-2">
+		<div class="col-xs-2">
 			<button data-button="small primary" data-active-trg="dev-sitemap-all add" data-is-active="true">
 				<i class="fa fa-list" aria-hidden="true"></i>
-				ALL[<%- pageAll %>]</button>
+				ALL[<%- pageAllNum %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small success" data-active-trg="dev-sitemap-done add">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
-				Done[<%- pageDone %>]</button>
+				Done[<%- pageDoneNum %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small danger" data-active-trg="dev-sitemap-undone add">
 				<i class="fa fa-square-o" aria-hidden="true"></i>
-				Undone[<%- pageUndone %>]</button>
+				Undone[<%- pageUndoneNum %>]</button>
 		</div>
-		<div>
+		<div class="col-xs-2">
 			<button data-button="small warning" data-active-trg="dev-sitemap-stop add">
 				<i class="fa fa-ban" aria-hidden="true"></i>
-				Stop[<%- pageStop %>]</button>
+				Stop[<%- pageStopNum %>]</button>
 		</div>
-		<div>
-			<button data-button="small disabled" data-active-trg="dev-sitemap-none add">None[<%- pageNone %>]</button>
+		<div class="col-xs-2">
+			<button data-button="small disabled" data-active-trg="dev-sitemap-none add">None[<%- pageNoneNum %>]</button>
 		</div>
 	</div>
 	<ul class="dev-sitemap__items" data-modifier="all" data-active-tar="dev-sitemap-all" data-is-active="true">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value != '_dev-sitemap') { %>
+			<% if (page[value].progress != 'dev') { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
@@ -92,7 +85,7 @@ html
 	</ul>
 	<ul class="dev-sitemap__items" data-modifier="done" data-active-tar="dev-sitemap-done">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value != '_dev-sitemap' && page[value].progress == 'done') { %>
+			<% if (page[value].progress == 'done') { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
@@ -104,7 +97,7 @@ html
 	</ul>
 	<ul class="dev-sitemap__items" data-modifier="stop" data-active-tar="dev-sitemap-stop">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value != '_dev-sitemap' && page[value].progress == 'stop') { %>
+			<% if (page[value].progress == 'stop') { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
@@ -116,7 +109,7 @@ html
 	</ul>
 	<ul class="dev-sitemap__items" data-modifier="none" data-active-tar="dev-sitemap-none">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value != '_dev-sitemap' && page[value].progress == 'none') { %>
+			<% if (page[value].progress == 'none') { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
@@ -128,7 +121,7 @@ html
 	</ul>
 	<ul class="dev-sitemap__items" data-modifier="undone" data-active-tar="dev-sitemap-undone">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value != '_dev-sitemap' && !page[value].progress) { %>
+			<% if (!page[value].progress) { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
@@ -140,5 +133,3 @@ html
 	</ul>
 </div>
 <!-- /dev-sitemap -->
-<%# ---------------------------------------------------------------------------------------------- %>
-<%- include(ejspath + '_template/' + template, {modifier: 'after'}) %>

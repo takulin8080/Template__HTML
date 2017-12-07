@@ -7,6 +7,6 @@ dev/src/_data.json
 dev/src/_data/_post.json
 dev/src/common/sass/component/_icon.scss
 dev/src/common/font
-/dev/package-lock.json
-/test
-/stage
+dev/package-lock.json
+test
+stage

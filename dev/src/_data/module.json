@@ -3,6 +3,7 @@
 		"header",
 		"footer",
 		"sub-contents",
+		"movetotop",
 		"global-nav",
 		"breadcrumb",
 		"pagination",

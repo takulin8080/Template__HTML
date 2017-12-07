@@ -4,14 +4,10 @@ module/global-nav
 =====================================================================================================
 %>
 <%
-	if (typeof modifier === 'undefined') { var modifier = ''; };
-	var ejspath = '../';
+if (typeof modifier === 'undefined') { var modifier = ''; };
+var ejspath = '../';
 %>
-<%#
------------------------------------------------
-function
------------------------------------------------
-%>
+<%# ---------------------------------------------------------------------------------------------- %>
 <% var item = function(file){ %>
 	<li class="global-nav__item" data-modifier="<%- file %>">
 		<a class="global-nav__link" href="<%- page[file].url %>"><%- page[file].title %></a>
@@ -22,11 +18,7 @@ function
 		<a class="global-nav__link" href="<%- page[file].url %>"><%- page[file].title %></a>
 	</li>
 <% } %>
-<%#
------------------------------------------------
-html
------------------------------------------------
-%>
+<%# ---------------------------------------------------------------------------------------------- %>
 <!-- global-nav -->
 <nav class="global-nav">
 	<ul class="global-nav__items">
