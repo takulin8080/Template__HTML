@@ -172,7 +172,7 @@ gulp.task('fileSetup', function() {
 		});
 		// sass
 		if(dataPathArray.length == 1) {
-			var sasscode = jsonData.fileSetup.sasscode.replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
+			var sasscode = jsonData.fileSetup.sasscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
 			appendFile(sassDst + 'scope/_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
