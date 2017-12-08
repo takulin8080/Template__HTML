@@ -155,11 +155,6 @@ gulp.task('fileSetup', function() {
 		var dataPath = key;
 		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
-		if(dataHierarchy) {
-			var ejspath = "ejspath = '" + dataHierarchy + "'";
-		} else {
-			var ejspath = "ejspath = './'";
-		}
 		var dataName = dataPathArray[dataPathArray.length - 1];
 		var dataDir = '';
 		for(var i in dataPathArray) {
@@ -225,20 +220,17 @@ gulp.task('fileSetup', function() {
 	// ----------------------
 	for(var i in jsonData.module) {
 		var dataPath = jsonData.module[i];
-		for(var c in dataPathArray) {
-			if(c != dataPathArray.length) {
-				dataDir += dataPathArray[c];
-			}
-		}
+		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
-		var ejspath = "ejspath = '" + dataHierarchy + "'";
+		var ejspath = "ejspath = '../" + dataHierarchy + "'";
+		var classname = dataPath.replace(/\//g, '-');
 		// ejs
-		var ejscode = jsonData.fileSetup.modEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
+		var ejscode = jsonData.fileSetup.modEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/classname/g, classname).replace(/(\r\n)/g, '\n');
 		appendFile(ejsDst + '_module/' + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
 		});
 		// sass
-		var sasscode = jsonData.fileSetup.modSasscode.replace(/filename/g, dataPath).replace(/(\r\n)/g, '\n');
+		var sasscode = jsonData.fileSetup.modSasscode.replace(/filename/g, dataPath).replace(/classname/g, classname).replace(/(\r\n)/g, '\n');
 		appendFile(sassDst + 'module/_' + dataPath + '.scss', sasscode, function(err) {
 			if(err) throw err;
 		});
@@ -251,15 +243,17 @@ gulp.task('fileSetup', function() {
 	// ----------------------
 	for(var i in jsonData.template) {
 		var dataPath = jsonData.template[i];
+		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
-		var ejspath = "ejspath = '" + dataHierarchy + "'";
+		var ejspath = "ejspath = '../" + dataHierarchy + "'";
+		var tempModifier = dataPath.replace(/\//g, ' ');
 		// ejs
 		var ejscode = jsonData.fileSetup.templateEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
 		appendFile(ejsDst + '_template/' + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
 		});
 		// sass
-		var sasscode = jsonData.fileSetup.layoutSasscode.replace(/filename/g, dataPath).replace(/(\r\n)/g, '\n');
+		var sasscode = jsonData.fileSetup.layoutSasscode.replace(/filename/g, dataPath).replace(/tempModifier/g, tempModifier).replace(/(\r\n)/g, '\n');
 		appendFile(sassDst + 'layout/_' + dataPath + '.scss', sasscode, function(err) {
 			if(err) throw err;
 		});
