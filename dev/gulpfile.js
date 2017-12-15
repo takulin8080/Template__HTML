@@ -199,7 +199,7 @@ gulp.task('fileSetup', function() {
 	}
 	for(var i in sassBaseArray) {
 		var dataDir = sassBaseArray[i];
-		var baseModifier = dataDir.slice(0, -1);
+		var baseModifier = dataDir.slice(0, -1).replace(/\//g, ' ');
 		if(baseModifier) {
 			var sasscode = jsonData.fileSetup.sasscode.replace(/filename/g, dataDir + 'base').replace('modifier', "data-modifier^='" + baseModifier + "'").replace(/(\r\n)/g, '\n');
 			appendFile(sassDst + 'scope/' + dataDir + '_base.scss', sasscode, function(err) {
