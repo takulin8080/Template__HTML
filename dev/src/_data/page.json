@@ -4,7 +4,7 @@
 			"template": "home",
 			"title": "ホーム",
 			"description": "",
-			"pageModifier": "",
+			"pageModifier": "home",
 			"progress": ""
 		},
 		"post/index": {
