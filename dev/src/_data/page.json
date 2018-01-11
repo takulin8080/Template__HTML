@@ -3,7 +3,7 @@
 		"index": {
 			"template": "home",
 			"title": "ホーム",
-			"description": "home",
+			"description": "",
 			"pageModifier": "home",
 			"progress": ""
 		},
