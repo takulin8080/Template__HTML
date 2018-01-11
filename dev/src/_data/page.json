@@ -3,8 +3,8 @@
 		"index": {
 			"template": "home",
 			"title": "ホーム",
-			"description": "home",
-			"pageModifier": "home",
+			"description": "",
+			"pageModifier": "",
 			"progress": ""
 		},
 		"post/index": {
