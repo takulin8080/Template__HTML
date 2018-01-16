@@ -360,9 +360,10 @@ var ejsPages = function(pages, hierarchy) {
 		if(relativePath) {
 			url = hierarchy + key + '.html';
 		} else {
-			url = key + '.html';
-			url.replace('index.html', '');
+			url = '/' + key + '.html';
 		}
+		url = url.replace('index.html', '');
+		console.log(url);
 		pages[key].url = url;
 	}
 	return pages;
