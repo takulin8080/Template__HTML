@@ -223,6 +223,7 @@ gulp.task('fileSetup', function() {
 		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
 		var ejspath = "ejspath = '../" + dataHierarchy + "'";
+		ejspath = ejspath.replace('//', '/');
 		var classname = dataPath.replace(/\//g, '-');
 		// ejs
 		var ejscode = jsonData.fileSetup.modEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/classname/g, classname).replace(/(\r\n)/g, '\n');
@@ -246,6 +247,7 @@ gulp.task('fileSetup', function() {
 		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
 		var ejspath = "ejspath = '../" + dataHierarchy + "'";
+		ejspath = ejspath.replace('//', '/');
 		var tempModifier = dataPath.replace(/\//g, ' ');
 		// ejs
 		var ejscode = jsonData.fileSetup.templateEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
