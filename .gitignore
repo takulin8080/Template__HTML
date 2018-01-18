@@ -1,7 +1,7 @@
 .DS_Store
 dev/node_modules
 dev/design/*
-!dev/design/design.xd
+!dev/design/*.xd
 dev/dst
 dev/src/_data.json
 dev/src/_data/_post.json
