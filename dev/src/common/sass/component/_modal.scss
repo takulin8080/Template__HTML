@@ -7,10 +7,13 @@ name: modal
 category: 2.component
 tag:
 - data属性
+- data属性
 ---
 `data-modal`を付与することで、コンテンツをモーダル表示。
 - `data-modal-trg="$string"`クリックで`data-modal-tar`をモーダル表示。
 - `data-modal-tar="$string"`対象コンテンツ。
+
+`data-modal-trg`に`data-is-active`を、または、javascriptで`$('.exsample').modal();`を設定することでも表示可能。
 
 ```html
 <button data-modal-trg="modal" data-button>modal</button>
@@ -38,6 +41,7 @@ tag:
 	transition: all 0.4s;
 	visibility: hidden;
 	z-index: 3;
+	background: #fff;
 	@if $responsive {
 		@include respondTo(smAndUnder) {
 			left: 0;
