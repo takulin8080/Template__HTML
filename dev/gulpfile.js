@@ -365,7 +365,6 @@ var ejsPages = function(pages, hierarchy) {
 			url = '/' + key + '.html';
 		}
 		url = url.replace('index.html', '');
-		console.log(url);
 		pages[key].url = url;
 	}
 	return pages;
