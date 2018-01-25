@@ -8,6 +8,7 @@ lg = 960;
 // component
 // ==============================================================================================
 $ = require('jquery');
+require('./component/svgxuse');
 require('./component/active');
 require('./component/modal');
 require('./component/drawer');
