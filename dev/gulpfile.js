@@ -280,7 +280,7 @@ gulp.task('page', function() {
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
-		var filename = file.path.replace(/.*page\/(.*)\.ejs/, '$1');
+		var filename = file.path.replace(/.*\/page\/(.*)\.ejs/, '$1');
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
 		var data = [];
