@@ -9,185 +9,85 @@ tag:
 - data属性
 ---
 
-### Basic
-
-`$type`の設定により自動的に生成される。基本スタイルは`$style`にて設定。また、defaultでは横幅100%に設定されている。
-
-- `small`：小サイズボタン。
-- `large`：大サイズボタン。
-- `inline`：テキスト量に応じて可変。
-
-以下のサンプルは`component box`を利用してレイアウトしている。
-
 ```html
-<div data-box="gutter-2 inline">
-	<div><button data-button>default</button></div>
-	<div><button data-button="primary">primary</button></div>
-	<div><button data-button="success">success</button></div>
-	<div><button data-button="warning">warning</button></div>
-	<div><button data-button="danger">danger</button></div>
-	<div><button data-button="disabled">disabled</button></div>
-</div>
-<div data-box="gutter-2 inline">
-	<div><button data-button="large">large</button></div>
-	<div><button data-button="primary large">primary large</button></div>
-	<div><button data-button="success large">success large</button></div>
-	<div><button data-button="warning large">warning large</button></div>
-	<div><button data-button="danger large">danger large</button></div>
-	<div><button data-button="disabled large">disabled large</button></div>
-</div>
-<div data-box="gutter-2 inline">
-	<div><button data-button="small">small</button></div>
-	<div><button data-button="primary small">primary small</button></div>
-	<div><button data-button="success small">success small</button></div>
-	<div><button data-button="warning small">warning small</button></div>
-	<div><button data-button="danger small">danger small</button></div>
-	<div><button data-button="disabled small">disabled small</button></div>
-</div>
-<div data-box="gutter-0-2 full">
-	<div><button data-button="large full mdAndOver-auto lg-full">full</button></div>
-</div>
-```
+<button data-button="red"></button>
 
-### Control
-`close`, `next`, `prev`など、汎用的に利用される可能性のある操作系ボタンの定義。基本的に`component icon`あるいは`vendor-extension fontAwesome`で定義しているものを利用する。
-
-```html
-<div data-box="inline gutter-2">
-	<div>
-		<button data-button-ctrl="close"></button>
-	</div>
-	<div>
-		<button data-button-ctrl="next"></button>
-	</div>
-	<div>
-		<button data-button-ctrl="prev"></button>
-	</div>
+<div data-buttons>
+	<button data-button="red"></button>
+	<button data-button="blue"></button>
+	<button data-button="green"></button>
 </div>
 ```
 */
 [data-button] {
-	/* variable ======================================== */
-	$type: (
-		default: (textColor: lighten(#546e7a, 50%), bgColor: linear-gradient(#546e7a, 5%, #546e7a), bgHoverColor: darken(#546e7a, 5%), borderColor: #546e7a),
-		primary: (textColor: lighten(#1e88e5, 50%), bgColor: linear-gradient(lighten(#1e88e5, 5%), #1e88e5), bgHoverColor: darken(#1e88e5, 5%), borderColor: darken(#1e88e5, 5%)),
-		success: (textColor: lighten(color(sign, success), 50%), bgColor: linear-gradient(lighten(color(sign, success), 5%), color(sign, success)), bgHoverColor: darken(color(sign, success), 5%), borderColor: darken(color(sign, success), 5%)),
-		warning: (textColor: lighten(color(sign, warning), 50%), bgColor: linear-gradient(lighten(color(sign, warning), 5%), color(sign, warning)), bgHoverColor: darken(color(sign, warning), 5%), borderColor: darken(color(sign, warning), 5%)),
-		danger: (textColor: lighten(color(sign, danger), 50%), bgColor: linear-gradient(lighten(color(sign, danger), 5%), color(sign, danger)), bgHoverColor: darken(color(sign, danger), 5%), borderColor: darken(color(sign, danger), 5%)),
-		disabled: (textColor: color(gray, 5), bgColor: color(gray, 7), bgHoverColor: color(gray, 7), borderColor: color(gray, 7))
-	);
-	$style: (
-		borderRadius: size(.5),
-		borderWidth: size(.2),
-		fontSize: fontSize(1),
-		lineHeight: size(3),
-		padding: size(1) size(3),
-		largeBorderRadius: size(.5),
-		largeFontSize: fontSize(2),
-		largeLineHeight: size(5),
-		largePadding: size(1) size(4),
-		smallBorderRadius: size(.5),
-		smallFontSize: fontSize(-1),
-		smallLineHeight: size(3),
-		smallPadding: size(.5) size(2)
-	);
-	/* setup ======================================== */
-	border-radius: map-get($style, borderRadius);
 	cursor: pointer;
+	border: 0;
+	border-radius: size(.5);
+	font-size: fontSize(-1);
+	padding: size(1) size(2.5);
+	background: linear-gradient(color(gray, 1), darken(color(gray, 1), 5%));
+	color: color(gray, 9);
+	box-shadow: boxShadow();
 	display: inline-block;
-	font-size: map-get($style, fontSize);
-	line-height: map-get($style, lineHeight);
-	padding: map-get($style, padding);
-	text-decoration: none;
-	vertical-align: top;
-	width: 100%;
-	&:hover {
-		text-decoration: none;
-	}
-	@each $name, $value in $type {
-		&[data-button~='#{$name}'] {
-			@extend [data-button];
-			background: map-get($value, bgColor);
-			border: map-get($style, borderWidth) solid map-get($value, borderColor);
-			box-shadow: boxShadow();
-			color: map-get($value, textColor);
-			&:hover {
-				background: map-get($value, bgHoverColor);
-			}
-		}
-	}
-	&[data-button] {
-		@extend [data-button~='default'];
-	}
-	&[data-button~='large'] {
-		border-radius: map-get($style, largeBorderRadius);
-		font-size: map-get($style, largeFontSize);
-		line-height: map-get($style, largeLineHeight);
-		padding: map-get($style, largePadding);
-	}
-	&[data-button~='small'] {
-		border-radius: map-get($style, smallBorderRadius);
-		font-size: map-get($style, smallFontSize);
-		line-height: map-get($style, smallLineHeight);
-		padding: map-get($style, smallPadding);
-	}
-	&[data-button~='inline'] {
-		width: auto;
-	}
-	@if $responsive {
-		@each $key in $respondToKey {
-			@include respondTo($key) {
-				&[data-button~='#{$key}-full'] {
-					margin-left: 0;
-					margin-right: 0;
-					width: 100%;
-				}
-				&[data-button~='#{$key}-auto'] {
-					width: auto;
-				}
-			}
-		}
-	}
-	/* uniq ======================================== */
-	&[data-button~='disabled'] {
+	&:active {
+		background: darken(color(gray, 1), 2%);
 		box-shadow: none;
-		cursor: default;
+		opacity: 1;
+		box-shadow: boxShadow(inset);
+	}
+	/* size ======================================== */
+	&[data-button~='sm'] {
+		font-size: fontSize(-3);
+		padding: size(1) size(1.5);
+	}
+	&[data-button~='md'] {}
+	&[data-button~='lg'] {
+		font-size: fontSize(2);
+		padding: size(1.5) size(5);
+	}
+	/* color ======================================== */
+	&[data-button~='info'] {
+		background: linear-gradient(color(sign, info), darken(color(sign, info), 10%));
+		color: rgba(#fff, .9);
+		&:active {
+			background: darken(color(sign, info), 5%);
+		}
+	}
+	&[data-button~='success'] {
+		background: linear-gradient(color(sign, success), darken(color(sign, success), 10%));
+		color: rgba(#fff, .9);
+		&:active {
+			background: darken(color(sign, success), 5%);
+		}
+	}
+	&[data-button~='warning'] {
+		background: linear-gradient(color(sign, warning), darken(color(sign, warning), 5%));
+		color: rgba(#fff, 1);
+		&:active {
+			background: darken(color(sign, warning), 5%);
+		}
+	}
+	&[data-button~='danger'] {
+		background: linear-gradient(color(sign, danger), darken(color(sign, danger), 10%));
+		color: rgba(#fff, .9);
+		&:active {
+			background: darken(color(sign, danger), 10%);
+		}
 	}
 }
-/* Ctrl ======================================== */
-[data-button-ctrl] {
-	cursor: pointer;
-	&[data-button-ctrl~='close'] {
-		&:hover {
-			opacity: 0.7;
-		}
-		&:before {
-			@include fontAwesome('\f057');
-			color: #000;
-			font-size: size(4);
-			line-height: size(4);
-		}
-	}
-	&[data-button-ctrl~='next'] {
-		&:hover {
-			opacity: 0.7;
-		}
-		&:before {
-			@include fontAwesome('\f105');
-			color: #000;
-			font-size: size(4);
-			line-height: size(4);
-		}
-	}
-	&[data-button-ctrl~='prev'] {
-		&:hover {
-			opacity: 0.7;
-		}
-		&:before {
-			@include fontAwesome('\f104');
-			color: #000;
-			font-size: size(4);
-			line-height: size(4);
+/* buttons ======================================== */
+[data-buttons] {
+	text-align: center;
+	[data-button] {
+		margin: 0 size(.5) size(2);
+		&[data-button~='sm'] {}
+		&[data-button~='md'] {}
+		&[data-button~='lg'] {
+			@include respondTo(xs) {
+				width: 100%;
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 	}
 }
