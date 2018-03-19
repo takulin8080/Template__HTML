@@ -2,6 +2,7 @@
 /* scope/dev/sitemap
 /* ============================================================================================== */
 body[data-modifier='dev sitemap'] {
+	/* dev-sitemap ======================================== */
 	.dev-sitemap {
 		margin-bottom: size(4);
 		&__items {
@@ -51,9 +52,7 @@ body[data-modifier='dev sitemap'] {
 			}
 		}
 	}
-	/* -------------------------------------------- */
-	/* progressbar
-	/* -------------------------------------------- */
+	/* dev-progressbar ======================================== */
 	.dev-progressbar {
 		display: flex;
 		margin-bottom: size(2);
