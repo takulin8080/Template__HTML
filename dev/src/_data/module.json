@@ -6,7 +6,6 @@
 		"movetotop",
 		"global-nav",
 		"breadcrumb",
-		"pagination",
-		"float-menu"
+		"pagination"
 	]
 }
