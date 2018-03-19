@@ -5,7 +5,6 @@ var fs = require('fs');
 var browserSync = require('browser-sync');
 var del = require('del');
 var gulp = require('gulp');
-var marked = require('marked');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var runSequence = require('run-sequence');
@@ -34,20 +33,14 @@ var filepath = {
 	},
 	json: {
 		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json', 'src/**/*.md'],
-		post: {
-			src: ['src/**/*.md']
-		}
+		watch: ['src/_data/**/*.json']
 	},
 	html: {
 		watch: ['src/_data.json', 'src/**/*.ejs'],
 		page: {
 			src: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs'],
 			releaseSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*']
-		},
-		post: {
-			src: 'src/page/'
-		},
+		}
 	},
 	font: {
 		designSrc: 'design/icon/**/*.svg',
@@ -80,37 +73,31 @@ var filepath = {
 		designDst: 'src/common/img/',
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
 		dst: 'dst/common/img/',
-		dstRelease: 'release/common/img/',
 		watch: ['src/common/img/**', 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/**/*.+(psd|ai)', '!design/icon']
 	},
 	browserSync: {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/'];
 // =================================================================================================
 // json
 // =================================================================================================
 gulp.task('json', ['jsonData'], function() {
 	return jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 });
-gulp.task('jsonData', ['jsonPost'], function() {
+gulp.task('jsonData', function() {
 	var src = filepath.json.src;
 	var dst = filepath.dst.src;
 	return gulp.src(src).pipe($.mergeJson({
 		fileName: '_data.json'
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('jsonPost', function() {
-	var src = filepath.json.post.src;
-	var dst = filepath.dst.src + '_data';
-	return gulp.src(src).pipe($.util.buffer()).pipe($.markdownToJson(marked, '_post.json')).pipe(gulp.dest(dst));
-});
 // =================================================================================================
 // html
 // =================================================================================================
 gulp.task('html', function(cb) {
-	runSequence('json', 'fileSetup', 'page', 'post', cb);
+	runSequence('json', 'fileSetup', 'page', cb);
 });
 // -----------------------------------------------
 // fileSetup
@@ -200,15 +187,6 @@ gulp.task('fileSetup', function() {
 			});
 		}
 	}
-	// post
-	// ----------------------
-	for(var key in jsonData.post) {
-		var dataPath = jsonData.post[key].filename;
-		// sass
-		appendDir(imgDst + 'post/' + dataPath, function(err) {
-			if(err) throw err;
-		});
-	}
 	// module
 	// ----------------------
 	for(var i in jsonData.module) {
@@ -269,7 +247,6 @@ gulp.task('page', function() {
 	};
 	var dst = dstDir;
 	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
@@ -279,7 +256,6 @@ gulp.task('page', function() {
 		var data = [];
 		data['filename'] = filename;
 		data['page'] = ejsPages(pages, hierarchy);
-		data['post'] = ejsPosts(posts, hierarchy);
 		data['path'] = ejsCommon(hierarchy);
 		data['ejspath'] = ejsPath(parentArray);
 		data['parent'] = ejsParent(parentArray);
@@ -295,41 +271,6 @@ gulp.task('page', function() {
 		indent_char: '\t',
 		indent_size: 1
 	})).pipe(gulp.dest(dst));
-});
-// -----------------------------------------------
-// post
-// -----------------------------------------------
-gulp.task('post', function() {
-	var dst = dstDir;
-	for(var key in jsonData.post) {
-		var data = jsonData.post[key];
-		var template = data.template;
-		var filename = data.filename;
-		var src = filepath.html.post.src + template + '.ejs';
-		var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-		var posts = JSON.parse(fs.readFileSync('src/_data.json')).post;
-		var parentArray = filename.split('/');
-		var hierarchy = ejsHierarchy(parentArray);
-		data['filename'] = filename;
-		data['page'] = ejsPages(pages, hierarchy);
-		data['post'] = ejsPosts(posts, hierarchy);
-		data['path'] = ejsCommon(hierarchy);
-		data['ejspath'] = ejsPath(parentArray);
-		data['parent'] = ejsParent(parentArray);
-		data['file'] = filename;
-		data['site'] = jsonData.site;
-		data['contents'] = jsonData.contents;
-		data['dev'] = dev;
-		data = postdataCheck(data, filename);
-		gulp.src(src).pipe($.plumber({
-			errorHandler: $.notify.onError('<%= error.message %>')
-		})).pipe($.ejs(data)).pipe($.rename(filename + '.html')).pipe($.prettify({
-			indent_char: '\t',
-			indent_size: 1
-		})).pipe($.changed(dst, {
-			hasChanged: $.changed.compareSha1Digest
-		})).pipe(gulp.dest(dst));
-	}
 });
 // -----------------------------------------------
 // function
@@ -361,30 +302,6 @@ var ejsPages = function(pages, hierarchy) {
 		pages[key].url = url;
 	}
 	return pages;
-}
-var ejsPosts = function(posts, hierarchy) {
-	for(var key in posts) {
-		var post = posts[key];
-		var filename = post.filename;
-		post.url = hierarchy + filename + '.html';
-		if(!post.date) {
-			post.date = post.updatedAt.replace(/T.*$/, '');
-		}
-		if(!post.cat) {
-			var cat = '';
-			var catArray = filename.split('/');
-			if(catArray != 1) {
-				for(var catKey in catArray) {
-					if(catKey != catArray.length - 1) {
-						cat += catArray[catKey] + '/';
-					}
-				}
-				cat = cat.slice(0, -1);
-				post.cat = cat;
-			}
-		}
-	}
-	return posts;
 }
 var ejsParent = function(parentArray) {
 	var filename;
@@ -449,31 +366,6 @@ var pagedataCheck = function(data, filename) {
 		}
 	}
 	return pagedata;
-}
-var postdataCheck = function(data, filename) {
-	var postdata = data;
-	if(!postdata.keyword) {
-		postdata.keyword = postdata.site.keyword;
-	}
-	if(!postdata.description) {
-		postdata.description = postdata.site.description;
-	}
-	if(!postdata.date) {
-		postdata.date = postdata.updatedAt.replace(/T.*$/, '');
-	}
-	if(!postdata.pageModifier) {
-		var pageModifierArray = filename.split('/');
-		var pageModifier = '';
-		for(var i in pageModifierArray) {
-			if(i != pageModifierArray.length - 1) {
-				pageModifier += pageModifierArray[i] + ' ';
-			} else {
-				pageModifier += pageModifierArray[i];
-			}
-		}
-		postdata.pageModifier = pageModifier;
-	}
-	return postdata;
 }
 // =================================================================================================
 // font
