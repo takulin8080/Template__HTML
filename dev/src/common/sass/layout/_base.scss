@@ -14,10 +14,5 @@ category: 3.layout
 }
 html {}
 body {
-	margin: 0 auto;
-	@if $responsive {
-		max-width: $siteWidth;
-	} @else {
-		width: $siteWidth;
-	}
+	@extend %wrap;
 }

@@ -15,9 +15,17 @@ category: 1.foundation/extend
 ```
 */
 %wrap {
-	@include respondTo(lg) {
+	@if $responsive {
+		max-width: $siteWidth;
+		margin-left: size(2);
+		margin-right: size(2);
+		@include respondTo(lg) {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	} @else {
+		width: $siteWidth;
 		margin-left: auto;
 		margin-right: auto;
-		width: $siteWidth;
 	}
 }
