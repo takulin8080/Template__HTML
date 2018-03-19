@@ -27,16 +27,12 @@ before
 			<% if( site.author ){ %>
 				<meta name="author" content="<%- site.author %>"/>
 			<% } %>
-			<% if(dev){ %>
-				<link rel="stylesheet" href="<%- path.css %>vendor.css">
-				<link rel="stylesheet" href="<%- path.css %>foundation.css">
-				<link rel="stylesheet" href="<%- path.css %>component.css">
-				<link rel="stylesheet" href="<%- path.css %>project.css">
-				<link rel="stylesheet" href="<%- path.css %>utility.css">
-				<link rel="stylesheet" href="<%- path.css %>dev.css">
-			<% } else { %>
-				<link rel="stylesheet" href="<%- path.css %>app.css">
-			<% } %>
+			<link rel="stylesheet" href="<%- path.css %>vendor.css">
+			<link rel="stylesheet" href="<%- path.css %>foundation.css">
+			<link rel="stylesheet" href="<%- path.css %>component.css">
+			<link rel="stylesheet" href="<%- path.css %>project.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+			<link rel="stylesheet" href="<%- path.css %>dev.css">
 		</head>
 		<body data-modifier="<%- pageModifier %>">
 			<!-- dev-contents -->

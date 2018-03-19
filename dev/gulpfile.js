@@ -17,14 +17,11 @@ var $ = require('gulp-load-plugins')();
 // setup
 // =================================================================================================
 var relativePath = true;
-var sitemap = true;
 var filepath = {
 	dst: {
 		src: 'src/',
 		dev: 'dst/',
-		test: '../test/',
-		stage: '../stage/',
-		prod: '../prod/'
+		release: '../release/'
 	},
 	common: {
 		all: 'common/**/*',
@@ -37,16 +34,16 @@ var filepath = {
 	},
 	json: {
 		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json', 'src/**/*.md', '!src/styleguide/**/*.md'],
+		watch: ['src/_data/**/*.json', 'src/**/*.md'],
 		post: {
-			src: ['src/**/*.md', '!src/styleguide/**/*.md']
+			src: ['src/**/*.md']
 		}
 	},
 	html: {
 		watch: ['src/_data.json', 'src/**/*.ejs'],
 		page: {
 			src: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs'],
-			testSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*']
+			releaseSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*']
 		},
 		post: {
 			src: 'src/page/'
@@ -58,7 +55,6 @@ var filepath = {
 		iconSrc: 'src/common/icon/*.svg',
 		iconDst: 'src/common/font/',
 		src: 'src/common/font/**/*',
-		dst: 'dst/common/font/',
 		watch: ['src/common/font/**/*', 'src/common/icon/**', 'design/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)']
 	},
 	sass: {
@@ -75,10 +71,6 @@ var filepath = {
 		devSrc: ['src/common/sass/dev.scss'],
 		devWatch: ['src/common/sass/scope/dev/**/*', '!src/common/sass/component/_icon.scss']
 	},
-	styleGuide: {
-		src: 'src/styleguide/aigis_config.yml',
-		watch: ['dst/common/css/**/*', 'src/styleguide/**/*', '!dst/common/css/dev.css', '!src/common/sass/component/_icon.scss']
-	},
 	js: {
 		src: 'src/common/js/*.js',
 		watch: ['src/common/js/**/*.js', 'webpack.config.js']
@@ -88,13 +80,14 @@ var filepath = {
 		designDst: 'src/common/img/',
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
 		dst: 'dst/common/img/',
+		dstRelease: 'release/common/img/',
 		watch: ['src/common/img/**', 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/**/*.+(psd|ai)', '!design/icon']
 	},
 	browserSync: {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../test/'];
+var cleanFile = ['src/_data.json', 'src/_data/_post.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -272,7 +265,7 @@ gulp.task('page', function() {
 	if(dev == true) {
 		var src = filepath.html.page.src;
 	} else {
-		var src = filepath.html.page.testSrc;
+		var src = filepath.html.page.releaseSrc;
 	};
 	var dst = dstDir;
 	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
@@ -487,7 +480,7 @@ var postdataCheck = function(data, filename) {
 // =================================================================================================
 gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function() {
 	var src = filepath.font.src;
-	var dst = filepath.font.dst;
+	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
@@ -536,19 +529,6 @@ gulp.task('designIconDst', function() {
 // =================================================================================================
 // sass
 // =================================================================================================
-gulp.task('sass', ['font'], function() {
-	var src = filepath.sass.src;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.sourcemaps.init()).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass({
-		includePaths: [
-			fontAwesome.scssPath
-		]
-	})).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
 gulp.task('sassVendor', function() {
 	var src = filepath.sass.vendorSrc;
 	var dst = dstDir + filepath.common.css;
@@ -608,13 +588,13 @@ gulp.task('sassDev', function() {
 	})).pipe(gulp.dest(dst));
 });
 // =================================================================================================
-// styleGuide
+// css
 // =================================================================================================
-gulp.task('styleGuide', function() {
-	var src = filepath.styleGuide.src;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.aigis());
+gulp.task('css', function() {
+	var src = filepath.dst.dev + filepath.common.css + '**/*.css';
+	var dst = filepath.dst.release + filepath.common.css;
+	var fileName = 'app.css';
+	return gulp.src(src).pipe($.concatCss(fileName)).pipe($.cleanCss()).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // js
@@ -631,7 +611,7 @@ gulp.task('js', function() {
 // =================================================================================================
 gulp.task('img', ['designImgDst'], function() {
 	var src = filepath.img.src;
-	var dst = filepath.img.dst;
+	var dst = dstDir + filepath.common.img;
 	var imageminOptions = {
 		optimizationLevel: 7
 	}
@@ -657,15 +637,6 @@ gulp.task('designImgDst', function() {
 	})).pipe($.changed(designDst)).pipe(gulp.dest(designDst));
 });
 // =================================================================================================
-// robots
-// =================================================================================================
-gulp.task('robots', function() {
-	return gulp.src(
-		[filepath.dst.src + 'robots.txt'], {
-			base: filepath.dst.src
-		}).pipe($.changed(filepath.dst.dev)).pipe(gulp.dest(filepath.dst.dev));
-});
-// =================================================================================================
 // browserSync
 // =================================================================================================
 gulp.task('browserSync', function() {
@@ -676,55 +647,6 @@ gulp.task('browserSync', function() {
 		open: 'external',
 		port: 9000,
 		files: filepath.browserSync.watch
-	});
-});
-// =================================================================================================
-// test
-// =================================================================================================
-gulp.task('test', function() {
-	return gulp.src(
-		[filepath.dst.dev + filepath.common.font + '**/*', filepath.dst.dev + 'robots.txt'], {
-			base: filepath.dst.dev
-		}).pipe($.changed(filepath.dst.test)).pipe(gulp.dest(filepath.dst.test));
-});
-// =================================================================================================
-// stage
-// =================================================================================================
-gulp.task('stage', function() {
-	return gulp.src(
-		[filepath.dst.test + '**/*', '!' + filepath.dst.test + filepath.common.css + 'app.css.map', '!' + filepath.dst.test + '_dev-sitemap.html'], {
-			base: filepath.dst.test
-		}).pipe($.changed(filepath.dst.stage)).pipe(gulp.dest(filepath.dst.stage));
-});
-// =================================================================================================
-// prod
-// =================================================================================================
-gulp.task('prod', ['prodCopy'], function() {
-	var jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-	if(sitemap) {
-		return gulp.src(filepath.dst.prod + '**/*.html', {
-			read: false
-		}).pipe($.sitemap({
-			siteUrl: jsonData.site.url
-		})).pipe(gulp.dest(filepath.dst.prod));
-	} else {
-		return gulp.src(filepath.dst.prod + '**/*.html', {
-			read: false
-		}).pipe(gulp.dest(filepath.dst.prod));
-	}
-});
-gulp.task('prodCopy', function() {
-	return gulp.src(
-		[filepath.dst.stage + '**/*', '!' + filepath.dst.stage + 'robots.txt'], {
-			base: filepath.dst.stage
-		}).pipe($.changed(filepath.dst.prod)).pipe(gulp.dest(filepath.dst.prod));
-});
-// =================================================================================================
-// devDstClean
-// =================================================================================================
-gulp.task('devDstClean', function(cb) {
-	return del(cleanFile, {
-		force: true
 	});
 });
 // =================================================================================================
@@ -739,7 +661,6 @@ gulp.task('watch', ['browserSync'], function() {
 	gulp.watch(filepath.sass.projectWatch, ['sassProject']);
 	gulp.watch(filepath.sass.utilityWatch, ['sassUtility']);
 	gulp.watch(filepath.sass.devWatch, ['sassDev']);
-	gulp.watch(filepath.styleGuide.watch, ['styleGuide']);
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
 });
@@ -749,31 +670,21 @@ gulp.task('watch', ['browserSync'], function() {
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	dev = true;
-	runSequence('html', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'styleGuide', 'js', 'img', 'robots', 'watch', 'browserSync', cb);
+	runSequence('html', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'js', 'img', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
-// TEST
+// RELEASE
 // =================================================================================================
-gulp.task('2 ============== TEST', function(cb) {
-	dstDir = filepath.dst.test;
+gulp.task('2 ============== RELEASE', function(cb) {
+	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('test', 'html', 'sass', 'js', 'img', 'browserSync', cb);
+	runSequence('html', 'font', 'css', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
-// STAGE
+// CLEAN
 // =================================================================================================
-gulp.task('3 ============== STAGING', function(cb) {
-	runSequence('stage', cb);
-});
-// =================================================================================================
-// PRODUCTION
-// =================================================================================================
-gulp.task('4 ============== PRODUCTION', function(cb) {
-	runSequence('prod', cb);
-});
-// =================================================================================================
-// CLEAN-UP
-// =================================================================================================
-gulp.task('X ============== CLEAN-UP', function(cb) {
-	runSequence('devDstClean');
+gulp.task('X ============== CLEAN', function(cb) {
+	return del(cleanFile, {
+		force: true
+	});
 });
