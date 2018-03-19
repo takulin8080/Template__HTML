@@ -32,8 +32,6 @@
 		"gulp-rename": "^1.2.2",
 		"gulp-sass": "^3.2.0",
 		"gulp-sass-glob": "^1.0.8",
-		"gulp-sitemap": "^5.0.0",
-		"gulp-sourcemaps": "^2.6.4",
 		"gulp-svgmin": "^1.2.4",
 		"gulp-util": "^3.0.8",
 		"html-loader": "^0.5.5",
