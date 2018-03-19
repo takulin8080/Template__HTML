@@ -6,9 +6,9 @@
 	"repository": "project",
 	"license": "ISC",
 	"devDependencies": {
-		"ajv": "^6.2.1",
+		"ajv": "^6.3.0",
 		"browser-sync": "^2.23.6",
-		"css-loader": "^0.28.10",
+		"css-loader": "^0.28.11",
 		"del": "^3.0.0",
 		"file-loader": "^1.1.11",
 		"flexboxgrid-sass": "^8.0.5",
