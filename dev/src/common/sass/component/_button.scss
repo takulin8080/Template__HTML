@@ -26,9 +26,14 @@ tag:
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	background: linear-gradient(color(gray, 1), darken(color(gray, 1), 5%));
-	color: color(gray, 9);
+	color: lighten(#000, 25%);
 	box-shadow: boxShadow();
 	display: inline-block;
+	text-decoration: none;
+	line-height: 1;
+	&:hover {
+		text-decoration: none;
+	}
 	&:active {
 		background: darken(color(gray, 1), 2%);
 		box-shadow: none;
@@ -73,6 +78,13 @@ tag:
 		&:active {
 			background: darken(color(sign, danger), 10%);
 		}
+	}
+	/* uniq ======================================== */
+	&[data-button~='disabled'] {
+		cursor: default;
+		background: darken(color(gray, 1), 2%);
+		box-shadow: none;
+		color: lighten(#000, 80%);
 	}
 }
 /* buttons ======================================== */
