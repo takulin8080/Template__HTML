@@ -378,14 +378,14 @@ gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function() {
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
-// fontAwesome
+// designIconDst
 // -----------------------------------------------
-gulp.task('fontAwesome', function() {
-	var dst = filepath.font.iconDst;
-	var fontAwewome = [
-		fontAwesome.fonts
-	];
-	return gulp.src(fontAwewome).pipe($.changed(dst)).pipe(gulp.dest(dst));
+gulp.task('designIconDst', function() {
+	var src = filepath.font.designSrc;
+	var dst = filepath.font.designDst;
+	return gulp.src(src).pipe($.rename(function(path) {
+		path.dirname = '';
+	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
 // icon
@@ -409,14 +409,14 @@ gulp.task('icon', function() {
 	})).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
-// designIconDst
+// fontAwesome
 // -----------------------------------------------
-gulp.task('designIconDst', function() {
-	var src = filepath.font.designSrc;
-	var dst = filepath.font.designDst;
-	return gulp.src(src).pipe($.rename(function(path) {
-		path.dirname = '';
-	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
+gulp.task('fontAwesome', function() {
+	var dst = filepath.font.iconDst;
+	var fontAwewome = [
+		fontAwesome.fonts
+	];
+	return gulp.src(fontAwewome).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // sass
@@ -443,7 +443,7 @@ gulp.task('sassFoundation', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassComponent', ['font'], function() {
+gulp.task('sassComponent', function() {
 	var src = filepath.sass.componentSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -483,7 +483,7 @@ gulp.task('sassDev', function() {
 // css
 // =================================================================================================
 gulp.task('css', function() {
-	var src = filepath.dst.dev + filepath.common.css + '**/*.css';
+	var src = filepath.dst.release + filepath.common.css + '**/*.css';
 	var dst = filepath.dst.release + filepath.common.css;
 	var fileName = 'app.css';
 	return gulp.src(src).pipe($.concatCss(fileName)).pipe($.cleanCss()).pipe(gulp.dest(dst));
@@ -570,7 +570,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 gulp.task('2 ============== RELEASE', function(cb) {
 	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('html', 'font', 'css', 'js', 'img', 'browserSync', cb);
+	runSequence('html', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'css', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // CLEAN
