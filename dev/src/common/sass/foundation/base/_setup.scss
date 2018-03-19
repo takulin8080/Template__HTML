@@ -96,15 +96,3 @@ textarea {
 	box-shadow: boxShadow(inset);
 	padding: size(.5);
 }
-/* -------------------------------------------- */
-/* uniq
-/* -------------------------------------------- */
-*[class~="__title"] {
-	@extend %styleClear;
-}
-*[class~="__items"] {
-	@extend %styleClear;
-}
-*[class~="__item"] {
-	@extend %styleClear;
-}
