@@ -9,9 +9,7 @@ category: 4.module
 */
 .global-nav {
 	$this: &;
-	/* -------------------------------------------- */
-	/* mdAndUnder
-	/* -------------------------------------------- */
+	/* mdAndUnder ======================================== */
 	@include respondTo(mdAndUnder) {
 		@include drawer(right);
 		background: #fff;
@@ -20,9 +18,6 @@ category: 4.module
 		width: 100%;
 		padding-bottom: size(4);
 		border-top: size(5) solid #cce;
-		/* ------------------- */
-		/* trg
-		/* ------------------- */
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -77,21 +72,12 @@ category: 4.module
 				}
 			}
 		}
-		/* ------------------- */
-		/* items
-		/* ------------------- */
 		&__items {}
-		/* ------------------- */
-		/* item
-		/* ------------------- */
 		&__item {
 			margin: 0 size(1);
 			padding: 0 size(1);
 			border-bottom: 1px solid color(gray, 5);
 		}
-		/* ------------------- */
-		/* link
-		/* ------------------- */
 		&__link {
 			display: block;
 			padding: size(2) 0;
@@ -99,9 +85,6 @@ category: 4.module
 				text-decoration: none;
 			}
 		}
-		/* ------------------- */
-		/* cat
-		/* ------------------- */
 		&-cat {
 			&__title {
 				cursor: pointer;
@@ -141,28 +124,17 @@ category: 4.module
 			}
 		}
 	}
-	/* -------------------------------------------- */
-	/* lg
-	/* -------------------------------------------- */
+	/* lg ======================================== */
 	@include respondTo(lg) {
 		width: $siteWidth;
 		margin: 0 auto size(2);
-		/* ------------------- */
-		/* trg
-		/* ------------------- */
 		&__trg {
 			display: none;
 		}
-		/* ------------------- */
-		/* items
-		/* ------------------- */
 		&__items {
 			background: color(gray, 1);
 			display: flex;
 		}
-		/* ------------------- */
-		/* item
-		/* ------------------- */
 		&__item {
 			padding: 0 size(3);
 			border-right: 1px solid color(gray, 5);
@@ -170,18 +142,12 @@ category: 4.module
 				border: 0;
 			}
 		}
-		/* ------------------- */
-		/* link
-		/* ------------------- */
 		&__link {
 			display: block;
 			&:hover {
 				text-decoration: none;
 			}
 		}
-		/* ------------------- */
-		/* cat
-		/* ------------------- */
 		&-cat {
 			position: relative;
 			&__title {

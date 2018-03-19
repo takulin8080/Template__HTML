@@ -19,9 +19,7 @@ tag:
 ```
 */
 [data-alert] {
-	/* -------------------------------------------- */
-	/* variable
-	/* -------------------------------------------- */
+	/* variable ======================================== */
 	$type: (
 		default: (text: lighten(#546e7a, 50%), bg: lighten(#546e7a, 5%), border: #546e7a),
 		info: (text: lighten(color(sign, info), 50%), bg: lighten(color(sign, info), 5%), border: color(sign, info)),
@@ -35,9 +33,7 @@ tag:
 		padding: size(1) size(2),
 		margin: 0 0 size(2)
 	);
-	/* -------------------------------------------- */
-	/* setup
-	/* -------------------------------------------- */
+	/* setup ======================================== */
 	@each $name, $value in $type {
 		&[data-alert~='#{$name}'] {
 			$borderColor: map-get($value, border);

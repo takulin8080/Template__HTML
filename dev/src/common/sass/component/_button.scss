@@ -66,13 +66,8 @@ tag:
 </div>
 ```
 */
-/* -------------------------------------------- */
-/* basic
-/* -------------------------------------------- */
 [data-button] {
-	/* ------------------- */
-	/* variable
-	/* ------------------- */
+	/* variable ======================================== */
 	$type: (
 		default: (textColor: lighten(#546e7a, 50%), bgColor: linear-gradient(#546e7a, 5%, #546e7a), bgHoverColor: darken(#546e7a, 5%), borderColor: #546e7a),
 		primary: (textColor: lighten(#1e88e5, 50%), bgColor: linear-gradient(lighten(#1e88e5, 5%), #1e88e5), bgHoverColor: darken(#1e88e5, 5%), borderColor: darken(#1e88e5, 5%)),
@@ -96,9 +91,7 @@ tag:
 		smallLineHeight: size(3),
 		smallPadding: size(.5) size(2)
 	);
-	/* ------------------- */
-	/* setup
-	/* ------------------- */
+	/* setup ======================================== */
 	border-radius: map-get($style, borderRadius);
 	cursor: pointer;
 	display: inline-block;
@@ -155,17 +148,13 @@ tag:
 			}
 		}
 	}
-	/* ------------------- */
-	/* uniq
-	/* ------------------- */
+	/* uniq ======================================== */
 	&[data-button~='disabled'] {
 		box-shadow: none;
 		cursor: default;
 	}
 }
-/* -------------------------------------------- */
-/* Ctrl
-/* -------------------------------------------- */
+/* Ctrl ======================================== */
 [data-button-ctrl] {
 	cursor: pointer;
 	&[data-button-ctrl~='close'] {
