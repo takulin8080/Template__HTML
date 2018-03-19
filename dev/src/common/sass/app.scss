@@ -1,4 +1,6 @@
 @charset 'UTF-8';
+$fa-font-path: '../font';
+@import 'font-awesome';
 @import 'foundation/base/reset';
 @import 'foundation/variable';
 @import 'foundation/function/**';
@@ -6,3 +8,7 @@
 @import 'foundation/extend/**';
 @import 'foundation/vendor-extension/**';
 @import 'foundation/base/setup';
+@import 'component/**';
+@import 'layout/**';
+@import 'module/**';
+@import 'scope/**';

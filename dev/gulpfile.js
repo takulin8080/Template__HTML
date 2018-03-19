@@ -51,7 +51,7 @@ var filepath = {
 		watch: ['src/common/font/**/*', 'src/common/icon/**', 'design/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)']
 	},
 	sass: {
-		src: ['src/common/sass/app.scss'],
+		appSrc: ['src/common/sass/app.scss'],
 		vendorSrc: ['src/common/sass/vendor.scss'],
 		foundationSrc: ['src/common/sass/foundation.scss'],
 		foundationWatch: ['src/common/sass/foundation/**/*', '!src/common/sass/component/_icon.scss'],
@@ -421,6 +421,19 @@ gulp.task('fontAwesome', function() {
 // =================================================================================================
 // sass
 // =================================================================================================
+gulp.task('sassApp', function() {
+	var src = filepath.sass.appSrc;
+	var dst = dstDir + filepath.common.css;
+	return gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('Error: <%= error.message %>')
+	})).pipe($.sassGlob()).pipe($.sass({
+		includePaths: [
+			fontAwesome.scssPath
+		]
+	})).pipe($.autoprefixer({
+		grid: true
+	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+});
 gulp.task('sassVendor', function() {
 	var src = filepath.sass.vendorSrc;
 	var dst = dstDir + filepath.common.css;
@@ -478,15 +491,6 @@ gulp.task('sassDev', function() {
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
 	})).pipe(gulp.dest(dst));
-});
-// =================================================================================================
-// css
-// =================================================================================================
-gulp.task('css', function() {
-	var src = filepath.dst.release + filepath.common.css + '**/*.css';
-	var dst = filepath.dst.release + filepath.common.css;
-	var fileName = 'app.css';
-	return gulp.src(src).pipe($.concatCss(fileName)).pipe($.cleanCss()).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // js
@@ -570,7 +574,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 gulp.task('2 ============== RELEASE', function(cb) {
 	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('html', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'css', 'js', 'img', 'browserSync', cb);
+	runSequence('html', 'font', 'sassApp', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // CLEAN
