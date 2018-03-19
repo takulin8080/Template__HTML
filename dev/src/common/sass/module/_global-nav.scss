@@ -17,7 +17,7 @@ category: 4.module
 		max-width: size(48);
 		width: 100%;
 		padding-bottom: size(4);
-		border-top: size(5) solid #cce;
+		border-top: size(5) solid #000;
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -30,18 +30,18 @@ category: 4.module
 				position: absolute;
 				top: 0;
 				right: size(5);
-				content: 'MENU';
+				content: attr(data-menu-title);
 				font-size: fontSize(-2);
 				line-height: size(5);
 				width: 4em;
 				text-align: right;
-				color: #fff;
+				color: #000;
 			}
 			span {
 				transition: all 0.4s;
 				position: absolute;
 				left: 25%;
-				background: #fff;
+				background: #000;
 				height: 1px;
 				width: 50%;
 				&:nth-of-type(1) {
@@ -57,7 +57,11 @@ category: 4.module
 				}
 			}
 			&[data-is-active~='true'] {
+				&:before {
+					color: #fff;
+				}
 				span {
+					background: #fff;
 					&:nth-of-type(1) {
 						margin-top: 0;
 						transform: rotate(-45deg);
