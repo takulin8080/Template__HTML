@@ -11,7 +11,7 @@ dev/sitemap
 	pageStopNum = 0;
 	pageNoneNum = 0;
 	Object.keys(page).forEach(function(value, key){
-		if (page[value].progress == 'dev') {
+		if (page[value].progress != 'dev') {
 			pageAllNum++;
 			if(page[value].progress == 'done') {
 				pageDoneNum++;
@@ -41,83 +41,10 @@ dev/sitemap
 </div>
 <!-- /dev-progressbar -->
 <!-- dev-sitemap -->
-<div class="dev-sitemap" data-parent>
-	<div class="row" data-margin="bottom-2">
-		<div class="col-xs-2">
-			<button data-button="small primary" data-active-trg="dev-sitemap-all add" data-is-active="true">
-				<i class="fa fa-list" aria-hidden="true"></i>
-				ALL[<%- pageAllNum %>]</button>
-		</div>
-		<div class="col-xs-2">
-			<button data-button="small success" data-active-trg="dev-sitemap-done add">
-				<i class="fa fa-check-square-o" aria-hidden="true"></i>
-				Done[<%- pageDoneNum %>]</button>
-		</div>
-		<div class="col-xs-2">
-			<button data-button="small danger" data-active-trg="dev-sitemap-undone add">
-				<i class="fa fa-square-o" aria-hidden="true"></i>
-				Undone[<%- pageUndoneNum %>]</button>
-		</div>
-		<div class="col-xs-2">
-			<button data-button="small warning" data-active-trg="dev-sitemap-stop add">
-				<i class="fa fa-ban" aria-hidden="true"></i>
-				Stop[<%- pageStopNum %>]</button>
-		</div>
-		<div class="col-xs-2">
-			<button data-button="small disabled" data-active-trg="dev-sitemap-none add">None[<%- pageNoneNum %>]</button>
-		</div>
-	</div>
-	<ul class="dev-sitemap__items" data-modifier="all" data-active-tar="dev-sitemap-all" data-is-active="true">
+<div class="dev-sitemap">
+	<ul class="dev-sitemap__items" data-is-active="true">
 		<% Object.keys(page).forEach(function(value, key){ %>
 			<% if (page[value].progress != 'dev') { %>
-				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
-					<a class="dev-sitemap__link" href="<%- page[value].url %>">
-						<span class="dev-sitemap__url"><%- page[value].url %></span>
-						<span class="dev-sitemap__title"><%- page[value].title %></span>
-					</a>
-				</li>
-			<% } %>
-		<% }) %>
-	</ul>
-	<ul class="dev-sitemap__items" data-modifier="done" data-active-tar="dev-sitemap-done">
-		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (page[value].progress == 'done') { %>
-				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
-					<a class="dev-sitemap__link" href="<%- page[value].url %>">
-						<span class="dev-sitemap__url"><%- page[value].url %></span>
-						<span class="dev-sitemap__title"><%- page[value].title %></span>
-					</a>
-				</li>
-			<% } %>
-		<% }) %>
-	</ul>
-	<ul class="dev-sitemap__items" data-modifier="stop" data-active-tar="dev-sitemap-stop">
-		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (page[value].progress == 'stop') { %>
-				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
-					<a class="dev-sitemap__link" href="<%- page[value].url %>">
-						<span class="dev-sitemap__url"><%- page[value].url %></span>
-						<span class="dev-sitemap__title"><%- page[value].title %></span>
-					</a>
-				</li>
-			<% } %>
-		<% }) %>
-	</ul>
-	<ul class="dev-sitemap__items" data-modifier="none" data-active-tar="dev-sitemap-none">
-		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (page[value].progress == 'none') { %>
-				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
-					<a class="dev-sitemap__link" href="<%- page[value].url %>">
-						<span class="dev-sitemap__url"><%- page[value].url %></span>
-						<span class="dev-sitemap__title"><%- page[value].title %></span>
-					</a>
-				</li>
-			<% } %>
-		<% }) %>
-	</ul>
-	<ul class="dev-sitemap__items" data-modifier="undone" data-active-tar="dev-sitemap-undone">
-		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (!page[value].progress) { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>

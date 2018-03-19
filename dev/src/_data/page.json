@@ -6,13 +6,6 @@
 			"description": "",
 			"pageModifier": "home",
 			"progress": ""
-		},
-		"post/index": {
-			"template": "default",
-			"title": "post index",
-			"description": "",
-			"pageModifier": "",
-			"progress": ""
 		}
 	}
 }

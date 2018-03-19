@@ -20,4 +20,3 @@ require('./component/pagescroll');
 // ==============================================================================================
 require('./module/movetotop');
 require('./module/global-nav');
-require('./module/float-menu');
