@@ -9,6 +9,7 @@ input[type='email'] {
 	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
 	padding: size(.25) size(.5);
 	background-color: color(gray, 1);
+	color: color(text, dark);
 }
 textarea {
 	@include fontSize(1);
@@ -16,6 +17,7 @@ textarea {
 	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
 	padding: size(1);
 	background-color: color(gray, 1);
+	color: color(text, dark);
 }
 select {
 	@include fontSize(1);
@@ -25,9 +27,51 @@ button {
 	@include fontSize(1);
 	cursor: pointer;
 }
-/* layout ======================================== */
+/* formbox ======================================== */
 .formbox {
-	&__items {}
-	&__title {}
-	&__desc {}
+	@if $responsive {
+		&__title {
+			margin-bottom: size(2);
+		}
+		&__desc {
+			padding-bottom: size(2);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+		}
+		@include respondTo(mdAndOver) {
+			display: flex;
+			flex-wrap: wrap;
+			&__title {
+				width: 20rem;
+				padding-bottom: size(2);
+				margin-bottom: size(2);
+				border-bottom: 1px solid color(gray, 3);
+				text-align: right;
+			}
+			&__desc {
+				width: calc(100% - 20rem);
+				padding-left: size(4);
+				padding-bottom: size(2);
+				margin-bottom: size(2);
+				border-bottom: 1px solid color(gray, 3);
+			}
+		}
+	} @else {
+		display: flex;
+		flex-wrap: wrap;
+		&__title {
+			width: 20rem;
+			padding-bottom: size(2);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+			text-align: right;
+		}
+		&__desc {
+			width: calc(100% - 20rem);
+			padding-bottom: size(2);
+			padding-left: size(4);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+		}
+	}
 }
