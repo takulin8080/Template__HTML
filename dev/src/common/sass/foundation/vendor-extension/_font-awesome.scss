@@ -2,24 +2,12 @@
 /* foundation/vendor-extensinon/font-awesome
 /* ============================================================================================== */
 /*
----
-name: fontAwesome
-category: 1.foundation/vendor-extension
----
-[fontAwesome](http://fontawesome.io/icons/)
-
-### Class
-
-```html
-<i class="fa fa-coffee" aria-hidden="true"></i>
-```
-
-### Mixin
-
-`$char`には[fontAwesome](http://fontawesome.io/icons/)アイコンのコード名`例 : \f2b4`を指定。`$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
+font-awesomeの利用。
+`$char`には[fontAwesome](http://fontawesome.io/icons/)アイコンのコード名`例 : \f2b4`を指定。
+`$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
 
 ```scss
-sample {
+exsample {
 	@include fontAwesome($char, $insert);
 }
 ```

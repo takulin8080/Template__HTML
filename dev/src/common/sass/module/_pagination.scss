@@ -1,12 +1,6 @@
 /* ============================================================================================== */
 /* module/pagination
 /* ============================================================================================== */
-/*
----
-name: pagination
-category: 4.module
----
-*/
 .pagination {
 	display: flex;
 	justify-content: center;
@@ -15,7 +9,7 @@ category: 4.module
 		@extend %styleClear;
 		background: linear-gradient(color(gray, 1), color(gray, 4));
 		border: size(.1) solid color(gray, 5);
-		box-shadow: boxShadow();
+		box-shadow: boxShadow(1);
 		color: color(link, 1);
 		padding: size(.5) size(1.5);
 		&:hover {

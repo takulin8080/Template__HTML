@@ -2,15 +2,13 @@
 /* foundation/mixin/font-size
 /* ============================================================================================== */
 /*
----
-name: fontSize
-category: 1.foundation/mixin
-tag:
-- mixin
----
-フォントサイズを変更。`foundation/function/fontSize`とは違い、サイズに基づいて`line-height`も同時に調整される。文章に利用する際は`mixin fontSize`の利用を推奨。なお`1`はサイト本文の基本サイズとし、`body`に付与されている。サイズパターンは`foundation/_variable/$fontSize`で設定されている。
+font-sizeとそれに合わせたline-heightを出力。
+
+```scss
+@include fontSize($num);
+```
 */
-@mixin fontSize($num) {
+@mixin fontSize($num: 1) {
 	font-size: fontSize($num);
 	line-height: 1.5;
 	@if $num == 1 {

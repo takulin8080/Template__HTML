@@ -2,14 +2,11 @@
 /* foundation/function/box-shadow
 /* ============================================================================================== */
 /*
----
-name: boxShadow
-category: 1.foundation/function
----
-`box-shadow`の出力。`foundation $boxShadow`で設定。
+box-shadow値の出力。
+`foundation/variable $boxShadow`で設定。
 
 ```scss
-box-shadow: boxShadow($num);
+boxShadow($num);
 ```
 */
 @function boxShadow($key: default) {

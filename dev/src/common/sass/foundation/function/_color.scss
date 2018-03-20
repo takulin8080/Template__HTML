@@ -2,16 +2,16 @@
 /* foundation/function/color
 /* ============================================================================================== */
 /*
----
-name: color
-category: 1.foundation/function
----
-色の出力。`foundation $colorPalet`で設定し、基本的に色を指定する場合はこれを利用する。ただし、#000と#fffに関しては例外的に使用可。また、色の明度、再度などを設定する場合は、`darken`や`darken`の使用を推奨。
+色の出力。
+`foundation/variable $color`で設定。
+色を指定する場合に利用する。
+ただし、#000と#fffに関しては例外的に使用可。
+また、色の明度、再度などを設定する場合は、`darken`や`lighten`の利用を推奨。
 
 ```scss
-color: color(project, blue);
+fontFamily($num);
 ```
 */
-@function color($name, $color: default) {
-	@return map-get(map-get($colorPalet, $name), $color);
+@function color($type, $key: default) {
+	@return map-get(map-get($color, $type), $key);
 }

@@ -2,16 +2,12 @@
 /* component/overlay
 /* ============================================================================================== */
 /*
----
-name: overlay
-category: 2.component
----
 モーダルやスマホ用ナビゲーション利用時などに表示するマスクレイヤー。
 */
 body {
 	&[data-overlay] {
 		& [data-overlay-layer] {
-			transition: all 0.4s;
+			transition: all transitionTime(1);
 			background: #000;
 			content: '';
 			width: 100%;
@@ -28,7 +24,7 @@ body {
 		position: fixed;
 		width: 100%;
 		& [data-overlay-layer] {
-			opacity: 0.8;
+			opacity: opacity(1);
 			visibility: visible;
 		}
 	}

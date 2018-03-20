@@ -18,19 +18,19 @@ body[data-modifier='dev sitemap'] {
 			margin-bottom: size(1);
 			padding: size(1);
 			&[data-modifier~='done'] {
-				background: lighten(color(sign, success), 50%);
+				background: lighten(color(sign, green), 50%);
 				&:before {
 					@include fontAwesome('\f00c');
-					color: color(sign, success);
+					color: color(sign, green);
 					float: left;
 					margin-right: size(1);
 				}
 			}
 			&[data-modifier~='stop'] {
-				background: lighten(color(sign, warning), 45%);
+				background: lighten(color(sign, yellow), 45%);
 				&:before {
 					@include fontAwesome('\f05e');
-					color: color(sign, warning);
+					color: color(sign, yellow);
 					float: left;
 					margin-right: size(1);
 				}
@@ -64,16 +64,16 @@ body[data-modifier='dev sitemap'] {
 			white-space: nowrap;
 			overflow: hidden;
 			&[data-modifier~='done'] {
-				background: color(sign, success);
+				background: color(sign, green);
 			}
 			&[data-modifier~='stop'] {
-				background: color(sign, warning);
+				background: color(sign, yellow);
 			}
 			&[data-modifier~='none'] {
 				background: color(gray, 7);
 			}
 			&[data-modifier~='undone'] {
-				background: color(sign, danger);
+				background: color(sign, red);
 			}
 		}
 	}

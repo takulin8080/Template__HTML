@@ -1,12 +1,6 @@
 /* ============================================================================================== */
 /* module/global-nav
 /* ============================================================================================== */
-/*
----
-name: global-nav
-category: 4.module
----
-*/
 .global-nav {
 	$this: &;
 	/* mdAndUnder ======================================== */
@@ -38,7 +32,7 @@ category: 4.module
 				color: #000;
 			}
 			span {
-				transition: all 0.4s;
+				transition: all transitionTime(1);
 				position: absolute;
 				left: 25%;
 				background: #000;
@@ -96,7 +90,7 @@ category: 4.module
 				padding: size(2) 0;
 			}
 			&__items {
-				transition: all 0.4s;
+				transition: all transitionTime(1);
 				visibility: hidden;
 				overflow: hidden;
 				height: 0;
@@ -157,7 +151,7 @@ category: 4.module
 				display: block;
 			}
 			&__items {
-				transition: all 0.4s;
+				transition: all transitionTime(1);
 				position: absolute;
 				background: #fff;
 				left: 0;

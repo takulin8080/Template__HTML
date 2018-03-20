@@ -2,14 +2,11 @@
 /* foundation/extend/wrap
 /* ============================================================================================== */
 /*
----
-name: wrap
-category: 1.foundation/extend
----
-画面サイズが`fundation $siteWidth`以上の値になった場合、内包するコンテンツをブラウザ中央に配置。
+画面サイズが`fundation variable $siteWidth`以上の値になった場合、内包するコンテンツをブラウザ中央に配置。
+`$responsive true`の場合、左右に余白を追加。
 
 ```scss
-.header {
+exsample {
 	@extend %wrap;
 }
 ```

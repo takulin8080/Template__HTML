@@ -2,14 +2,8 @@
 /* foundation/mixin/respond-to
 /* ============================================================================================== */
 /*
----
-name: respondTo
-category: 1.foundation/mixin
-tag:
-- responsive
-- mixin
----
-レスポンシブ対応。`foundation $breakpoint`で値を設定。上書きされるため記載の順序に注意する。
+ウィンド幅に合わせたスタイルの変更。
+`foundation/variable $breakpoint`で値を設定。
 
 ```scss
 @include respondTo(smAndUnder) { smallサイズ以下のみ適用};
@@ -21,24 +15,6 @@ tag:
 @include respondTo(md) { mediumサイズのみ適用};
 @include respondTo(lg) { largeサイズのみ適用};
 ```
-*/
-/*
----
-name: breakpoint prefix
-category: 0-1.HTML
-tag: responsive
----
-
-responsive対応の`component data-**`および`utility data-**`に`breakpoint prefix`を付けることで画面サイズによる処理の振り分けが可能。
-
-- `smAndOver-`:`breakpointSmall`以上の画面サイズに適用。
-- `smAndUnder-`:`breakpointSmall`未満の画面サイズに適用。
-- `mdAndUnder-`:`breakpointMedium`未満の画面サイズに適用。
-- `mdAndOver-`:`breakpointMedium`以上の画面サイズに適用。
-- `xs-`:`breakpointXSmall`の画面サイズのみ適用。
-- `sm-`:`breakpointSmall`の画面サイズのみ適用。
-- `md-`:`breakpointMedium`の画面サイズのみ適用。
-- `lg-`:`breakpointLarge`以上の画面サイズのみ適用。
 */
 /* mixin ======================================== */
 @mixin respondTo($key) {
@@ -86,6 +62,9 @@ responsive対応の`component data-**`および`utility data-**`に`breakpoint p
 	}
 }
 /* respondToKeyArray ======================================== */
+/*
+utility用配列
+*/
 $respondToKey: (
 	smAndOver,
 	mdAndOver,

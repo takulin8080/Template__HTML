@@ -2,11 +2,9 @@
 /* module/breadcrumb
 /* ============================================================================================== */
 /*
----
-name: breadcrumb
-category: 4.module
----
-`_data/page.json`から自動生成。第2階層以降は同フォルダの`index.html`が親リンクとなる。`index.html`が無い場合は無視される。
+`_data/page.json`から自動生成。
+第2階層以降は同フォルダの`index.html`が親リンクとなる。
+`index.html`が無い場合は無視される。
 */
 .breadcrumb {
 	$this: &;

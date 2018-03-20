@@ -2,22 +2,7 @@
 /* component/button
 /* ============================================================================================== */
 /*
----
-name: button
-category: 2.component
-tag:
-- data属性
----
-
-```html
-<button data-button="red"></button>
-
-<div data-buttons>
-	<button data-button="red"></button>
-	<button data-button="blue"></button>
-	<button data-button="green"></button>
-</div>
-```
+ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理管理
 */
 [data-button] {
 	cursor: pointer;
@@ -27,7 +12,7 @@ tag:
 	padding: size(1) size(2.5);
 	background: linear-gradient(color(gray, 1), darken(color(gray, 1), 5%));
 	color: lighten(#000, 25%);
-	box-shadow: boxShadow();
+	box-shadow: boxShadow(1);
 	display: inline-block;
 	text-decoration: none;
 	line-height: 1;
@@ -37,8 +22,7 @@ tag:
 	&:active {
 		background: darken(color(gray, 1), 2%);
 		box-shadow: none;
-		opacity: 1;
-		box-shadow: boxShadow(inset);
+		box-shadow: boxShadowInset(1);
 	}
 	/* size ======================================== */
 	&[data-button~='sm'] {
@@ -52,31 +36,31 @@ tag:
 	}
 	/* color ======================================== */
 	&[data-button~='info'] {
-		background: linear-gradient(color(sign, info), darken(color(sign, info), 10%));
+		background: linear-gradient(color(sign, blue), darken(color(sign, blue), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, info), 5%);
+			background: darken(color(sign, blue), 5%);
 		}
 	}
 	&[data-button~='success'] {
-		background: linear-gradient(color(sign, success), darken(color(sign, success), 10%));
+		background: linear-gradient(color(sign, green), darken(color(sign, green), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, success), 5%);
+			background: darken(color(sign, green), 5%);
 		}
 	}
 	&[data-button~='warning'] {
-		background: linear-gradient(color(sign, warning), darken(color(sign, warning), 5%));
+		background: linear-gradient(color(sign, yellow), darken(color(sign, yellow), 5%));
 		color: rgba(#fff, 1);
 		&:active {
-			background: darken(color(sign, warning), 5%);
+			background: darken(color(sign, yellow), 5%);
 		}
 	}
 	&[data-button~='danger'] {
-		background: linear-gradient(color(sign, danger), darken(color(sign, danger), 10%));
+		background: linear-gradient(color(sign, red), darken(color(sign, red), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, danger), 10%);
+			background: darken(color(sign, red), 10%);
 		}
 	}
 	/* uniq ======================================== */

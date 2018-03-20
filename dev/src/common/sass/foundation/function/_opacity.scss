@@ -1,4 +1,14 @@
 /* ============================================================================================== */
-/* layout/home
+/* foundation/function/opacity
 /* ============================================================================================== */
-body[data-modifier^='home'] {}
+/*
+opacity値の出力。
+`foundation/variable $opacity`で設定。
+
+```scss
+opacity($num);
+```
+*/
+@function opacity($key: default) {
+	@return map-get($opacity, $key);
+}

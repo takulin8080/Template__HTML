@@ -2,14 +2,10 @@
 /* foundation/extend/styleClear
 /* ============================================================================================== */
 /*
----
-name: styleClear
-category: 1.foundation/extend
----
-`fundation base setup`で設定したhtmlタグの基本スタイルを全て解除する。なお`mixin respontdTo (media)`の中では利用できない。
+`foundation/base/setup`で設定したスタイルをresetする。
 
 ```scss
-.style {
+exsample {
 	@extend %styleClear;
 }
 ```
@@ -17,12 +13,12 @@ category: 1.foundation/extend
 %styleClear {
 	background: transparent;
 	border: 0;
-	font-size: fontSize(1);
+	color: color(text);
+	font-family: fontFamily();
+	@include fontSize(1);
 	font-weight: normal;
 	list-style: none;
-	line-height: inherit;
 	margin: 0;
-	outline: none;
 	padding: 0;
 	&:hover {
 		text-decoration: none;
