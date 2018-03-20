@@ -43,8 +43,8 @@ var filepath = {
 		}
 	},
 	font: {
-		designSrc: 'design/icon/**/*.svg',
-		designDst: 'src/common/icon/',
+		projectIconSrc: 'design/icon/**/*.svg',
+		projectIconDst: 'src/common/icon/',
 		iconSrc: 'src/common/icon/*.svg',
 		iconDst: 'src/common/font/',
 		src: 'src/common/font/**/*',
@@ -370,7 +370,7 @@ var pagedataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function() {
+gulp.task('font', ['projectIcon', 'icon', 'fontAwesome'], function() {
 	var src = filepath.font.src;
 	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.plumber({
@@ -378,11 +378,11 @@ gulp.task('font', ['designIconDst', 'icon', 'fontAwesome'], function() {
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
-// designIconDst
+// projectIcon
 // -----------------------------------------------
-gulp.task('designIconDst', function() {
-	var src = filepath.font.designSrc;
-	var dst = filepath.font.designDst;
+gulp.task('projectIcon', function() {
+	var src = filepath.font.projectIconSrc;
+	var dst = filepath.font.projectIconDst;
 	return gulp.src(src).pipe($.rename(function(path) {
 		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
