@@ -548,7 +548,7 @@ gulp.task('browserSync', function() {
 // =================================================================================================
 // watch
 // =================================================================================================
-gulp.task('watch', ['browserSync'], function() {
+gulp.task('watch', function() {
 	gulp.watch(filepath.json.watch, ['json']);
 	gulp.watch(filepath.html.watch, ['html']);
 	gulp.watch(filepath.font.watch, ['font']);
