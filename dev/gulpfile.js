@@ -36,11 +36,11 @@ var filepath = {
 		watch: ['src/_data/**/*.json']
 	},
 	html: {
-		watch: ['src/_data.json', 'src/**/*.ejs'],
 		page: {
 			src: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs'],
 			releaseSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*']
-		}
+		},
+		watch: ['src/_data.json', 'src/**/*.ejs']
 	},
 	font: {
 		src: 'src/common/font/**/*',
