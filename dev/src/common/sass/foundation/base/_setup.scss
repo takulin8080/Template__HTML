@@ -7,7 +7,7 @@ html {
 }
 body {
 	font-family: fontFamily();
-	@include fontSize();
+	@include fontSize(1);
 	color: color(text);
 }
 img {
@@ -15,33 +15,15 @@ img {
 	height: auto;
 	vertical-align: middle;
 }
-/* heading ======================================== */
-h1 {}
-h2 {}
-h3 {}
-h4 {}
-h5 {}
-h6 {}
 /* paragraph ======================================== */
 p {
-	margin: 0 0 1em;
+	margin-bottom: size(2);
 }
-/* Anchor ======================================== */
+/* anchor ======================================== */
 a {
 	color: color(link);
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
 	}
-}
-/* form ======================================== */
-input[type='text'] {
-	border: 1px solid color(gray, 6);
-	box-shadow: boxShadow(inset);
-	padding: size(.5);
-}
-textarea {
-	border: 1px solid color(gray, 6);
-	box-shadow: boxShadow(inset);
-	padding: size(.5);
 }

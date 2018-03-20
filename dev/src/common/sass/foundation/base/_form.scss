@@ -1,0 +1,33 @@
+/* ============================================================================================== */
+/* foundation/base/form
+/* ============================================================================================== */
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+	@include fontSize(1);
+	border: 1px solid color(gray, 6);
+	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
+	padding: size(.25) size(.5);
+	background-color: color(gray, 1);
+}
+textarea {
+	@include fontSize(1);
+	border: 1px solid color(gray, 6);
+	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
+	padding: size(1);
+	background-color: color(gray, 1);
+}
+select {
+	@include fontSize(1);
+}
+input[type='submit'],
+button {
+	@include fontSize(1);
+	cursor: pointer;
+}
+/* layout ======================================== */
+.formbox {
+	&__items {}
+	&__title {}
+	&__desc {}
+}
