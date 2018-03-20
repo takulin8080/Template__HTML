@@ -43,11 +43,11 @@ var filepath = {
 		}
 	},
 	font: {
-		projectIconSrc: 'design/icon/**/*.svg',
-		projectIconDst: 'src/common/icon/',
+		src: 'src/common/font/**/*',
+		designSrc: 'design/icon/**/*.svg',
+		designDst: 'src/common/icon/',
 		iconSrc: 'src/common/icon/*.svg',
 		iconDst: 'src/common/font/',
-		src: 'src/common/font/**/*',
 		watch: ['src/common/font/**/*', 'src/common/icon/**', 'design/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)']
 	},
 	sass: {
@@ -69,10 +69,9 @@ var filepath = {
 		watch: ['src/common/js/**/*.js', 'webpack.config.js']
 	},
 	img: {
+		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
 		designSrc: ['design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/icon/**/*'],
 		designDst: 'src/common/img/',
-		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
-		dst: 'dst/common/img/',
 		watch: ['src/common/img/**', 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/**/*.+(psd|ai)', '!design/icon']
 	},
 	browserSync: {
@@ -370,7 +369,7 @@ var pagedataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['projectIcon', 'icon', 'fontAwesome'], function() {
+gulp.task('font', ['iconDesign', 'icon', 'fontAwesome'], function() {
 	var src = filepath.font.src;
 	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.plumber({
@@ -378,11 +377,11 @@ gulp.task('font', ['projectIcon', 'icon', 'fontAwesome'], function() {
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
-// projectIcon
+// iconDesign
 // -----------------------------------------------
-gulp.task('projectIcon', function() {
-	var src = filepath.font.projectIconSrc;
-	var dst = filepath.font.projectIconDst;
+gulp.task('iconDesign', function() {
+	var src = filepath.font.designSrc;
+	var dst = filepath.font.designDst;
 	return gulp.src(src).pipe($.rename(function(path) {
 		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
@@ -505,7 +504,7 @@ gulp.task('js', function() {
 // =================================================================================================
 // img
 // =================================================================================================
-gulp.task('img', ['designImgDst'], function() {
+gulp.task('img', ['imgDesign'], function() {
 	var src = filepath.img.src;
 	var dst = dstDir + filepath.common.img;
 	var imageminOptions = {
@@ -522,9 +521,9 @@ gulp.task('img', ['designImgDst'], function() {
 	}
 });
 // -----------------------------------------------
-// designImgDst
+// imgDesign
 // -----------------------------------------------
-gulp.task('designImgDst', function() {
+gulp.task('imgDesign', function() {
 	var designSrc = filepath.img.designSrc;
 	var designDst = filepath.img.designDst;
 	return gulp.src(designSrc).pipe($.rename(function(path) {
