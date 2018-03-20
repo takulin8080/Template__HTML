@@ -1,0 +1,121 @@
+/* ============================================================================================== */
+/* foundation/extend/style-setup
+/* ============================================================================================== */
+/*
+タグの基本スタイルを設定。
+
+```scss
+exsample {
+	@extend %styleSetup;
+}
+```
+*/
+%styleSetup {
+	/* heading ======================================== */
+	h1 {
+		@include fontSize(5);
+		margin-top: size(4);
+		margin-bottom: size(4);
+	}
+	h2 {
+		@include fontSize(4);
+		margin-top: size(4);
+		margin-bottom: size(2);
+	}
+	h3 {
+		@include fontSize(2);
+		font-weight: bold;
+		margin-top: size(4);
+		margin-bottom: size(1);
+	}
+	h4 {}
+	h5 {}
+	h6 {}
+	/* paragraph ======================================== */
+	p {
+		margin-bottom: size(2);
+	}
+	/* list ======================================== */
+	ol,
+	ul {
+		margin-left: size(4);
+		margin-bottom: size(2);
+		ol,
+		ul {
+			margin-top: size(2);
+			margin-bottom: 0;
+		}
+	}
+	ul {
+		li {
+			list-style: disc;
+			ul {
+				li {
+					list-style: circle;
+				}
+			}
+		}
+	}
+	ol {
+		li {
+			list-style: decimal;
+		}
+	}
+	dl {
+		margin-left: size(2);
+		dt {
+			font-weight: bold;
+		}
+		dd {
+			margin-bottom: size(2);
+		}
+	}
+	/* anchor ======================================== */
+	a {
+		color: color(link);
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	/* inline ======================================== */
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
+	}
+	code {}
+	/* table ======================================== */
+	table {
+		margin-top: size(4);
+		margin-bottom: size(4);
+		border: 2px solid color(gray, 6);
+		caption {
+			text-align: left;
+			font-weight: bold;
+			margin-bottom: size(1);
+		}
+		tr {
+			max-width: 100%;
+			overflow-x: auto;
+		}
+		th {
+			padding: size(1);
+			border: 1px solid color(gray, 6);
+		}
+		td {
+			padding: size(1);
+			border: 1px solid color(gray, 6);
+		}
+		thead {
+			text-align: left;
+			background: color(gray, 2);
+		}
+		tbody {}
+		tfoot {
+			text-align: left;
+			background: color(gray, 2);
+		}
+	}
+}
