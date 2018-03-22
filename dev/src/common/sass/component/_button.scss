@@ -2,7 +2,15 @@
 /* component/button
 /* ============================================================================================== */
 /*
-ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理管理
+ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理
+
+```html
+<button data-button="sample">sample</button>
+<div data-buttons>
+	<button data-button="sample">sample</button>
+	<button data-button="sample">sample</button>
+</div>
+```
 */
 [data-button] {
 	cursor: pointer;
@@ -36,31 +44,31 @@
 	}
 	/* color ======================================== */
 	&[data-button~='info'] {
-		background: linear-gradient(color(sign, blue), darken(color(sign, blue), 10%));
+		background: linear-gradient(color(sign, info), darken(color(sign, info), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, blue), 5%);
+			background: darken(color(sign, info), 5%);
 		}
 	}
 	&[data-button~='success'] {
-		background: linear-gradient(color(sign, green), darken(color(sign, green), 10%));
+		background: linear-gradient(color(sign, success), darken(color(sign, success), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, green), 5%);
+			background: darken(color(sign, success), 5%);
 		}
 	}
-	&[data-button~='warning'] {
-		background: linear-gradient(color(sign, yellow), darken(color(sign, yellow), 5%));
+	&[data-button~='attention'] {
+		background: linear-gradient(color(sign, attention), darken(color(sign, attention), 5%));
 		color: rgba(#fff, 1);
 		&:active {
-			background: darken(color(sign, yellow), 5%);
+			background: darken(color(sign, attention), 5%);
 		}
 	}
-	&[data-button~='danger'] {
-		background: linear-gradient(color(sign, red), darken(color(sign, red), 10%));
+	&[data-button~='caution'] {
+		background: linear-gradient(color(sign, caution), darken(color(sign, caution), 10%));
 		color: rgba(#fff, .9);
 		&:active {
-			background: darken(color(sign, red), 10%);
+			background: darken(color(sign, caution), 10%);
 		}
 	}
 	/* uniq ======================================== */

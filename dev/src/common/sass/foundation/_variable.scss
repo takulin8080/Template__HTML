@@ -62,8 +62,8 @@ $transitionTime: (
 /* 色の管理 ======================================== */
 $color: (
 	project: (blue: blue),
-	text: (default: #333, dark: #000, light: #9e9e9e),
+	text: (default: #333, dark: #000, light: #666),
 	link: (default: #1e88e5),
 	gray: (1: #f8f8f8, 2: #f1f1f1, 3: #e5e5e5, 4: #e2e2e2, 5: #d3d3d3, 6: #ccc, 7: #999, 8: #666, 9: #333),
-	sign: (blue: #1e88e5, green: #43a047, yellow: #ffb300, red: #e53935)
+	sign: (info: #1e88e5, success: #43a047, attention: #f0a800, caution: #e53935)
 );
