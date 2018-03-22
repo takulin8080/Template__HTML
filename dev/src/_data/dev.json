@@ -9,6 +9,16 @@
 			"template": "dev",
 			"title": "開発用ページ",
 			"progress": "dev"
+		},
+		"dev/ex-html-style": {
+			"template": "dev",
+			"title": "基本タグスタイル【@extend %style-reset】",
+			"progress": "dev"
+		},
+		"dev/ex-form": {
+			"template": "dev",
+			"title": "フォームテンプレート",
+			"progress": "dev"
 		}
 	},
 	"fileSetup": {

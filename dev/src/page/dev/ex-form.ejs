@@ -1,0 +1,69 @@
+<%#
+=====================================================================================================
+dev/ex-form
+=====================================================================================================
+%>
+<form action="#" method="post">
+	<div class="formbox">
+		<dl class="formbox__items">
+			<dt class="formbox__title" data-modifier="req">
+				お名前
+			</dt>
+			<dd class="formbox__desc">
+				<div data-notify="info">入力に誤りがあります</div>
+				<div data-notify="success">入力に誤りがあります</div>
+				<div data-notify="attention">入力に誤りがあります</div>
+				<div data-notify="caution">入力に誤りがあります</div>
+				<label for="name">
+					名字
+					<input type="text" name="name" id="name" value="" tabindex="1" />
+				</label>
+				<div class="note">コメント</div>
+				<label for="name">
+					名前
+					<input type="text" name="name" id="name" value="" tabindex="1" />
+				</label>
+			</dd>
+			<dt class="formbox__title">
+				住所
+			</dt>
+			<dd class="formbox__desc">
+				<label>
+					<input type="radio" name="radio-choice-1" />
+					Choice
+				</label>
+				<label>
+					<input type="radio" name="radio-choice-1" />
+					Choice
+				</label>
+			</dd>
+			<dt class="formbox__title">
+				<label for="name">職業</label>
+			</dt>
+			<dd class="formbox__desc">
+				<select name="select-choice" id="select-choice">
+					<option value="Choice 1">Choice</option>
+					<option value="Choice 2">Choice</option>
+					<option value="Choice 3">Choice</option>
+				</select>
+			</dd>
+			<dt class="formbox__title">
+				<label for="name">コメント</label>
+			</dt>
+			<dd class="formbox__desc">
+				<textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+			</dd>
+			<dt class="formbox__title">
+				資料請求
+			</dt>
+			<dd class="formbox__desc">
+				<label><input type="checkbox" />Choice</label>
+				<label><input type="checkbox" />Choice</label>
+			</dd>
+		</dl>
+		<div data-buttons>
+			<button data-button="attention lg">tests</button>
+			<button data-button="lg disabled">tests</button>
+		</div>
+	</div>
+</form>
