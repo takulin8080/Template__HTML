@@ -8,19 +8,24 @@ body {}
 .contents {
 	& > .inner {
 		@extend %wrap;
-		display: grid;
-		grid-template-areas: 'main' 'sub-contents';
 		@include respondTo(lg) {
+			display: grid;
 			grid-template-columns: 1fr size(30);
-			grid-template-areas: 'main sub-contents';
+			grid-gap: size(2);
 		}
 	}
 	/* main ---------------------------------------- */
 	main {
-		grid-area: main;
+		@include respondTo(lg) {
+			grid-column: 1;
+			grid-row: 1;
+		}
 	}
 	/* sub-contents ---------------------------------------- */
 	.sub-contents:nth-of-type(1) {
-		grid-area: sub-contents;
+		@include respondTo(lg) {
+			grid-column: 2;
+			grid-row: 1;
+		}
 	}
 }
