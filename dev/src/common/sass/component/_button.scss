@@ -18,17 +18,18 @@
 	border-radius: size(.5);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
-	background: linear-gradient(color(gray, 1), darken(color(gray, 1), 5%));
+	background: linear-gradient(color(gray, 1), color(gray, 3));
 	color: lighten(#000, 25%);
 	box-shadow: boxShadow(1);
 	display: inline-block;
 	text-decoration: none;
 	line-height: 1;
 	&:hover {
+		background: color(gray, 2);
 		text-decoration: none;
 	}
 	&:active {
-		background: darken(color(gray, 1), 3%);
+		background: color(gray, 2);
 		box-shadow: none;
 	}
 	/* size ======================================== */
@@ -41,33 +42,19 @@
 		font-size: fontSize(1);
 		padding: size(1.5) size(5);
 	}
-	/* color ======================================== */
-	&[data-button~='info'] {
-		background: linear-gradient(color(sign, info), darken(color(sign, info), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, info), 5%);
-		}
-	}
-	&[data-button~='success'] {
-		background: linear-gradient(color(sign, success), darken(color(sign, success), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, success), 5%);
-		}
-	}
-	&[data-button~='attention'] {
-		background: linear-gradient(color(sign, attention), darken(color(sign, attention), 5%));
-		color: rgba(#fff, 1);
-		&:active {
-			background: darken(color(sign, attention), 5%);
-		}
-	}
-	&[data-button~='caution'] {
-		background: linear-gradient(color(sign, caution), darken(color(sign, caution), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, caution), 10%);
+	/* sign ======================================== */
+	@each $sign, $signs in $color {
+		@each $signType, $signColor in $signs {
+			&[data-button~='#{$signType}'] {
+				background: linear-gradient($signColor, darken($signColor, 10%));
+				color: rgba(#fff, .9);
+				&:hover {
+					background: darken($signColor, 5%);
+				}
+				&:active {
+					background: darken($signColor, 7%);
+				}
+			}
 		}
 	}
 	/* uniq ======================================== */
