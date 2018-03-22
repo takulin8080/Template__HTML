@@ -3,9 +3,10 @@
 		"header",
 		"footer",
 		"sub-contents",
-		"movetotop",
+		"page-title",
 		"global-nav",
 		"breadcrumb",
-		"pagination"
+		"pagination",
+		"movetotop"
 	]
 }
