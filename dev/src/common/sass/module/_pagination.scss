@@ -6,20 +6,24 @@
 	justify-content: center;
 	margin: size(4) 0;
 	&__link {
-		@extend %styleClear;
-		background: linear-gradient(color(gray, 1), color(gray, 4));
-		border: size(.1) solid color(gray, 5);
+		border: 0;
+		font-size: fontSize(-1);
+		padding: size(1) size(2.5);
+		background: linear-gradient(color(gray, 1), color(gray, 3));
+		border-right: 1px solid color(gray, 3);
+		color: lighten(#000, 25%);
 		box-shadow: boxShadow(1);
-		color: color(link, 1);
-		padding: size(.5) size(1.5);
+		display: inline-block;
+		text-decoration: none;
+		line-height: 1;
 		&:hover {
-			background: linear-gradient(color(gray, 1), color(gray, 2));
+			text-decoration: none;
+		}
+		&:active {
+			background: color(gray, 2);
 		}
 		&[data-modifire~='current'] {
-			background: color(gray, 5);
-			&:hover {
-				background: color(gray, 5);
-			}
+			background: color(gray, 3);
 		}
 		&[data-modifire~='prev'] {
 			border-radius: size(1) 0 0 size(1);
