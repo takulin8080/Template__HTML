@@ -116,7 +116,7 @@ label {
 			border-bottom: 1px solid color(gray, 3);
 		}
 	}
-	/* notify ======================================== */
+	/* notify ---------------------------------------- */
 	[data-notify] {
 		// カラーは`foundation variable color`スタイルは`component notify`で管理。
 		background: color(gray, 1);
@@ -124,10 +124,16 @@ label {
 		margin-bottom: size(1);
 		@include fontSize(-2);
 	}
-	/* note ======================================== */
+	/* note ---------------------------------------- */
 	.note {
 		@extend %styleClear;
 		@include fontSize(-2);
 		margin: size(1) 0;
+	}
+	/* uniq ---------------------------------------- */
+	input[data-modifier~='auto-complete'] {
+		background: color(gray, 1);
+		border: 0;
+		box-shadow: none;
 	}
 }
