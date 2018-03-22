@@ -37,14 +37,16 @@ var ejspath = '../';
 			<%- include(ejspath + '_module/global-nav') %>
 			<!-- contents -->
 			<div class="contents">
-				<!-- main-contents -->
-				<main class="main-contents">
+				<div class="inner">
+					<!-- main -->
+					<main>
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
-				</main>
-				<!-- /main-contents -->
-				<%- include(ejspath + '_module/sub-contents') %>
+					</main>
+					<!-- /main -->
+					<%- include(ejspath + '_module/sub-contents') %>
+				</div>
 			</div>
 			<!-- /contents -->
 			<%- include(ejspath + '_module/footer') %>

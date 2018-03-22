@@ -3,6 +3,24 @@
 /* ============================================================================================== */
 :root {}
 html {}
-body {
-	@extend %wrap;
+body {}
+/* contents ======================================== */
+.contents {
+	& > .inner {
+		@extend %wrap;
+		display: grid;
+		grid-template-areas: 'main' 'sub-contents';
+		@include respondTo(lg) {
+			grid-template-columns: 1fr size(30);
+			grid-template-areas: 'main sub-contents';
+		}
+	}
+	/* main ---------------------------------------- */
+	main {
+		grid-area: main;
+	}
+	/* sub-contents ---------------------------------------- */
+	.sub-contents:nth-of-type(1) {
+		grid-area: sub-contents;
+	}
 }
