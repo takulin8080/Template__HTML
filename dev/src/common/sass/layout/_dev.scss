@@ -4,7 +4,6 @@
 body[data-modifier^='dev'] {
 	background: color(gray, 2);
 	.dev-contents {
-		@extend %wrap;
 		padding: size(8);
 		margin-top: size(2);
 		margin-bottom: size(2);
