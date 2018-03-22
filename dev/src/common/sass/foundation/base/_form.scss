@@ -46,20 +46,25 @@ label {
 		margin-left: 0 !important;
 	}
 	&__title {
+		margin-bottom: size(1);
+		color: color(text, light);
+		font-weight: bold;
 		&[data-modifier~='req'] {
 			&:after {
 				content: '※';
 				font-size: fontSize(-1);
-				color: color(sign, red);
+				color: color(sign, caution);
+				font-weight: normal;
+				.formbox[data-modifier~='confirm'] & {
+					display: none;
+				}
 			};
 		}
 	}
 	&__desc {}
 	@if $responsive {
 		&__items {}
-		&__title {
-			margin-bottom: size(1);
-		}
+		&__title {}
 		&__desc {
 			padding-bottom: size(2);
 			margin-bottom: size(2);
