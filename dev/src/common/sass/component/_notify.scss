@@ -14,7 +14,7 @@
 */
 [data-notify] {
 	@extend %styleSetup;
-	padding: size(1) size(2) 0;
+	padding: size(2) size(2) 0;
 	margin-bottom: size(2);
 	background: color(gray, 1);
 	color: color(text, light);
