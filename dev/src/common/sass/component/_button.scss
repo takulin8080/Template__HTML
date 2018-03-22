@@ -28,9 +28,8 @@
 		text-decoration: none;
 	}
 	&:active {
-		background: darken(color(gray, 1), 2%);
+		background: darken(color(gray, 1), 3%);
 		box-shadow: none;
-		box-shadow: boxShadowInset(1);
 	}
 	/* size ======================================== */
 	&[data-button~='sm'] {
@@ -82,8 +81,9 @@
 /* buttons ======================================== */
 [data-buttons] {
 	text-align: center;
+	margin: size(2) 0;
 	[data-button] {
-		margin: size(2) size(.5);
+		margin: 0 size(.5) size(2);
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
 		&[data-button~='lg'] {
