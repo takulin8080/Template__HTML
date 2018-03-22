@@ -10,6 +10,7 @@ input[type='email'] {
 	padding: size(.25) size(.5);
 	background-color: color(gray, 1);
 	color: color(text, dark);
+	margin-right: size(.5);
 }
 textarea {
 	@include fontSize(1);
@@ -22,16 +23,38 @@ textarea {
 select {
 	@include fontSize(1);
 }
+input[type='radio'] {
+	margin-left: size(1);
+	margin-right: size(.5);
+}
+input[type='checkbox'] {
+	margin-left: size(1);
+	margin-right: size(.5);
+}
 input[type='submit'],
 button {
 	@include fontSize(1);
 	cursor: pointer;
 }
+label {
+	display: inline-block;
+}
 /* formbox ======================================== */
 .formbox {
+	&__items {}
+	&__title {
+		&[data-modifier~='req'] {
+			&:after {
+				content: '※';
+				font-size: fontSize(-1);
+				color: color(sign, red);
+			};
+		}
+	}
 	@if $responsive {
+		&__items {}
 		&__title {
-			margin-bottom: size(2);
+			margin-bottom: size(1);
 		}
 		&__desc {
 			padding-bottom: size(2);
@@ -39,8 +62,10 @@ button {
 			border-bottom: 1px solid color(gray, 3);
 		}
 		@include respondTo(mdAndOver) {
-			display: flex;
-			flex-wrap: wrap;
+			&__items {
+				display: flex;
+				flex-wrap: wrap;
+			}
 			&__title {
 				width: 20rem;
 				padding-bottom: size(2);
@@ -57,8 +82,10 @@ button {
 			}
 		}
 	} @else {
-		display: flex;
-		flex-wrap: wrap;
+		&__items {
+			display: flex;
+			flex-wrap: wrap;
+		}
 		&__title {
 			width: 20rem;
 			padding-bottom: size(2);
@@ -73,5 +100,19 @@ button {
 			margin-bottom: size(2);
 			border-bottom: 1px solid color(gray, 3);
 		}
+	}
+	/* notify ======================================== */
+	[data-notify] {
+		// カラーは`foundation variable color`スタイルは`component notify`で管理。
+		background: color(gray, 1);
+		padding: size(.5) size(1);
+		margin-bottom: size(1);
+		@include fontSize(-2);
+	}
+	/* note ======================================== */
+	.note {
+		@extend %styleClear;
+		@include fontSize(-2);
+		margin: size(1) 0;
 	}
 }
