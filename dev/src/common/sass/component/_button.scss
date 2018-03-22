@@ -83,7 +83,7 @@
 [data-buttons] {
 	text-align: center;
 	[data-button] {
-		margin: size(2) size(.5) size(4);
+		margin: size(2) size(.5);
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
 		&[data-button~='lg'] {

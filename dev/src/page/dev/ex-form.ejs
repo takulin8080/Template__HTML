@@ -3,67 +3,145 @@
 dev/ex-form
 =====================================================================================================
 %>
+<%# input ======================================== %>
 <form action="#" method="post">
+	<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 	<div class="formbox">
 		<dl class="formbox__items">
 			<dt class="formbox__title" data-modifier="req">
-				お名前
+				<label for="name">お名前</label>
 			</dt>
 			<dd class="formbox__desc">
 				<div data-notify="info">入力に誤りがあります</div>
 				<div data-notify="success">入力に誤りがあります</div>
 				<div data-notify="attention">入力に誤りがあります</div>
 				<div data-notify="caution">入力に誤りがあります</div>
-				<label for="name">
-					名字
-					<input type="text" name="name" id="name" value="" tabindex="1" />
-				</label>
 				<div class="note">コメント</div>
-				<label for="name">
-					名前
-					<input type="text" name="name" id="name" value="" tabindex="1" />
-				</label>
+				<input type="text" name="name" id="name" />
 			</dd>
-			<dt class="formbox__title">
-				住所
+			<dt class="formbox__title" data-modifier="req">
+				<label for="zip">郵便番号</label>
 			</dt>
 			<dd class="formbox__desc">
-				<label>
-					<input type="radio" name="radio-choice-1" />
-					Choice
-				</label>
-				<label>
-					<input type="radio" name="radio-choice-1" />
-					Choice
-				</label>
+				<input type="text" name="zip" id="zip" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref','addr');">
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="pref">都道府県</label>
+			</dt>
+			<dd class="formbox__desc" data-modifier="req">
+				<input type="text" name="pref" id="pref">
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="addr">市区町村</label>
+			</dt>
+			<dd class="formbox__desc">
+				<input type="text" name="addr" id="addr">
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="addr2">番地以降</label>
+			</dt>
+			<dd class="formbox__desc">
+				<input type="text" name="addr2" id="addr2" style="width: 60%;">
 			</dd>
 			<dt class="formbox__title">
-				<label for="name">職業</label>
+				select
 			</dt>
 			<dd class="formbox__desc">
 				<select name="select-choice" id="select-choice">
-					<option value="Choice 1">Choice</option>
-					<option value="Choice 2">Choice</option>
-					<option value="Choice 3">Choice</option>
+					<option value="option 1">option</option>
+					<option value="option 2">option</option>
+					<option value="option 3">option</option>
 				</select>
 			</dd>
 			<dt class="formbox__title">
-				<label for="name">コメント</label>
+				checkbox
+			</dt>
+			<dd class="formbox__desc">
+				<label><input type="checkbox" />checkbox</label>
+				<label><input type="checkbox" />checkbox</label>
+			</dd>
+			<dt class="formbox__title">
+				radio
+			</dt>
+			<dd class="formbox__desc">
+				<label><input type="radio" name="radio" />radio</label>
+				<label><input type="radio" name="radio" />radio</label>
+			</dd>
+			<dt class="formbox__title">
+				<label for="name">textarea</label>
 			</dt>
 			<dd class="formbox__desc">
 				<textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
 			</dd>
-			<dt class="formbox__title">
-				資料請求
+		</dl>
+		<div data-buttons>
+			<button data-button="lg">キャンセル</button>
+			<button data-button="info lg">確認画面へ</button>
+		</div>
+	</div>
+</form>
+<%# confirm ======================================== %>
+<form action="#" method="post">
+	<div class="formbox" data-modifier="confirm">
+		<dl class="formbox__items">
+			<dt class="formbox__title" data-modifier="req">
+				<label for="name">お名前</label>
 			</dt>
 			<dd class="formbox__desc">
-				<label><input type="checkbox" />Choice</label>
-				<label><input type="checkbox" />Choice</label>
+				山田太郎
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="zip">郵便番号</label>
+			</dt>
+			<dd class="formbox__desc">
+				123-4567
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="pref">都道府県</label>
+			</dt>
+			<dd class="formbox__desc" data-modifier="req">
+				東京都
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				市区町村
+			</dt>
+			<dd class="formbox__desc">
+				新宿区
+			</dd>
+			<dt class="formbox__title" data-modifier="req">
+				<label for="addr2">番地以降</label>
+			</dt>
+			<dd class="formbox__desc">
+				1-2-3 新宿マンション123
+			</dd>
+			<dt class="formbox__title">
+				select
+			</dt>
+			<dd class="formbox__desc">
+				select
+			</dd>
+			<dt class="formbox__title">
+				checkbox
+			</dt>
+			<dd class="formbox__desc">
+				checkbox, checkbox
+			</dd>
+			<dt class="formbox__title">
+				radio
+			</dt>
+			<dd class="formbox__desc">
+				radio
+			</dd>
+			<dt class="formbox__title">
+				<label for="name">textarea</label>
+			</dt>
+			<dd class="formbox__desc">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</dd>
 		</dl>
 		<div data-buttons>
-			<button data-button="attention lg">tests</button>
-			<button data-button="lg disabled">tests</button>
+			<button data-button="lg">送信内容を編集</button>
+			<button data-button="success lg">上記内容を送信</button>
 		</div>
 	</div>
 </form>
