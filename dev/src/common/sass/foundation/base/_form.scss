@@ -41,7 +41,10 @@ label {
 }
 /* formbox ======================================== */
 .formbox {
-	&__items {}
+	margin-bottom: size(4);
+	&__items {
+		margin-left: 0 !important;
+	}
 	&__title {
 		&[data-modifier~='req'] {
 			&:after {
@@ -51,6 +54,7 @@ label {
 			};
 		}
 	}
+	&__desc {}
 	@if $responsive {
 		&__items {}
 		&__title {
