@@ -8,16 +8,42 @@
 */
 .breadcrumb {
 	$this: &;
-	margin: 0 auto size(2);
-	max-width: $siteWidth;
-	&__items {}
+	@extend %wrap;
+	&__items {
+		padding-left: size(2);
+		padding-right: size(2);
+		display: flex;
+		overflow-x: auto;
+	}
 	&__item {
-		display: inline-block;
+		white-space: nowrap;
 	}
 	&__link {
 		display: block;
 		line-height: size(5);
-		padding: 0 size(2);
 		text-decoration: none;
+		&:hover {
+			text-decoration: none;
+			opacity: opacity(1);
+		}
+		@include fontAwesome('\f105', 'after');
+		&:after {
+			margin-left: size(1);
+			margin-right: size(1);
+		}
+	}
+	/* uniq ======================================== */
+	&__item {
+		&:last-child {
+			.breadcrumb__link {
+				color: color(text);
+				&:hover {
+					opacity: 1;
+				}
+				&:after {
+					display: none;
+				}
+			}
+		}
 	}
 }
