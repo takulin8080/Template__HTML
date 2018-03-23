@@ -28,7 +28,11 @@ var ejspath = '../';
 				<% } %>
 				<%- project.title %>
 			</title>
-			<meta name="description" content="<%- description %>">
+			<% if( description ){ %>
+				<meta name="description" content="<%- description %>">
+			<% } else { %>
+				<meta name="description" content="<%- project.description %>">
+			<% } %>
 			<% if( project.author ){ %>
 				<meta name="author" content="<%- project.author %>"/>
 			<% } %>
