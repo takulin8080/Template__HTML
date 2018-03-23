@@ -258,8 +258,7 @@ gulp.task('page', function() {
 		data['path'] = ejsCommon(hierarchy);
 		data['ejspath'] = ejsPath(parentArray);
 		data['parent'] = ejsParent(parentArray);
-		data['site'] = jsonData.site;
-		data['contents'] = jsonData.contents;
+		data['project'] = jsonData.project;
 		data['dev'] = dev;
 		Object.assign(data, pages[filename]);
 		data = pagedataCheck(data, filename);
@@ -350,9 +349,6 @@ var ejsPath = function(parentArray) {
 }
 var pagedataCheck = function(data, filename) {
 	var pagedata = data;
-	if(!pagedata.description) {
-		pagedata.description = jsonData.site.description;
-	}
 	if(!pagedata.pageModifier) {
 		pagedata.pageModifier = '';
 		var pageModifierArray = filename.split('/');
