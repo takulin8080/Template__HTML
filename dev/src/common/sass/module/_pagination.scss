@@ -2,6 +2,7 @@
 /* module/pagination
 /* ============================================================================================== */
 .pagination {
+	$this: &;
 	display: flex;
 	justify-content: center;
 	margin: size(4) 0;
