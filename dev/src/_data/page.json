@@ -1,14 +1,14 @@
 {
 	"page": {
 		"index": {
-			"template": "home",
+			"layout": "home",
 			"title": "ホーム",
 			"description": "",
 			"pageModifier": "home",
 			"progress": ""
 		},
 		"exsample": {
-			"template": "default",
+			"layout": "default",
 			"title": "exsample",
 			"description": "",
 			"pageModifier": "",

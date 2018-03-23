@@ -10,7 +10,7 @@ body {}
 		@extend %wrap;
 		@include respondTo(lg) {
 			display: grid;
-			grid-template-columns: 1fr size(30);
+			grid-layout-columns: 1fr size(30);
 			grid-gap: size(2);
 		}
 	}

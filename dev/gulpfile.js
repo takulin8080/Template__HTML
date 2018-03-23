@@ -210,18 +210,18 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 	}
-	// template, layout
+	// layout
 	// ----------------------
-	for(var i in jsonData.template) {
-		var dataPath = jsonData.template[i];
+	for(var i in jsonData.layout) {
+		var dataPath = jsonData.layout[i];
 		var dataPathArray = dataPath.split('/');
 		var dataHierarchy = ejsHierarchy(dataPathArray);
 		var ejspath = "ejspath = '../" + dataHierarchy + "'";
 		ejspath = ejspath.replace('//', '/');
 		var tempModifier = dataPath.replace(/\//g, ' ');
 		// ejs
-		var ejscode = jsonData.fileSetup.templateEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
-		appendFile(ejsDst + '_template/' + dataPath + '.ejs', ejscode, function(err) {
+		var ejscode = jsonData.fileSetup.layoutEjscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
+		appendFile(ejsDst + '_layout/' + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
 		});
 		// sass

@@ -1,6 +1,6 @@
 <%#
 =====================================================================================================
-template/home
+layout/dev
 =====================================================================================================
 %>
 <%
@@ -14,42 +14,31 @@ var ejspath = '../';
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="robots" content="noindex">
 			<title>
+				<%- title %>
+				|
 				<%- site.title %>
 			</title>
-			<meta name="description" content="<%- description %>">
 			<% if( site.author ){ %>
 				<meta name="author" content="<%- site.author %>"/>
 			<% } %>
-			<% if(dev){ %>
-				<link rel="stylesheet" href="<%- path.css %>vendor.css">
-				<link rel="stylesheet" href="<%- path.css %>foundation.css">
-				<link rel="stylesheet" href="<%- path.css %>component.css">
-				<link rel="stylesheet" href="<%- path.css %>project.css">
-				<link rel="stylesheet" href="<%- path.css %>utility.css">
-				<link rel="stylesheet" href="<%- path.css %>dev.css">
-			<% } else { %>
-				<link rel="stylesheet" href="<%- path.css %>app.css">
-			<% } %>
+			<link rel="stylesheet" href="<%- path.css %>vendor.css">
+			<link rel="stylesheet" href="<%- path.css %>foundation.css">
+			<link rel="stylesheet" href="<%- path.css %>component.css">
+			<link rel="stylesheet" href="<%- path.css %>project.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+			<link rel="stylesheet" href="<%- path.css %>dev.css">
 		</head>
 		<body data-modifier="<%- pageModifier %>">
-			<%- include(ejspath + '_module/header') %>
-			<%- include(ejspath + '_module/global-nav') %>
-			<!-- contents -->
-			<div class="contents">
-				<div class="contents__inner">
-					<!-- main -->
-					<main>
+			<!-- dev-contents -->
+			<main class="dev-contents">
+				<h1 class="dev-contents__title"><%- title %></h1>
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
-					</main>
-					<!-- /main -->
-					<%- include(ejspath + '_module/sub-contents') %>
-				</div>
-			</div>
-			<!-- /contents -->
-			<%- include(ejspath + '_module/footer') %>
+			</main>
+			<!-- /dev-contents -->
 			<!-- script -->
 			<script src="<%- path.js %>app.js"></script>
 			<!-- /script -->

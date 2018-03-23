@@ -29,7 +29,7 @@ dev/sitemap
 	pageNoneRatio = Math.round(pageNoneNum/pageAllNum*100) + '%';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<%- include(ejspath + '_template/' + template, {modifier: 'before'}) %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- dev-progressbar -->
 <div class="dev-progressbar">
@@ -56,4 +56,4 @@ dev/sitemap
 </div>
 <!-- /dev-sitemap -->
 <%# ---------------------------------------------------------------------------------------------- %>
-<%- include(ejspath + '_template/' + template, {modifier: 'after'}) %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
