@@ -6,7 +6,7 @@ html {}
 body {}
 /* contents ======================================== */
 .contents {
-	& > .inner {
+	&__inner {
 		@extend %wrap;
 		@include respondTo(lg) {
 			display: grid;
@@ -14,8 +14,8 @@ body {}
 			grid-gap: size(2);
 		}
 	}
-	/* main ---------------------------------------- */
-	main {
+	/* main-contents ---------------------------------------- */
+	.main-contents {
 		@include respondTo(lg) {
 			grid-column: 1;
 			grid-row: 1;
