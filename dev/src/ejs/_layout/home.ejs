@@ -15,11 +15,11 @@ var ejspath = '../';
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title>
-				<%- data.project.title %>
+				<%- data.site.title %>
 			</title>
 			<meta name="description" content="<%- description %>">
-			<% if( data.project.author ){ %>
-				<meta name="author" content="<%- data.project.author %>"/>
+			<% if( data.site.author ){ %>
+				<meta name="author" content="<%- data.site.author %>"/>
 			<% } %>
 			<% if(dev){ %>
 				<link rel="stylesheet" href="<%- path.css %>vendor.css">
