@@ -91,10 +91,10 @@ gulp.task('jsonData', function() {
 	})).pipe(gulp.dest(dst));
 });
 // =================================================================================================
-// ejs
+// html
 // =================================================================================================
-gulp.task('ejs', function(cb) {
-	runSequence('json', 'fileSetup', 'page', cb);
+gulp.task('html', function(cb) {
+	runSequence('json', 'fileSetup', 'ejs', cb);
 });
 // -----------------------------------------------
 // fileSetup
@@ -234,9 +234,9 @@ gulp.task('fileSetup', function() {
 	}
 });
 // -----------------------------------------------
-// page
+// ejs
 // -----------------------------------------------
-gulp.task('page', function() {
+gulp.task('ejs', function() {
 	if(dev == true) {
 		var src = filepath.ejs.src;
 	} else {
@@ -417,9 +417,9 @@ gulp.task('fontAwesome', function() {
 	return gulp.src(fontAwewome).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
-// sass
+// css
 // =================================================================================================
-gulp.task('sassApp', function() {
+gulp.task('cssApp', function() {
 	var src = filepath.sass.appSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -432,7 +432,7 @@ gulp.task('sassApp', function() {
 		grid: true
 	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
-gulp.task('sassVendor', function() {
+gulp.task('cssVendor', function() {
 	var src = filepath.sass.vendorSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -445,7 +445,7 @@ gulp.task('sassVendor', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassFoundation', function() {
+gulp.task('cssFoundation', function() {
 	var src = filepath.sass.foundationSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -454,7 +454,7 @@ gulp.task('sassFoundation', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassComponent', function() {
+gulp.task('cssComponent', function() {
 	var src = filepath.sass.componentSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -463,7 +463,7 @@ gulp.task('sassComponent', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassProject', function() {
+gulp.task('cssProject', function() {
 	var src = filepath.sass.projectSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -472,7 +472,7 @@ gulp.task('sassProject', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassUtility', function() {
+gulp.task('cssUtility', function() {
 	var src = filepath.sass.utilitySrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -481,7 +481,7 @@ gulp.task('sassUtility', function() {
 		grid: true
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('sassDev', function() {
+gulp.task('cssDev', function() {
 	var src = filepath.sass.devSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
@@ -564,7 +564,7 @@ gulp.task('watch', function() {
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	dev = true;
-	runSequence('ejs', 'font', 'sassVendor', 'sassFoundation', 'sassComponent', 'sassProject', 'sassUtility', 'sassDev', 'js', 'img', 'watch', 'browserSync', cb);
+	runSequence('html', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // RELEASE
@@ -572,7 +572,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 gulp.task('2 ============== RELEASE', function(cb) {
 	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('ejs', 'font', 'sassApp', 'js', 'img', 'browserSync', cb);
+	runSequence('html', 'font', 'css', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // CLEAN
