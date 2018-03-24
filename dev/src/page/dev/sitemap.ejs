@@ -1,6 +1,6 @@
 <%#
 =====================================================================================================
-dev/projectmap
+dev/sitemap
 =====================================================================================================
 %>
 <%
@@ -39,21 +39,21 @@ dev/projectmap
 	<div class="dev-progressbar__item" data-modifier="none" <% if( pageNoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageNoneRatio %>;" <% } %>><%- pageNoneRatio %></div>
 </div>
 <!-- /dev-progressbar -->
-<!-- dev-projectmap -->
-<div class="dev-projectmap">
-	<ul class="dev-projectmap__items" data-is-active="true">
+<!-- dev-sitemap -->
+<div class="dev-sitemap">
+	<ul class="dev-sitemap__items" data-is-active="true">
 		<% Object.keys(page).forEach(function(value, key){ %>
 			<% if (page[value].progress != 'dev') { %>
-				<li class="dev-projectmap__item" data-modifier="<%- page[value].progress %>">
-					<a class="dev-projectmap__link" href="<%- page[value].url %>">
-						<span class="dev-projectmap__url"><%- page[value].url %></span>
-						<span class="dev-projectmap__title"><%- page[value].title %></span>
+				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
+					<a class="dev-sitemap__link" href="<%- page[value].url %>">
+						<span class="dev-sitemap__url"><%- page[value].url %></span>
+						<span class="dev-sitemap__title"><%- page[value].title %></span>
 					</a>
 				</li>
 			<% } %>
 		<% }) %>
 	</ul>
 </div>
-<!-- /dev-projectmap -->
+<!-- /dev-sitemap -->
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

@@ -1,5 +1,25 @@
 {
 	"page": {
+		"dev/sitemap": {
+			"layout": "dev",
+			"title": "サイトマップ[進行状況]",
+			"dev": "true"
+		},
+		"dev/workpage": {
+			"layout": "dev",
+			"title": "開発用ページ",
+			"dev": "true"
+		},
+		"dev/ex-html-style": {
+			"layout": "dev",
+			"title": "基本タグスタイル【@extend %style-reset】",
+			"dev": "true"
+		},
+		"dev/ex-form": {
+			"layout": "dev",
+			"title": "フォームテンプレート",
+			"dev": "true"
+		},
 		"index": {
 			"layout": "home",
 			"title": "ホーム",

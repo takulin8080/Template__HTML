@@ -258,8 +258,13 @@ gulp.task('page', function() {
 		data['path'] = ejsCommon(hierarchy);
 		data['ejspath'] = ejsPath(parentArray);
 		data['parent'] = ejsParent(parentArray);
-		data['project'] = jsonData.project;
 		data['dev'] = dev;
+		var projectData = jsonData;
+		delete projectData['page'];
+		delete projectData['fileSetup'];
+		delete projectData['layout'];
+		delete projectData['module'];
+		data['data'] = projectData;
 		Object.assign(data, pages[filename]);
 		data = pagedataCheck(data, filename);
 		return data;

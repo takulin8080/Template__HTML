@@ -26,15 +26,15 @@ var ejspath = '../';
 					<% }}) %>
 					<% parent.reverse(); %>
 				<% } %>
-				<%- project.title %>
+				<%- data.project.title %>
 			</title>
 			<% if( description ){ %>
 				<meta name="description" content="<%- description %>">
 			<% } else { %>
-				<meta name="description" content="<%- project.description %>">
+				<meta name="description" content="<%- data.project.description %>">
 			<% } %>
-			<% if( project.author ){ %>
-				<meta name="author" content="<%- project.author %>"/>
+			<% if( data.project.author ){ %>
+				<meta name="author" content="<%- data.project.author %>"/>
 			<% } %>
 			<% if(dev){ %>
 				<link rel="stylesheet" href="<%- path.css %>vendor.css">
