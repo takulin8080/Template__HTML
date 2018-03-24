@@ -36,8 +36,8 @@ var filepath = {
 		watch: ['src/_data/**/*.json']
 	},
 	ejs: {
-		src: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs'],
-		releaseSrc: ['src/page/**/*.ejs', '!src/page/_**/*', '!src/page/**/_*.ejs', '!src/page/dev/**/*'],
+		src: ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs'],
+		releaseSrc: ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs', '!src/ejs/dev/**/*'],
 		watch: ['src/_data.json', 'src/**/*.ejs']
 	},
 	font: {
@@ -100,7 +100,7 @@ gulp.task('ejs', function(cb) {
 // fileSetup
 // -----------------------------------------------
 gulp.task('fileSetup', function() {
-	var ejsDst = filepath.dst.src + 'page/';
+	var ejsDst = filepath.dst.src + 'ejs/';
 	var sassDst = filepath.dst.src + filepath.common.sass;
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
@@ -247,7 +247,7 @@ gulp.task('page', function() {
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
-		var filename = file.path.replace(/.*\/page\/(.*)\.ejs/, '$1');
+		var filename = file.path.replace(/.*\/ejs\/(.*)\.ejs/, '$1');
 		var parentArray = filename.split('/');
 		var hierarchy = ejsHierarchy(parentArray);
 		var data = [];
