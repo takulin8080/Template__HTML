@@ -69,7 +69,9 @@ var ejspath = '../';
 			<!-- script -->
 			<script src="<%- path.js %>app.js"></script>
 			<!-- /script -->
-			<%- include(ejspath + 'dev/_link') %>
+			<% if(dev){ %>
+				<%- include(ejspath + 'dev/_link') %>
+			<% } %>
 		</body>
 	</html>
 <% } %>

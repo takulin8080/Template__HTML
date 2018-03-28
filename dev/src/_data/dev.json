@@ -2,23 +2,19 @@
 	"page": {
 		"dev/sitemap": {
 			"layout": "dev",
-			"title": "サイトマップ[進行状況]",
-			"dev": "true"
+			"title": "サイトマップ[進行状況]"
 		},
 		"dev/workpage": {
 			"layout": "dev",
-			"title": "開発用ページ",
-			"dev": "true"
+			"title": "開発用ページ"
 		},
 		"dev/ex-html-style": {
 			"layout": "dev",
-			"title": "基本タグスタイル【@extend %style-reset】",
-			"dev": "true"
+			"title": "基本タグスタイル【@extend %style-reset】"
 		},
 		"dev/ex-form": {
 			"layout": "dev",
-			"title": "フォームテンプレート",
-			"dev": "true"
+			"title": "フォームテンプレート"
 		}
 	}
 }
