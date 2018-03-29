@@ -511,16 +511,6 @@ gulp.task('js', function() {
 		},
 		module: {
 			rules: [{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				options: {
-					presets: [
-						['env', {
-							'modules': false
-						}]
-					]
-				}
-			}, {
 				test: /\.css$/,
 				use: 'css-loader'
 			}, {
