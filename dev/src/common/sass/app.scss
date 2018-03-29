@@ -1,16 +1,14 @@
 @charset 'UTF-8';
 $fa-font-path: '../font';
 @import 'font-awesome';
-@import 'node_modules/slick-carousel/slick/slick.scss';
-@import 'node_modules/slick-carousel/slick/slick-theme.scss';
 @import 'foundation/base/reset';
 @import 'foundation/variable';
 @import 'foundation/function/**';
 @import 'foundation/mixin/**';
 @import 'foundation/extend/**';
-@import 'foundation/vendor-extension/**';
 @import 'foundation/base/setup';
 @import 'foundation/base/form';
+@import 'vendor/**';
 @import 'component/**';
 @import 'layout/**';
 @import 'module/**';
