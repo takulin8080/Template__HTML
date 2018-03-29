@@ -6,11 +6,9 @@
 	"repository": "project",
 	"license": "ISC",
 	"devDependencies": {
-		"ajv": "^6.3.0",
+		"ajv": "^6.4.0",
 		"browser-sync": "^2.23.6",
-		"css-loader": "^0.28.11",
 		"del": "^3.0.0",
-		"file-loader": "^1.1.11",
 		"gulp": "^3.9.1",
 		"gulp-autoprefixer": "^5.0.0",
 		"gulp-changed": "^3.2.0",
@@ -22,12 +20,12 @@
 		"gulp-ignore": "^2.0.2",
 		"gulp-imagemin": "^4.1.0",
 		"gulp-load-plugins": "^1.5.0",
-		"gulp-merge-json": "^1.2.1",
+		"gulp-merge-json": "^1.2.2",
 		"gulp-notify": "^3.2.0",
 		"gulp-plumber": "^1.2.0",
 		"gulp-prettify": "^0.5.0",
 		"gulp-rename": "^1.2.2",
-		"gulp-sass": "^3.2.0",
+		"gulp-sass": "^3.2.1",
 		"gulp-sass-glob": "^1.0.8",
 		"gulp-sourcemaps": "^2.6.4",
 		"gulp-svgmin": "^1.2.4",
@@ -35,17 +33,16 @@
 		"html-loader": "^0.5.5",
 		"mkdirp": "^0.5.1",
 		"node-font-awesome": "^1.0.2",
-		"npm": "^5.7.1",
+		"npm": "^5.8.0",
 		"path": "^0.12.7",
 		"run-sequence": "^2.2.1",
-		"style-loader": "^0.20.3",
-		"url-loader": "^1.0.1",
-		"webpack": "^4.1.1",
-		"webpack-stream": "^4.0.2"
+		"webpack": "^4.3.0",
+		"webpack-cli": "^2.0.13"
 	},
 	"dependencies": {
 		"jquery": "^3.3.1",
 		"slick-carousel": "^1.8.1",
-		"svgxuse": "^1.2.6"
+		"svgxuse": "^1.2.6",
+		"webpack-stream": "^4.0.3"
 	}
 }
