@@ -1,17 +1,17 @@
 // =================================================================================================
 // plugin
 // =================================================================================================
-const fs = require('fs');
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const mkdirp = require('mkdirp');
-const path = require('path');
-const runSequence = require('run-sequence');
-const webpack = require("webpack");
-const webpackStream = require("webpack-stream");
-const fontAwesome = require('node-font-awesome');
-const $ = require('gulp-load-plugins')();
+var fs = require('fs');
+var browserSync = require('browser-sync');
+var del = require('del');
+var gulp = require('gulp');
+var mkdirp = require('mkdirp');
+var path = require('path');
+var runSequence = require('run-sequence');
+var webpack = require('webpack');
+var webpackStream = require('webpack-stream');
+var fontAwesome = require('node-font-awesome');
+var $ = require('gulp-load-plugins')();
 // =================================================================================================
 // setup
 // =================================================================================================
