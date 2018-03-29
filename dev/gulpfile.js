@@ -431,7 +431,7 @@ gulp.task('cssApp', function() {
 		]
 	})).pipe($.autoprefixer({
 		grid: true
-	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+	})).pipe($.cleanCss()).pipe(gulp.dest(dst));
 });
 gulp.task('cssVendor', function() {
 	var src = filepath.sass.vendorSrc;
@@ -506,6 +506,7 @@ gulp.task('js', function() {
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe(webpackStream({
 		mode: mode,
+		devtool: 'source-map',
 		entry: './' + filepath.dst.src + filepath.common.js + 'app.js',
 		output: {
 			filename: filepath.js.filename
