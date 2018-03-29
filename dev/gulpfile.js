@@ -1,17 +1,17 @@
 // =================================================================================================
 // plugin
 // =================================================================================================
-var fs = require('fs');
-var browserSync = require('browser-sync');
-var del = require('del');
-var gulp = require('gulp');
-var mkdirp = require('mkdirp');
-var path = require('path');
-var runSequence = require('run-sequence');
-var webpack = require('webpack-stream');
-var webpackConfig = require('./webpack.config.js');
-var fontAwesome = require('node-font-awesome');
-var $ = require('gulp-load-plugins')();
+const fs = require('fs');
+const browserSync = require('browser-sync');
+const del = require('del');
+const gulp = require('gulp');
+const mkdirp = require('mkdirp');
+const path = require('path');
+const runSequence = require('run-sequence');
+const webpack = require("webpack");
+const webpackStream = require("webpack-stream");
+const fontAwesome = require('node-font-awesome');
+const $ = require('gulp-load-plugins')();
 // =================================================================================================
 // setup
 // =================================================================================================
@@ -64,7 +64,8 @@ var filepath = {
 	},
 	js: {
 		src: 'src/common/js/*.js',
-		watch: ['src/common/js/**/*.js', 'webpack.config.js']
+		filename: 'bundle.js',
+		watch: ['src/common/js/**/*.js']
 	},
 	img: {
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
@@ -496,9 +497,20 @@ gulp.task('cssDev', function() {
 gulp.task('js', function() {
 	var src = filepath.js.src;
 	var dst = dstDir + filepath.common.js;
+	if(dev) {
+		var mode = 'development'
+	} else {
+		var mode = 'production'
+	}
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe(webpack(webpackConfig)).pipe(gulp.dest(dst));
+	})).pipe(webpackStream({
+		mode: mode,
+		entry: './' + filepath.dst.src + filepath.common.js + 'app.js',
+		output: {
+			filename: filepath.js.filename
+		}
+	}, webpack)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // img
