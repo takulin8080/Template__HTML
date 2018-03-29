@@ -572,7 +572,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 gulp.task('2 ============== RELEASE', function(cb) {
 	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('html', 'font', 'css', 'js', 'img', 'browserSync', cb);
+	runSequence('html', 'font', 'cssApp', 'js', 'img', 'browserSync', cb);
 });
 // =================================================================================================
 // CLEAN
