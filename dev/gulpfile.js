@@ -507,6 +507,25 @@ gulp.task('js', function() {
 		entry: './' + filepath.dst.src + filepath.common.js + 'app.js',
 		output: {
 			filename: filepath.js.filename
+		},
+		module: {
+			rules: [{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				options: {
+					presets: [
+						['env', {
+							'modules': false
+						}]
+					]
+				}
+			}, {
+				test: /\.css$/,
+				use: 'css-loader'
+			}, {
+				test: /\.(eot|svg|woff|ttf|gif)$/,
+				loader: 'url-loader'
+			}]
 		}
 	}, webpack)).pipe(gulp.dest(dst));
 });
@@ -560,11 +579,11 @@ gulp.task('watch', function() {
 	gulp.watch(filepath.json.watch, ['json']);
 	gulp.watch(filepath.ejs.watch, ['ejs']);
 	gulp.watch(filepath.font.watch, ['font']);
-	gulp.watch(filepath.sass.foundationWatch, ['sassFoundation']);
-	gulp.watch(filepath.sass.componentWatch, ['sassComponent']);
-	gulp.watch(filepath.sass.projectWatch, ['sassProject']);
-	gulp.watch(filepath.sass.utilityWatch, ['sassUtility']);
-	gulp.watch(filepath.sass.devWatch, ['sassDev']);
+	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
+	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
+	gulp.watch(filepath.sass.projectWatch, ['cssProject']);
+	gulp.watch(filepath.sass.utilityWatch, ['cssUtility']);
+	gulp.watch(filepath.sass.devWatch, ['cssDev']);
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
 });
