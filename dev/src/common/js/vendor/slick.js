@@ -3,6 +3,5 @@
 // ==============================================================================================
 // require ========================================
 require('slick-carousel');
-$(function() {
-	$('.sample').slick();
-});
+require('slick-carousel/slick/slick.css');
+require('slick-carousel/slick/slick-theme.css');
