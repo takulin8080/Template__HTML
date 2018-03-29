@@ -442,8 +442,6 @@ gulp.task('cssVendor', function() {
 		includePaths: [
 			fontAwesome.scssPath
 		]
-	})).pipe($.autoprefixer({
-		grid: true
 	})).pipe(gulp.dest(dst));
 });
 gulp.task('cssFoundation', function() {
