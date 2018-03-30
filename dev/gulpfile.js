@@ -505,17 +505,25 @@ gulp.task('js', function() {
 	})).pipe(webpackStream({
 		mode: mode,
 		devtool: 'source-map',
+		cache: true,
 		entry: './' + filepath.dst.src + filepath.common.js + 'app.js',
 		output: {
 			filename: filepath.js.filename
 		},
 		module: {
 			rules: [{
-				test: /\.css$/,
-				use: 'css-loader'
+				test: /\.js$/,
+				loader: 'babel-loader',
+				query: {
+					compact: false
+				},
+				exclude: /node_modules/
+			}, {
+				test: /\.(css|scss)$/,
+				use: ['style-loader', 'css-loader', 'sass-loader']
 			}, {
 				test: /\.(eot|svg|woff|ttf|gif)$/,
-				loader: 'url-loader'
+				use: 'url-loader'
 			}]
 		}
 	}, webpack)).pipe(gulp.dest(dst));
