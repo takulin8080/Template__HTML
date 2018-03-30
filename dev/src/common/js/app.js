@@ -18,7 +18,3 @@ import './component/pagescroll';
 // ==============================================================================================
 import './module/movetotop';
 import './module/global-nav';
-import {
-	hello_world
-} from "./test/hello-world";
-hello_world('hello world');
