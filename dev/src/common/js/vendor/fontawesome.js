@@ -2,7 +2,7 @@
 // module/fontawesome
 // ==============================================================================================
 // require ========================================
-require("@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss");
-require("@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss");
-require("@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss");
-require("@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss");
+require("@fortawesome/fontawesome-free-webfonts/css/fontawesome.css");
+require("@fortawesome/fontawesome-free-webfonts/css/fa-regular.css");
+require("@fortawesome/fontawesome-free-webfonts/css/fa-solid.css");
+require("@fortawesome/fontawesome-free-webfonts/css/fa-brands.css");
