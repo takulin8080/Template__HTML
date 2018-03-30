@@ -11,7 +11,7 @@
 			margin-left: -$siteWidth/2;
 			position: fixed;
 			width: $siteWidth;
-			@include fontAwesome('\f106');
+			@include fontawesome('\f106');
 			&:before {
 				background: #000;
 				bottom: 0;
@@ -35,7 +35,7 @@
 		margin-left: -$siteWidth/2;
 		position: fixed;
 		width: $siteWidth;
-		@include fontAwesome('\f106');
+		@include fontawesome('\f106');
 		&:before {
 			background: #000;
 			bottom: 0;

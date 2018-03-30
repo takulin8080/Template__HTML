@@ -1,20 +1,20 @@
 /* ============================================================================================== */
-/* foundation/vendor-extensinon/font-awesome
+/* foundation/vendor-extensinon/fontawesome
 /* ============================================================================================== */
 /*
 font-awesomeの利用。
-`$char`には[fontAwesome](http://fontawesome.io/icons/)アイコンのコード名`例 : \f2b4`を指定。
+`$char`には[fontawesome](http://fontawesome.io/icons/)アイコンのコード名`例 : \f2b4`を指定。
 `$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
 
 ```scss
 exsample {
-	@include fontAwesome($char, $insert);
+	@include fontawesome($char, $insert);
 }
 ```
 */
-@mixin fontAwesome($char, $insert: before) {
+@mixin fontawesome($char, $insert: before) {
 	&:#{$insert} {
-		font-family: FontAwesome;
+		font-family: 'Font Awesome 5 Free', 'Font Awesome 5 regular', 'Font Awesome 5 solid', 'Font Awesome 5 Brands';
 		content: $char;
 	}
 }

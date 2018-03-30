@@ -26,7 +26,7 @@
 			text-decoration: none;
 			opacity: opacity(1);
 		}
-		@include fontAwesome('\f105', 'after');
+		@include fontawesome('\f105', 'after');
 		&:after {
 			margin-left: size(1);
 			margin-right: size(1);

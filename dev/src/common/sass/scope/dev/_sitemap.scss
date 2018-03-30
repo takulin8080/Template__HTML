@@ -20,7 +20,7 @@ body[data-modifier='dev sitemap'] {
 			&[data-modifier~='done'] {
 				background: lighten(color(sign, success), 50%);
 				&:before {
-					@include fontAwesome('\f00c');
+					@include fontawesome('\f00c');
 					color: color(sign, success);
 					float: left;
 					margin-right: size(1);
@@ -29,7 +29,7 @@ body[data-modifier='dev sitemap'] {
 			&[data-modifier~='stop'] {
 				background: lighten(color(sign, attention), 45%);
 				&:before {
-					@include fontAwesome('\f05e');
+					@include fontawesome('\f05e');
 					color: color(sign, attention);
 					float: left;
 					margin-right: size(1);

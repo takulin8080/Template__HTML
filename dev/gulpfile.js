@@ -10,7 +10,6 @@ var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
-var fontAwesome = require('node-font-awesome');
 var $ = require('gulp-load-plugins')();
 // =================================================================================================
 // setup
@@ -369,7 +368,7 @@ var pagedataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['iconDesign', 'icon', 'fontAwesome'], function() {
+gulp.task('font', ['iconDesign', 'icon'], function() {
 	var src = filepath.font.src;
 	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.plumber({
@@ -407,16 +406,6 @@ gulp.task('icon', function() {
 		appendCodepoints: false
 	})).pipe(gulp.dest(dst));
 });
-// -----------------------------------------------
-// fontAwesome
-// -----------------------------------------------
-gulp.task('fontAwesome', function() {
-	var dst = filepath.font.iconDst;
-	var fontAwewome = [
-		fontAwesome.fonts
-	];
-	return gulp.src(fontAwewome).pipe($.changed(dst)).pipe(gulp.dest(dst));
-});
 // =================================================================================================
 // css
 // =================================================================================================
@@ -425,11 +414,7 @@ gulp.task('cssApp', function() {
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass({
-		includePaths: [
-			fontAwesome.scssPath
-		]
-	})).pipe($.autoprefixer({
+	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
 	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
@@ -438,11 +423,7 @@ gulp.task('cssVendor', function() {
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass({
-		includePaths: [
-			fontAwesome.scssPath
-		]
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sassGlob()).pipe($.sass()).pipe(gulp.dest(dst));
 });
 gulp.task('cssFoundation', function() {
 	var src = filepath.sass.foundationSrc;
@@ -520,9 +501,9 @@ gulp.task('js', function() {
 				exclude: /node_modules/
 			}, {
 				test: /\.(css|scss)$/,
-				use: ['style-loader', 'css-loader', 'sass-loader']
+				use: ['style-loader', 'css-loader', 'sass-loader?sourceMap']
 			}, {
-				test: /\.(eot|svg|woff|ttf|gif)$/,
+				test: /\.(eot|svg|woff|woff2|ttf|gif)$/,
 				use: 'url-loader'
 			}]
 		}
