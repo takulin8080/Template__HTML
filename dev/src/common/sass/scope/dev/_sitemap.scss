@@ -6,26 +6,25 @@ body[data-modifier='dev sitemap'] {
 	.dev-progressbar {
 		display: flex;
 		margin-bottom: size(4);
-		border: 3px solid #fff;
 		border-radius: size(3);
-		box-shadow: 0 0 2px rgba(0, 0, 0, .3);
-		overflow: hidden;
+		border: size(1) solid color(gray, 1);
 		&__item {
-			color: #fff;
-			font-size: 8px;
-			padding: 0 size(1);
+			color: rgba(255,255,255, .6);
+			font-size: fontSize(-4);
+			padding: 0 size(2);
 			line-height: size(4);
 			white-space: nowrap;
 			overflow: hidden;
+			font-weight: bold;
 			&[data-modifier~='done'] {
-				background: color(sign, success);
+				background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
 			}
 			&[data-modifier~='undone'] {
-				background: color(gray, 2);
-				color: #000;
+				background: linear-gradient(#fff, color(gray, 5));
+				color: rgba(0,0,0, .5);
 			}
 			&[data-modifier~='stop'] {
-				background: color(sign, attention);
+				background: linear-gradient(color(sign, attention), darken(color(sign, attention), 8%));
 			}
 		}
 	}
