@@ -2,25 +2,47 @@
 /* scope/dev/sitemap
 /* ============================================================================================== */
 body[data-modifier='dev sitemap'] {
-	/* dev-sitemap ======================================== */
-	.dev-sitemap {
+	/* dev-progressbar ======================================== */
+	.dev-progressbar {
+		display: flex;
 		margin-bottom: size(4);
-		&__items {
-			display: none;
-			&[data-is-active~='true'] {
-				display: block;
+		border: 3px solid #fff;
+		border-radius: size(3);
+		box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+		overflow: hidden;
+		&__item {
+			color: #fff;
+			font-size: 8px;
+			padding: 0 size(1);
+			line-height: size(4);
+			white-space: nowrap;
+			overflow: hidden;
+			&[data-modifier~='done'] {
+				background: color(sign, success);
+			}
+			&[data-modifier~='undone'] {
+				background: color(gray, 2);
+				color: #000;
+			}
+			&[data-modifier~='stop'] {
+				background: color(sign, attention);
 			}
 		}
+	}
+	/* dev-sitemap ======================================== */
+	.dev-sitemap {
+		margin: 0 size(2);
+		&__items {}
 		&__item {
 			background: color(gray, 1);
-			border-bottom: 1px solid color(gray, 3);
+			border-bottom: 1px solid color(gray, 4);
 			color: #000;
 			margin-bottom: size(1);
 			padding: size(1);
 			&[data-modifier~='done'] {
 				background: lighten(color(sign, success), 50%);
+				@include fontawesome('\f00c');
 				&:before {
-					@include fontawesome('\f00c');
 					color: color(sign, success);
 					float: left;
 					margin-right: size(1);
@@ -28,8 +50,8 @@ body[data-modifier='dev sitemap'] {
 			}
 			&[data-modifier~='stop'] {
 				background: lighten(color(sign, attention), 45%);
+				@include fontawesome('\f05e');
 				&:before {
-					@include fontawesome('\f05e');
 					color: color(sign, attention);
 					float: left;
 					margin-right: size(1);
@@ -49,31 +71,6 @@ body[data-modifier='dev sitemap'] {
 			}
 			&:after {
 				content: ' ]';
-			}
-		}
-	}
-	/* dev-progressbar ======================================== */
-	.dev-progressbar {
-		display: flex;
-		margin-bottom: size(2);
-		&__item {
-			color: #fff;
-			font-size: 8px;
-			padding: 0 size(1);
-			line-height: size(4);
-			white-space: nowrap;
-			overflow: hidden;
-			&[data-modifier~='done'] {
-				background: color(sign, success);
-			}
-			&[data-modifier~='stop'] {
-				background: color(sign, attention);
-			}
-			&[data-modifier~='none'] {
-				background: color(gray, 7);
-			}
-			&[data-modifier~='undone'] {
-				background: color(sign, caution);
 			}
 		}
 	}

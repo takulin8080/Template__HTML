@@ -10,7 +10,7 @@ dev/sitemap
 	pageStopNum = 0;
 	pageNoneNum = 0;
 	Object.keys(page).forEach(function(value, key){
-		if (page[value].progress != 'dev') {
+		if (value.indexOf('dev')) {
 			pageAllNum++;
 			if(page[value].progress == 'done') {
 				pageDoneNum++;
@@ -34,16 +34,15 @@ dev/sitemap
 <!-- dev-progressbar -->
 <div class="dev-progressbar">
 	<div class="dev-progressbar__item" data-modifier="done" <% if( pageDoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageDoneRatio %>;" <% } %>><%- pageDoneRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="undone" <% if( pageUndoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageUndoneRatio %>;" <% } %>><%- pageUndoneRatio %></div>
 	<div class="dev-progressbar__item" data-modifier="stop" <% if( pageStopNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageStopRatio %>;" <% } %>><%- pageStopRatio %></div>
-	<div class="dev-progressbar__item" data-modifier="none" <% if( pageNoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageNoneRatio %>;" <% } %>><%- pageNoneRatio %></div>
+	<div class="dev-progressbar__item" data-modifier="undone" <% if( pageUndoneNum == 0 ){ %> style="display: none;" <% } else { %> style="width: <%- pageUndoneRatio %>;" <% } %>><%- pageUndoneRatio %></div>
 </div>
 <!-- /dev-progressbar -->
 <!-- dev-sitemap -->
 <div class="dev-sitemap">
-	<ul class="dev-sitemap__items" data-is-active="true">
+	<ul class="dev-sitemap__items">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (page[value].progress != 'dev') { %>
+			<% if (value.indexOf('dev')) { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>
