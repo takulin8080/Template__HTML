@@ -1,21 +1,24 @@
 // ==============================================================================================
 // vendor
 // ==============================================================================================
-$ = require('jquery');
-require('./vendor/slick');
-require('./vendor/fontawesome');
+import 'svgxuse';
+import './vendor/slick';
+import './vendor/fontawesome';
 // ==============================================================================================
 // component
 // ==============================================================================================
-require('./component/svgxuse');
-require('./component/active');
-require('./component/modal');
-require('./component/drawer');
-require('./component/maxlength');
-require('./component/hoverimg');
-require('./component/pagescroll');
+import './component/active';
+import './component/modal';
+import './component/drawer';
+import './component/maxlength';
+import './component/hoverimg';
+import './component/pagescroll';
 // ==============================================================================================
 // module
 // ==============================================================================================
-require('./module/movetotop');
-require('./module/global-nav');
+import './module/movetotop';
+import './module/global-nav';
+import {
+	hello_world
+} from "./test/hello-world";
+hello_world('hello world');

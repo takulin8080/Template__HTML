@@ -2,13 +2,14 @@
 // module/global-nav
 // ==============================================================================================
 // require ========================================
+$ = require('jquery');
 var overlay = require('../component/overlay');
 // variable ========================================
 var trg = $('.global-nav-trg');
 var tar = $('.global-nav');
 var catTrg = $('.global-nav-cat__title');
 var catTar = $('.global-nav-cat__items');
-var header = $('body > header');
+var header = $('.header');
 var hdrOffset = header.offset().top;
 var hdrHeight = header.height();
 var winWidth = $(window).width();
