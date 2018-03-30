@@ -1,5 +1,6 @@
 {
 	"module": [
+		"dev/link",
 		"header",
 		"footer",
 		"sub-contents",

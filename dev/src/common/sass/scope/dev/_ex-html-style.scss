@@ -2,5 +2,8 @@
 /* scope/dev/ex-html-style
 /* ============================================================================================== */
 body[data-modifier='dev ex-html-style'] {
-	@extend %styleSetup;
+	/* dev-contents ======================================== */
+	.dev-contents {
+		@extend %styleSetup;
+	}
 }

@@ -1,0 +1,48 @@
+/* ============================================================================================== */
+/* module/dev/link
+/* ============================================================================================== */
+.dev-link {
+	$this: &;
+	position: absolute;
+	left: size(2);
+	top: size(2);
+	&__items {}
+	&__item {
+		margin-bottom: size(1);
+	}
+	&__link {
+		&:hover {
+			text-decoration: none;
+		}
+		&:before {
+			display: block;
+			background: color(gray, 2);
+			color: color(gray, 9);
+			border-radius: 100%;
+			padding: size(1);
+			line-height: 1;
+		}
+	}
+	#{$this}__item {
+		&[data-modifier~='index'] {
+			#{$this}__link {
+				@include fontawesome('\f015');
+			}
+		}
+		&[data-modifier~='dev/sitemap'] {
+			#{$this}__link {
+				@include fontawesome('\f0e8');
+			}
+		}
+		&[data-modifier~='dev/workpage'] {
+			#{$this}__link {
+				@include fontawesome('\f303');
+			}
+		}
+		&[data-modifier~='dev/ex-html-style'] {
+			#{$this}__link {
+				@include fontawesome('\f121');
+			}
+		}
+	}
+}
