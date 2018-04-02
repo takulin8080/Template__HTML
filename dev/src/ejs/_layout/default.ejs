@@ -66,12 +66,12 @@ var ejspath = '../';
 			</div>
 			<!-- /contents -->
 			<%- include(ejspath + '_module/footer') %>
-			<!-- script -->
-			<script src="<%- path.js %>bundle.js"></script>
-			<!-- /script -->
 			<% if(dev){ %>
 				<%- include(ejspath + '_module/dev/link') %>
 			<% } %>
+			<!-- script -->
+			<script src="<%- path.js %>bundle.js"></script>
+			<!-- /script -->
 		</body>
 	</html>
 <% } %>

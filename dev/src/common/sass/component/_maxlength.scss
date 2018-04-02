@@ -24,4 +24,9 @@
 			content: attr(data-maxlength-endtext);
 		}
 	}
+	&.maxlength-endtext-none {
+		&:after {
+			display: none;
+		}
+	}
 }

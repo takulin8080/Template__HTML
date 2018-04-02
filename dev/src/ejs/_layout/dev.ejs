@@ -39,10 +39,10 @@ var ejspath = '../';
 <% if( modifier == 'after' ){ %>
 			</main>
 			<!-- /dev-contents -->
+			<%- include(ejspath + '_module/dev/link') %>
 			<!-- script -->
 			<script src="<%- path.js %>bundle.js"></script>
 			<!-- /script -->
-			<%- include(ejspath + '_module/dev/link') %>
 		</body>
 	</html>
 <% } %>
