@@ -13,7 +13,7 @@ const config = {
 			exclude: /node_modules/
 		}, {
 			test: /\.(css|scss)$/,
-			use: ['style-loader', 'css-loader', 'sass-loader?sourceMap']
+			use: ['style-loader', 'css-loader', 'sass-loader?sourceMap!import-glob-loader']
 		}, {
 			test: /\.(eot|svg|woff|woff2|ttf|gif)$/,
 			use: 'url-loader'
