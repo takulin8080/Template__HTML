@@ -4,10 +4,10 @@
 class maxlength {
 	constructor(e) {
 		this.element = document.querySelectorAll(e);
-		this.substr();
+		this.func();
 	}
-	substr() {
-		this.element.forEach(function(e) {
+	func() {
+		this.element.forEach(e => {
 			const maxlength = e.getAttribute('data-maxlength');
 			e.innerHTML = e.innerHTML.substr(0, maxlength);
 			if(maxlength > e.innerHTML.length) {
@@ -17,4 +17,4 @@ class maxlength {
 	}
 }
 /* ======================================== */
-const dataMaxLength = new maxlength('[data-maxlength]');
+new maxlength('[data-maxlength]');
