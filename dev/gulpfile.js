@@ -10,6 +10,8 @@ var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
+var webpackDevConfig = require('./webpack.dev.js');
+var webpackProdConfig = require('./webpack.prod.js');
 var $ = require('gulp-load-plugins')();
 // =================================================================================================
 // setup
@@ -477,37 +479,13 @@ gulp.task('js', function() {
 	var src = filepath.js.src;
 	var dst = dstDir + filepath.common.js;
 	if(dev) {
-		var mode = 'development'
+		var webpackConfig = webpackDevConfig;
 	} else {
-		var mode = 'production'
+		var webpackConfig = webpackProdConfig;
 	}
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe(webpackStream({
-		mode: mode,
-		devtool: 'source-map',
-		cache: true,
-		entry: './' + filepath.dst.src + filepath.common.js + 'app.js',
-		output: {
-			filename: filepath.js.filename
-		},
-		module: {
-			rules: [{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				query: {
-					compact: false
-				},
-				exclude: /node_modules/
-			}, {
-				test: /\.(css|scss)$/,
-				use: ['style-loader', 'css-loader', 'sass-loader?sourceMap']
-			}, {
-				test: /\.(eot|svg|woff|woff2|ttf|gif)$/,
-				use: 'url-loader'
-			}]
-		}
-	}, webpack)).pipe(gulp.dest(dst));
+	})).pipe(webpackStream(webpackConfig, webpack)).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // img
