@@ -2,11 +2,8 @@
 // component/maxlength
 // ==============================================================================================
 class maxlength {
-	constructor(e) {
-		this.element = document.querySelectorAll(e);
-		this.func();
-	}
-	func() {
+	constructor() {
+		this.element = document.querySelectorAll('[data-maxlength]');
 		this.element.forEach(e => {
 			const maxlength = e.getAttribute('data-maxlength');
 			e.innerHTML = e.innerHTML.substr(0, maxlength);
@@ -17,4 +14,4 @@ class maxlength {
 	}
 }
 /* ======================================== */
-new maxlength('[data-maxlength]');
+new maxlength();
