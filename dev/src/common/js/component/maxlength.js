@@ -16,4 +16,5 @@ class maxlength {
 		});
 	}
 }
+/* ======================================== */
 const dataMaxLength = new maxlength('[data-maxlength]');
