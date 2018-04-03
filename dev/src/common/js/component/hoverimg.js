@@ -1,10 +1,10 @@
 // ==============================================================================================
 // component/hoverimg
 // ==============================================================================================
-class hoverimg {
+class Hoverimg {
 	constructor() {
-		this.element = document.querySelectorAll('[data-hoverimg]');
-		this.element.forEach(e => {
+		this.e = document.querySelectorAll('[data-hoverimg]');
+		this.e.forEach(e => {
 			e.addEventListener('mouseover', this.mouseover);
 			e.addEventListener('mouseout', this.mouseout);
 		});
@@ -19,4 +19,4 @@ class hoverimg {
 	}
 }
 /* ======================================== */
-new hoverimg();
+new Hoverimg();

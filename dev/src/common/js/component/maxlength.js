@@ -1,7 +1,7 @@
 // ==============================================================================================
 // component/maxlength
 // ==============================================================================================
-class maxlength {
+class Maxlength {
 	constructor() {
 		this.element = document.querySelectorAll('[data-maxlength]');
 		this.element.forEach(e => {
@@ -14,4 +14,4 @@ class maxlength {
 	}
 }
 /* ======================================== */
-new maxlength();
+new Maxlength();
