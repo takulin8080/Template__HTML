@@ -1,0 +1,28 @@
+<%#
+=====================================================================================================
+dev-link
+=====================================================================================================
+%>
+<%
+if (typeof modifier === 'undefined') { var modifier = ''; };
+var ejspath = '../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!-- dev-link -->
+<% if(dev){ %>
+	<div class="dev-link">
+		<ul class="dev-link__items">
+			<li class="dev-link__item" data-modifier="index">
+				<a class="dev-link__link" title="<%- page['index'].title %>" href="<%- page['index'].url %>"></a>
+			</li>
+			<% Object.keys(page).forEach(function(value, key){ %>
+				<% if(!value.indexOf('dev') & value != 'dev/ex-form') { %>
+					<li class="dev-link__item" data-modifier=<%- value %>>
+						<a class="dev-link__link" title="<%- page[value].title %>" href="<%- page[value].url %>"></a>
+					</li>
+				<% } %>
+			<% }) %>
+		</ul>
+	</div>
+<% } %>
+<!-- /dev-link -->

@@ -1,0 +1,139 @@
+/* ============================================================================================== */
+/* foundation/base/form
+/* ============================================================================================== */
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+	box-sizing: border-box;
+	@include fontSize(1);
+	border: 1px solid color(gray, 6);
+	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
+	padding: size(.25) size(.5);
+	background-color: color(gray, 1);
+	color: color(text, dark);
+	margin-right: size(.5);
+	max-width: 30em;
+}
+textarea {
+	box-sizing: border-box;
+	@include fontSize(1);
+	border: 1px solid color(gray, 6);
+	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
+	padding: size(1);
+	background-color: color(gray, 1);
+	color: color(text, dark);
+	width: 100%;
+	max-width: 30em;
+	height: 10em;
+}
+select {
+	@include fontSize(1);
+}
+input[type='radio'] {
+	margin-left: size(1);
+	margin-right: size(.5);
+}
+input[type='checkbox'] {
+	margin-left: size(1);
+	margin-right: size(.5);
+}
+input[type='submit'],
+button {
+	@include fontSize(1);
+	cursor: pointer;
+}
+label {
+	display: inline-block;
+}
+/* formbox ======================================== */
+.formbox {
+	margin-bottom: size(4);
+	&__items {
+		margin-left: 0 !important;
+	}
+	&__title {
+		margin-bottom: size(1);
+		color: color(text, light);
+		font-weight: bold;
+		&[data-modifier~='req'] {
+			&:after {
+				content: '※';
+				font-size: fontSize(-1);
+				color: color(sign, caution);
+				font-weight: normal;
+				.formbox[data-modifier~='confirm'] & {
+					display: none;
+				}
+			};
+		}
+	}
+	&__desc {}
+	@if $responsive {
+		&__items {}
+		&__title {}
+		&__desc {
+			padding-bottom: size(2);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+		}
+		@include respondTo(mdAndOver) {
+			&__items {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			&__title {
+				width: 20rem;
+				padding-bottom: size(2);
+				margin-bottom: size(2);
+				border-bottom: 1px solid color(gray, 3);
+				text-align: right;
+			}
+			&__desc {
+				width: calc(100% - 20rem);
+				padding-left: size(4);
+				padding-bottom: size(2);
+				margin-bottom: size(2);
+				border-bottom: 1px solid color(gray, 3);
+			}
+		}
+	} @else {
+		&__items {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		&__title {
+			width: 20rem;
+			padding-bottom: size(2);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+			text-align: right;
+		}
+		&__desc {
+			width: calc(100% - 20rem);
+			padding-bottom: size(2);
+			padding-left: size(4);
+			margin-bottom: size(2);
+			border-bottom: 1px solid color(gray, 3);
+		}
+	}
+	/* notify ---------------------------------------- */
+	[data-notify] {
+		// カラーは`foundation variable color`スタイルは`component notify`で管理。
+		background: color(gray, 1);
+		padding: size(.5) size(1);
+		margin-bottom: size(1);
+		@include fontSize(-2);
+	}
+	/* note ---------------------------------------- */
+	.note {
+		@extend %styleClear;
+		@include fontSize(-2);
+		margin: size(1) 0;
+	}
+	/* uniq ---------------------------------------- */
+	input[data-modifier~='auto-complete'] {
+		background: color(gray, 1);
+		border: 0;
+		box-shadow: none;
+	}
+}

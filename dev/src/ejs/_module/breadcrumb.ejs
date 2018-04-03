@@ -1,0 +1,28 @@
+<%#
+=====================================================================================================
+module/breadcrumb
+=====================================================================================================
+%>
+<%
+if (typeof modifier === 'undefined') { var modifier = ''; };
+var ejspath = '../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!-- breadcrumb -->
+<div class="breadcrumb">
+	<ul class="breadcrumb__items">
+		<% if(parent){ %>
+			<% parent.forEach(function(value, key){ %>
+				<% if(page[value]) { %>
+					<li class="breadcrumb__item">
+						<a class="breadcrumb__link" href="<%- page[value].url %>"><%- page[value].title %></a>
+					</li>
+				<% } %>
+			<% }) %>
+		<% } %>
+		<li class="breadcrumb__item">
+			<a class="breadcrumb__link"><%- title %></a>
+		</li>
+	</ul>
+</div>
+<!-- /breadcrumb -->

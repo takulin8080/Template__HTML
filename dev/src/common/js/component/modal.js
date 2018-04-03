@@ -2,13 +2,13 @@
 // component/modal
 // ==============================================================================================
 // require ========================================
+$ = require('jquery');
 var overlay = require('../component/overlay');
 // variable ========================================
 var trg = 'data-modal-trg';
 var tar = 'data-modal-tar';
 var active = 'data-is-active';
 // setup ========================================
-$('body').append('<div data-movetotop></div>');
 if($('[' + tar + ']').length) {
 	$('[data-modal-tar]').append('<div data-modal-close>ｆｄｓｆ</div>');
 }

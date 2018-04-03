@@ -1,18 +1,11 @@
 /* ============================================================================================== */
 /* foundation/base/setup
 /* ============================================================================================== */
-/* base ======================================== */
-/*
----
-name: setup
-category: 1.foundation
----
-*/
 html {
 	font-size: 62.5%;
 }
 body {
-	font-family: fontFamily(sansSerif);
+	font-family: fontFamily();
 	@include fontSize(1);
 	color: color(text);
 }
@@ -21,68 +14,13 @@ img {
 	height: auto;
 	vertical-align: middle;
 }
-/* heading ======================================== */
-/*
----
-name: Heading
-category: 0-3.TYPOGRAPHY
----
-
-```html
-<h1>Heading1</h1>
-<h2>Heading2</h2>
-<h3>Heading3</h3>
-<h4>Heading4</h4>
-<h5>Heading5</h5>
-<h6>Heading6</h6>
-```
-*/
-h1 {}
-h2 {}
-h3 {}
-h4 {}
-h5 {}
-h6 {}
-/* paragraph ======================================== */
-/*
----
-name: Paragraph
-category: 0-3.TYPOGRAPHY
----
-
-```html
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-```
-*/
 p {
-	margin: 0 0 1em;
+	margin-bottom: size(2);
 }
-/* Anchor ======================================== */
-/*
----
-name: Anchor
-category: 0-3.TYPOGRAPHY
----
-
-```html
-<p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit...</p>
-```
-*/
 a {
 	color: color(link);
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
 	}
-}
-/* form ======================================== */
-input[type='text'] {
-	border: 1px solid color(gray, 6);
-	box-shadow: boxShadow(inset);
-	padding: size(.5);
-}
-textarea {
-	border: 1px solid color(gray, 6);
-	box-shadow: boxShadow(inset);
-	padding: size(.5);
 }

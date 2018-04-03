@@ -2,18 +2,14 @@
 /* foundation/mixin/drawer
 /* ============================================================================================== */
 /*
----
-name: drawer
-category: 1.foundation/mixin
-tag:
-- mixin
----
 画面外からスライド表示するコンテンツを生成。
-- `$pos` : `top`,`right`,`bottom`,`right`から選択。
 - `data-is-active~='boolean`で操作。
 
 ```scss
-@include drawer($pos);
+@include drawer(top) { 上からスライド表示};
+@include drawer(right) { 右からスライド表示};
+@include drawer(bottom) { 下からスライド表示};
+@include drawer(left) { 左からスライド表示};
 ```
 */
 @mixin drawer($pos: left) {
@@ -21,7 +17,7 @@ tag:
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: fixed;
-	transition: all 0.4s;
+	transition: all transitionTime(1);
 	z-index: 3;
 	@if $pos == left {
 		left: -100vw;
