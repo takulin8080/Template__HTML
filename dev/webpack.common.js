@@ -18,6 +18,9 @@ const config = {
 			test: /\.(eot|svg|woff|woff2|ttf|gif)$/,
 			use: 'url-loader'
 		}]
+	},
+	performance: {
+		hints: false
 	}
 };
 module.exports = config;
