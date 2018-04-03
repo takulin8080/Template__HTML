@@ -2,18 +2,13 @@
 /* foundation/function/font-family
 /* ============================================================================================== */
 /*
----
-name: fontFamily
-category: 1.foundation/function
----
-`font-family`の出力。`foundation $fontFamily`で設定。
+font-familyの出力。
+`foundation/variable $fontFamily`で設定。
 
 ```scss
-contents {
-	font-family: fontFamily($name);
-}
+fontFamily($num);
 ```
 */
-@function fontFamily($name) {
-	@return map-get($fontFamily, $name);
+@function fontFamily($key: default) {
+	@return map-get($fontFamily, $key);
 }

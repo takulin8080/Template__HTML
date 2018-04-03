@@ -2,20 +2,13 @@
 /* component/button
 /* ============================================================================================== */
 /*
----
-name: button
-category: 2.component
-tag:
-- data属性
----
+ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理
 
 ```html
-<button data-button="red"></button>
-
+<button data-button="sample">sample</button>
 <div data-buttons>
-	<button data-button="red"></button>
-	<button data-button="blue"></button>
-	<button data-button="green"></button>
+	<button data-button="sample">sample</button>
+	<button data-button="sample">sample</button>
 </div>
 ```
 */
@@ -25,20 +18,19 @@ tag:
 	border-radius: size(.5);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
-	background: linear-gradient(color(gray, 1), darken(color(gray, 1), 5%));
+	background: linear-gradient(color(gray, 1), color(gray, 3));
 	color: lighten(#000, 25%);
-	box-shadow: boxShadow();
+	box-shadow: boxShadow(1);
 	display: inline-block;
 	text-decoration: none;
 	line-height: 1;
 	&:hover {
+		background: color(gray, 2);
 		text-decoration: none;
 	}
 	&:active {
-		background: darken(color(gray, 1), 2%);
+		background: color(gray, 2);
 		box-shadow: none;
-		opacity: 1;
-		box-shadow: boxShadow(inset);
 	}
 	/* size ======================================== */
 	&[data-button~='sm'] {
@@ -47,36 +39,22 @@ tag:
 	}
 	&[data-button~='md'] {}
 	&[data-button~='lg'] {
-		font-size: fontSize(2);
+		font-size: fontSize(1);
 		padding: size(1.5) size(5);
 	}
-	/* color ======================================== */
-	&[data-button~='info'] {
-		background: linear-gradient(color(sign, info), darken(color(sign, info), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, info), 5%);
-		}
-	}
-	&[data-button~='success'] {
-		background: linear-gradient(color(sign, success), darken(color(sign, success), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, success), 5%);
-		}
-	}
-	&[data-button~='warning'] {
-		background: linear-gradient(color(sign, warning), darken(color(sign, warning), 5%));
-		color: rgba(#fff, 1);
-		&:active {
-			background: darken(color(sign, warning), 5%);
-		}
-	}
-	&[data-button~='danger'] {
-		background: linear-gradient(color(sign, danger), darken(color(sign, danger), 10%));
-		color: rgba(#fff, .9);
-		&:active {
-			background: darken(color(sign, danger), 10%);
+	/* sign ======================================== */
+	@each $sign, $signs in $color {
+		@each $signType, $signColor in $signs {
+			&[data-button~='#{$signType}'] {
+				background: linear-gradient($signColor, darken($signColor, 10%));
+				color: rgba(#fff, .9);
+				&:hover {
+					background: darken($signColor, 5%);
+				}
+				&:active {
+					background: darken($signColor, 7%);
+				}
+			}
 		}
 	}
 	/* uniq ======================================== */
@@ -90,6 +68,7 @@ tag:
 /* buttons ======================================== */
 [data-buttons] {
 	text-align: center;
+	margin: size(2) 0;
 	[data-button] {
 		margin: 0 size(.5) size(2);
 		&[data-button~='sm'] {}

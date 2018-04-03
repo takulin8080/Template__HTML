@@ -1,12 +1,22 @@
 // ==============================================================================================
 // component/maxlength
 // ==============================================================================================
-// variable ========================================
-var trgName = 'data-maxlength';
-// function ========================================
-$('[' + trgName + ']').each(function() {
-	var num = $(this).attr(trgName);
-	if($(this).text().length > num) {
-		$(this).text($(this).text().substr(0, num));
+class Maxlength {
+	constructor(name) {
+		this.name = name;
+		this.elm = document.querySelectorAll('[' + this.name + ']');
+		if(!this.elm) return;
+		this.set();
 	}
-});
+	set() {
+		this.elm.forEach(e => {
+			const maxlength = e.getAttribute(this.name);
+			e.innerHTML = e.innerHTML.substr(0, maxlength);
+			if(maxlength > e.innerHTML.length) {
+				e.setAttribute(this.name, 'inrange');
+			}
+		});
+	}
+}
+/* ======================================== */
+new Maxlength('data-maxlength');

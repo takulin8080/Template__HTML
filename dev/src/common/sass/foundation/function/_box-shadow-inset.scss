@@ -1,0 +1,14 @@
+/* ============================================================================================== */
+/* foundation/function/box-shadow-inset
+/* ============================================================================================== */
+/*
+box-shadow(inset)値の出力。
+`foundation/variable $boxShadowInset`で設定。
+
+```scss
+boxShadowInset($num);
+```
+*/
+@function boxShadowInset($key: default) {
+	@return map-get($boxShadowInset, $key);
+}

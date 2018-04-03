@@ -1,13 +1,6 @@
 /* ============================================================================================== */
 /* module/movetotop
 /* ============================================================================================== */
-/*
----
-name: movetotop
-category: 4.module
----
-`js`にて自動生成。`module movetotop`にてスタイル変更。
-*/
 @if responsive {
 	@include respondTo(lg) {
 		[data-movetotop] {
@@ -18,7 +11,7 @@ category: 4.module
 			margin-left: -$siteWidth/2;
 			position: fixed;
 			width: $siteWidth;
-			@include fontAwesome('\f106');
+			@include fontawesome('\f106');
 			&:before {
 				background: #000;
 				bottom: 0;
@@ -42,7 +35,7 @@ category: 4.module
 		margin-left: -$siteWidth/2;
 		position: fixed;
 		width: $siteWidth;
-		@include fontAwesome('\f106');
+		@include fontawesome('\f106');
 		&:before {
 			background: #000;
 			bottom: 0;

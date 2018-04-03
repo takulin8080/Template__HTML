@@ -2,6 +2,7 @@
 // component/drawer
 // ==============================================================================================
 // require ========================================
+$ = require('jquery');
 var overlay = require('../component/overlay');
 // variable ========================================
 var trg = 'data-drawer-trg';

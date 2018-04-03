@@ -1,0 +1,33 @@
+/* ============================================================================================== */
+/* component/notify
+/* ============================================================================================== */
+/*
+通知ボックス`data-notify`の管理
+`formbox__desc`の中で使用した場合のスタイルは`foundation base form`で管理。
+
+```html
+<div data-notify="success">success</div>
+<div data-notify="success">
+	<p>Lorem ipsum dolor sit amet</p>
+</div>
+```
+*/
+[data-notify] {
+	@extend %styleSetup;
+	padding: size(2) size(2) 0;
+	margin-bottom: size(2);
+	background: color(gray, 1);
+	color: color(text, light);
+	overflow: auto;
+	/* sign ======================================== */
+	@mixin color($sign, $bgLighten) {
+		&[data-notify="#{$sign}"] {
+			color: color(sign, $sign);
+			background-color: lighten(color(sign, $sign), $bgLighten);
+		}
+	}
+	@include color(info, 44%);
+	@include color(success, 52%);
+	@include color(attention, 46%);
+	@include color(caution, 41%);
+}

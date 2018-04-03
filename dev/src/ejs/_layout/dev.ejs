@@ -1,0 +1,48 @@
+<%#
+=====================================================================================================
+layout/dev
+=====================================================================================================
+%>
+<%
+var ejspath = '../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%# before ======================================== %>
+<% if( modifier == 'before' ){ %>
+	<!DOCTYPE html>
+	<html lang="ja">
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="robots" content="noindex">
+			<title>
+				<%- title %>
+				|
+				<%- data.site.title %>
+			</title>
+			<% if( data.site.author ){ %>
+				<meta name="author" content="<%- data.site.author %>"/>
+			<% } %>
+			<link rel="stylesheet" href="<%- path.css %>vendor.css">
+			<link rel="stylesheet" href="<%- path.css %>foundation.css">
+			<link rel="stylesheet" href="<%- path.css %>component.css">
+			<link rel="stylesheet" href="<%- path.css %>project.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+			<link rel="stylesheet" href="<%- path.css %>dev.css">
+		</head>
+		<body data-modifier="<%- pageModifier %>">
+			<!-- dev-contents -->
+			<main class="dev-contents">
+				<h1 class="dev-contents__title"><%- title %></h1>
+<% } %>
+<%# after ======================================== %>
+<% if( modifier == 'after' ){ %>
+			</main>
+			<!-- /dev-contents -->
+			<%- include(ejspath + '_module/dev-link') %>
+			<!-- script -->
+			<script src="<%- path.js %>bundle.js"></script>
+			<!-- /script -->
+		</body>
+	</html>
+<% } %>

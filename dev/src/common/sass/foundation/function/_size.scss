@@ -2,19 +2,15 @@
 /* foundation/function/size
 /* ============================================================================================== */
 /*
----
-name: size
-category: 1.foundation/function
----
-`margin`, `width`, `line-height`など、基本的にサイズの指定には`size($num)`を利用する。`size(num)`の引数は`-1`などの負の値や`.5`などの小数を指定することも可能。ベースになるサイズは`foundation $size`で設定。
+`foundation/variable $size`を基準にしたサイズの出力。
+`margin`, `width`, `line-height`など、あらゆるサイズの指定に利用する。
+`size(num)`の引数は`-1`などの負の値や`.5`などの小数を指定することも可能。
 
 ```scss
-contents {
-	margin: size(2);
-}
+size($num);
 ```
 */
-@function size($size: 1) {
-	$sizeSet: $baseSize * $size;
+@function size($num: 1) {
+	$sizeSet: $baseSize * $num;
 	@return $sizeSet;
 }

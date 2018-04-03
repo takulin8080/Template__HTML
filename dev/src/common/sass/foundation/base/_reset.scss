@@ -1,10 +1,6 @@
 /* ============================================================================================== */
 /* foundation/base/reset
 /* ============================================================================================== */
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 a,
 abbr,
 acronym,
@@ -92,8 +88,10 @@ video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	box-sizing: border-box;
 }
-/* HTML5 display-role reset for older browsers */
+/*  HTML5 display-role reset for older browsers
+*/
 article,
 aside,
 details,
@@ -102,10 +100,12 @@ figure,
 footer,
 header,
 hgroup,
+main,
 menu,
 nav,
 section {
 	display: block;
+	box-sizing: border-box;
 }
 body {
 	line-height: 1;
