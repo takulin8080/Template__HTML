@@ -8,21 +8,22 @@ body {}
 .contents {
 	&__inner {
 		@extend %wrap;
+		display: grid;
+		grid-gap: size(2);
 		@include respondTo(lg) {
-			display: grid;
-			grid-layout-columns: 1fr size(30);
-			grid-gap: size(2);
+			grid-template-columns: 1fr size(30);
 		}
 	}
 	/* main-contents ---------------------------------------- */
 	.main-contents {
+		grid-row: 1;
 		@include respondTo(lg) {
-			grid-column: 1;
 			grid-row: 1;
 		}
 	}
 	/* sub-contents ---------------------------------------- */
 	.sub-contents:nth-of-type(1) {
+		grid-row: 2;
 		@include respondTo(lg) {
 			grid-column: 2;
 			grid-row: 1;
