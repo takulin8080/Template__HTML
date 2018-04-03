@@ -24,7 +24,7 @@
 			content: attr(data-maxlength-endtext);
 		}
 	}
-	&.maxlength-endtext-none {
+	&[data-maxlength='inrange'] {
 		&:after {
 			display: none;
 		}

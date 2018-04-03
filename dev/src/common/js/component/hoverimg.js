@@ -2,21 +2,29 @@
 // component/hoverimg
 // ==============================================================================================
 class Hoverimg {
-	constructor() {
-		this.e = document.querySelectorAll('[data-hoverimg]');
-		this.e.forEach(e => {
-			e.addEventListener('mouseover', this.mouseover);
-			e.addEventListener('mouseout', this.mouseout);
+	constructor(name) {
+		this.name = name;
+		this.elm = document.querySelectorAll('[' + this.name + ']');
+		this.addEvent();
+	}
+	addEvent() {
+		this.elm.forEach(e => {
+			e.addEventListener('mouseover', this.mouseover(), false);
+			e.addEventListener('mouseout', this.mouseout(), false);
 		});
 	}
 	mouseover() {
-		this.defImg = this.src;
-		this.hoverImg = this.getAttribute('data-hoverimg');
-		this.src = this.hoverImg;
+		return((e) => {
+			this.defimg = e.target.src;
+			this.hoverimg = e.target.getAttribute(this.name);
+			e.target.src = this.hoverimg;
+		})
 	}
 	mouseout() {
-		this.src = this.defImg;
+		return((e) => {
+			e.target.src = this.defimg;
+		})
 	}
 }
 /* ======================================== */
-new Hoverimg();
+new Hoverimg('data-hoverimg');
