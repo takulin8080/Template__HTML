@@ -5,9 +5,9 @@ class Hoverimg {
 	constructor(name) {
 		this.name = name;
 		this.elm = document.querySelectorAll('[' + this.name + ']');
-		this.addEvent();
+		this.set();
 	}
-	addEvent() {
+	set() {
 		this.elm.forEach(e => {
 			e.addEventListener('mouseover', this.mouseover(), false);
 			e.addEventListener('mouseout', this.mouseout(), false);
@@ -18,12 +18,12 @@ class Hoverimg {
 			this.defimg = e.target.src;
 			this.hoverimg = e.target.getAttribute(this.name);
 			e.target.src = this.hoverimg;
-		})
+		});
 	}
 	mouseout() {
 		return((e) => {
 			e.target.src = this.defimg;
-		})
+		});
 	}
 }
 /* ======================================== */
