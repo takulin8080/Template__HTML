@@ -5,9 +5,9 @@ class Hoverimg {
 	constructor(name) {
 		this.name = name;
 		this.elm = document.querySelectorAll('[' + this.name + ']');
-		this.set();
+		this.event();
 	}
-	set() {
+	event() {
 		this.elm.forEach(e => {
 			e.addEventListener('mouseover', this.mouseover(), false);
 			e.addEventListener('mouseout', this.mouseout(), false);
