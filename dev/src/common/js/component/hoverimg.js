@@ -5,6 +5,7 @@ class Hoverimg {
 	constructor(name) {
 		this.name = name;
 		this.elm = document.querySelectorAll('[' + this.name + ']');
+		if(!this.elm) return;
 		this.event();
 	}
 	event() {

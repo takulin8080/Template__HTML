@@ -5,9 +5,10 @@ class Maxlength {
 	constructor(name) {
 		this.name = name;
 		this.elm = document.querySelectorAll('[' + this.name + ']');
-		this.setup();
+		if(!this.elm) return;
+		this.set();
 	}
-	setup() {
+	set() {
 		this.elm.forEach(e => {
 			const maxlength = e.getAttribute(this.name);
 			e.innerHTML = e.innerHTML.substr(0, maxlength);
