@@ -535,7 +535,7 @@ gulp.task('browserSync', function() {
 // =================================================================================================
 gulp.task('watch', function() {
 	gulp.watch(filepath.json.watch, ['json']);
-	gulp.watch(filepath.ejs.watch, ['ejs']);
+	gulp.watch(filepath.ejs.watch, ['html']);
 	gulp.watch(filepath.font.watch, ['font']);
 	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
 	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
