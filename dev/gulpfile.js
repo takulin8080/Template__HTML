@@ -301,7 +301,9 @@ var ejsPages = function(pages, hierarchy) {
 		} else {
 			url = '/' + key + '.html';
 		}
-		url = url.replace('index.html', '');
+		if(!relativePath) {
+			url = url.replace('index.html', '');
+		}
 		pages[key].url = url;
 	}
 	return pages;
