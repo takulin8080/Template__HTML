@@ -32,3 +32,51 @@ $('[data-overlay-layer]').click(function() {
 	$('[' + tar + ']').attr(active, 'false');
 	overlay(false);
 });
+// ver2
+// class drawer {
+// 	constructor(name_value) {
+// 		this.elmName = name_value;
+// 		this.elmToggle = 'data-is-active';
+// 		this.elmTar = document.querySelectorAll('[' + this.elmName + ']');
+// 		this.elmTrg = document.querySelectorAll('[' + this.elmName + '-trg]');
+// 		if(!this.elmTar) return;
+// 		this.event();
+// 	}
+// 	event() {
+// 		this.elmTrg.forEach(e => {
+// 			e.addEventListener('click', this.click(), false);
+// 		});
+// 	}
+// 	click() {
+// 		return((e) => {
+// 			this.name = e.target.attributes[this.elmName + '-trg'].value;
+// 			this.tar = document.querySelectorAll('[data-drawer="global-nav"]');
+// 			this.trg = document.querySelectorAll('[data-drawer-trg="global-nav"]');
+// 			if(e.target.getAttribute(this.elmToggle) == 'true') {
+// 				this.passive();
+// 			} else {
+// 				this.active();
+// 			}
+// 		});
+// 	}
+// 	active() {
+// 		document.body.setAttribute('data-' + this.name, 'true');
+// 		this.tar.forEach(e => {
+// 			e.setAttribute(this.elmToggle, 'true');
+// 		});
+// 		this.trg.forEach(e => {
+// 			e.setAttribute(this.elmToggle, 'true');
+// 		});
+// 	}
+// 	passive() {
+// 		document.body.setAttribute('data-' + this.name, 'false');
+// 		this.tar.forEach(e => {
+// 			e.setAttribute(this.elmToggle, 'false');
+// 		});
+// 		this.trg.forEach(e => {
+// 			e.setAttribute(this.elmToggle, 'false');
+// 		});
+// 	}
+// }
+// /* ======================================== */
+// new drawer('data-drawer');
