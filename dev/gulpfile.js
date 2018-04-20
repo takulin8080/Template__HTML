@@ -386,6 +386,7 @@ gulp.task('iconDesign', function() {
 	var src = filepath.font.designSrc;
 	var dst = filepath.font.designDst;
 	return gulp.src(src).pipe($.rename(function(path) {
+		path.basename = path.basename.replace('icon_', '');
 		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
