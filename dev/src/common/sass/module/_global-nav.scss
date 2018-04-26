@@ -182,3 +182,8 @@
 		}
 	}
 }
+/* bodyModifier ======================================== */
+body[data-global-nav] {
+	transition: all transitionTime(1);
+	&[data-global-nav='true'] {}
+}

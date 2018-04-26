@@ -34,6 +34,7 @@ module.exports = class Drawer {
 		this.trg.forEach(e => {
 			e.setAttribute(this.toggleData, boolean);
 		});
+		document.body.setAttribute(this.bodyModifier, boolean);
 		overlay(boolean);
 	}
 	passive() {
