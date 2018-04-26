@@ -1,11 +1,9 @@
 // ==============================================================================================
 // component/overlay
 // ==============================================================================================
-// require ========================================
-$ = require('jquery');
-// setup ========================================
-$('body').attr('data-overlay', 'false').append('<div data-overlay-layer></div>');
-// function ========================================
+document.body.setAttribute('data-overlay', 'false');
+document.body.insertAdjacentHTML('beforeend', '<div data-overlay-layer></div>');
+/* ======================================== */
 module.exports = function(boolean) {
-	$('body').attr('data-overlay', boolean);
+	document.body.setAttribute('data-overlay', boolean);
 }
