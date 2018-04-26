@@ -10,8 +10,6 @@ module.exports = class Drawer {
 		this.trg = document.querySelectorAll(trigger);
 		this.overlay = document.querySelector('[data-overlay-layer]');
 		this.bodyModifier = bodyModifier;
-		this.resizeTimer;
-		this.interval = Math.floor(1000 / 60 * 10);
 		if(!this.trg) return;
 		this.event();
 	}
