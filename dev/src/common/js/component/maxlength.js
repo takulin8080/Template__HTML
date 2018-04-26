@@ -1,22 +1,16 @@
 // ==============================================================================================
 // component/maxlength
 // ==============================================================================================
-class Maxlength {
-	constructor(name) {
-		this.name = name;
-		this.elm = document.querySelectorAll('[' + this.name + ']');
-		if(!this.elm) return;
-		this.set();
-	}
-	set() {
-		this.elm.forEach(e => {
-			const maxlength = e.getAttribute(this.name);
-			e.innerHTML = e.innerHTML.substr(0, maxlength);
-			if(maxlength > e.innerHTML.length) {
-				e.setAttribute(this.name, 'inrange');
-			}
-		});
-	}
-}
-/* ======================================== */
-new Maxlength('data-maxlength');
+$ = require('jquery');
+module.exports = function(tar) {
+	var e = $('[' + tar + ']');
+	e.each(function() {
+		var maxlength = e.attr(tar);
+		var textLength = $(this).text().length;
+		var textTrim = $(this).text().substr(0, maxlength);
+		$(this).html(textTrim);
+		if(maxlength > textLength) {
+			e.attr(tar, 'inrange');
+		}
+	});
+};

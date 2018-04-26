@@ -1,6 +1,6 @@
 // ==============================================================================================
 // module/global-nav
 // ==============================================================================================
-import drawer from '../component/drawer';
+var drawer = require('../component/drawer');
 /* ======================================== */
-new drawer('.global-nav', '[data-global-nav-trg]', 'data-global-nav');
+drawer('.global-nav', '[data-global-nav-trg]', 'data-global-nav');

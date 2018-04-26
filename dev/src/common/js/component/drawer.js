@@ -1,45 +1,39 @@
 // ==============================================================================================
 // component/drawer
 // ==============================================================================================
-var overlay = require('../component/overlay');
+$ = require('jquery');
+overlay = require('../component/overlay');
 /* ======================================== */
-module.exports = class Drawer {
-	constructor(target, trigger, bodyModifier, toggleData) {
-		toggleData ? this.toggleData = toggleData : this.toggleData = 'data-is-active';
-		this.tar = document.querySelector(target);
-		this.trg = document.querySelectorAll(trigger);
-		this.overlay = document.querySelector('[data-overlay-layer]');
-		this.bodyModifier = bodyModifier;
-		if(!this.trg) return;
-		this.event();
+module.exports = function(target, trigger, bodyModifier, toggleData) {
+	if(!toggleData) {
+		toggleData = 'data-is-active';
 	}
-	event() {
-		this.trg.forEach(e => {
-			e.addEventListener('click', this.activeCheck(), false);
-		});
-		this.overlay.addEventListener('click', this.passive(), false);
-		window.addEventListener('resize', this.passive(), false);
-	}
-	activeCheck() {
-		return((e) => {
-			if(e.target.getAttribute(this.toggleData) == 'true') {
-				this.toggle('false');
+	tar = $(target);
+	trg = $(trigger);
+	overlay = $('[data-overlay-layer]');
+	bodyModifier = bodyModifier;
+	if(!trg) {
+		return;
+	} else {
+		trg.click(function() {
+			if($(this).attr(toggleData) == 'true') {
+				toggle('false');
 			} else {
-				this.toggle('true');
+				toggle('true');
 			}
 		});
-	}
-	toggle(boolean) {
-		this.tar.setAttribute(this.toggleData, boolean);
-		this.trg.forEach(e => {
-			e.setAttribute(this.toggleData, boolean);
+		$(window).resize(function() {
+			toggle('false');
 		});
-		document.body.setAttribute(this.bodyModifier, boolean);
-		overlay(boolean);
-	}
-	passive() {
-		return((e) => {
-			this.toggle('false');
+		$('[data-overlay-layer]').click(function() {
+			toggle('false');
 		});
+	};
+
+	function toggle(boolean) {
+		tar.attr(toggleData, boolean);
+		trg.attr(toggleData, boolean);
+		$('body').attr(bodyModifier, boolean);
+		$('body').attr('data-overlay', boolean);
 	}
 }
