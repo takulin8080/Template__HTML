@@ -8,13 +8,16 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 	if(!toggleData) {
 		toggleData = 'data-is-active';
 	}
-	tar = $(target);
-	trg = $(trigger);
-	overlay = $('[data-overlay-layer]');
-	bodyModifier = bodyModifier;
+	var tar = $(target);
+	var trg = $(trigger);
+	var overlay = $('[data-overlay-layer]');
+	var bodyModifier = bodyModifier;
 	if(!trg) {
 		return;
 	} else {
+		var timer = false;
+		var w = $(window).width();
+		var wr;
 		trg.click(function() {
 			if($(this).attr(toggleData) == 'true') {
 				toggle('false');
@@ -23,7 +26,13 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 			}
 		});
 		$(window).resize(function() {
-			toggle('false');
+			timer = setTimeout(function() {
+				wr = $(window).width();
+				if(w != wr) {
+					toggle('false');
+					winWidth = $(window).width();
+				}
+			}, 200);
 		});
 		$('[data-overlay-layer]').click(function() {
 			toggle('false');

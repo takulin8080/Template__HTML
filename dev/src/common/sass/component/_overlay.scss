@@ -20,6 +20,7 @@ body {
 		}
 	}
 	&[data-overlay~="true"] {
+		position: fixed;
 		& [data-overlay-layer] {
 			opacity: opacity(1);
 			visibility: visible;
