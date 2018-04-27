@@ -16,6 +16,5 @@ maxlength('data-maxlength');
 // // ==============================================================================================
 // // module
 // // ==============================================================================================
-// import './module/movetotop';
-// import './module/feature-box';
+import './module/movetotop';
 import './module/global-nav';
