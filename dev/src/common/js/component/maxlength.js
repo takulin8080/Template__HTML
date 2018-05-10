@@ -5,7 +5,7 @@ $ = require('jquery');
 module.exports = function(tar) {
 	var e = $('[' + tar + ']');
 	e.each(function() {
-		var maxlength = e.attr(tar);
+		var maxlength = $(this).attr(tar);
 		var textLength = $(this).text().length;
 		var textTrim = $(this).text().substr(0, maxlength);
 		$(this).html(textTrim);
