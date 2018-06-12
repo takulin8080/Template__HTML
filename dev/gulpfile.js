@@ -300,8 +300,8 @@ var ejsPages = function(pages, hierarchy) {
 			url = hierarchy + key + '.html';
 		} else {
 			url = '/' + key + '.html';
+			url = url.replace('index.html', '');
 		}
-		url = url.replace('index.html', '');
 		pages[key].url = url;
 	}
 	return pages;
