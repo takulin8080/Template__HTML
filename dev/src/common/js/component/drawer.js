@@ -1,34 +1,48 @@
 // ==============================================================================================
 // component/drawer
 // ==============================================================================================
-// require ========================================
 $ = require('jquery');
-var overlay = require('../component/overlay');
-// variable ========================================
-var trg = 'data-drawer-trg';
-var tar = 'data-drawer-tar';
-var active = 'data-is-active';
-// function ========================================
-$('[' + trg + ']').click(function() {
-	var id = $(this).attr(trg).replace(/left/g, '').replace(/right/g, '').replace(/top/g, '').replace(/bottom/g, '').replace(/\s+/g, '');
-	if($(this).attr(active) == 'true') {
-		$('[' + trg + '~=' + id + ']').attr(active, 'false');
-		$('[' + tar + '~=' + id + ']').attr(active, 'false');
-		overlay(false);
-	} else {
-		$(this).attr(active, 'true');
-		$('[' + trg + '~=' + id + ']').attr(active, 'true');
-		$('[' + tar + '~=' + id + ']').attr(active, 'true');
-		overlay(true);
+overlay = require('../component/overlay');
+/* ======================================== */
+module.exports = function(target, trigger, bodyModifier, toggleData) {
+	if(!toggleData) {
+		toggleData = 'data-is-active';
 	}
-});
-$(window).resize(function() {
-	$('[' + trg + ']').attr(active, 'false');
-	$('[' + tar + ']').attr(active, 'false');
-	overlay(false);
-});
-$('[data-overlay-layer]').click(function() {
-	$('[' + trg + ']').attr(active, 'false');
-	$('[' + tar + ']').attr(active, 'false');
-	overlay(false);
-});
+	var tar = $(target);
+	var trg = $(trigger);
+	var overlay = $('[data-overlay-layer]');
+	var bodyModifier = bodyModifier;
+	if(!trg) {
+		return;
+	} else {
+		var timer = false;
+		var w = $(window).width();
+		var wr;
+		trg.click(function() {
+			if($(this).attr(toggleData) == 'true') {
+				toggle('false');
+			} else {
+				toggle('true');
+			}
+		});
+		$(window).resize(function() {
+			timer = setTimeout(function() {
+				wr = $(window).width();
+				if(w != wr) {
+					toggle('false');
+					winWidth = $(window).width();
+				}
+			}, 200);
+		});
+		$('[data-overlay-layer]').click(function() {
+			toggle('false');
+		});
+	};
+
+	function toggle(boolean) {
+		tar.attr(toggleData, boolean);
+		trg.attr(toggleData, boolean);
+		$('body').attr(bodyModifier, boolean);
+		$('body').attr('data-overlay', boolean);
+	}
+}
