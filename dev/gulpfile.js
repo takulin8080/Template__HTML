@@ -30,7 +30,7 @@ var filepath = {
 		img: 'common/img/',
 		font: 'common/font/',
 		sass: 'common/sass/',
-		icon: 'common/icon/'
+		icon: 'common/'
 	},
 	json: {
 		src: 'src/_data/**/*.json',
@@ -43,11 +43,11 @@ var filepath = {
 	},
 	font: {
 		src: 'src/common/font/**/*',
-		designSrc: 'design/icon/**/*.svg',
-		designDst: 'src/common/icon/',
-		iconSrc: 'src/common/icon/*.svg',
+		designSrc: 'design/icon/**/*.+(jpg|jpeg|png|gif|svg)',
+		designDst: 'src/common/img/icon/',
+		iconSrc: 'src/common/img/icon/*.svg',
 		iconDst: 'src/common/font/',
-		watch: ['src/common/font/**/*', 'src/common/icon/**', 'design/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)']
+		watch: ['src/common/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)', 'design/icon/**', ]
 	},
 	sass: {
 		appSrc: ['src/common/sass/app.scss'],
@@ -300,8 +300,8 @@ var ejsPages = function(pages, hierarchy) {
 			url = hierarchy + key + '.html';
 		} else {
 			url = '/' + key + '.html';
+			url = url.replace('index.html', '');
 		}
-		url = url.replace('index.html', '');
 		pages[key].url = url;
 	}
 	return pages;
@@ -384,6 +384,7 @@ gulp.task('iconDesign', function() {
 	var src = filepath.font.designSrc;
 	var dst = filepath.font.designDst;
 	return gulp.src(src).pipe($.rename(function(path) {
+		path.basename = path.basename.replace('icon_', '');
 		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
@@ -399,7 +400,7 @@ gulp.task('icon', function() {
 	var fontPath = '../font/'
 	return gulp.src(src).pipe($.svgmin()).pipe($.iconfontCss({
 		fontName: fontName,
-		path: 'src/common/icon/_icon.scss',
+		path: 'src/common/_icon.scss',
 		targetPath: scss,
 		fontPath: fontPath
 	})).pipe($.iconfont({
@@ -535,7 +536,7 @@ gulp.task('browserSync', function() {
 // =================================================================================================
 gulp.task('watch', function() {
 	gulp.watch(filepath.json.watch, ['json']);
-	gulp.watch(filepath.ejs.watch, ['ejs']);
+	gulp.watch(filepath.ejs.watch, ['html']);
 	gulp.watch(filepath.font.watch, ['font']);
 	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
 	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
