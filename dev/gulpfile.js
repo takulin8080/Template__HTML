@@ -70,9 +70,7 @@ var filepath = {
 	},
 	img: {
 		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
-		designSrc: ['design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/icon/**/*'],
-		designDst: 'src/common/img/',
-		watch: ['src/common/img/**', 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)', 'design/**', 'design/**/*.+(jpg|jpeg|png|gif|svg)', '!design/**/*.+(psd|ai)', '!design/icon']
+		watch: ['src/common/img/**']
 	},
 	browserSync: {
 		watch: ['dst/**/*']
@@ -490,7 +488,7 @@ gulp.task('js', function() {
 // =================================================================================================
 // img
 // =================================================================================================
-gulp.task('img', ['imgDesign'], function() {
+gulp.task('img', function() {
 	var src = filepath.img.src;
 	var dst = dstDir + filepath.common.img;
 	var imageminOptions = {
@@ -505,17 +503,6 @@ gulp.task('img', ['imgDesign'], function() {
 			isFile: true
 		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	}
-});
-// -----------------------------------------------
-// imgDesign
-// -----------------------------------------------
-gulp.task('imgDesign', function() {
-	var designSrc = filepath.img.designSrc;
-	var designDst = filepath.img.designDst;
-	return gulp.src(designSrc).pipe($.rename(function(path) {
-		var filename = path.dirname.replace('-assets', '');
-		path.dirname = filename;
-	})).pipe($.changed(designDst)).pipe(gulp.dest(designDst));
 });
 // =================================================================================================
 // browserSync
