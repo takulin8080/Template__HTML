@@ -414,14 +414,14 @@ gulp.task('icon', function() {
 // =================================================================================================
 // css
 // =================================================================================================
-gulp.task('cssApp', function() {
+gulp.task('css', function() {
 	var src = filepath.sass.appSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe(gulp.dest(dst));
 });
 gulp.task('cssVendor', function() {
 	var src = filepath.sass.vendorSrc;
@@ -568,7 +568,7 @@ gulp.task('1 ============== DEVELOPMENT', function(cb) {
 gulp.task('2 ============== RELEASE', function(cb) {
 	dstDir = filepath.dst.release;
 	dev = false;
-	runSequence('html', 'font', 'cssApp', 'js', 'img', 'doc', 'browserSync', cb);
+	runSequence('html', 'font', 'css', 'js', 'img', 'doc', 'browserSync', cb);
 });
 // =================================================================================================
 // CLEAN
