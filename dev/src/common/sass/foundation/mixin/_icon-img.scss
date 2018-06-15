@@ -1,0 +1,14 @@
+/* ============================================================================================== */
+/* foundation/mixin/icon-img
+/* ============================================================================================== */
+@mixin iconImg($file, $size, $insert: before) {
+	&:#{$insert} {
+		content: '';
+		display: inline-block;
+		background: url('#{$imgPath}icon/#{$file}.svg') no-repeat;
+		background-size: contain;
+		width: #{$size};
+		height: #{$size};
+		vertical-align: middle;
+	}
+}

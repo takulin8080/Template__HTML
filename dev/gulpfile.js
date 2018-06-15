@@ -47,7 +47,7 @@ var filepath = {
 		designDst: 'src/common/img/icon/',
 		iconSrc: 'src/common/img/icon/*.svg',
 		iconDst: 'src/common/font/',
-		watch: ['src/common/icon/**', 'src/common/icon/**/*.svg', '!design/**/*.+(psd|ai)', 'design/icon/**', ]
+		watch: ['design/**/*.svg', '!design/**/*.+(psd|ai)']
 	},
 	sass: {
 		appSrc: ['src/common/sass/app.scss'],
@@ -384,7 +384,6 @@ gulp.task('iconDesign', function() {
 	var src = filepath.font.designSrc;
 	var dst = filepath.font.designDst;
 	return gulp.src(src).pipe($.rename(function(path) {
-		path.basename = path.basename.replace('icon_', '');
 		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
@@ -552,7 +551,7 @@ gulp.task('watch', function() {
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	dev = true;
-	runSequence('html', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'watch', 'browserSync', cb);
+	runSequence('html', 'iconDesign', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // RELEASE
