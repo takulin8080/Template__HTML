@@ -8,9 +8,10 @@ import './vendor/fontawesome';
 // // component
 // // ==============================================================================================
 // import './component/active';
-// import './component/modal';
 var maxlength = require('./component/maxlength');
 maxlength('data-maxlength');
+var modal = require('./component/modal');
+modal();
 // import './component/hoverimg';
 // import './component/pagescroll';
 // // ==============================================================================================
