@@ -17,7 +17,9 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 	} else {
 		var timer = false;
 		var w = $(window).width();
+		var h = $(window).height();
 		var wr;
+		var hr;
 		trg.click(function() {
 			if($(this).attr(toggleData) == 'true') {
 				toggle('false');
@@ -28,7 +30,8 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 		$(window).resize(function() {
 			timer = setTimeout(function() {
 				wr = $(window).width();
-				if(w != wr) {
+				hr = $(window).height();
+				if(w != wr || h != hr) {
 					toggle('false');
 					winWidth = $(window).width();
 				}
