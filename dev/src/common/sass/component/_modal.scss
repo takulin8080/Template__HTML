@@ -1,3 +1,63 @@
 /* ============================================================================================== */
 /* component/modal
 /* ============================================================================================== */
+/*
+`data-modal`を付与することで、コンテンツをモーダル表示。
+- `data-modal-trg="$string"`クリックで`data-modal-tar`をモーダル表示。
+- `data-modal-tar="$string"`対象コンテンツ。
+
+`data-modal-trg`に`data-is-active`を、または、javascriptで`$('exsample').modal();`を設定することでも表示可能。
+
+```html
+<button data-modal-trg="modal">modal</button>
+<div data-modal-tar="modal">
+	<p style="background: #fff; padding: 2rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis auteirure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+```
+*/
+[data-modal-tar] {
+	/* variable ======================================== */
+	$maxWidth: map-get($breakpoint, md);
+	/* setup ======================================== */
+	width: 100%;
+	max-width: $maxWidth;
+	margin-left: -($maxWidth / 2);
+	opacity: 0;
+	padding: size(2);
+	position: fixed;
+	top: 5vh;
+	left: 50%;
+	transition: all transitionTime(1);
+	visibility: hidden;
+	z-index: 100;
+	.modal-inner {
+		max-height: 75vh;
+		overflow: auto;
+	}
+	.close-icon {
+		cursor: pointer;
+		position: absolute;
+		right: 0;
+		top: 0;
+		@include icon('times-circle');
+		&:before {
+			font-size: fontSize(4);
+			line-height: 1;
+			color: color(project,1);
+			background: #fff;
+			border-radius: 100%;
+		}
+	}
+	@if $responsive {
+		@include respondTo(smAndUnder) {
+			left: 0;
+			margin-left: 0;
+			width: 100%;
+			max-width: none;
+		}
+	}
+	&[data-is-active~='true'] {
+		opacity: 1;
+		visibility: visible;
+	}
+}
