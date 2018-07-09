@@ -17,6 +17,12 @@
 		"dev/ex-form": {
 			"layout": "dev",
 			"title": "フォームテンプレート"
+		},
+		"dev/modal": {
+			"layout": "dev",
+			"title": "modal();",
+			"description": "",
+			"pageModifier": ""
 		}
 	}
 }

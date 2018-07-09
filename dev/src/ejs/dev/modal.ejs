@@ -1,0 +1,19 @@
+<%#
+=====================================================================================================
+test_____dev/modal
+=====================================================================================================
+%>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<div class="testmodal" data-modal-tar="testmodal">
+	<div style="background: #fff; padding: 32px;">
+		<h2>modal(); テスト</h2>
+		<p>'onclick'で発火する'modal();'のテストページになります。</p>
+		<p>このテキストを包んでいる'&lt;div data-modal-tar=&quot;testmodal&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダルを非表示にしておくために使用しています。</p>
+	</div>
+</div>
+<div style="display: block; background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('.testmodal').modal();">'modal();'起動</div>
+
+<a class="to-index" href="<%- page['dev/index'].url %>">< 開発用ページ一覧に戻る</a>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
