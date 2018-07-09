@@ -68,14 +68,13 @@ $(function() {
 });
 // function ========================================
 $.fn.modal = function() {
-	$(this).wrap('<div data-modal-tar="modal-func"></div>');
-	/* ======================================== */
-	var trg = $('[data-modal-trg="modal-func"]');
-	var tar = $('[data-modal-tar="modal-func"]');
+	var id = $(this).attr('data-modal-tar');
+	var trg = $('[data-modal-trg="' + id + '"]');
+	var tar = $('[data-modal-tar="' + id + '"]');
 	var overlay = $('[data-overlay-layer]');
 	var bodyModifier = 'data-modal';
 	var toggleData = 'data-is-active';
-	$(this).attr('data-modal-contents', 'modal-func');
+	$(this).attr('data-modal-contents', id);
 	tar.append('<span data-modal-close></span>');
 	var close = $('[data-modal-tar] [data-modal-close]');
 	/* ======================================== */
