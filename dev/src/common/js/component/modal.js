@@ -3,16 +3,17 @@
 // ==============================================================================================
 $ = require('jquery');
 overlay = require('../component/overlay');
-/* ======================================== */
-module.exports = function() {
+// data-modal ========================================
+$(function() {
 	var trg = 'data-modal-trg';
 	var tar = 'data-modal-tar';
 	var overlay = $('[data-overlay-layer]');
 	var bodyModifier = 'data-modal';
 	var toggleData = 'data-is-active';
-	$('[' + tar + '] div').addClass('modal-inner');
-	$('[' + tar + ']').append('<span class="close-icon" data-close></span>');
-	var close = $('[data-modal-tar] [data-close]');
+	var id = $('[' + tar + ']').attr(tar);
+	$('[' + tar + '] > div').attr('data-modal-contents', id);
+	$('[' + tar + ']').append('<span data-modal-close></span>');
+	var close = $('[data-modal-tar] [data-modal-close]');
 	if($('[' + trg + ']').length == false) {
 		return;
 	} else {
@@ -64,4 +65,5 @@ module.exports = function() {
 		$('body').attr(bodyModifier, 'false');
 		$('body').attr('data-overlay', 'false');
 	}
-}
+});
+// function ========================================
