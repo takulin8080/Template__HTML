@@ -68,7 +68,6 @@ $(function() {
 });
 // function ========================================
 $.fn.modal = function() {
-	alert($(this));
 	$(this).wrap('<div data-modal-tar="modal-func"></div>');
 	/* ======================================== */
 	var trg = $('[data-modal-trg="modal-func"]');
