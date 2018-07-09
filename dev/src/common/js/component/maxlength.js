@@ -2,7 +2,9 @@
 // component/maxlength
 // ==============================================================================================
 $ = require('jquery');
-module.exports = function(tar) {
+// data-maxlength ========================================
+$(function() {
+	var tar = 'data-maxlength';
 	var e = $('[' + tar + ']');
 	e.each(function() {
 		var maxlength = $(this).attr(tar);
@@ -13,4 +15,4 @@ module.exports = function(tar) {
 			e.attr(tar, 'inrange');
 		}
 	});
-};
+});

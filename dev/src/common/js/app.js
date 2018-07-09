@@ -9,7 +9,6 @@ import './vendor/fontawesome';
 // // ==============================================================================================
 // import './component/active';
 var maxlength = require('./component/maxlength');
-maxlength('data-maxlength');
 var modal = require('./component/modal');
 // import './component/hoverimg';
 // import './component/pagescroll';
