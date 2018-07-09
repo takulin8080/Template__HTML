@@ -67,3 +67,32 @@ $(function() {
 	}
 });
 // function ========================================
+$.fn.modal = function() {
+	alert($(this));
+	$(this).wrap('<div data-modal-tar="modal-func"></div>');
+	/* ======================================== */
+	var trg = $('[data-modal-trg="modal-func"]');
+	var tar = $('[data-modal-tar="modal-func"]');
+	var overlay = $('[data-overlay-layer]');
+	var bodyModifier = 'data-modal';
+	var toggleData = 'data-is-active';
+	$(this).attr('data-modal-contents', 'modal-func');
+	tar.append('<span data-modal-close></span>');
+	var close = $('[data-modal-tar] [data-modal-close]');
+	/* ======================================== */
+	toggle(bodyModifier, 'true');
+	/* ======================================== */
+	$('[data-overlay-layer]').click(function() {
+		toggle(bodyModifier, 'false');
+	});
+	close.click(function() {
+		toggle(bodyModifier, 'false');
+	});
+
+	function toggle(bodyModifier, boolean) {
+		trg.attr(toggleData, boolean);
+		tar.attr(toggleData, boolean);
+		$('body').attr(bodyModifier, boolean);
+		$('body').attr('data-overlay', boolean);
+	}
+};
