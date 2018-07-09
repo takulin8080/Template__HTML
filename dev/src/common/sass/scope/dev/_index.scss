@@ -1,0 +1,28 @@
+/* ============================================================================================== */
+/* scope/dev/index
+/* ============================================================================================== */
+body[data-modifier='dev index'] {
+	/* dev-contents ======================================== */
+	.dev-contents {
+		margin-bottom: size(8);
+		& > ul {
+			border-top: 1px solid color(gray, 9);
+			font-size: fontSize(2);
+			list-style: disc inside;
+			padding: size(4) 0;
+			li {
+				margin-bottom: size(2);
+				a {
+					display: block;
+					&:hover {
+						background: #efefef;
+					}
+				}
+			}
+		}
+		& > .to-index {
+			margin-top: size(8);
+			display: block;
+		}
+	}
+}

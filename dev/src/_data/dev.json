@@ -1,5 +1,11 @@
 {
 	"page": {
+		"dev/index": {
+			"layout": "dev",
+			"title": "開発用ページ INDEX",
+			"description": "",
+			"pageModifier": ""
+		},
 		"dev/sitemap": {
 			"layout": "dev",
 			"title": "サイトマップ[進行状況]"
