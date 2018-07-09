@@ -21,8 +21,6 @@ body {
 		}
 	}
 	&[data-overlay~="true"] {
-		overflow: hidden;
-		height: 100%;
 		& [data-overlay-layer] {
 			opacity: opacity(1);
 			visibility: visible;
