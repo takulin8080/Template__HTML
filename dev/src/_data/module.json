@@ -1,6 +1,7 @@
 {
 	"module": [
 		"dev-link",
+		"button",
 		"header",
 		"footer",
 		"sub-contents",
