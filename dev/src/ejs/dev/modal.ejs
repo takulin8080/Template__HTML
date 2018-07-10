@@ -5,15 +5,24 @@ dev/modal
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<div class="testmodal" data-modal-tar="testmodal">
+<h2>data属性での操作</h2>
+<div data-modal-trg="test" style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;">modal起動（data-modal-trg="test"）</div>
+<h2>onClickでの操作</h2>
+<div style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('[data-modal-tar=test]').modal();">'modal起動（onclick="$('.test').modal();"）</div>
+<div style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('[data-modal-tar=test]').modal();">'modal起動（onclick="$('[data-modal-tar=test]').modal();"）</div>
+
+<div class="test" data-modal-tar="test">
 	<div style="background: #fff; padding: 32px;">
-		<h2>modal(); テスト</h2>
-		<p>'onclick'で動作する'modal();'のテストページになります。</p>
-		<p>このテキストを包んでいる'&lt;div data-modal-tar=&quot;testmodal&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダルを非表示にしておくために使用しています。</p>
+		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;test&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須となります</p>
 	</div>
 </div>
-<div style="display: block; background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('.testmodal').modal();">'modal();'起動</div>
 
+<div data-modal-tar="test2" data-is-active="true">
+	<div style="background: #fff; padding: 32px;">
+		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;test&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須となります</p>
+		<p>このモーダルは「data-is-active="true"」を付与しているため、ページロード時に表示されます</p>
+	</div>
+</div>
 <a class="to-index" href="<%- page['dev/index'].url %>">< 開発用ページ一覧に戻る</a>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
