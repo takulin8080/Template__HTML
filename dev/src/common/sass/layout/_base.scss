@@ -9,15 +9,4 @@ body {}
 	&__inner {
 		@extend %wrap;
 	}
-	/* main-contents ---------------------------------------- */
-	.main-contents {
-		@include respondTo(lg) {}
-	}
-	/* sub-contents ---------------------------------------- */
-	.sub-contents:nth-of-type(1) {
-		@include respondTo(lg) {}
-	}
-	.sub-contents:nth-of-type(2) {
-		@include respondTo(lg) {}
-	}
 }
