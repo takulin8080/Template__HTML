@@ -3,6 +3,8 @@
 dev/ex-form
 =====================================================================================================
 %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
 <%# input ======================================== %>
 <form action="#" method="post">
 	<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
@@ -142,3 +144,7 @@ dev/ex-form
 		</div>
 	</div>
 </form>
+
+<a class="to-index" href="<%- page['dev/index'].url %>">< 開発用ページ一覧に戻る</a>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
