@@ -29,6 +29,7 @@
 	padding: size(1) size(2.5);
 	&:hover {
 		background: color(gray, 1);
+		text-decoration: none;
 	}
 	&:active {}
 	&:before {
