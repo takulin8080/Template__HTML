@@ -29,6 +29,12 @@
 			"title": "maxlength",
 			"description": "",
 			"pageModifier": ""
+		},
+		"dev/hoverimg": {
+			"layout": "dev",
+			"title": "hoverimg",
+			"description": "",
+			"pageModifier": ""
 		}
 	}
 }
