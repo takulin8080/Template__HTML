@@ -13,12 +13,15 @@
 ```
 */
 [data-notify] {
-	@extend %styleSetup;
-	padding: size(2) size(2) 0;
+	padding: size(2);
 	margin-bottom: size(2);
+	font-size: fontSize(-1);
 	background: color(gray, 1);
 	color: color(text, light);
 	overflow: auto;
+	& > *:last-child {
+		margin-bottom: 0;
+	}
 	/* sign ======================================== */
 	@mixin color($sign, $bgLighten) {
 		&[data-notify="#{$sign}"] {
