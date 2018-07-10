@@ -20,7 +20,13 @@
 		},
 		"dev/modal": {
 			"layout": "dev",
-			"title": "modal();",
+			"title": "modal",
+			"description": "",
+			"pageModifier": ""
+		},
+		"dev/maxlength": {
+			"layout": "dev",
+			"title": "maxlength",
 			"description": "",
 			"pageModifier": ""
 		}
