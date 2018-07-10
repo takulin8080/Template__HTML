@@ -443,59 +443,59 @@ gulp.task('css', function() {
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe($.sourcemaps.init()).pipe($.cleanCss()).pipe(gulp.dest(dst));
+	})).pipe($.cleanCss()).pipe(gulp.dest(dst));
 });
 gulp.task('cssVendor', function() {
 	var src = filepath.sass.vendorSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('cssFoundation', function() {
 	var src = filepath.sass.foundationSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('cssComponent', function() {
 	var src = filepath.sass.componentSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('cssProject', function() {
 	var src = filepath.sass.projectSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('cssUtility', function() {
 	var src = filepath.sass.utilitySrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 gulp.task('cssDev', function() {
 	var src = filepath.sass.devSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 		grid: true
-	})).pipe(gulp.dest(dst));
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
 // =================================================================================================
 // js
