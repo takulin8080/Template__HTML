@@ -2,9 +2,7 @@
 	"page": {
 		"dev/index": {
 			"layout": "dev",
-			"title": "開発用ページ INDEX",
-			"description": "",
-			"pageModifier": ""
+			"title": "開発用ページ INDEX"
 		},
 		"dev/sitemap": {
 			"layout": "dev",
@@ -18,23 +16,21 @@
 			"layout": "dev",
 			"title": "フォームテンプレート"
 		},
-		"dev/modal": {
-			"layout": "dev",
-			"title": "modal",
-			"description": "",
-			"pageModifier": ""
-		},
 		"dev/maxlength": {
 			"layout": "dev",
-			"title": "maxlength",
-			"description": "",
-			"pageModifier": ""
+			"title": "maxlength"
 		},
 		"dev/hoverimg": {
 			"layout": "dev",
-			"title": "hoverimg",
-			"description": "",
-			"pageModifier": ""
+			"title": "hoverimg"
+		},
+		"dev/active": {
+			"layout": "dev",
+			"title": "active"
+		},
+		"dev/modal": {
+			"layout": "dev",
+			"title": "modal"
 		}
 	}
 }
