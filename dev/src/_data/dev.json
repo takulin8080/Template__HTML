@@ -1,5 +1,9 @@
 {
 	"page": {
+		"dev/index": {
+			"layout": "dev",
+			"title": "開発用ページ INDEX"
+		},
 		"dev/sitemap": {
 			"layout": "dev",
 			"title": "サイトマップ[進行状況]"
@@ -11,6 +15,22 @@
 		"dev/ex-form": {
 			"layout": "dev",
 			"title": "フォームテンプレート"
+		},
+		"dev/maxlength": {
+			"layout": "dev",
+			"title": "maxlength"
+		},
+		"dev/hoverimg": {
+			"layout": "dev",
+			"title": "hoverimg"
+		},
+		"dev/active": {
+			"layout": "dev",
+			"title": "active"
+		},
+		"dev/modal": {
+			"layout": "dev",
+			"title": "modal"
 		}
 	}
 }

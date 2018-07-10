@@ -22,26 +22,28 @@
 	width: 100%;
 	max-width: $maxWidth;
 	margin-left: -($maxWidth / 2);
+	padding: size(1) size(2) 0;
 	opacity: 0;
-	padding: size(2);
 	position: fixed;
-	top: 5vh;
+	top: size(2);
 	left: 50%;
 	transition: all transitionTime(1);
 	visibility: hidden;
 	z-index: 100;
-	.modal-inner {
-		max-height: 75vh;
-		overflow: auto;
+	max-height: 80vh;
+	overflow: hidden;
+	& [data-modal-contents] {
+		max-height: 80vh;
+		overflow-y: auto;
 	}
-	.close-icon {
+	& [data-modal-close] {
 		cursor: pointer;
 		position: absolute;
-		right: 0;
+		right: size(1);
 		top: 0;
 		@include icon('times-circle');
 		&:before {
-			font-size: fontSize(4);
+			font-size: size(3);
 			line-height: 1;
 			color: color(project,1);
 			background: #fff;

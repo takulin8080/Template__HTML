@@ -1,10 +1,21 @@
 /* ============================================================================================== */
 /* layout/default
 /* ============================================================================================== */
-/*
----
-name: default
-category: 3.layout
----
-*/
-body[data-modifier^='default'] {}
+/* mdAndUnder ======================================== */
+@include respondTo(mdAndUnder) {
+	.contents {
+		&__inner {}
+		.main-contents {}
+		.sub-contents:nth-of-type(1) {}
+		.sub-contents:nth-of-type(2) {}
+	}
+}
+/* lg ======================================== */
+@include respondTo(lg) {
+	.contents {
+		&__inner {}
+		.main-contents {}
+		.sub-contents:nth-of-type(1) {}
+		.sub-contents:nth-of-type(2) {}
+	}
+}

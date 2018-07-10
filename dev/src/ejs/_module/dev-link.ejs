@@ -15,13 +15,12 @@ var ejspath = '../';
 			<li class="dev-link__item" data-modifier="index">
 				<a class="dev-link__link" title="<%- page['index'].title %>" href="<%- page['index'].url %>"></a>
 			</li>
-			<% Object.keys(page).forEach(function(value, key){ %>
-				<% if(!value.indexOf('dev') & value != 'dev/ex-form') { %>
-					<li class="dev-link__item" data-modifier=<%- value %>>
-						<a class="dev-link__link" title="<%- page[value].title %>" href="<%- page[value].url %>"></a>
-					</li>
-				<% } %>
-			<% }) %>
+			<li class="dev-link__item" data-modifier="dev/sitemap">
+				<a class="dev-link__link" title="<%- page['dev/sitemap'].title %>" href="<%- page['dev/sitemap'].url %>"></a>
+			</li>
+			<li class="dev-link__item" data-modifier="dev/index">
+				<a class="dev-link__link" title="<%- page['dev/index'].title %>" href="<%- page['dev/index'].url %>"></a>
+			</li>
 		</ul>
 	</div>
 <% } %>

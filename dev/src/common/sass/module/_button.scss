@@ -1,0 +1,126 @@
+/* ============================================================================================== */
+/* module/button
+/* ============================================================================================== */
+/*
+ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理
+
+```html
+<button data-button="sample">sample</button>
+<div data-buttons>
+	<button data-button="sample">sample</button>
+	<button data-button="sample">sample</button>
+</div>
+```
+*/
+/* style ======================================== */
+[data-button] {
+	cursor: pointer;
+	border: 0;
+	display: inline-flex;
+	text-decoration: none;
+	justify-content: center;
+	align-items: center;
+	/* default style ---------------------------------------- */
+	border-radius: size(.5);
+	box-shadow: boxShadow(1);
+	background: linear-gradient(#fff, color(gray, 1));
+	color: color(gray, 9);
+	font-size: fontSize(-1);
+	padding: size(1) size(2.5);
+	&:hover {
+		background: #fff;
+		text-decoration: none;
+	}
+	&:active {}
+	&:before {
+		margin-right: size(1);
+		font-size: size(1.5);
+	}
+	&:after {
+		margin-left: size(1);
+		font-size: size(1.5);
+	}
+	/* size ---------------------------------------- */
+	&[data-button~='sm'] {
+		font-size: fontSize(-3);
+		padding: size(.75) size(1.5);
+		&:before {
+			margin-right: size(.75);
+			font-size: size(1.2);
+		}
+		&:after {
+			margin-left: size(.75);
+			font-size: size(1.2);
+		}
+	}
+	&[data-button~='md'] {
+		font-size: fontSize(-1);
+		padding: size(1) size(2.5);
+		&:before {
+			margin-right: size(1);
+			font-size: size(1.5);
+		}
+		&:after {
+			margin-left: size(1);
+			font-size: size(1.5);
+		}
+	}
+	&[data-button~='lg'] {
+		font-size: fontSize(1);
+		padding: size(1) size(2.5);
+		&:before {
+			margin-right: size(1);
+			font-size: size(2);
+		}
+		&:after {
+			margin-left: size(1);
+			font-size: size(2);
+		}
+	}
+	/* color ---------------------------------------- */
+	@each $sign, $signs in $color {
+		@each $signType, $signColor in $signs {
+			&[data-button~='#{$signType}'] {
+				background: linear-gradient($signColor, darken($signColor, 5%));
+				color: rgba(#fff, .9);
+				&:hover {
+					background: $signColor;
+				}
+				&:active {
+					background: $signColor;
+				}
+			}
+		}
+	}
+	/* uniq ---------------------------------------- */
+	&[data-button~='disabled'] {
+		cursor: default;
+		background: color(gray, 3);
+		color: darken(color(gray, 3), 25%);
+		box-shadow: none;
+	}
+	/* icon ---------------------------------------- */
+	&[data-button~='home'] {
+		@include icon(home);
+	}
+}
+/* buttons ======================================== */
+[data-buttons] {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin: 0 size(-1);
+	[data-button] {
+		margin: 0 size(1) size(2);
+		&[data-button~='sm'] {}
+		&[data-button~='md'] {}
+		&[data-button~='lg'] {
+			@if $responsive {
+				@include respondTo(xs) {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

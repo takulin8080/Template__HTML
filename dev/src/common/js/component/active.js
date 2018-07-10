@@ -6,7 +6,7 @@ $ = require('jquery');
 // variable ========================================
 var trgName = 'data-active-trg';
 var tarName = 'data-active-tar';
-var parentName = 'data-parent';
+var parentName = 'data-active-parent';
 var active = 'data-is-active';
 // function ========================================
 $('[' + trgName + ']').click(function() {
