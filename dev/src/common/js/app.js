@@ -10,7 +10,7 @@ import './vendor/fontawesome';
 import './component/active';
 import './component/maxlength';
 import './component/modal';
-// import './component/hoverimg';
+import './component/hoverimg';
 import './component/pagescroll';
 // ==============================================================================================
 // module
