@@ -23,12 +23,12 @@
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
 	box-shadow: boxShadow(1);
-	background: linear-gradient(#fff, color(gray, 2));
+	background: linear-gradient(#fff, color(gray, 1));
 	color: color(gray, 9);
-	font-size: fontSize(-2);
+	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
-		background: color(gray, 1);
+		background: #fff;
 		text-decoration: none;
 	}
 	&:active {}
@@ -54,7 +54,7 @@
 		}
 	}
 	&[data-button~='md'] {
-		font-size: fontSize(-2);
+		font-size: fontSize(-1);
 		padding: size(1) size(2.5);
 		&:before {
 			margin-right: size(1);
