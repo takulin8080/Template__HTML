@@ -1,10 +1,10 @@
 {
 	"module": [
 		"dev-link",
+		"button",
 		"header",
 		"footer",
 		"sub-contents",
-		"page-title",
 		"global-nav",
 		"breadcrumb",
 		"pagination",

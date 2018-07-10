@@ -1,4 +1,18 @@
 /* ============================================================================================== */
 /* scope/dev/base
 /* ============================================================================================== */
-body[data-modifier^='dev'] {}
+body[data-modifier^='dev'] {
+	.dev-contents {
+		& > h2 {
+			font-size: fontSize(2);
+			font-weight: bold;
+			margin: size(8) 0 size(2);
+			padding: size(2) 0 0;
+			border-top: 1px solid color(gray, 9);
+		}
+		& > .to-index {
+			display: block;
+			margin-top: size(8);
+		}
+	}
+}

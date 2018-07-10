@@ -34,9 +34,9 @@
 				@include fontawesome('\f0e8');
 			}
 		}
-		&[data-modifier~='dev/workpage'] {
+		&[data-modifier~='dev/index'] {
 			#{$this}__link {
-				@include fontawesome('\f303');
+				@include fontawesome('\f0ad');
 			}
 		}
 		&[data-modifier~='dev/ex-html-style'] {
