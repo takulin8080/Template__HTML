@@ -11,7 +11,7 @@ import './component/active';
 import './component/maxlength';
 import './component/modal';
 // import './component/hoverimg';
-// import './component/pagescroll';
+import './component/pagescroll';
 // ==============================================================================================
 // module
 // ==============================================================================================
