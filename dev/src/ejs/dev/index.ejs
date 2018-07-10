@@ -5,11 +5,18 @@ dev/index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<h2>サイトマップ</h2>
 <ul>
 	<li><a href="<%- page['dev/sitemap'].url %>"><%- page['dev/sitemap'].title %></a></li>
+</ul>
+<h2>汎用パーツ</h2>
+<ul>
+	<li><a href="<%- page['dev/modal'].url %>"><%- page['dev/modal'].title %></a></li>
+</ul>
+<h2>テンプレート</h2>
+<ul>
 	<li><a href="<%- page['dev/ex-html-style'].url %>"><%- page['dev/ex-html-style'].title %></a></li>
 	<li><a href="<%- page['dev/ex-form'].url %>"><%- page['dev/ex-form'].title %></a></li>
-	<li><a href="<%- page['dev/modal'].url %>"><%- page['dev/modal'].title %></a></li>
 </ul>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
