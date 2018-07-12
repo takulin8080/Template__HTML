@@ -2,7 +2,6 @@
 // component/drawer
 // ==============================================================================================
 // require ========================================
-$ = require('jquery');
 overlay = require('../component/overlay');
 /* function ======================================== */
 module.exports = function(target, trigger, bodyModifier, toggleData) {
