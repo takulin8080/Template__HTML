@@ -15,6 +15,7 @@
 ```
 */
 [data-maxlength] {
+	visibility: hidden;
 	&:after {
 		content: '...';
 		white-space: nowrap;

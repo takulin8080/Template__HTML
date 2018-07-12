@@ -1,26 +1,26 @@
 // ==============================================================================================
 // foundation
 // ==============================================================================================
-import './foundation/variable';
+require('./foundation/variable');
 // ==============================================================================================
 // vendor
 // ==============================================================================================
-import 'svgxuse';
-import './vendor/fontawesome';
+require('svgxuse');
+require('./vendor/fontawesome');
 // ==============================================================================================
 // component
 // ==============================================================================================
-import './component/loading';
-import './component/pagescroll';
-import './component/hoverimg';
-import './component/maxlength';
-import './component/active';
-import './component/modal';
+require('./component/pagescroll');
+require('./component/hoverimg');
+require('./component/maxlength');
+require('./component/active');
+require('./component/modal');
 // ==============================================================================================
 // module
 // ==============================================================================================
-import './module/movetotop';
-import './module/global-nav';
+require('./module/movetotop');
+require('./module/global-nav');
 // ==============================================================================================
 // scope
 // ==============================================================================================
+require('./scope/index');
