@@ -16,7 +16,7 @@ body {
 			width: 100vw;
 			z-index: 1000;
 			background: #fff;
-			display: block;
+			display: flex;
 			@include fontawesome('\f110');
 			&:before {
 				color: color(gray, 5);
@@ -42,9 +42,7 @@ body {
 		}
 	}
 	&[data-loading~="true"] {
-		& [data-loading-overlay] {
-			display: flex;
-		}
+		& [data-loading-overlay] {}
 	}
 	&[data-loading~="false"] {
 		& [data-loading-overlay] {
