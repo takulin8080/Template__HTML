@@ -3,7 +3,9 @@
 // ==============================================================================================
 // require ========================================
 $ = require('jquery');
+// variable ========================================
+var bodyModifier = $('body').attr('data-modifier');
 // function ========================================
-if($('body').attr('data-modifier') == 'home') {
+if(bodyModifier.match(/^home$/)) {
 	require('../component/loading');
 };
