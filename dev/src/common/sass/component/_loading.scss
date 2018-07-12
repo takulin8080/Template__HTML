@@ -1,0 +1,59 @@
+/* ============================================================================================== */
+/* component/loading
+/* ============================================================================================== */
+/*
+ページローディング画面
+*/
+/* data-loading ======================================== */
+body {
+	[data-loading-layer] {
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+		background: #fff;
+	}
+	&[data-loading~="true"] {
+		[data-loading-layer] {}
+	}
+	&[data-loading~="false"] {
+		[data-loading-layer] {
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+			animation: fadeOut transitionTime(1) ease-out forwards;
+		}
+	}
+}
+/* animation ======================================== */
+[data-loading-layer] {
+	[data-loading-animation] {
+		width: size(4);
+		height: size(4);
+		background-color: #000;
+		border-radius: 100%;
+		opacity: 0;
+		animation: animation 1s infinite ease-in-out;
+	}
+	@keyframes animation {
+		0% {
+			transform: scale(0);
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1.0);
+			opacity: 1;
+		}
+	}
+}

@@ -1,9 +1,9 @@
 // ==============================================================================================
 // component/drawer
 // ==============================================================================================
-$ = require('jquery');
+// require ========================================
 overlay = require('../component/overlay');
-/* ======================================== */
+/* function ======================================== */
 module.exports = function(target, trigger, bodyModifier, toggleData) {
 	if(!toggleData) {
 		toggleData = 'data-is-active';

@@ -1,22 +1,27 @@
 // ==============================================================================================
+// foundation
+// ==============================================================================================
+require('./foundation/variable');
+// ==============================================================================================
 // vendor
 // ==============================================================================================
-import 'svgxuse';
-import './vendor/slick';
-import './vendor/fontawesome';
+$ = require('jquery');
+require('svgxuse');
+require('./vendor/fontawesome');
 // ==============================================================================================
 // component
 // ==============================================================================================
-import './component/active';
-import './component/maxlength';
-import './component/modal';
-import './component/hoverimg';
-import './component/pagescroll';
+require('./component/pagescroll');
+require('./component/hoverimg');
+require('./component/maxlength');
+require('./component/active');
+require('./component/modal');
 // ==============================================================================================
 // module
 // ==============================================================================================
-import './module/movetotop';
-import './module/global-nav';
+require('./module/movetotop');
+require('./module/global-nav');
 // ==============================================================================================
 // scope
 // ==============================================================================================
+require('./scope/index');
