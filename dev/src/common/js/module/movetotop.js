@@ -1,21 +1,19 @@
 // ==============================================================================================
 // module/movetotop
 // ==============================================================================================
-// require ========================================
-$ = require('jquery');
 // setup ========================================
 $('body').append('<div data-movetotop></div>');
 // function ========================================
 $(window).scroll(function() {
 	var pos = $(window).scrollTop();
-	if(pos > 600) {
-		$('[data-movetotop]').fadeIn('slow');
+	if(pos > durationTime1) {
+		$('[data-movetotop]').fadeIn(durationTime3);
 	} else {
-		$('[data-movetotop]').fadeOut('slow');
+		$('[data-movetotop]').fadeOut(durationTime3);
 	}
 });
 $('[data-movetotop]').click(function() {
 	$('body,html').animate({
 		scrollTop: 0
-	}, 400);
+	}, durationTime1);
 });

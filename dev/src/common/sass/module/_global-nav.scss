@@ -16,7 +16,7 @@
 			position: fixed;
 			right: 0;
 			top: 0;
-			z-index: 4;
+			z-index: 100;
 			cursor: pointer;
 			height: size(5);
 			width: size(5);
@@ -83,13 +83,14 @@
 				text-decoration: none;
 			}
 		}
-		&-cat {
-			&__title {
+		/* sub category ---------------------------------------- */
+		&__item {
+			#{$this}__title {
 				cursor: pointer;
 				display: block;
 				padding: size(2) 0;
 			}
-			&__items {
+			#{$this}__items {
 				transition: all transitionTime(1);
 				visibility: hidden;
 				overflow: hidden;
@@ -107,15 +108,15 @@
 					opacity: 1;
 				}
 			}
-			&__item {}
+			#{$this}__item {}
 			#{$this}__link {
 				font-size: fontSize(-1);
-				border-bottom: 1px dotted color(gray, 3);
 			}
-			&__item {
-				&:last-child {
-					#{$this}__link {
+			#{$this}__items {
+				#{$this}__item {
+					&:last-child {
 						border: 0;
+						#{$this}__link {}
 					}
 				}
 			}
@@ -145,38 +146,50 @@
 				text-decoration: none;
 			}
 		}
-		&-cat {
+		/* sub category ---------------------------------------- */
+		&__item {
 			position: relative;
-			&__title {
-				display: block;
+			#{$this}__title {
+				cursor: pointer;
 			}
-			&__items {
-				transition: all transitionTime(1);
+			#{$this}__items {
 				position: absolute;
-				background: #fff;
+				top: 0;
 				left: 0;
-				top: size(4);
-				opacity: 0;
+				transition: all transitionTime(1);
+				visibility: hidden;
+				overflow: hidden;
 				height: 0;
 				line-height: 0;
-				visibility: hidden;
-				box-shadow: boxShadow(1);
-				z-index: 1;
+				opacity: 0;
+				display: block;
+				padding-top: size(4);
+				background: transparent;
 			}
-			&:hover {
-				.global-nav-cat__items {
-					opacity: 1;
-					visibility: visible;
-					height: auto;
+			#{$this}__item {
+				border: 0;
+				border-bottom: 1px solid color(gray, 5);
+				padding: size(2);
+				background: color(gray, 2);
+				box-shadow: boxShadow(1);
+			}
+			#{$this}__link {}
+			#{$this}__items {
+				#{$this}__item {
+					&:last-child {
+						border: 0;
+						#{$this}__link {}
+					}
 				}
 			}
-			&__item {}
-			#{$this}__link {
-				line-height: size(4);
-			}
-			&__item {
-				&:last-child {
-					#{$this}__link {}
+			&:hover {
+				& > {
+					#{$this}__items {
+						height: auto;
+						overflow: inherit;
+						visibility: visible;
+						opacity: 1;
+					}
 				}
 			}
 		}
@@ -184,6 +197,5 @@
 }
 /* bodyModifier ======================================== */
 body[data-global-nav] {
-	transition: all transitionTime(1);
 	&[data-global-nav='true'] {}
 }
