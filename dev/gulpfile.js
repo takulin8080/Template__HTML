@@ -81,7 +81,7 @@ var filepath = {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../releas/common/css/utility.css'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -161,8 +161,8 @@ gulp.task('fileSetup', function() {
 			appendFile(sassDst + 'scope/_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
+			// utility.css
 			if(!dev) {
-				// utility.css
 				var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
 				appendFile(overwritecssDst, overwritecsscode, function(err) {
 					if(err) throw err;
@@ -208,15 +208,6 @@ gulp.task('fileSetup', function() {
 			appendFile(sassDst + 'scope/' + dataDir + '_base.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
-			// utility.css
-			if(!dev) {
-				if(baseModifier != 'dev') {
-					var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataDir + 'base').replace('modifier', "data-modifier^='" + baseModifier + "'").replace(/(\r\n)/g, '\n');
-					appendFile(overwritecssDst, overwritecsscode, function(err) {
-						if(err) throw err;
-					});
-				}
-			}
 		}
 	}
 	// module
