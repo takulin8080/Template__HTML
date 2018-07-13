@@ -81,7 +81,7 @@ var filepath = {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/common/css/utility.css'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -107,9 +107,11 @@ gulp.task('html', function(cb) {
 gulp.task('fileSetup', function() {
 	var ejsDst = filepath.dst.src + 'ejs/';
 	var sassDst = filepath.dst.src + filepath.common.sass;
-	var overwritecssDst = filepath.dst.release + filepath.common.css + 'utility.css';
 	var imgDst = filepath.dst.src + filepath.common.img;
 	var dirname = path.dirname;
+	if(!dev) {
+		var overwritecssDst = filepath.dst.release + filepath.common.css + 'utility.css';
+	}
 
 	function appendFile(path, contents, cb) {
 		fs.access(path, function(err) {
@@ -159,11 +161,13 @@ gulp.task('fileSetup', function() {
 			appendFile(sassDst + 'scope/_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
-			// utility.css
-			var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
-			appendFile(overwritecssDst, overwritecsscode, function(err) {
-				if(err) throw err;
-			});
+			if(!dev) {
+				// utility.css
+				var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
+				appendFile(overwritecssDst, overwritecsscode, function(err) {
+					if(err) throw err;
+				});
+			}
 		} else {
 			var modifierArray = dataPathArray;
 			modifierArray.pop();
@@ -181,11 +185,13 @@ gulp.task('fileSetup', function() {
 				if(err) throw err;
 			});
 			// utility.css
-			if(baseModifier != 'dev') {
-				var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + baseModifier + ' ' + dataName + "'").replace(/(\r\n)/g, '\n');
-				appendFile(overwritecssDst, overwritecsscode, function(err) {
-					if(err) throw err;
-				});
+			if(!dev) {
+				if(baseModifier != 'dev') {
+					var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + baseModifier + ' ' + dataName + "'").replace(/(\r\n)/g, '\n');
+					appendFile(overwritecssDst, overwritecsscode, function(err) {
+						if(err) throw err;
+					});
+				}
 			}
 		}
 		// img
@@ -203,11 +209,13 @@ gulp.task('fileSetup', function() {
 				if(err) throw err;
 			});
 			// utility.css
-			if(baseModifier != 'dev') {
-				var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataDir + 'base').replace('modifier', "data-modifier^='" + baseModifier + "'").replace(/(\r\n)/g, '\n');
-				appendFile(overwritecssDst, overwritecsscode, function(err) {
-					if(err) throw err;
-				});
+			if(!dev) {
+				if(baseModifier != 'dev') {
+					var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataDir + 'base').replace('modifier', "data-modifier^='" + baseModifier + "'").replace(/(\r\n)/g, '\n');
+					appendFile(overwritecssDst, overwritecsscode, function(err) {
+						if(err) throw err;
+					});
+				}
 			}
 		}
 	}
