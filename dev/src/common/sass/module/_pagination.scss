@@ -28,7 +28,7 @@
 		}
 		&[data-modifire~='prev'] {
 			border-radius: size(1) 0 0 size(1);
-			font-size: fontSize(-1);
+			font-size: fontSize(-2);
 			&:before {
 				@include fontawesome('\f100');
 				margin-right: size(.5);
@@ -36,7 +36,7 @@
 		}
 		&[data-modifire~='next'] {
 			border-radius: 0 size(1) size(1) 0;
-			font-size: fontSize(-1);
+			font-size: fontSize(-2);
 			&:after {
 				@include fontawesome('\f101');
 				margin-left: size(.5);
