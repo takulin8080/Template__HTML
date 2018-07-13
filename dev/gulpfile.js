@@ -81,7 +81,7 @@ var filepath = {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../releas/common/css/utility.css'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/common/css/utility.css'];
 // =================================================================================================
 // json
 // =================================================================================================
