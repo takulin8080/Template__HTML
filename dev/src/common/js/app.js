@@ -11,10 +11,11 @@ require('./vendor/fontawesome');
 // ==============================================================================================
 // component
 // ==============================================================================================
+require('./component/active');
+require('./component/scroll-active');
 require('./component/pagescroll');
 require('./component/hoverimg');
 require('./component/maxlength');
-require('./component/active');
 require('./component/modal');
 // ==============================================================================================
 // module
