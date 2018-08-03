@@ -12,6 +12,7 @@ $(function() {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
 			var trg = $(this).attr(tarData);
+			tar.attr(activeData, 'false');
 			var trgOffset = $(trg).offset().top + $(trg).outerHeight();
 			$(window).scroll(function() {
 				var scrollPos = $(window).scrollTop() + $(window).height();
