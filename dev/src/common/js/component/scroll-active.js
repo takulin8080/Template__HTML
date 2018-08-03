@@ -11,11 +11,16 @@ $(function() {
 	} else {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
-			var trg = $(this).attr(tarData);
+			var trgData = $(this).attr(tarData);
 			tar.attr(activeData, 'false');
-			var trgOffset = $(trg).offset().top + $(trg).outerHeight();
+			if(trgData) {
+				var trg = $(trgData);
+			} else {
+				var trg = $(this);
+			}
+			var trgOffset = trg.offset().top;
 			$(window).scroll(function() {
-				var scrollPos = $(window).scrollTop() + $(window).height();
+				var scrollPos = $(window).scrollTop();
 				if(scrollPos > trgOffset) {
 					tar.attr(activeData, 'true');
 				} else {
