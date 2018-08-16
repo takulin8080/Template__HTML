@@ -28,6 +28,10 @@
 			"layout": "dev",
 			"title": "active"
 		},
+		"dev/scroll-active": {
+			"layout": "dev",
+			"title": "scroll-active"
+		},
 		"dev/modal": {
 			"layout": "dev",
 			"title": "modal"

@@ -13,11 +13,15 @@ var ejspath = '../';
 	<html lang="ja">
 		<head>
 			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 			<title>
 				<%- data.site.title %>
 			</title>
-			<meta name="description" content="<%- description %>">
+			<% if( description ){ %>
+				<meta name="description" content="<%- description %>">
+			<% } else { %>
+				<meta name="description" content="<%- data.site.description %>">
+			<% } %>
 			<% if( data.site.author ){ %>
 				<meta name="author" content="<%- data.site.author %>"/>
 			<% } %>
@@ -46,7 +50,6 @@ var ejspath = '../';
 <% if( modifier == 'after' ){ %>
 					</main>
 					<!-- /main-contents -->
-					<%- include(ejspath + '_module/sub-contents') %>
 				</div>
 			</div>
 			<!-- /contents -->

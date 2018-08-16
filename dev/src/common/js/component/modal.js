@@ -42,7 +42,9 @@ $.fn.modal = function() {
 };
 /* ---------------------------------------- */
 overlay.click(function() {
-	disabled()
+	if($('body[' + bodyModifier + ']').length) {
+		toggle(modalName, bodyModifier, 'false');
+	}
 });
 /* ---------------------------------------- */
 close.click(function() {
