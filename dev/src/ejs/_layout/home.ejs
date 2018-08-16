@@ -17,7 +17,11 @@ var ejspath = '../';
 			<title>
 				<%- data.site.title %>
 			</title>
-			<meta name="description" content="<%- description %>">
+			<% if( description ){ %>
+				<meta name="description" content="<%- description %>">
+			<% } else { %>
+				<meta name="description" content="<%- data.site.description %>">
+			<% } %>
 			<% if( data.site.author ){ %>
 				<meta name="author" content="<%- data.site.author %>"/>
 			<% } %>
