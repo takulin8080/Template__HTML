@@ -13,7 +13,7 @@ var ejspath = '../';
 	<html lang="ja">
 		<head>
 			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 			<title>
 				<%- title %>
 				|
@@ -62,7 +62,6 @@ var ejspath = '../';
 <% if( modifier == 'after' ){ %>
 					</main>
 					<!-- /main-contents -->
-					<%- include(ejspath + '_module/sub-contents') %>
 					<%- include(ejspath + '_module/sub-contents') %>
 				</div>
 			</div>
