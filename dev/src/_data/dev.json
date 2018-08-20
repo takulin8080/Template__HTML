@@ -16,21 +16,25 @@
 			"layout": "dev",
 			"title": "フォームテンプレート"
 		},
+		"dev/button": {
+			"layout": "dev",
+			"title": "button"
+		},
 		"dev/maxlength": {
 			"layout": "dev",
-			"title": "maxlength"
+			"title": "maxlength [最大表示文字数制限]"
 		},
 		"dev/hoverimg": {
 			"layout": "dev",
-			"title": "hoverimg"
+			"title": "hoverimg [マウスオーバー画像変更]"
 		},
 		"dev/active": {
 			"layout": "dev",
-			"title": "active"
+			"title": "active [data-is-active操作]"
 		},
 		"dev/scroll-active": {
 			"layout": "dev",
-			"title": "scroll-active"
+			"title": "scroll-active [data-is-active操作]"
 		},
 		"dev/modal": {
 			"layout": "dev",

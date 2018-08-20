@@ -5,22 +5,29 @@ dev/index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<% var item = function(file){ %>
+	<li>
+		<a href="<%- page['dev/' + file].url %>"><%- page['dev/' + file].title %></a>
+	</li>
+<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
 <h2>サイトマップ</h2>
 <ul>
-	<li><a href="<%- page['dev/sitemap'].url %>"><%- page['dev/sitemap'].title %></a></li>
+	<%- item('sitemap') %>
 </ul>
 <h2>汎用パーツ</h2>
 <ul>
-	<li><a href="<%- page['dev/maxlength'].url %>"><%- page['dev/maxlength'].title %></a></li>
-	<li><a href="<%- page['dev/hoverimg'].url %>"><%- page['dev/hoverimg'].title %></a></li>
-	<li><a href="<%- page['dev/active'].url %>"><%- page['dev/active'].title %></a></li>
-	<li><a href="<%- page['dev/scroll-active'].url %>"><%- page['dev/scroll-active'].title %></a></li>
-	<li><a href="<%- page['dev/modal'].url %>"><%- page['dev/modal'].title %></a></li>
+	<%- item('button') %>
+	<%- item('maxlength') %>
+	<%- item('hoverimg') %>
+	<%- item('active') %>
+	<%- item('scroll-active') %>
+	<%- item('modal') %>
 </ul>
 <h2>テンプレート</h2>
 <ul>
-	<li><a href="<%- page['dev/ex-html-style'].url %>"><%- page['dev/ex-html-style'].title %></a></li>
-	<li><a href="<%- page['dev/ex-form'].url %>"><%- page['dev/ex-form'].title %></a></li>
+	<%- item('ex-html-style') %>
+	<%- item('ex-form') %>
 </ul>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

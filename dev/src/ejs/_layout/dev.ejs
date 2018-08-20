@@ -34,10 +34,13 @@ var ejspath = '../';
 		<body data-modifier="<%- pageModifier %>">
 			<!-- dev-contents -->
 			<main class="dev-contents">
-				<h1 class="dev-contents__title"><%- title %></h1>
+				<h1><%- title %></h1>
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
+				<% if (pageModifier != 'dev index') { %>
+					<a class="to-index" href="<%- page['dev/index'].url %>">< 開発用ページ一覧に戻る</a>
+				<% } %>
 			</main>
 			<!-- /dev-contents -->
 			<%- include(ejspath + '_module/dev-link') %>

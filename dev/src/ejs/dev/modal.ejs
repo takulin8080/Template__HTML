@@ -6,25 +6,24 @@ dev/modal
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <h2>data属性での操作</h2>
-<div data-modal-trg="test" style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;">modal起動（data-modal-trg="test"）</div>
+<button data-button data-modal-trg="exsample">modal起動（data-modal-trg="exsample"）</button>
 
 <h2>onClickでの操作</h2>
-<div style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('[data-modal-tar=test]').modal();">'modal起動（onclick="$('.test').modal();"）</div>
-<div style="background: #000; color: #fff; text-aline: center; margin-bottom: 16px; text-align: center; padding: 16px;" onclick="$('[data-modal-tar=test]').modal();">'modal起動（onclick="$('[data-modal-tar=test]').modal();"）</div>
-
-<div class="test" data-modal-tar="test">
+<div data-button-group>
+	<button data-button onclick="$('[data-modal-tar=exsample]').modal();">'modal起動（onclick="$('.exsample').modal();"）</button>
+	<button data-button onclick="$('[data-modal-tar=exsample]').modal();">'modal起動（onclick="$('[data-modal-tar=exsample]').modal();"）</button>
+</div>
+<div class="exsample" data-modal-tar="exsample">
 	<div style="background: #fff; padding: 32px;">
-		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;test&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須</p>
+		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;exsample&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須</p>
 	</div>
 </div>
 
-<div data-modal-tar="test2" data-is-active="true">
+<div data-modal-tar="exsample2" data-is-active="true">
 	<div style="background: #fff; padding: 32px;">
-		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;test&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須</p>
+		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;exsample&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須</p>
 		<p>このモーダルは「data-is-active="true"」を付与しているため、ページロード時に表示</p>
 	</div>
 </div>
-
-<a class="to-index" href="<%- page['dev/index'].url %>">< 開発用ページ一覧に戻る</a>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
