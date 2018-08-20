@@ -2,16 +2,14 @@
 /* scope/dev/active
 /* ============================================================================================== */
 body[data-modifier='dev active'] {
-	.test {
+	.exsample {
 		margin: size(2) 0;
 		padding: size(2);
 		height: auto;
-		background: color(gray, 1);
+		background: whitesmoke;
 		color: color(gray, 8);
-		border: 1px solid color(gray, 9);
 		&[data-is-active~='true'] {
-			background: color(gray, 8);
-			color: color(gray, 1);
+			background: yellow;
 		}
 	}
 }

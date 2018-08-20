@@ -1,10 +1,10 @@
 /* ============================================================================================== */
-/* scope/dev/scroll-active
+/* component/text-color
 /* ============================================================================================== */
-body[data-modifier='dev scroll-active'] {
-	.exsample {
-		&[data-is-active~='true'] {
-			background: yellow;
+@each $color, $category in $colorPalet {
+	@each $signType, $signColor in $category {
+		[data-text-color~='#{$color}-#{$signType}'] {
+			color: $signColor;
 		}
 	}
 }

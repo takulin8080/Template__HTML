@@ -1,0 +1,46 @@
+<%#
+=====================================================================================================
+dev/button
+=====================================================================================================
+%>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<h2 class="dev-h2">設定方法</h2>
+<p>'data-button="値"'を指定することで、ボタンのデザインを適応。なお「a」または「button」で使用されることを想定。<br>また、'data-button-group'で加工ことでグループ化も可能。</p>
+<h3 class="dev-h3">基本スタイル</h3>
+<button data-button>デフォルト</button>
+<button data-button="info">info</button>
+<button data-button="success">success</button>
+<button data-button="attention">attention</button>
+<button data-button="caution">caution</button>
+<button data-button="disabled">disabled</button>
+<h3 class="dev-h3">project専用</h3>
+<button data-button="blue">blue</button>
+<h3 class="dev-h3">サイズ</h3>
+<button data-button="info">デフォルト</button>
+<button data-button="success sm">small</button>
+<button data-button="attention md">middle</button>
+<button data-button="caution lg">large</button>
+<h3 class="dev-h3">data-button-group</h3>
+<div data-button-group>
+	<button data-button="info">デフォルト</button>
+	<button data-button="info">デフォルト</button>
+	<button data-button="info">デフォルト</button>
+</div>
+<div data-button-group="left">
+	<button data-button="info">left</button>
+	<button data-button="info">left</button>
+	<button data-button="info">left</button>
+</div>
+<div data-button-group="center">
+	<button data-button="info">center</button>
+	<button data-button="info">center</button>
+	<button data-button="info">center</button>
+</div>
+<div data-button-group="right">
+	<button data-button="info">right</button>
+	<button data-button="info">right</button>
+	<button data-button="info">right</button>
+</div>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

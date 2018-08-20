@@ -2,73 +2,75 @@
 /* scope/dev/sitemap
 /* ============================================================================================== */
 body[data-modifier='dev sitemap'] {
-	/* dev-progressbar ======================================== */
-	.dev-progressbar {
-		display: flex;
-		margin-bottom: size(4);
-		border: size(1) solid color(gray, 1);
-		&__item {
-			color: rgba(255,255,255, .8);
-			font-size: fontSize(-4);
-			padding: 0 size(2);
-			line-height: size(4);
-			white-space: nowrap;
-			overflow: hidden;
-			font-weight: bold;
-			&[data-modifier~='done'] {
-				background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
-			}
-			&[data-modifier~='undone'] {
-				background: linear-gradient(#fff, color(gray, 5));
-				color: rgba(0,0,0, .5);
-			}
-			&[data-modifier~='stop'] {
-				background: linear-gradient(color(sign, attention), darken(color(sign, attention), 8%));
-			}
-		}
-	}
-	/* dev-sitemap ======================================== */
-	.dev-sitemap {
-		margin: 0 size(2);
-		&__items {}
-		&__item {
-			background: color(gray, 1);
-			border-bottom: 1px solid color(gray, 4);
-			color: #000;
-			margin-bottom: size(1);
-			padding: size(1);
-			&[data-modifier~='done'] {
-				background: lighten(color(sign, success), 50%);
-				@include fontawesome('\f00c');
-				&:before {
-					color: color(sign, success);
-					float: left;
-					margin-right: size(1);
+	.dev-contents {
+		/* dev-progressbar ======================================== */
+		.dev-progressbar {
+			display: flex;
+			margin-bottom: size(4);
+			border: size(1) solid color(gray, 1);
+			&__item {
+				color: rgba(255,255,255, .8);
+				font-size: fontSize(-4);
+				padding: 0 size(2);
+				line-height: size(4);
+				white-space: nowrap;
+				overflow: hidden;
+				font-weight: bold;
+				&[data-modifier~='done'] {
+					background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
 				}
-			}
-			&[data-modifier~='stop'] {
-				background: lighten(color(sign, attention), 45%);
-				@include fontawesome('\f05e');
-				&:before {
-					color: color(sign, attention);
-					float: left;
-					margin-right: size(1);
+				&[data-modifier~='undone'] {
+					background: linear-gradient(#fff, color(gray, 5));
+					color: rgba(0,0,0, .5);
+				}
+				&[data-modifier~='stop'] {
+					background: linear-gradient(color(sign, attention), darken(color(sign, attention), 8%));
 				}
 			}
 		}
-		&__link {
-			color: #000;
-			display: block;
-		}
-		&__url {}
-		&__title {
-			color: color(gray, 7);
-			font-size: fontSize(-1);
-			&:before {
-				content: '[ ';
+		/* dev-sitemap ======================================== */
+		.dev-sitemap {
+			margin: 0 size(2);
+			&__items {}
+			&__item {
+				background: color(gray, 1);
+				border-bottom: 1px solid color(gray, 4);
+				color: #000;
+				margin-bottom: size(1);
+				padding: size(1);
+				&[data-modifier~='done'] {
+					background: lighten(color(sign, success), 50%);
+					@include fontawesome('\f00c');
+					&:before {
+						color: color(sign, success);
+						float: left;
+						margin-right: size(1);
+					}
+				}
+				&[data-modifier~='stop'] {
+					background: lighten(color(sign, attention), 45%);
+					@include fontawesome('\f05e');
+					&:before {
+						color: color(sign, attention);
+						float: left;
+						margin-right: size(1);
+					}
+				}
 			}
-			&:after {
-				content: ' ]';
+			&__link {
+				color: #000;
+				display: block;
+			}
+			&__url {}
+			&__title {
+				color: color(gray, 7);
+				font-size: fontSize(-1);
+				&:before {
+					content: '[ ';
+				}
+				&:after {
+					content: ' ]';
+				}
 			}
 		}
 	}

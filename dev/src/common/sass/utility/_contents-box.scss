@@ -1,10 +1,9 @@
 /* ============================================================================================== */
-/* scope/dev/scroll-active
+/* component/contents-box
 /* ============================================================================================== */
-body[data-modifier='dev scroll-active'] {
-	.exsample {
-		&[data-is-active~='true'] {
-			background: yellow;
-		}
+[data-contents-box] {
+	@include styleClear();
+	&[data-contents-box="style-setup"] {
+		@extend %styleSetup;
 	}
 }

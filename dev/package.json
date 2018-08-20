@@ -6,7 +6,7 @@
 	"repository": "project",
 	"license": "ISC",
 	"devDependencies": {
-		"ajv": "^6.5.2",
+		"ajv": "^6.5.3",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.5",
 		"babel-preset-env": "^1.7.0",
@@ -41,7 +41,7 @@
 		"run-sequence": "^2.2.1",
 		"sass-loader": "^6.0.7",
 		"style-loader": "^0.20.3",
-		"url-loader": "^1.1.0",
+		"url-loader": "^1.1.1",
 		"webpack": "^4.16.5",
 		"webpack-merge": "^4.1.4",
 		"webpack-stream": "^4.0.3"

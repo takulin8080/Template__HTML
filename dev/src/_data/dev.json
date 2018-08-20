@@ -10,31 +10,55 @@
 		},
 		"dev/ex-html-style": {
 			"layout": "dev",
-			"title": "基本タグスタイル【@extend %style-reset】"
+			"title": "基本htmlスタイル"
 		},
 		"dev/ex-form": {
 			"layout": "dev",
 			"title": "フォームテンプレート"
 		},
+		"dev/contents-box": {
+			"layout": "dev",
+			"title": "contents-box [汎用ボックス]"
+		},
+		"dev/button": {
+			"layout": "dev",
+			"title": "button"
+		},
+		"dev/notify": {
+			"layout": "dev",
+			"title": "notify [通知デザイン]"
+		},
 		"dev/maxlength": {
 			"layout": "dev",
-			"title": "maxlength"
+			"title": "maxlength [最大表示文字数制限]"
 		},
 		"dev/hoverimg": {
 			"layout": "dev",
-			"title": "hoverimg"
+			"title": "hoverimg [マウスオーバー画像変更]"
+		},
+		"dev/column": {
+			"layout": "dev",
+			"title": "column [横並びレイアウト]"
 		},
 		"dev/active": {
 			"layout": "dev",
-			"title": "active"
+			"title": "active [data-is-active操作]"
 		},
 		"dev/scroll-active": {
 			"layout": "dev",
-			"title": "scroll-active"
+			"title": "scroll-active [data-is-active操作]"
 		},
 		"dev/modal": {
 			"layout": "dev",
 			"title": "modal"
+		},
+		"dev/text-color": {
+			"layout": "dev",
+			"title": "text-color [文字色]"
+		},
+		"dev/hide": {
+			"layout": "dev",
+			"title": "hide [画面サイズによる非表示化]"
 		}
 	}
 }

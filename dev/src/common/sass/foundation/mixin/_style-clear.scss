@@ -1,16 +1,16 @@
 /* ============================================================================================== */
-/* foundation/extend/style-clear
+/* foundation/mixin/style-clear
 /* ============================================================================================== */
 /*
 対象のスタイルおよび内包するタグの基本スタイルをリセットする。
 
 ```scss
 exsample {
-	@extend %styleClear;
+	@include styleClear();
 }
 ```
 */
-%styleClear {
+@mixin styleClear() {
 	background: transparent;
 	border: 0;
 	color: color(text);
