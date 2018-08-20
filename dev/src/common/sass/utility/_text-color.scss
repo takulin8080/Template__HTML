@@ -1,0 +1,10 @@
+/* ============================================================================================== */
+/* component/text-color
+/* ============================================================================================== */
+@each $color, $category in $colorPalet {
+	@each $signType, $signColor in $category {
+		[data-text-color~='#{$color}-#{$signType}'] {
+			color: $signColor;
+		}
+	}
+}
