@@ -6,5 +6,3 @@ dev/dst
 dev/src/_data.json
 dev/src/common/sass/component/_icon.scss
 dev/src/common/font
-package-lock.json
-/dev/package-lock.json
