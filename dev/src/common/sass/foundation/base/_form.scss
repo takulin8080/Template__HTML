@@ -126,7 +126,6 @@ label {
 	}
 	/* note ---------------------------------------- */
 	.note {
-		@extend %styleClear;
 		@include fontSize(-2);
 		margin: size(1) 0;
 	}
