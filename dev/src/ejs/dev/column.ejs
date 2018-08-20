@@ -1,0 +1,46 @@
+<%#
+=====================================================================================================
+dev/column
+=====================================================================================================
+%>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<p>「data-column="※"」を付与することで、直下のアイテムを横並びにすることが可能。１〜５カラムに対応。<br>なお、画面幅（レスポンシブ）に応じて１行の表示数は調整される。<br>「data-column-gap="none"」を付与することで隙間を無くすことが可能。</p>
+<h2>１行表示【data-column="1"】</h2>
+<div data-column="1">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/200" alt=""></div>
+	<% } %>
+</div>
+<h2>最大２カラム【data-column="2"】</h2>
+<div data-column="2">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/400" alt=""></div>
+	<% } %>
+</div>
+<h2>最大３カラム【data-column="3"】</h2>
+<div data-column="3">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/800" alt=""></div>
+	<% } %>
+</div>
+<h2>最大４カラム【data-column="4"】</h2>
+<div data-column="4">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/1200" alt=""></div>
+	<% } %>
+</div>
+<h2>最大５カラム【data-column="5"】</h2>
+<div data-column="5">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/2000" alt=""></div>
+	<% } %>
+</div>
+<h2>隙間無し 最大４カラム 【data-column="4" data-column-gap="none"】</h2>
+<div data-column="4" data-column-gap="none">
+	<% for (var i = 0; i < 5; i++) { %>
+		<div><img src="https://picsum.photos/1200/400" alt=""></div>
+	<% } %>
+</div>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
