@@ -19,6 +19,7 @@
 	background: color(gray, 1);
 	color: color(text, light);
 	overflow: auto;
+	border-radius: size(.5);
 	& > *:last-child {
 		margin-bottom: 0;
 	}

@@ -1,10 +1,4 @@
 /* ============================================================================================== */
-/* scope/dev/scroll-active
+/* scope/dev/button
 /* ============================================================================================== */
-body[data-modifier='dev scroll-active'] {
-	.exsample {
-		&[data-is-active~='true'] {
-			background: yellow;
-		}
-	}
-}
+body[data-modifier='dev button'] {}

@@ -3,16 +3,40 @@
 /* ============================================================================================== */
 body[data-modifier^='dev'] {
 	.dev-contents {
-		& > h2 {
-			font-size: fontSize(2);
+		/* html style set ======================================== */
+		color: black;
+		.dev-h1 {
+			font-size: fontSize(3);
+			text-align: center;
 			font-weight: bold;
-			margin: size(8) 0 size(2);
-			padding: size(2) 0 0;
-			border-top: 1px solid color(gray, 9);
+			border-bottom: 1px solid lightgray;
+			padding-bottom: size(4);
+			margin-bottom: size(4);
 		}
-		& > .to-index {
+		.dev-h2 {
+			background: black;
+			color: white;
+			padding: size(1);
+			margin: size(4) 0 size(2);
+		}
+		.dev-h3 {
+			font-weight: bold;
+			color: dimgray;
+			background: whitesmoke;
+			padding: size(1);
+			margin: size(6) 0 size(2);
+			border-left: size(.25) solid dimgray;
+		}
+		.dev-h4 {
+			color: dimgray;
+			font-weight: bold;
+			font-size: fontSize(-1);
+			margin: size(6) 0 size(2);
+		}
+		/* to-index ======================================== */
+		.to-index {
 			display: block;
-			margin-top: size(8);
+			margin-top: size(6);
 		}
 	}
 }

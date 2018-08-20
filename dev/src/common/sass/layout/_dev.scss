@@ -3,19 +3,17 @@
 /* ============================================================================================== */
 body[data-modifier^='dev'] {
 	background: color(gray, 2);
+	padding: size(2) 0;
+	@include respondTo(mdAndOver) {
+		padding: size(4) 0;
+	}
+	/* dev-contents ======================================== */
 	.dev-contents {
 		@extend %wrap;
-		padding: size(8);
-		margin-top: size(2);
-		margin-bottom: size(2);
+		padding: size(4) size(2);
 		background: #fff;
-		&__title {
-			color: #000;
-			@include fontSize(4);
-			font-weight: bold;
-			line-height: size(10);
-			margin: 0 0 size(4);
-			text-align: center;
+		@include respondTo(mdAndOver) {
+			padding: size(8);
 		}
 	}
 }

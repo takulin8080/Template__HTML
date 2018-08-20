@@ -5,22 +5,37 @@ dev/index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<h2>サイトマップ</h2>
+<% var item = function(file){ %>
+	<li>
+		<a href="<%- page['dev/' + file].url %>"><%- page['dev/' + file].title %></a>
+	</li>
+<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<h2 class="dev-h2">サイトマップ</h2>
 <ul>
-	<li><a href="<%- page['dev/sitemap'].url %>"><%- page['dev/sitemap'].title %></a></li>
+	<%- item('sitemap') %>
 </ul>
-<h2>汎用パーツ</h2>
+<h2 class="dev-h2">汎用パーツ</h2>
 <ul>
-	<li><a href="<%- page['dev/maxlength'].url %>"><%- page['dev/maxlength'].title %></a></li>
-	<li><a href="<%- page['dev/hoverimg'].url %>"><%- page['dev/hoverimg'].title %></a></li>
-	<li><a href="<%- page['dev/active'].url %>"><%- page['dev/active'].title %></a></li>
-	<li><a href="<%- page['dev/scroll-active'].url %>"><%- page['dev/scroll-active'].title %></a></li>
-	<li><a href="<%- page['dev/modal'].url %>"><%- page['dev/modal'].title %></a></li>
+	<%- item('button') %>
+	<%- item('notify') %>
+	<%- item('maxlength') %>
+	<%- item('hoverimg') %>
+	<%- item('column') %>
+	<%- item('modal') %>
+	<%- item('active') %>
+	<%- item('scroll-active') %>
 </ul>
-<h2>テンプレート</h2>
 <ul>
-	<li><a href="<%- page['dev/ex-html-style'].url %>"><%- page['dev/ex-html-style'].title %></a></li>
-	<li><a href="<%- page['dev/ex-form'].url %>"><%- page['dev/ex-form'].title %></a></li>
+	<%- item('contents-box') %>
+	<%- item('text-color') %>
+	<%- item('hide') %>
+</ul>
+<h2 class="dev-h2">プロジェクト専用パーツ</h2>
+<h2 class="dev-h2">テンプレート</h2>
+<ul>
+	<%- item('ex-html-style') %>
+	<%- item('ex-form') %>
 </ul>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
