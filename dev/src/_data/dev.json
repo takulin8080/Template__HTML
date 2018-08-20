@@ -20,6 +20,10 @@
 			"layout": "dev",
 			"title": "button"
 		},
+		"dev/notify": {
+			"layout": "dev",
+			"title": "notify [通知デザイン]"
+		},
 		"dev/maxlength": {
 			"layout": "dev",
 			"title": "maxlength [最大表示文字数制限]"
