@@ -44,11 +44,9 @@ var filepath = {
 	},
 	font: {
 		src: 'src/common/font/**/*',
-		designSrc: 'design/icon/**/*.+(jpg|jpeg|png|gif|svg)',
-		designDst: 'src/common/img/icon/',
 		iconSrc: 'src/common/img/icon/*.svg',
 		iconDst: 'src/common/font/',
-		watch: ['design/**/*.svg', '!design/**/*.+(psd|ai)']
+		watch: ['src/common/img/icon/*.svg']
 	},
 	sass: {
 		appSrc: ['src/common/sass/app.scss'],
@@ -394,21 +392,11 @@ var pagedataCheck = function(data, filename) {
 // =================================================================================================
 // font
 // =================================================================================================
-gulp.task('font', ['iconDesign', 'icon'], function() {
+gulp.task('font', ['icon'], function() {
 	var src = filepath.font.src;
 	var dst = dstDir + filepath.common.font;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-});
-// -----------------------------------------------
-// iconDesign
-// -----------------------------------------------
-gulp.task('iconDesign', function() {
-	var src = filepath.font.designSrc;
-	var dst = filepath.font.designDst;
-	return gulp.src(src).pipe($.rename(function(path) {
-		path.dirname = '';
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // -----------------------------------------------
@@ -581,7 +569,7 @@ gulp.task('watch', function() {
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	dev = true;
-	runSequence('html', 'iconDesign', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'doc', 'watch', 'browserSync', cb);
+	runSequence('html', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'doc', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // RELEASE
