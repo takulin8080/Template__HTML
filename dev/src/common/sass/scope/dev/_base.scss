@@ -5,7 +5,7 @@ body[data-modifier^='dev'] {
 	.dev-contents {
 		/* html style set ======================================== */
 		color: black;
-		h1 {
+		.dev-h1 {
 			font-size: fontSize(3);
 			text-align: center;
 			font-weight: bold;
@@ -13,13 +13,13 @@ body[data-modifier^='dev'] {
 			padding-bottom: size(4);
 			margin-bottom: size(4);
 		}
-		h2 {
+		.dev-h2 {
 			background: black;
 			color: white;
 			padding: size(1);
 			margin: size(4) 0 size(2);
 		}
-		h3 {
+		.dev-h3 {
 			font-weight: bold;
 			color: dimgray;
 			background: whitesmoke;
@@ -27,17 +27,11 @@ body[data-modifier^='dev'] {
 			margin: size(6) 0 size(2);
 			border-left: size(.25) solid dimgray;
 		}
-		h4 {
+		.dev-h4 {
 			color: dimgray;
 			font-weight: bold;
 			font-size: fontSize(-1);
 			margin: size(6) 0 size(2);
-		}
-		a:link {
-			color: blue;
-		}
-		a:visited {
-			color: purple;
 		}
 		/* to-index ======================================== */
 		.to-index {

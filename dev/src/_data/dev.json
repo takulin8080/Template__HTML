@@ -10,11 +10,15 @@
 		},
 		"dev/ex-html-style": {
 			"layout": "dev",
-			"title": "基本タグスタイル【@extend %style-reset】"
+			"title": "基本htmlスタイル"
 		},
 		"dev/ex-form": {
 			"layout": "dev",
 			"title": "フォームテンプレート"
+		},
+		"dev/contents-box": {
+			"layout": "dev",
+			"title": "contents-box [汎用ボックス]"
 		},
 		"dev/button": {
 			"layout": "dev",

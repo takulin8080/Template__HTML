@@ -5,10 +5,10 @@ dev/modal
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<h2>data属性での操作</h2>
+<h2 class="dev-h2">data属性での操作</h2>
 <button data-button data-modal-trg="exsample">modal起動（data-modal-trg="exsample"）</button>
 
-<h2>onClickでの操作</h2>
+<h2 class="dev-h2">onClickでの操作</h2>
 <div data-button-group>
 	<button data-button onclick="$('[data-modal-tar=exsample]').modal();">'modal起動（onclick="$('.exsample').modal();"）</button>
 	<button data-button onclick="$('[data-modal-tar=exsample]').modal();">'modal起動（onclick="$('[data-modal-tar=exsample]').modal();"）</button>
