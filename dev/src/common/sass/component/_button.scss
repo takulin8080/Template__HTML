@@ -2,11 +2,11 @@
 /* module/button
 /* ============================================================================================== */
 /*
-ボタンのスタイル`data-button`、ボタングループ`data-buttons`の管理
+ボタンのスタイル`data-button`、ボタングループ`data-button-group`の管理
 
 ```html
 <button data-button="sample">sample</button>
-<div data-buttons>
+<div data-button-group>
 	<button data-button="sample">sample</button>
 	<button data-button="sample">sample</button>
 </div>
@@ -68,8 +68,8 @@
 		}
 	}
 	&[data-button~='lg'] {
-		font-size: fontSize(1);
-		padding: size(1) size(2.5);
+		font-size: fontSize(2);
+		padding: size(1) size(3);
 		&:before {
 			margin-right: size(1);
 			font-size: size(2);
@@ -101,26 +101,45 @@
 		color: darken(color(gray, 3), 25%);
 		box-shadow: none;
 	}
-	&[data-button~='times-circle'] {
-		@include icon('times-circle');
-	}
 }
 /* buttons ======================================== */
-[data-buttons] {
+[data-button-group],
+a[data-button] {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	margin: 0 size(-1);
+	&[data-button-group~="left"] {
+		justify-content: flex-start;
+		@include respondTo(xs) {
+			justify-content: center;
+		}
+	}
+	&[data-button-group~="center"] {
+		justify-content: center;
+		@include respondTo(xs) {
+			justify-content: center;
+		}
+	}
+	&[data-button-group~="right"] {
+		justify-content: flex-end;
+		@include respondTo(xs) {
+			justify-content: center;
+		}
+	}
+	@include respondTo(xs) {
+		margin-right: 0;
+		margin-left: 0;
+	}
 	[data-button] {
-		margin: 0 size(1) size(2);
+		margin: 0 size(.5) size(2);
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
 		&[data-button~='lg'] {
-			@if $responsive {
-				@include respondTo(xs) {
-					width: 100%;
-				}
+			@include respondTo(xs) {
+				width: 100%;
+				margin-right: 0;
+				margin-left: 0;
 			}
 		}
 	}
