@@ -80,7 +80,7 @@
 		}
 	}
 	/* color ---------------------------------------- */
-	@each $sign, $signs in $color {
+	@each $sign, $signs in $colorPalet {
 		@each $signType, $signColor in $signs {
 			&[data-button~='#{$signType}'] {
 				background: linear-gradient($signColor, darken($signColor, 5%));

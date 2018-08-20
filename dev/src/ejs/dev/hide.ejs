@@ -1,0 +1,22 @@
+<%#
+=====================================================================================================
+dev/hide
+=====================================================================================================
+%>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<h2>設定方法</h2>
+<p>'data-hide="値"'を設定することで、任意の画面サイズで要素を非表示することが可能。</p>
+<h3>サンプル</h3>
+<ul>
+	<li class="exsample" data-hide="xs">xsサイズで非表示</li>
+	<li class="exsample" data-hide="sm">smサイズで非表示</li>
+	<li class="exsample" data-hide="md">mdサイズで非表示</li>
+	<li class="exsample" data-hide="lg">lgサイズで非表示</li>
+	<li class="exsample" data-hide="smAndOver">smサイズ以上で非表示</li>
+	<li class="exsample" data-hide="mdAndOver">mdサイズ以上で非表示</li>
+	<li class="exsample" data-hide="smAndUnder">smサイズ以下で非表示</li>
+	<li class="exsample" data-hide="mdAndUnder">mdサイズ以下で非表示</li>
+</ul>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
