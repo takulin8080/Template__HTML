@@ -12,6 +12,8 @@
 </div>
 ```
 */
+/* require ======================================== */
+@import 'component/icon';
 /* style ======================================== */
 [data-button] {
 	cursor: pointer;
@@ -99,9 +101,8 @@
 		color: darken(color(gray, 3), 25%);
 		box-shadow: none;
 	}
-	/* icon ---------------------------------------- */
-	&[data-button~='home'] {
-		@include icon(home);
+	&[data-button~='times-circle'] {
+		@include icon('times-circle');
 	}
 }
 /* buttons ======================================== */
