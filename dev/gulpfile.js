@@ -55,12 +55,14 @@ var filepath = {
 		foundationWatch: ['src/common/sass/foundation/**/*', '!src/common/sass/component/_icon.scss'],
 		componentSrc: ['src/common/sass/component.scss'],
 		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
-		projectSrc: ['src/common/sass/project.scss'],
-		projectWatch: ['src/common/sass/**/*', '!src/common/sass/scope/dev/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
+		layoutSrc: ['src/common/sass/layout.scss'],
+		layoutWatch: ['src/common/sass/layout/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
+		moduleSrc: ['src/common/sass/module.scss'],
+		moduleWatch: ['src/common/sass/module/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
+		scopeSrc: ['src/common/sass/scope.scss'],
+		scopeWatch: ['src/common/sass/scope/**/*', '!src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
 		utilitySrc: ['src/common/sass/utility.scss'],
 		utilityWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/utility/**/*', '!src/common/sass/component/_icon.scss'],
-		devSrc: ['src/common/sass/dev.scss'],
-		devWatch: ['src/common/sass/scope/dev/**/*', '!src/common/sass/component/_icon.scss']
 	},
 	js: {
 		src: 'src/common/js/*.js',
@@ -457,8 +459,26 @@ gulp.task('cssComponent', function() {
 		grid: true
 	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 });
-gulp.task('cssProject', function() {
-	var src = filepath.sass.projectSrc;
+gulp.task('cssLayout', function() {
+	var src = filepath.sass.layoutSrc;
+	var dst = dstDir + filepath.common.css;
+	return gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('Error: <%= error.message %>')
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+		grid: true
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+});
+gulp.task('cssModule', function() {
+	var src = filepath.sass.moduleSrc;
+	var dst = dstDir + filepath.common.css;
+	return gulp.src(src).pipe($.plumber({
+		errorHandler: $.notify.onError('Error: <%= error.message %>')
+	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+		grid: true
+	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+});
+gulp.task('cssScope', function() {
+	var src = filepath.sass.scopeSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
@@ -468,15 +488,6 @@ gulp.task('cssProject', function() {
 });
 gulp.task('cssUtility', function() {
 	var src = filepath.sass.utilitySrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssDev', function() {
-	var src = filepath.sass.devSrc;
 	var dst = dstDir + filepath.common.css;
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
@@ -556,9 +567,10 @@ gulp.task('watch', function() {
 	gulp.watch(filepath.font.watch, ['font']);
 	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
 	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
-	gulp.watch(filepath.sass.projectWatch, ['cssProject']);
+	gulp.watch(filepath.sass.layoutWatch, ['cssLayout']);
+	gulp.watch(filepath.sass.moduleWatch, ['cssModule']);
+	gulp.watch(filepath.sass.scopeWatch, ['cssScope']);
 	gulp.watch(filepath.sass.utilityWatch, ['cssUtility']);
-	gulp.watch(filepath.sass.devWatch, ['cssDev']);
 	gulp.watch(filepath.js.watch, ['js']);
 	gulp.watch(filepath.img.watch, ['img']);
 	gulp.watch(filepath.doc.watch, ['doc']);
@@ -569,7 +581,7 @@ gulp.task('watch', function() {
 gulp.task('1 ============== DEVELOPMENT', function(cb) {
 	dstDir = filepath.dst.dev;
 	dev = true;
-	runSequence('html', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssProject', 'cssUtility', 'cssDev', 'js', 'img', 'doc', 'watch', 'browserSync', cb);
+	runSequence('html', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssLayout', 'cssModule', 'cssScope', 'cssUtility', 'js', 'img', 'doc', 'watch', 'browserSync', cb);
 });
 // =================================================================================================
 // RELEASE
