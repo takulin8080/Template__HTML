@@ -2,7 +2,7 @@
 /* component/icon
 /* ============================================================================================== */
 /*
-`src/assets/icon/*.svg`から自動生成。
+`src/common/img/icon/*.svg`から自動生成。
 
 scssで利用。
 `$char`には`*.svg`のファイル名を指定。`$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
@@ -14,18 +14,14 @@ exsample {
 ```
 */
 @font-face {
-	font-family: "<%= fontName %>";
+	font-family: '<%= fontName %>';
 	src: url('<%= fontPath %><%= fontName %>.eot');
-	src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
-		url('<%= fontPath %><%= fontName %>.woff') format('woff'),
-		url('<%= fontPath %><%= fontName %>.ttf') format('truetype'),
-		url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
+	src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'), url('<%= fontPath %><%= fontName %>.woff') format('woff'), url('<%= fontPath %><%= fontName %>.ttf') format('truetype'), url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
 }
-
 @mixin <%= cssClass%>-styles {
-	font-family: "<%= fontName %>";
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+	font-family: '<%= fontName %>';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
@@ -33,21 +29,17 @@ exsample {
 	text-decoration: none;
 	text-transform: none;
 }
-
-%<%= cssClass%> {
+%<%= cssClass% > {
 	@include <%= cssClass%>-styles;
 }
-
 @function <%= cssClass%>-char($filename) {
-	$char: "";
-<% _.each(glyphs, function(glyph) { %>
+	$char: '';<% _.each(glyphs, function(glyph) { %>
 	@if $filename == <%= glyph.fileName %> {
-		$char: "\<%= glyph.codePoint %>";
-	}<% }); %>
-
+		$char: '\<%= glyph.codePoint %>';
+	}
+	<% }); %>
 	@return $char;
 }
-
 @mixin <%= cssClass%>($filename, $insert: before, $extend: true) {
 	&:#{$insert} {
 		@if $extend {
@@ -58,8 +50,7 @@ exsample {
 		content: <%= cssClass%>-char($filename);
 	}
 }
-
-<% _.each(glyphs, function(glyph) { %>[data-<%= cssClass%>~="<%= glyph.fileName %>"] {
+<% _.each(glyphs, function(glyph) { %>[data-<%= cssClass% > ~="<%= glyph.fileName % > "] {
 	@include <%= cssClass%>(<%= glyph.fileName %>);
 }
 <% }); %>

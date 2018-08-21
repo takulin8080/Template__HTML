@@ -118,7 +118,7 @@ label {
 	}
 	/* notify ---------------------------------------- */
 	[data-notify] {
-		// カラーは`foundation variable color`スタイルは`component notify`で管理。
+		// use component/notify
 		background: color(gray, 1);
 		padding: size(.5) size(1);
 		margin-bottom: size(1);
