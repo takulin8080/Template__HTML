@@ -8,9 +8,9 @@
 			cursor: pointer;
 			display: none;
 			left: 50%;
-			margin-left: -$siteWidth/2;
+			margin-left: -#{$siteWidth/2};
 			position: fixed;
-			width: $siteWidth;
+			width: calc(#{$siteWidth} + #{size(8)});
 			@include fontawesome('\f106');
 			&:before {
 				background: color(black);
