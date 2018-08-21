@@ -2,7 +2,7 @@
 /* layout/dev
 /* ============================================================================================== */
 body[data-modifier^='dev'] {
-	background: color(gray, 2);
+	background: color(gray, 100);
 	padding: size(2) 0;
 	@include respondTo(mdAndOver) {
 		padding: size(4) 0;
@@ -11,7 +11,7 @@ body[data-modifier^='dev'] {
 	.dev-contents {
 		@extend %wrap;
 		padding: size(4) size(2);
-		background: #fff;
+		background: color(white);
 		@include respondTo(mdAndOver) {
 			padding: size(8);
 		}

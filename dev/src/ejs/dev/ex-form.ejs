@@ -5,6 +5,10 @@ dev/ex-form
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<div data-notify="info">入力に誤りがあります</div>
+<div data-notify="success">入力に誤りがあります</div>
+<div data-notify="attention">入力に誤りがあります</div>
+<div data-notify="caution">入力に誤りがあります</div>
 <%# input ======================================== %>
 <form action="#" method="post">
 	<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
@@ -14,6 +18,9 @@ dev/ex-form
 				<label for="name">お名前</label>
 			</dt>
 			<dd class="formbox__desc">
+				<div data-notify="info">入力に誤りがあります</div>
+				<div data-notify="success">入力に誤りがあります</div>
+				<div data-notify="attention">入力に誤りがあります</div>
 				<div data-notify="caution">入力に誤りがあります</div>
 				<div class="note">コメント</div>
 				<input type="text" name="name" id="name" />

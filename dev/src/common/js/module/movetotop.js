@@ -7,9 +7,9 @@ $('body').append('<div data-movetotop></div>');
 $(window).scroll(function() {
 	var pos = $(window).scrollTop();
 	if(pos > durationTime1) {
-		$('[data-movetotop]').fadeIn(durationTime3);
+		$('[data-movetotop]').fadeIn(durationTime1);
 	} else {
-		$('[data-movetotop]').fadeOut(durationTime3);
+		$('[data-movetotop]').fadeOut(durationTime1);
 	}
 });
 $('[data-movetotop]').click(function() {

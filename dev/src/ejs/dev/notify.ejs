@@ -6,7 +6,8 @@ dev/notify
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <h2 class="dev-h2">設定方法</h2>
-<p>'data-notify="値"'を指定することで、通知ボックスのデザインを適応。</p>
+<p>'data-notify="値"'を指定することで、通知ボックスのデザインを適応。'data-notify="inline"'を付与することで、テキストスタイルに変更。</p>
+<h2 class="dev-h3">'data-notiry="値"' [ボックススタイル]</h2>
 <div data-notify="info">
 	【data-notify="info"】
 	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
@@ -20,8 +21,12 @@ dev/notify
 	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
 </div>
 <div data-notify="caution">
-	【data-notify="caution"】
-	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+	<p>【data-notify="caution inline"】サンプルテキスト</p>
 </div>
+<h2 class="dev-h3">'data-notiry="値 inline"' [テキストスタイル]</h2>
+<p><span data-notify="info inline">【data-notify="info inline"】サンプルテキスト</span></p>
+<p><span data-notify="success inline">【data-notify="success inline"】サンプルテキスト</span></p>
+<p><span data-notify="attention inline">【data-notify="attention inline"】サンプルテキスト</span></p>
+<p><span data-notify="caution inline">【data-notify="caution inline"】サンプルテキスト</span></p>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

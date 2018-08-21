@@ -16,7 +16,7 @@ body {
 		justify-content: center;
 		align-items: center;
 		z-index: 1000;
-		background: #fff;
+		background: color(white);
 	}
 	&[data-loading~="true"] {
 		[data-loading-layer] {}
@@ -41,7 +41,7 @@ body {
 	[data-loading-animation] {
 		width: size(4);
 		height: size(4);
-		background-color: #000;
+		background-color: color(black);
 		border-radius: 100%;
 		opacity: 0;
 		animation: animation 1s infinite ease-in-out;
