@@ -34,7 +34,7 @@
 		position: absolute;
 		right: size(1);
 		top: 0;
-		@include icon('times-circle');
+		@include fontawesome('\f057');
 		&:before {
 			font-size: size(3);
 			line-height: 1;
