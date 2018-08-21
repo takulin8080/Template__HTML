@@ -74,7 +74,7 @@
 		&__item {
 			margin: 0 size(1);
 			padding: 0 size(1);
-			border-bottom: 1px solid color(gray, 5);
+			border-bottom: 1px solid color(gray, 400);
 		}
 		&__link {
 			display: block;
@@ -99,7 +99,7 @@
 				padding: 0 size(1);
 				opacity: 0;
 				&[data-is-active~='true'] {
-					background: color(gray, 1);
+					background: color(gray, 50);
 					padding: size(1);
 					margin-bottom: size(2);
 					height: auto;
@@ -130,12 +130,12 @@
 			display: none;
 		}
 		&__items {
-			background: color(gray, 1);
+			background: color(gray, 50);
 			display: flex;
 		}
 		&__item {
 			padding: 0 size(3);
-			border-right: 1px solid color(gray, 5);
+			border-right: 1px solid color(gray, 400);
 			&:last-child {
 				border: 0;
 			}
@@ -168,9 +168,9 @@
 			}
 			#{$this}__item {
 				border: 0;
-				border-bottom: 1px solid color(gray, 5);
+				border-bottom: 1px solid color(gray, 400);
 				padding: size(2);
-				background: color(gray, 2);
+				background: color(gray, 100);
 				box-shadow: boxShadow(1);
 			}
 			#{$this}__link {}

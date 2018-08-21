@@ -2,7 +2,7 @@
 /* layout/dev
 /* ============================================================================================== */
 body[data-modifier^='dev'] {
-	background: color(gray, 2);
+	background: color(gray, 100);
 	padding: size(2) 0;
 	@include respondTo(mdAndOver) {
 		padding: size(4) 0;

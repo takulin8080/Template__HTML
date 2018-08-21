@@ -5,27 +5,27 @@ body[data-modifier='dev hide'] {
 	.exsample {
 		margin: size(2) 0;
 		padding: size(2);
-		background: color(gray, 1);
+		background: color(gray, 50);
 		&:nth-of-type(2) {
-			background: color(gray, 2);
+			background: color(gray, 100);
 		}
 		&:nth-of-type(3) {
-			background: color(gray, 3);
+			background: color(gray, 200);
 		}
 		&:nth-of-type(4) {
-			background: color(gray, 4);
+			background: color(gray, 300);
 		}
 		&:nth-of-type(5) {
-			background: color(gray, 5);
+			background: color(gray, 400);
 		}
 		&:nth-of-type(6) {
-			background: color(gray, 6);
+			background: color(gray, 500);
 		}
 		&:nth-of-type(7) {
-			background: color(gray, 7);
+			background: color(gray, 600);
 		}
 		&:nth-of-type(8) {
-			background: color(gray, 8);
+			background: color(gray, 700);
 		}
 	}
 }

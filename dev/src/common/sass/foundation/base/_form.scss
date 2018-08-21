@@ -6,10 +6,10 @@ input[type='password'],
 input[type='email'] {
 	box-sizing: border-box;
 	@include fontSize(1);
-	border: 1px solid color(gray, 6);
+	border: 1px solid color(gray, 500);
 	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
 	padding: size(.25) size(.5);
-	background-color: color(gray, 1);
+	background-color: color(gray, 50);
 	color: color(text, dark);
 	margin-right: size(.5);
 	max-width: 30em;
@@ -17,10 +17,10 @@ input[type='email'] {
 textarea {
 	box-sizing: border-box;
 	@include fontSize(1);
-	border: 1px solid color(gray, 6);
+	border: 1px solid color(gray, 500);
 	box-shadow: inset 1px 1px 1px 0 rgba(0, 0, 0, .1);
 	padding: size(1);
-	background-color: color(gray, 1);
+	background-color: color(gray, 50);
 	color: color(text, dark);
 	width: 100%;
 	max-width: 30em;
@@ -74,7 +74,7 @@ label {
 		&__desc {
 			padding-bottom: size(2);
 			margin-bottom: size(2);
-			border-bottom: 1px solid color(gray, 3);
+			border-bottom: 1px solid color(gray, 200);
 		}
 		@include respondTo(mdAndOver) {
 			&__items {
@@ -85,7 +85,7 @@ label {
 				width: 20rem;
 				padding-bottom: size(2);
 				margin-bottom: size(2);
-				border-bottom: 1px solid color(gray, 3);
+				border-bottom: 1px solid color(gray, 200);
 				text-align: right;
 			}
 			&__desc {
@@ -93,7 +93,7 @@ label {
 				padding-left: size(4);
 				padding-bottom: size(2);
 				margin-bottom: size(2);
-				border-bottom: 1px solid color(gray, 3);
+				border-bottom: 1px solid color(gray, 200);
 			}
 		}
 	} @else {
@@ -105,7 +105,7 @@ label {
 			width: 20rem;
 			padding-bottom: size(2);
 			margin-bottom: size(2);
-			border-bottom: 1px solid color(gray, 3);
+			border-bottom: 1px solid color(gray, 200);
 			text-align: right;
 		}
 		&__desc {
@@ -113,13 +113,13 @@ label {
 			padding-bottom: size(2);
 			padding-left: size(4);
 			margin-bottom: size(2);
-			border-bottom: 1px solid color(gray, 3);
+			border-bottom: 1px solid color(gray, 200);
 		}
 	}
 	/* notify ---------------------------------------- */
 	[data-notify] {
 		// use component/notify
-		background: color(gray, 1);
+		background: color(gray, 50);
 		padding: size(.5) size(1);
 		margin-bottom: size(1);
 		@include fontSize(-2);
@@ -131,7 +131,7 @@ label {
 	}
 	/* uniq ---------------------------------------- */
 	input[data-modifier~='auto-complete'] {
-		background: color(gray, 1);
+		background: color(gray, 50);
 		border: 0;
 		box-shadow: none;
 	}

@@ -9,7 +9,7 @@
 	padding: size(1) size(2);
 	margin-bottom: size(2);
 	font-size: fontSize(-1);
-	background: color(gray, 1);
+	background: color(gray, 50);
 	overflow: auto;
 	border-radius: size(.5);
 	& > *:last-child {

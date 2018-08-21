@@ -17,16 +17,16 @@
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
 	box-shadow: boxShadow(2);
-	background: linear-gradient(color(gray, 1), color(gray, 2));
-	color: color(gray, 9);
+	background: linear-gradient(color(gray, 50), color(gray, 100));
+	color: color(gray, 800);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
-		background: color(gray, 1);
+		background: color(gray, 50);
 		text-decoration: none;
 	}
 	&:active {
-		background: color(gray, 2);
+		background: color(gray, 100);
 	}
 	&:before {
 		margin-right: size(1);
@@ -90,8 +90,8 @@
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
-		background: color(gray, 4);
-		color: color(gray, 6);
+		background: color(gray, 300);
+		color: color(gray, 500);
 		box-shadow: none;
 	}
 }
