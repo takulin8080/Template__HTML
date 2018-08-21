@@ -8,7 +8,7 @@ body {
 	&[data-overlay] {
 		& [data-overlay-layer] {
 			transition: all transitionTime(1);
-			background: #000;
+			background: color(black);
 			content: '';
 			width: 100%;
 			height: 100vh;

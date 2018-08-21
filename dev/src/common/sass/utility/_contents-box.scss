@@ -2,7 +2,7 @@
 /* component/contents-box
 /* ============================================================================================== */
 [data-contents-box] {
-	@include styleClear();
+	@include styleReset();
 	&[data-contents-box="style-setup"] {
 		@extend %styleSetup;
 	}

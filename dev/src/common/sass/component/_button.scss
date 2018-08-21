@@ -3,14 +3,6 @@
 /* ============================================================================================== */
 /*
 ボタンのスタイル`data-button`、ボタングループ`data-button-group`の管理
-
-```html
-<button data-button="sample">sample</button>
-<div data-button-group>
-	<button data-button="sample">sample</button>
-	<button data-button="sample">sample</button>
-</div>
-```
 */
 /* require ======================================== */
 @import 'component/icon';
@@ -24,16 +16,18 @@
 	align-items: center;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow(1);
-	background: linear-gradient(#fff, color(gray, 1));
-	color: color(gray, 9);
+	box-shadow: boxShadow(2);
+	background: linear-gradient(color(gray, 50), color(gray, 100));
+	color: color(gray, 800);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
-		background: #fff;
+		background: color(gray, 50);
 		text-decoration: none;
 	}
-	&:active {}
+	&:active {
+		background: color(gray, 100);
+	}
 	&:before {
 		margin-right: size(1);
 		font-size: size(1.5);
@@ -79,26 +73,25 @@
 			font-size: size(2);
 		}
 	}
-	/* color ---------------------------------------- */
-	@each $sign, $signs in $colorPalet {
-		@each $signType, $signColor in $signs {
-			&[data-button~='#{$signType}'] {
-				background: linear-gradient($signColor, darken($signColor, 5%));
-				color: rgba(#fff, .9);
-				&:hover {
-					background: $signColor;
-				}
-				&:active {
-					background: $signColor;
-				}
+	/* sign color ---------------------------------------- */
+	@each $type, $color in map-get($colorPalet, sign) {
+		&[data-button~='#{$type}'] {
+			background: linear-gradient($color, darken($color, 4%));
+			color: rgba(color(white), .9);
+			&:hover {
+				background: $color;
+			}
+			&:active {
+				background: darken($color, 4%);
 			}
 		}
 	}
+	/* project color ---------------------------------------- */
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
-		background: color(gray, 3);
-		color: darken(color(gray, 3), 25%);
+		background: color(gray, 300);
+		color: color(gray, 500);
 		box-shadow: none;
 	}
 }

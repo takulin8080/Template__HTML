@@ -7,7 +7,7 @@ body[data-modifier='dev sitemap'] {
 		.dev-progressbar {
 			display: flex;
 			margin-bottom: size(4);
-			border: size(1) solid color(gray, 1);
+			border: size(1) solid color(gray, 50);
 			&__item {
 				color: rgba(255,255,255, .8);
 				font-size: fontSize(-4);
@@ -20,7 +20,7 @@ body[data-modifier='dev sitemap'] {
 					background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
 				}
 				&[data-modifier~='undone'] {
-					background: linear-gradient(#fff, color(gray, 5));
+					background: linear-gradient(color(white), color(gray, 300));
 					color: rgba(0,0,0, .5);
 				}
 				&[data-modifier~='stop'] {
@@ -33,9 +33,9 @@ body[data-modifier='dev sitemap'] {
 			margin: 0 size(2);
 			&__items {}
 			&__item {
-				background: color(gray, 1);
-				border-bottom: 1px solid color(gray, 4);
-				color: #000;
+				background: color(gray, 50);
+				border-bottom: 1px solid color(gray, 300);
+				color: color(black);
 				margin-bottom: size(1);
 				padding: size(1);
 				&[data-modifier~='done'] {
@@ -58,12 +58,12 @@ body[data-modifier='dev sitemap'] {
 				}
 			}
 			&__link {
-				color: #000;
+				color: color(black);
 				display: block;
 			}
 			&__url {}
 			&__title {
-				color: color(gray, 7);
+				color: color(gray, 600);
 				font-size: fontSize(-1);
 				&:before {
 					content: '[ ';

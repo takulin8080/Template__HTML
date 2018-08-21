@@ -7,7 +7,7 @@ body[data-modifier='dev active'] {
 		padding: size(2);
 		height: auto;
 		background: whitesmoke;
-		color: color(gray, 8);
+		color: color(gray, 700);
 		&[data-is-active~='true'] {
 			background: yellow;
 		}

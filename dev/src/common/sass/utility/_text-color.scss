@@ -1,10 +1,24 @@
 /* ============================================================================================== */
 /* component/text-color
 /* ============================================================================================== */
-@each $color, $category in $colorPalet {
-	@each $signType, $signColor in $category {
-		[data-text-color~='#{$color}-#{$signType}'] {
-			color: $signColor;
+@each $category, $categorys in $colorPalet {
+	@each $type, $color in $categorys {
+		@if $category != sign {
+			@if $type == 'default' {
+				[data-text-color~='#{$category}'] {
+					color: $color;
+				}
+			} @else {
+				[data-text-color~='#{$category}-#{$type}'] {
+					color: $color;
+				}
+			}
 		}
+	}
+}
+/* sign color ======================================== */
+@each $type, $color in map-get($colorPalet, sign) {
+	[data-text-color~='#{$type}'] {
+		color: $color;
 	}
 }
