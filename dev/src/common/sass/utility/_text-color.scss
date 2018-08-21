@@ -1,11 +1,18 @@
 /* ============================================================================================== */
 /* component/text-color
 /* ============================================================================================== */
-/* all color ======================================== */
 @each $category, $categorys in $colorPalet {
 	@each $type, $color in $categorys {
-		[data-text-color~='#{$category}-#{$type}'] {
-			color: $color;
+		@if $category != sign {
+			@if $type == 'default' {
+				[data-text-color~='#{$category}'] {
+					color: $color;
+				}
+			} @else {
+				[data-text-color~='#{$category}-#{$type}'] {
+					color: $color;
+				}
+			}
 		}
 	}
 }

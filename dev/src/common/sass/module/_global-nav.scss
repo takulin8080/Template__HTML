@@ -6,12 +6,12 @@
 	/* mdAndUnder ======================================== */
 	@include respondTo(mdAndUnder) {
 		@include drawer(right);
-		background: #fff;
+		background: color(white);
 		height: 100vh;
 		max-width: size(48);
 		width: 100%;
 		padding-bottom: size(4);
-		border-top: size(5) solid #000;
+		border-top: size(5) solid color(black);
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -29,13 +29,13 @@
 				line-height: size(5);
 				width: 4em;
 				text-align: right;
-				color: #000;
+				color: color(black);
 			}
 			span {
 				transition: all transitionTime(1);
 				position: absolute;
 				left: 25%;
-				background: #000;
+				background: color(black);
 				height: 1px;
 				width: 50%;
 				&:nth-of-type(1) {
@@ -52,10 +52,10 @@
 			}
 			&[data-is-active~='true'] {
 				&:before {
-					color: #fff;
+					color: color(white);
 				}
 				span {
-					background: #fff;
+					background: color(white);
 					&:nth-of-type(1) {
 						margin-top: 0;
 						transform: rotate(-45deg);

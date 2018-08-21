@@ -4,13 +4,6 @@
 /*
 通知ボックス`data-notify`の管理
 `formbox__desc`の中で使用した場合のスタイルは`foundation base form`で管理。
-
-```html
-<div data-notify="success">success</div>
-<div data-notify="success">
-	<p>Lorem ipsum dolor sit amet</p>
-</div>
-```
 */
 [data-notify] {
 	padding: size(1) size(2);
@@ -29,10 +22,10 @@
 			background-color: lighten(color(sign, $sign), $bgLighten);
 		}
 	}
-	@include signColor(info, 44%);
+	@include signColor(info, 54%);
 	@include signColor(success, 52%);
-	@include signColor(attention, 46%);
-	@include signColor(caution, 41%);
+	@include signColor(attention, 44%);
+	@include signColor(caution, 55%);
 	/* inline ======================================== */
 	&[data-notify~='inline'] {
 		padding: 0;

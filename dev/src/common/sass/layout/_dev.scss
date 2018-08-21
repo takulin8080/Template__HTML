@@ -11,7 +11,7 @@ body[data-modifier^='dev'] {
 	.dev-contents {
 		@extend %wrap;
 		padding: size(4) size(2);
-		background: #fff;
+		background: color(white);
 		@include respondTo(mdAndOver) {
 			padding: size(8);
 		}

@@ -12,7 +12,7 @@
 		padding: size(1) size(2.5);
 		background: linear-gradient(color(gray, 1), color(gray, 3));
 		border-right: 1px solid color(gray, 3);
-		color: lighten(#000, 25%);
+		color: lighten(color(black), 25%);
 		box-shadow: boxShadow(1);
 		display: inline-block;
 		text-decoration: none;

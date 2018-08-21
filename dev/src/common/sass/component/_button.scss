@@ -3,14 +3,6 @@
 /* ============================================================================================== */
 /*
 ボタンのスタイル`data-button`、ボタングループ`data-button-group`の管理
-
-```html
-<button data-button="sample">sample</button>
-<div data-button-group>
-	<button data-button="sample">sample</button>
-	<button data-button="sample">sample</button>
-</div>
-```
 */
 /* require ======================================== */
 @import 'component/icon';
@@ -24,16 +16,18 @@
 	align-items: center;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow(1);
-	background: linear-gradient(#fff, color(gray, 1));
+	box-shadow: boxShadow(2);
+	background: linear-gradient(color(gray, 1), color(gray, 2));
 	color: color(gray, 9);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
-		background: #fff;
+		background: color(gray, 1);
 		text-decoration: none;
 	}
-	&:active {}
+	&:active {
+		background: color(gray, 2);
+	}
 	&:before {
 		margin-right: size(1);
 		font-size: size(1.5);
@@ -82,13 +76,13 @@
 	/* sign color ---------------------------------------- */
 	@each $type, $color in map-get($colorPalet, sign) {
 		&[data-button~='#{$type}'] {
-			background: linear-gradient($color, darken($color, 5%));
-			color: rgba(#fff, .9);
+			background: linear-gradient($color, darken($color, 4%));
+			color: rgba(color(white), .9);
 			&:hover {
 				background: $color;
 			}
 			&:active {
-				background: $color;
+				background: darken($color, 4%);
 			}
 		}
 	}
@@ -96,8 +90,8 @@
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
-		background: color(gray, 3);
-		color: darken(color(gray, 3), 25%);
+		background: color(gray, 4);
+		color: color(gray, 6);
 		box-shadow: none;
 	}
 }

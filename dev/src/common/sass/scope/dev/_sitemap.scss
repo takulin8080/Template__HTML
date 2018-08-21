@@ -20,7 +20,7 @@ body[data-modifier='dev sitemap'] {
 					background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
 				}
 				&[data-modifier~='undone'] {
-					background: linear-gradient(#fff, color(gray, 5));
+					background: linear-gradient(color(white), color(gray, 5));
 					color: rgba(0,0,0, .5);
 				}
 				&[data-modifier~='stop'] {
@@ -35,7 +35,7 @@ body[data-modifier='dev sitemap'] {
 			&__item {
 				background: color(gray, 1);
 				border-bottom: 1px solid color(gray, 4);
-				color: #000;
+				color: color(black);
 				margin-bottom: size(1);
 				padding: size(1);
 				&[data-modifier~='done'] {
@@ -58,7 +58,7 @@ body[data-modifier='dev sitemap'] {
 				}
 			}
 			&__link {
-				color: #000;
+				color: color(black);
 				display: block;
 			}
 			&__url {}

@@ -13,9 +13,9 @@
 			width: $siteWidth;
 			@include fontawesome('\f106');
 			&:before {
-				background: #000;
+				background: color(black);
 				bottom: 0;
-				color: #fff;
+				color: color(white);
 				font-size: size(4);
 				height: size(6);
 				line-height: size(6);
@@ -37,9 +37,9 @@
 		width: $siteWidth;
 		@include fontawesome('\f106');
 		&:before {
-			background: #000;
+			background: color(black);
 			bottom: 0;
-			color: #fff;
+			color: color(white);
 			font-size: size(4);
 			height: size(8);
 			line-height: size(8);
