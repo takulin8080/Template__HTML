@@ -79,21 +79,20 @@
 			font-size: size(2);
 		}
 	}
-	/* color ---------------------------------------- */
-	@each $sign, $signs in $colorPalet {
-		@each $signType, $signColor in $signs {
-			&[data-button~='#{$signType}'] {
-				background: linear-gradient($signColor, darken($signColor, 5%));
-				color: rgba(#fff, .9);
-				&:hover {
-					background: $signColor;
-				}
-				&:active {
-					background: $signColor;
-				}
+	/* sign color ---------------------------------------- */
+	@each $type, $color in map-get($colorPalet, sign) {
+		&[data-button~='#{$type}'] {
+			background: linear-gradient($color, darken($color, 5%));
+			color: rgba(#fff, .9);
+			&:hover {
+				background: $color;
+			}
+			&:active {
+				background: $color;
 			}
 		}
 	}
+	/* project color ---------------------------------------- */
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
