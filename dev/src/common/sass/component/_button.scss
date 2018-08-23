@@ -16,17 +16,19 @@
 	align-items: center;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow(2);
+	box-shadow: boxShadow();
 	background: linear-gradient(color(gray, 50), color(gray, 100));
-	color: color(gray, 800);
+	color: color(text, 600);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
 		background: color(gray, 50);
+		color: color(text, 600);
 		text-decoration: none;
 	}
 	&:active {
 		background: color(gray, 100);
+		color: color(text, 500);
 	}
 	&:before {
 		margin-right: size(1);

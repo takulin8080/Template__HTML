@@ -32,7 +32,7 @@ body {
 					visibility: hidden;
 				}
 			}
-			animation: fadeOut transitionTime(1) ease-out forwards;
+			animation: fadeOut transitionTime() ease-out forwards;
 		}
 	}
 }

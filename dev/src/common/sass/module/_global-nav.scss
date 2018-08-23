@@ -32,7 +32,7 @@
 				color: color(black);
 			}
 			span {
-				transition: all transitionTime(1);
+				transition: all transitionTime();
 				position: absolute;
 				left: 25%;
 				background: color(black);
@@ -52,7 +52,7 @@
 			}
 			&[data-is-active~='true'] {
 				&:before {
-					color: color(white);
+					color: color(text, 50);
 				}
 				span {
 					background: color(white);
@@ -91,7 +91,7 @@
 				padding: size(2) 0;
 			}
 			#{$this}__items {
-				transition: all transitionTime(1);
+				transition: all transitionTime();
 				visibility: hidden;
 				overflow: hidden;
 				height: 0;
@@ -156,7 +156,7 @@
 				position: absolute;
 				top: 0;
 				left: 0;
-				transition: all transitionTime(1);
+				transition: all transitionTime();
 				visibility: hidden;
 				overflow: hidden;
 				height: 0;
