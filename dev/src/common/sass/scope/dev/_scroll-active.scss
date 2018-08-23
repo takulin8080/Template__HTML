@@ -3,8 +3,9 @@
 /* ============================================================================================== */
 body[data-modifier='dev scroll-active'] {
 	.exsample {
+		padding: size(2);
 		&[data-is-active~='true'] {
-			background: yellow;
+			background: color(yellow);
 		}
 	}
 }

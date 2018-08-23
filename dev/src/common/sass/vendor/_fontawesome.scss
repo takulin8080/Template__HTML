@@ -1,16 +1,8 @@
 /* ============================================================================================== */
-/* foundation/vendor-extensinon/fontawesome
+/* vendor/fontawesome
 /* ============================================================================================== */
 /*
-font-awesomeの利用。
-`$char`には[fontawesome](http://fontawesome.io/icons/)アイコンのコード名`例 : \f2b4`を指定。
-`$insert`は設置場所の指定となるため`before（初期値）`か`after`を指定。
-
-```scss
-exsample {
-	@include fontawesome($char, $insert);
-}
-```
+http://fontawesome.io
 */
 @mixin fontawesome($char, $insert: before) {
 	&:#{$insert} {

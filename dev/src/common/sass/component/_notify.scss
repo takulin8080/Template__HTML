@@ -15,17 +15,17 @@
 	& > *:last-child {
 		margin-bottom: 0;
 	}
-	/* sign color ======================================== */
-	@mixin signColor($sign, $bgLighten) {
+	/* box style ======================================== */
+	@mixin notifySignColor($sign) {
 		&[data-notify~="#{$sign}"] {
-			color: color(sign, $sign);
-			background-color: lighten(color(sign, $sign), $bgLighten);
+			color: color(#{$sign}, 700);
+			background-color: color(#{$sign}, 50);
 		}
 	}
-	@include signColor(info, 54%);
-	@include signColor(success, 52%);
-	@include signColor(attention, 44%);
-	@include signColor(caution, 55%);
+	@include notifySignColor(info);
+	@include notifySignColor(success);
+	@include notifySignColor(warning);
+	@include notifySignColor(danger);
 	/* inline ======================================== */
 	&[data-notify~='inline'] {
 		padding: 0;

@@ -18,7 +18,7 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: fixed;
-	transition: all transitionTime(1);
+	transition: all transitionTime();
 	z-index: 100;
 	@if $pos == left {
 		left: -100vw;
