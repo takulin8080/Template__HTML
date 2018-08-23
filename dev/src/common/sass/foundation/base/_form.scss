@@ -59,7 +59,7 @@ label {
 			&:after {
 				content: '※';
 				font-size: fontSize(-1);
-				color: color(sign, caution);
+				color: color(danger);
 				font-weight: normal;
 				.formbox[data-modifier~='confirm'] & {
 					display: none;

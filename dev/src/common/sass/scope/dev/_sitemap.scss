@@ -7,9 +7,8 @@ body[data-modifier='dev sitemap'] {
 		.dev-progressbar {
 			display: flex;
 			margin-bottom: size(4);
-			border: size(1) solid color(gray, 50);
+			border: size(.5) solid color(gray, 100);
 			&__item {
-				color: rgba(255,255,255, .8);
 				font-size: fontSize(-4);
 				padding: 0 size(2);
 				line-height: size(4);
@@ -17,14 +16,16 @@ body[data-modifier='dev sitemap'] {
 				overflow: hidden;
 				font-weight: bold;
 				&[data-modifier~='done'] {
-					background: linear-gradient(color(sign, success), darken(color(sign, success), 8%));
+					background: color(success, 600);
+					color: color(success, 900);
 				}
 				&[data-modifier~='undone'] {
-					background: linear-gradient(color(white), color(gray, 300));
-					color: rgba(0,0,0, .5);
+					background: color(white);
+					color: color(text, 500);
 				}
 				&[data-modifier~='stop'] {
-					background: linear-gradient(color(sign, attention), darken(color(sign, attention), 8%));
+					background: color(warning, 600);
+					color: color(warning, 900);
 				}
 			}
 		}
@@ -35,36 +36,40 @@ body[data-modifier='dev sitemap'] {
 			&__item {
 				background: color(gray, 50);
 				border-bottom: 1px solid color(gray, 300);
-				color: color(black);
 				margin-bottom: size(1);
 				padding: size(1);
+				.dev-sitemap__link {
+					color: color(text, 900);
+				}
 				&[data-modifier~='done'] {
-					background: lighten(color(sign, success), 50%);
+					background: color(success, 50);
 					@include fontawesome('\f00c');
 					&:before {
-						color: color(sign, success);
+						color: color(success, 700);
 						float: left;
 						margin-right: size(1);
+					}
+					.dev-sitemap__link {
+						color: color(text, 900);
 					}
 				}
 				&[data-modifier~='stop'] {
-					background: lighten(color(sign, attention), 45%);
+					background: color(warning, 50);
 					@include fontawesome('\f05e');
 					&:before {
-						color: color(sign, attention);
+						color: color(warning, 700);
 						float: left;
 						margin-right: size(1);
 					}
+					.dev-sitemap__link {
+						color: color(text, 900);
+					}
 				}
-			}
-			&__link {
-				color: color(black);
-				display: block;
 			}
 			&__url {}
 			&__title {
-				color: color(gray, 600);
-				font-size: fontSize(-1);
+				color: color(text, 500);
+				font-size: fontSize(-2);
 				&:before {
 					content: '[ ';
 				}
