@@ -6,10 +6,9 @@ body[data-modifier='dev active'] {
 		margin: size(2) 0;
 		padding: size(2);
 		height: auto;
-		background: whitesmoke;
-		color: color(gray, 700);
+		background: color(gray, 50);
 		&[data-is-active~='true'] {
-			background: yellow;
+			background: color(yellow);
 		}
 	}
 }

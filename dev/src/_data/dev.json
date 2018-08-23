@@ -52,10 +52,6 @@
 			"layout": "dev",
 			"title": "modal"
 		},
-		"dev/text-color": {
-			"layout": "dev",
-			"title": "text-color [文字色]"
-		},
 		"dev/hide": {
 			"layout": "dev",
 			"title": "hide [画面サイズによる非表示化]"

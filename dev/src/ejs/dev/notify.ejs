@@ -9,24 +9,21 @@ dev/notify
 <p>'data-notify="値"'を指定することで、通知ボックスのデザインを適応。'data-notify="inline"'を付与することで、テキストスタイルに変更。</p>
 <h2 class="dev-h3">'data-notiry="値"' [ボックススタイル]</h2>
 <div data-notify="info">
-	【data-notify="info"】
-	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+	<p>[data-notify="info"]<%- data.common.text %></p>
 </div>
 <div data-notify="success">
-	【data-notify="success"】
-	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+	<p>[data-notify="success"]<%- data.common.text %></p>
 </div>
-<div data-notify="attention">
-	【data-notify="attention"】
-	<p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+<div data-notify="warning">
+	<p>[data-notify="warning"]<%- data.common.text %></p>
 </div>
-<div data-notify="caution">
-	<p>【data-notify="caution inline"】サンプルテキスト</p>
+<div data-notify="danger">
+	<p>[data-notify="danger inline"]<%- data.common.text %></p>
 </div>
 <h2 class="dev-h3">'data-notiry="値 inline"' [テキストスタイル]</h2>
-<p><span data-notify="info inline">【data-notify="info inline"】サンプルテキスト</span></p>
-<p><span data-notify="success inline">【data-notify="success inline"】サンプルテキスト</span></p>
-<p><span data-notify="attention inline">【data-notify="attention inline"】サンプルテキスト</span></p>
-<p><span data-notify="caution inline">【data-notify="caution inline"】サンプルテキスト</span></p>
+<p><span data-notify="info inline">[data-notify="info inline"]</span></p>
+<p><span data-notify="success inline">[data-notify="success inline"]</span></p>
+<p><span data-notify="warning inline">[data-notify="warning inline"]</span></p>
+<p><span data-notify="danger inline">[data-notify="danger inline"]</span></p>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

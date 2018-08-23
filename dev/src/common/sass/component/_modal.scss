@@ -20,7 +20,7 @@
 	position: fixed;
 	top: size(2);
 	left: 50%;
-	transition: all transitionTime(1);
+	transition: all transitionTime();
 	visibility: hidden;
 	z-index: 100;
 	max-height: 80vh;

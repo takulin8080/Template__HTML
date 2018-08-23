@@ -16,17 +16,19 @@
 	align-items: center;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow(2);
+	box-shadow: boxShadow();
 	background: linear-gradient(color(gray, 50), color(gray, 100));
-	color: color(gray, 800);
+	color: color(text, 600);
 	font-size: fontSize(-1);
 	padding: size(1) size(2.5);
 	&:hover {
 		background: color(gray, 50);
+		color: color(text, 600);
 		text-decoration: none;
 	}
 	&:active {
 		background: color(gray, 100);
+		color: color(text, 500);
 	}
 	&:before {
 		margin-right: size(1);
@@ -74,18 +76,25 @@
 		}
 	}
 	/* sign color ---------------------------------------- */
-	@each $type, $color in map-get($colorPalet, sign) {
-		&[data-button~='#{$type}'] {
-			background: linear-gradient($color, darken($color, 4%));
-			color: rgba(color(white), .9);
+	@mixin buttonSignColor($sign) {
+		&[data-button~="#{$sign}"] {
+			color: color(#{$sign}, 50);
+			background: linear-gradient(color(#{$sign}, 700), color(#{$sign}, 800));
 			&:hover {
-				background: $color;
+				color: color(#{$sign}, 50);
+				background: color(#{$sign}, 700);
 			}
 			&:active {
-				background: darken($color, 4%);
+				color: color(#{$sign}, 100);
+				background: color(#{$sign}, 800);
+				box-shadow: none;
 			}
 		}
 	}
+	@include buttonSignColor(info);
+	@include buttonSignColor(success);
+	@include buttonSignColor(warning);
+	@include buttonSignColor(danger);
 	/* project color ---------------------------------------- */
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {

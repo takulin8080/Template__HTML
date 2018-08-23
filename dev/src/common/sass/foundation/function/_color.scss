@@ -12,5 +12,5 @@ fontFamily($num);
 ```
 */
 @function color($type, $key: default) {
-	@return map-get(map-get($colorPalet, $type), $key);
+	@return map-get(map-get($colorPalette, $type), $key);
 }

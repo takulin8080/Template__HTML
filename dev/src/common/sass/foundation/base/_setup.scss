@@ -8,6 +8,7 @@ body {
 	font-family: fontFamily();
 	@include fontSize(1);
 	color: color(text);
+	background: color(white);
 }
 img {
 	max-width: 100%;
