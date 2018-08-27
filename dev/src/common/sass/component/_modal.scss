@@ -34,21 +34,19 @@
 		position: absolute;
 		right: size(1);
 		top: 0;
-		@include fontawesome('\f057');
+		@include materialIcons('cancel');
 		&:before {
-			font-size: size(3);
+			font-size: size(4);
 			line-height: 1;
 			background: color(white);
 			border-radius: 100%;
 		}
 	}
-	@if $responsive {
-		@include respondTo(smAndUnder) {
-			left: 0;
-			margin-left: 0;
-			width: 100%;
-			max-width: none;
-		}
+	@include respondTo(smAndUnder) {
+		left: 0;
+		margin-left: 0;
+		width: 100%;
+		max-width: none;
 	}
 	&[data-is-active~='true'] {
 		opacity: 1;
