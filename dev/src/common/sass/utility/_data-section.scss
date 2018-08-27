@@ -1,4 +1,9 @@
 /* ============================================================================================== */
-/* scope/dev/contents-box
+/* utility/data-section
 /* ============================================================================================== */
-body[data-modifier='dev contents-box'] {}
+[data-section] {
+	@include styleReset();
+	&[data-section="style-setup"] {
+		@extend %styleSetup;
+	}
+}
