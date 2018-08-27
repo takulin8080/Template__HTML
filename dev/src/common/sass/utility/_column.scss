@@ -1,0 +1,68 @@
+/* ============================================================================================== */
+/* utility/column
+/* ============================================================================================== */
+[data-column] {
+	$maxNum: 5;
+	$sideGap: 2;
+	$bottomGap: 2;
+	/* ---------------------------------------- */
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: size(-$sideGap / 2);
+	margin-right: size(-$sideGap / 2);
+	& > * {
+		margin-left: size($sideGap / 2);
+		margin-right: size($sideGap / 2);
+		margin-bottom: size($bottomGap);
+	}
+	@if $responsive == true {
+		@include respondTo(smAndOver) {
+			@for $i from 1 through $maxNum {
+				&[data-column~='#{$i}'] {
+					& > * {
+						width: calc((100% / #{$i}) - #{size($sideGap)});
+					}
+				}
+			}
+		}
+	} @else {
+		@for $i from 1 through $maxNum {
+			&[data-column~='#{$i}'] {
+				& > * {
+					width: calc((100% / #{$i}) - #{size($sideGap)});
+				}
+			}
+		}
+	}
+	/* data-column-gap~='none' ======================================== */
+	&[data-column-gap='none'] {
+		margin-left: 0;
+		margin-right: 0;
+		& > * {
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: 0;
+		}
+		@for $i from 1 through $maxNum {
+			@if $responsive == true {
+				@include respondTo(smAndOver) {
+					@for $i from 1 through $maxNum {
+						&[data-column~='#{$i}'] {
+							& > * {
+								width: calc(100% / #{$i});
+							}
+						}
+					}
+				}
+			} @else {
+				@for $i from 1 through $maxNum {
+					&[data-column~='#{$i}'] {
+						& > * {
+							width: calc(100% / #{$i});
+						}
+					}
+				}
+			}
+		}
+	}
+}
