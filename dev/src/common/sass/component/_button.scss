@@ -105,43 +105,36 @@
 	}
 }
 /* buttons ======================================== */
-[data-button-group],
-a[data-button] {
+[data-button-group] {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	&[data-button-group~="left"] {
 		justify-content: flex-start;
-		@include respondTo(xs) {
-			justify-content: center;
-		}
 	}
 	&[data-button-group~="center"] {
 		justify-content: center;
-		@include respondTo(xs) {
-			justify-content: center;
-		}
 	}
 	&[data-button-group~="right"] {
 		justify-content: flex-end;
-		@include respondTo(xs) {
-			justify-content: center;
-		}
 	}
 	@include respondTo(xs) {
 		margin-right: 0;
 		margin-left: 0;
+		justify-content: center;
 	}
 	[data-button] {
 		margin: 0 size(.5) size(2);
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
-		&[data-button~='lg'] {
-			@include respondTo(xs) {
+		&[data-button~='lg'] {}
+		@include respondTo(xs) {
+			@if $responsive {
 				width: 100%;
 				margin-right: 0;
 				margin-left: 0;
+				margin-bottom: size(1);
 			}
 		}
 	}
