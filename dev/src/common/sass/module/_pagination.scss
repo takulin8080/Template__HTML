@@ -14,7 +14,10 @@
 		border-right: 1px solid color(gray, 200);
 		color: lighten(color(black), 25%);
 		box-shadow: boxShadow(1);
-		display: inline-block;
+		display: inline-flex;
+		vertical-align: middle;
+		justify-content: center;
+		align-items: center;
 		text-decoration: none;
 		line-height: 1;
 		&:hover {
@@ -28,19 +31,11 @@
 		}
 		&[data-modifire~='prev'] {
 			border-radius: size(1) 0 0 size(1);
-			font-size: fontSize(-2);
-			&:before {
-				@include fontawesome('\f100');
-				margin-right: size(.5);
-			}
+			@include materialIcons('first_page');
 		}
 		&[data-modifire~='next'] {
 			border-radius: 0 size(1) size(1) 0;
-			font-size: fontSize(-2);
-			&:after {
-				@include fontawesome('\f101');
-				margin-left: size(.5);
-			}
+			@include materialIcons('last_page', after);
 		}
 	}
 }

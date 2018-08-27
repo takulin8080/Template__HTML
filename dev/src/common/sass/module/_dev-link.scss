@@ -36,7 +36,7 @@
 		}
 		&[data-modifier~='dev/index'] {
 			#{$this}__link {
-				@include materialIcons('create');
+				@include materialIcons('build');
 			}
 		}
 	}

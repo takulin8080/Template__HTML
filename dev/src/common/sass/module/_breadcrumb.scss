@@ -26,7 +26,7 @@
 			text-decoration: none;
 			opacity: opacity(1);
 		}
-		@include fontawesome('\f105', 'after');
+		@include materialIcons('chevron_right', 'after');
 		&:after {
 			margin-left: size(1);
 			margin-right: size(1);

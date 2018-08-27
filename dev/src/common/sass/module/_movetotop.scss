@@ -8,11 +8,11 @@
 	bottom: 0;
 	width: 100%;
 	cursor: pointer;
-	@include fontawesome('\f106');
+	@include materialIcons('arrow_drop_up');
 	&:before {
 		background: color(gray, 900);
 		color: color(text, 50);
-		font-size: size(4);
+		font-size: size(5);
 		height: size(6);
 		line-height: size(6);
 		width: size(6);
