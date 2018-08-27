@@ -26,22 +26,17 @@
 	#{$this}__item {
 		&[data-modifier~='index'] {
 			#{$this}__link {
-				@include fontawesome('\f015');
+				@include materialIcons('home');
 			}
 		}
 		&[data-modifier~='dev/sitemap'] {
 			#{$this}__link {
-				@include fontawesome('\f0e8');
+				@include materialIcons('link');
 			}
 		}
 		&[data-modifier~='dev/index'] {
 			#{$this}__link {
-				@include fontawesome('\f0ad');
-			}
-		}
-		&[data-modifier~='dev/ex-html-style'] {
-			#{$this}__link {
-				@include fontawesome('\f121');
+				@include materialIcons('build');
 			}
 		}
 	}

@@ -6,17 +6,17 @@
 $baseSize: 0.8rem;
 /* サイト最大幅の設定 ======================================== */
 $siteWidth: 1000px;
-/* #メインコンテンツ幅の設定 ======================================== */
-$mainWidth: 1000px;
-/* imgフォルダ`までのパス ======================================== */
+/* レスポンシブの有効化 ======================================== */
+$responsive: true;
+/* imgフォルダパス ======================================== */
 $imgPath: '../img/';
-/* サイト内で使用するフォントの管理 ======================================== */
+/* フォントの管理 ======================================== */
 $fontFamily: (
 	default: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
 	sansSerif: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
 	serif: (serif)
 );
-/* サイト内で使用するフォントサイズの管理 ======================================== */
+/* フォントサイズの管理 ======================================== */
 $fontSize: (
 	default: 1.6rem,
 	-4: 1rem,
@@ -32,8 +32,6 @@ $fontSize: (
 	7: 6rem,
 	8: 7.2rem
 );
-/* レスポンシブの有効化 ======================================== */
-$responsive: true;
 /* breakpoint ======================================== */
 $breakpoint: (
 	sm: 480px,
@@ -48,13 +46,16 @@ $opacity: (
 );
 /* box-shadowの管理 ======================================== */
 $boxShadow: (
-	default: 1px 1px 2px 0 rgba(0, 0, 0, .1),
-	1: 0 1px 2px 0 rgba(0, 0, 0, .1)
+	default: 0 1px 2px rgba(0, 0, 0, .12),
+	1: 0 1px 2px rgba(0, 0, 0, .12),
+	2: 0 2px 4px rgba(0, 0, 0, .12),
+	3: 0 10px 20px rgba(0, 0, 0 , .12),
+	4: 0 20px 40px rgba(0, 0, 0 , .24)
 );
 /* box-shadow insetの管理 ======================================== */
 $boxShadowInset: (
-	default: inset 1px 1px 1px 0 rgba(0, 0, 0, .5),
-	1: inset 1px 1px 1px 0 rgba(0, 0, 0, .5)
+	default: inset 1px 1px 2px rgba(0, 0, 0, .24),
+	1: inset 1px 1px 2px rgba(0, 0, 0, .24)
 );
 /* transition効果の速度管理 ======================================== */
 $transitionTime: (

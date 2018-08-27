@@ -58,9 +58,11 @@ var ejspath = '../';
 				<div class="contents__inner">
 					<!-- main-contents -->
 					<main class="main-contents">
+						<div class="main-contents__inner">
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
+						</div>
 					</main>
 					<!-- /main-contents -->
 					<%- include(ejspath + '_module/sub-contents') %>

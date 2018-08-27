@@ -1,9 +1,4 @@
 /* ============================================================================================== */
-/* component/contents-box
+/* scope/dev/section
 /* ============================================================================================== */
-[data-contents-box] {
-	@include styleReset();
-	&[data-contents-box="style-setup"] {
-		@extend %styleSetup;
-	}
-}
+body[data-modifier='dev section'] {}

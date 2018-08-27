@@ -1,0 +1,23 @@
+/* ============================================================================================== */
+/* mixin/column
+/* ============================================================================================== */
+@mixin column($num: 1, $sideGap: 2, $bottomGap: 2) {
+	$this: &;
+	$columnWidth: 100 / $num + '%';
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: size(-$sideGap / 2);
+	margin-right: size(-$sideGap / 2);
+	& > * {
+		margin-left: size($sideGap / 2);
+		margin-right: size($sideGap / 2);
+		margin-bottom: size($bottomGap);
+		@if $responsive {
+			@include respondTo(smAndOver) {
+				width: calc(#{$columnWidth} - #{size($sideGap)});
+			}
+		} @else {
+			width: calc(#{$columnWidth} - #{size($sideGap)});
+		}
+	}
+}

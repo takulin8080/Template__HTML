@@ -7,7 +7,7 @@ body[data-modifier='dev sitemap'] {
 		.dev-progressbar {
 			display: flex;
 			margin-bottom: size(4);
-			border: size(.5) solid color(gray, 100);
+			border: size(.5) solid color(gray, 200);
 			&__item {
 				font-size: fontSize(-4);
 				padding: 0 size(2);
@@ -38,16 +38,19 @@ body[data-modifier='dev sitemap'] {
 				border-bottom: 1px solid color(gray, 300);
 				margin-bottom: size(1);
 				padding: size(1);
+				display: flex;
+				align-items: center;
+				&:before {
+					margin-right: size(1);
+				}
 				.dev-sitemap__link {
 					color: color(text, 900);
 				}
 				&[data-modifier~='done'] {
 					background: color(success, 50);
-					@include fontawesome('\f00c');
+					@include materialIcons('done');
 					&:before {
 						color: color(success, 700);
-						float: left;
-						margin-right: size(1);
 					}
 					.dev-sitemap__link {
 						color: color(text, 900);
@@ -55,11 +58,9 @@ body[data-modifier='dev sitemap'] {
 				}
 				&[data-modifier~='stop'] {
 					background: color(warning, 50);
-					@include fontawesome('\f05e');
+					@include materialIcons('stop');
 					&:before {
 						color: color(warning, 700);
-						float: left;
-						margin-right: size(1);
 					}
 					.dev-sitemap__link {
 						color: color(text, 900);
