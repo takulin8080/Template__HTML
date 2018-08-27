@@ -14,6 +14,7 @@
 	text-decoration: none;
 	justify-content: center;
 	align-items: center;
+	vertical-align: middle;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
 	box-shadow: boxShadow();
@@ -30,49 +31,57 @@
 		background: color(gray, 100);
 		color: color(text, 500);
 	}
+	/* icon -------------------- */
+	&:after,
+	&:before,
+	i {
+		font-size: size(1.75);
+	}
 	&:before {
+		margin-left: size(-.5);
 		margin-right: size(1);
-		font-size: size(1.5);
 	}
 	&:after {
 		margin-left: size(1);
-		font-size: size(1.5);
+		margin-right: size(-.5);
+	}
+	i {
+		margin-left: size(-.5);
+		margin-right: size(.5);
+	}
+	&[data-button~='after-icon'] {
+		i {
+			order: 2;
+			margin-left: size(1);
+			margin-right: size(-.5);
+		}
 	}
 	/* size ---------------------------------------- */
 	&[data-button~='sm'] {
 		font-size: fontSize(-3);
 		padding: size(.75) size(1.5);
-		&:before {
-			margin-right: size(.75);
-			font-size: size(1.2);
-		}
-		&:after {
-			margin-left: size(.75);
-			font-size: size(1.2);
+		&:after,
+		&:before,
+		i {
+			font-size: size(1.25);
 		}
 	}
 	&[data-button~='md'] {
 		font-size: fontSize(-1);
 		padding: size(1) size(2.5);
-		&:before {
-			margin-right: size(1);
-			font-size: size(1.5);
-		}
-		&:after {
-			margin-left: size(1);
-			font-size: size(1.5);
+		&:after,
+		&:before,
+		i {
+			font-size: size(1.75);
 		}
 	}
 	&[data-button~='lg'] {
 		font-size: fontSize(2);
 		padding: size(1) size(3);
-		&:before {
-			margin-right: size(1);
-			font-size: size(2);
-		}
-		&:after {
-			margin-left: size(1);
-			font-size: size(2);
+		&:after,
+		&:before,
+		i {
+			font-size: size(2.25);
 		}
 	}
 	/* sign color ---------------------------------------- */

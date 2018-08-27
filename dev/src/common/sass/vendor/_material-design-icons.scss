@@ -1,0 +1,15 @@
+/* ============================================================================================== */
+/* vendor/material-design-icons
+/* ============================================================================================== */
+/*
+https://github.com/google/material-design-icons
+*/
+/* import ======================================== */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/* mixin ======================================== */
+@mixin materialIcons($char, $insert: before) {
+	&:#{$insert} {
+		font-family: 'Material Icons';
+		content: $char;
+	}
+}
