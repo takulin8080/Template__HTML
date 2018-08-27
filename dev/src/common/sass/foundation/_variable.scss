@@ -8,15 +8,15 @@ $baseSize: 0.8rem;
 $siteWidth: 1000px;
 /* レスポンシブの有効化 ======================================== */
 $responsive: true;
-/* imgフォルダ`までのパス ======================================== */
+/* imgフォルダパス ======================================== */
 $imgPath: '../img/';
-/* サイト内で使用するフォントの管理 ======================================== */
+/* フォントの管理 ======================================== */
 $fontFamily: (
 	default: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
 	sansSerif: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
 	serif: (serif)
 );
-/* サイト内で使用するフォントサイズの管理 ======================================== */
+/* フォントサイズの管理 ======================================== */
 $fontSize: (
 	default: 1.6rem,
 	-4: 1rem,
