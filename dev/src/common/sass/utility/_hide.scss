@@ -5,12 +5,10 @@
 `breakpoint prefix`を付けることで任意の画面サイズで非表示。
 */
 [data-hide] {
-	@if $responsive {
-		@each $key in $respondToKey {
-			&[data-hide~='#{$key}'] {
-				@include respondTo($key) {
-					display: none;
-				}
+	@each $key in $respondToKey {
+		&[data-hide~='#{$key}'] {
+			@include respondTo($key) {
+				display: none;
 			}
 		}
 	}

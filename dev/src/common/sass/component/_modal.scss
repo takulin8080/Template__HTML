@@ -42,13 +42,11 @@
 			border-radius: 100%;
 		}
 	}
-	@if $responsive {
-		@include respondTo(smAndUnder) {
-			left: 0;
-			margin-left: 0;
-			width: 100%;
-			max-width: none;
-		}
+	@include respondTo(smAndUnder) {
+		left: 0;
+		margin-left: 0;
+		width: 100%;
+		max-width: none;
 	}
 	&[data-is-active~='true'] {
 		opacity: 1;
