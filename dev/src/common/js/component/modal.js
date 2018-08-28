@@ -18,10 +18,6 @@ $(function() {
 	} else {
 		for(var i = 0; i < $('[' + tar + ']').length; i++) {
 			var elmTar = $('[' + tar + ']').eq(i);
-			var elmPosY = -(elmTar.innerHeight() / 2);
-			elmTar.css({
-				marginTop: elmPosY
-			});
 			var id = elmTar.attr(tar);
 			var elmTrg = $('[' + trg + '~=' + id + ']')
 			if(elmTar.attr(toggleData) == 'true') {
