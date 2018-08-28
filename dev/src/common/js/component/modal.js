@@ -41,11 +41,7 @@ $.fn.modal = function() {
 	toggle(id, bodyModifier, 'true');
 };
 /* ---------------------------------------- */
-overlay.click(function() {
-	if($('body[' + bodyModifier + ']').length) {
-		toggle(modalName, bodyModifier, 'false');
-	}
-});
+overlay.click(function() {});
 /* ---------------------------------------- */
 close.click(function() {
 	disabled()
