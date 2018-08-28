@@ -7,23 +7,26 @@
 	&[data-heading='level2'] {
 		font-size: fontSize(3);
 		color: color(text);
-		margin-top: size(8);
+		margin-top: size(4);
 		margin-bottom: size(2);
 	}
 	&[data-heading='level3'] {
 		font-size: fontSize(2);
 		color: color(text);
 		margin-top: size(4);
+		margin-bottom: size(2);
 	}
 	&[data-heading='level4'] {
 		font-size: fontSize(1);
 		color: color(text, -1);
 		font-weight: bold;
 		margin-top: size(4);
+		margin-bottom: size(2);
 	}
 	&[data-heading='level5'] {
 		font-size: fontSize(-1);
 		color: color(text, -1);
+		font-weight: bold;
 		margin-top: size(4);
 	}
 }
