@@ -18,7 +18,7 @@
 	line-height: 1;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow();
+	box-shadow: boxShadow(100);
 	background: linear-gradient(color(gray, 50), color(gray, 100));
 	color: color(text);
 	font-size: fontSize(-1);
