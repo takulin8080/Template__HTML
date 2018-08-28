@@ -1,12 +1,11 @@
 @charset 'UTF-8';
 @import 'vendor/**';
-@import 'foundation/base/reset';
 @import 'foundation/variable';
 @import 'foundation/function/**';
 @import 'foundation/mixin/**';
 @import 'foundation/extend/**';
+@import 'foundation/base/reset';
 @import 'foundation/base/setup';
-@import 'foundation/base/form';
 @import 'component/**';
 @import 'layout/**';
 @import 'module/**';

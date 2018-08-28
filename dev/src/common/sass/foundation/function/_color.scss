@@ -4,12 +4,6 @@
 /*
 色の出力。
 `foundation/variable $color`で設定。
-色を指定する場合に利用する。
-また、色の明度、再度などを設定する場合は、`darken`や`lighten`の利用を推奨。
-
-```scss
-fontFamily($num);
-```
 */
 @function color($type, $key: default) {
 	@return map-get(map-get($colorPalette, $type), $key);

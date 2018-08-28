@@ -18,15 +18,15 @@
 	padding: size(1) size(2) 0;
 	opacity: 0;
 	position: fixed;
-	top: size(2);
+	top: size(5);
 	left: 50%;
-	transition: all transitionTime();
+	transition: opacity transitionTime();
 	visibility: hidden;
 	z-index: 100;
-	max-height: 80vh;
+	max-height: 75vh;
 	overflow: hidden;
 	& [data-modal-contents] {
-		max-height: 80vh;
+		max-height: 75vh;
 		overflow-y: auto;
 	}
 	& [data-modal-close] {

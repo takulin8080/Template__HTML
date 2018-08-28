@@ -6,6 +6,7 @@ body[data-modifier^='dev'] {
 		/* html style set ======================================== */
 		color: black;
 		.dev-h1 {
+			color: color(text);
 			font-size: fontSize(3);
 			text-align: center;
 			font-weight: bold;
@@ -14,24 +15,25 @@ body[data-modifier^='dev'] {
 			margin-bottom: size(4);
 		}
 		.dev-h2 {
+			color: color(text-white);
+			font-size: fontSize(1);
 			background: color(gray, 900);
-			color: color(text, 50);
 			padding: size(1);
 			margin: size(4) 0 size(2);
 		}
 		.dev-h3 {
+			color: color(text);
+			font-size: fontSize(1);
 			font-weight: bold;
-			color: color(text, 600);
-			background: color(gray, 100);
-			padding: size(1);
+			padding: 0 size(1);
 			margin: size(6) 0 size(2);
 			border-left: size(.25) solid color(gray, 700);
 		}
 		.dev-h4 {
-			color: color(text);
-			font-weight: bold;
+			color: color(text, -1);
 			font-size: fontSize(-1);
-			margin: size(6) 0 size(2);
+			font-weight: bold;
+			margin: size(4) 0 size(2);
 		}
 		/* to-index ======================================== */
 		.to-index {

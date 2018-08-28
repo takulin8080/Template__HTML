@@ -5,7 +5,7 @@ html {
 	font-size: 62.5%;
 }
 body {
-	font-family: fontFamily();
+	font-family: fontFamily(sansSerif);
 	@include fontSize(1);
 	color: color(text);
 	background: color(white);

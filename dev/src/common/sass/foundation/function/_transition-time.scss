@@ -4,10 +4,6 @@
 /*
 transition効果速度値の出力。
 `foundation/variable $transitionTime`で設定。
-
-```scss
-transitionTime($num);
-```
 */
 @function transitionTime($key: default) {
 	@return map-get($transitionTime, $key);

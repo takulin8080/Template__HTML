@@ -4,10 +4,6 @@
 /*
 font-familyの出力。
 `foundation/variable $fontFamily`で設定。
-
-```scss
-fontFamily($num);
-```
 */
 @function fontFamily($key: default) {
 	@return map-get($fontFamily, $key);

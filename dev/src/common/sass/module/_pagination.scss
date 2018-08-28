@@ -9,10 +9,9 @@
 	&__link {
 		border: 0;
 		font-size: fontSize(-1);
-		padding: size(1) size(2.5);
+		padding: size(1) size(2);
 		background: linear-gradient(color(gray, 50), color(gray, 200));
 		border-right: 1px solid color(gray, 200);
-		color: lighten(color(black), 25%);
 		box-shadow: boxShadow(1);
 		display: inline-flex;
 		vertical-align: middle;
@@ -20,11 +19,17 @@
 		align-items: center;
 		text-decoration: none;
 		line-height: 1;
+		color: color(text);
 		&:hover {
 			text-decoration: none;
+			color: color(text);
 		}
 		&:active {
 			background: color(gray, 100);
+			color: color(text);
+		}
+		&:visited {
+			color: color(text);
 		}
 		&[data-modifire~='current'] {
 			background: color(gray, 200);

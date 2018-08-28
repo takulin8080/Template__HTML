@@ -2,14 +2,8 @@
 /* foundation/extend/wrap
 /* ============================================================================================== */
 /*
-画面サイズが`fundation variable $siteWidth`以上の値になった場合、内包するコンテンツをブラウザ中央に配置。
+画面サイズが`foundation variable $siteWidth`以上の値になった場合、内包するコンテンツをブラウザ中央に配置。
 `$responsive true`の場合、左右に余白を追加。
-
-```scss
-exsample {
-	@extend %wrap;
-}
-```
 */
 %wrap {
 	@if $responsive {
