@@ -8,9 +8,9 @@ input[type='email'] {
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
 	box-shadow: boxShadowInset();
-	padding: size(.25) size(.5);
+	padding: size(.5) size(1);
 	background-color: color(gray, 50);
-	color: color(text, 900);
+	color: color(text);
 	margin-right: size(.5);
 	max-width: 30em;
 }
@@ -21,7 +21,7 @@ textarea {
 	box-shadow: boxShadowInset();
 	padding: size(1);
 	background-color: color(gray, 50);
-	color: color(text, 900);
+	color: color(text);
 	width: 100%;
 	max-width: 30em;
 	height: 10em;
@@ -55,7 +55,7 @@ label {
 	}
 	&__title {
 		font-weight: bold;
-		color: color(text, 500);
+		color: color(text);
 		width: 20rem;
 		padding-bottom: size(2);
 		margin-bottom: size(2);
@@ -75,6 +75,7 @@ label {
 	}
 	&__desc {
 		width: calc(100% - 20rem);
+		color: color(text, -1);
 		padding-left: size(4);
 		padding-bottom: size(2);
 		margin-bottom: size(2);

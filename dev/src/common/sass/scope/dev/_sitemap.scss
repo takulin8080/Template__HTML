@@ -21,7 +21,7 @@ body[data-modifier='dev sitemap'] {
 				}
 				&[data-modifier~='undone'] {
 					background: color(white);
-					color: color(text, 500);
+					color: color(text);
 				}
 				&[data-modifier~='stop'] {
 					background: color(warning, 600);
@@ -44,7 +44,7 @@ body[data-modifier='dev sitemap'] {
 					margin-right: size(1);
 				}
 				.dev-sitemap__link {
-					color: color(text, 900);
+					color: color(text);
 				}
 				&[data-modifier~='done'] {
 					background: color(success, 50);
@@ -53,7 +53,7 @@ body[data-modifier='dev sitemap'] {
 						color: color(success, 700);
 					}
 					.dev-sitemap__link {
-						color: color(text, 900);
+						color: color(text);
 					}
 				}
 				&[data-modifier~='stop'] {
@@ -63,13 +63,13 @@ body[data-modifier='dev sitemap'] {
 						color: color(warning, 700);
 					}
 					.dev-sitemap__link {
-						color: color(text, 900);
+						color: color(text);
 					}
 				}
 			}
 			&__url {}
 			&__title {
-				color: color(text, 500);
+				color: color(text, -2);
 				font-size: fontSize(-2);
 				&:before {
 					content: '[ ';

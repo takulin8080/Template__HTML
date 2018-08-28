@@ -29,13 +29,13 @@
 				line-height: size(5);
 				width: 4em;
 				text-align: right;
-				color: color(black);
+				color: color(text);
 			}
 			span {
 				transition: all transitionTime();
 				position: absolute;
 				left: 25%;
-				background: color(black);
+				background: color(text);
 				height: 1px;
 				width: 50%;
 				&:nth-of-type(1) {
@@ -52,10 +52,10 @@
 			}
 			&[data-is-active~='true'] {
 				&:before {
-					color: color(text, 50);
+					color: color(text-white);
 				}
 				span {
-					background: color(white);
+					background: color(text-white);
 					&:nth-of-type(1) {
 						margin-top: 0;
 						transform: rotate(-45deg);
@@ -70,15 +70,23 @@
 				}
 			}
 		}
-		&__items {}
+		&__items {
+			font-size: fontSize(-1);
+		}
 		&__item {
 			margin: 0 size(1);
 			padding: 0 size(1);
-			border-bottom: 1px solid color(gray, 400);
+			border-bottom: 1px solid color(gray, 200);
 		}
 		&__link {
-			display: block;
+			display: flex;
+			align-items: center;
 			padding: size(2) 0;
+			&:before {
+				font-size: size(2.5);
+				margin-right: size(1);
+			}
+			@include materialIcons('home');
 			&:hover {
 				text-decoration: none;
 			}
@@ -92,25 +100,18 @@
 			}
 			#{$this}__items {
 				transition: all transitionTime();
-				visibility: hidden;
 				overflow: hidden;
 				height: 0;
-				line-height: 0;
-				padding: 0 size(1);
 				opacity: 0;
 				&[data-is-active~='true'] {
-					background: color(gray, 50);
-					padding: size(1);
+					background: color(gray, 400);
 					margin-bottom: size(2);
 					height: auto;
 					overflow: inherit;
-					visibility: visible;
 					opacity: 1;
 				}
-			}
-			#{$this}__item {}
-			#{$this}__link {
-				font-size: fontSize(-1);
+				#{$this}__item {}
+				#{$this}__link {}
 			}
 			#{$this}__items {
 				#{$this}__item {

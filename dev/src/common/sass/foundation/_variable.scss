@@ -12,25 +12,19 @@ $responsive: true;
 $imgPath: '../img/';
 /* フォントの管理 ======================================== */
 $fontFamily: (
-	default: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
-	sansSerif: (-apple-system, blinkMacSystemFont, YuGothic, Meiryo, sans-serif),
+	default: (-apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif),
+	sansSerif: (-apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif),
 	serif: (serif)
 );
 /* フォントサイズの管理 ======================================== */
 $fontSize: (
 	default: 1.6rem,
-	-4: 1rem,
 	-3: 1.1rem,
 	-2: 1.2rem,
 	-1: 1.4rem,
 	1: 1.6rem,
-	2: 1.8rem,
-	3: 2.4rem,
-	4: 3rem,
-	5: 3.6rem,
-	6: 4.8rem,
-	7: 6rem,
-	8: 7.2rem
+	2: 2rem,
+	3: 2.4rem
 );
 /* breakpoint ======================================== */
 $breakpoint: (
@@ -46,16 +40,16 @@ $opacity: (
 );
 /* box-shadowの管理 ======================================== */
 $boxShadow: (
-	default: 0 1px 2px rgba(0, 0, 0, .12),
-	1: 0 1px 2px rgba(0, 0, 0, .12),
-	2: 0 2px 4px rgba(0, 0, 0, .12),
-	3: 0 10px 20px rgba(0, 0, 0 , .12),
-	4: 0 20px 40px rgba(0, 0, 0 , .24)
+	default: 0 1px 2px rgba(#000, .12),
+	1: 0 1px 2px rgba(#000, .12),
+	2: 0 2px 4px rgba(#000, .12),
+	3: 0 10px 20px rgba(#000, .12),
+	4: 0 20px 40px rgba(#000, .24)
 );
 /* box-shadow insetの管理 ======================================== */
 $boxShadowInset: (
-	default: inset 1px 1px 2px rgba(0, 0, 0, .24),
-	1: inset 1px 1px 2px rgba(0, 0, 0, .24)
+	default: inset 1px 1px 2px rgba(#000, .12),
+	1: inset 1px 1px 2px rgba(#000, .12)
 );
 /* transition効果の速度管理 ======================================== */
 $transitionTime: (
@@ -65,7 +59,8 @@ $transitionTime: (
 /* 色の管理 ======================================== */
 $colorPalette: (
 	// base color
-	text: (default: #434343, 50: #f5f5f5, 100: #e9e9e9, 200: #d9d9d9, 300: #c4c4c4, 400: #9d9d9d, 500: #7b7b7b, 600: #555555, 700: #434343, 800: #262626, 900: #000000),
+	text: (default: rgba(#000, .87), 1: rgba(#000, .87), -1: rgba(#000, .54), -2: rgba(#000, .38)),
+	text-white: (default: rgba(#fff, 1), 1: rgba(#fff, 1), -1: rgba(#fff, .7), -2: rgba(#fff, .3)),
 	link: (default: #1a0dab, hover: #0d47a1, visited: #660099),
 	// project color
 	primary: (default: #000, 50: #000, 100: #000, 200: #000, 300: #000, 400: #000, 500: #000, 600: #000, 700: #000, 800: #000, 900: #000),
