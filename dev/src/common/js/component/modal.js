@@ -41,7 +41,9 @@ $.fn.modal = function() {
 	toggle(id, bodyModifier, 'true');
 };
 /* ---------------------------------------- */
-overlay.click(function() {});
+overlay.click(function() {
+	disabled()
+});
 /* ---------------------------------------- */
 close.click(function() {
 	disabled()
