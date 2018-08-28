@@ -3,10 +3,6 @@
 /* ============================================================================================== */
 /*
 font-sizeとそれに合わせたline-heightを出力。
-
-```scss
-@include fontSize($num);
-```
 */
 @mixin fontSize($num: 1) {
 	font-size: fontSize($num);
