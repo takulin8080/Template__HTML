@@ -81,22 +81,43 @@
 		&__link {
 			display: flex;
 			align-items: center;
-			padding: size(2) 0;
+			min-height: size(6);
+			color: color(text);
 			&:before {
-				font-size: size(2.5);
+				font-size: size(3);
 				margin-right: size(1);
 			}
-			@include materialIcons('home');
 			&:hover {
 				text-decoration: none;
+				color: color(text);
+			}
+			&:active {
+				color: color(text);
+			}
+			&:visited {
+				color: color(text);
 			}
 		}
 		/* sub category ---------------------------------------- */
 		&__item {
 			#{$this}__title {
+				display: flex;
+				align-items: center;
 				cursor: pointer;
-				display: block;
-				padding: size(2) 0;
+				min-height: size(6);
+				@include materialIcons('chevron_right', after);
+				&:after {
+					transition: all transitionTime();
+					margin-left: auto;
+					font-size: size(3);
+				}
+				&[data-is-active~='true'] {
+					&:after {
+						margin-left: auto;
+						font-size: size(3);
+						transform: rotate(90deg);
+					}
+				}
 			}
 			#{$this}__items {
 				transition: all transitionTime();
@@ -104,14 +125,17 @@
 				height: 0;
 				opacity: 0;
 				&[data-is-active~='true'] {
-					background: color(gray, 400);
+					background: color(gray, 50);
 					margin-bottom: size(2);
-					height: auto;
-					overflow: inherit;
+					height: inherit;
 					opacity: 1;
 				}
-				#{$this}__item {}
-				#{$this}__link {}
+				#{$this}__item {
+					border-bottom: 1px dotted color(gray, 200);
+				}
+				#{$this}__link {
+					padding: size(1) 0;
+				}
 			}
 			#{$this}__items {
 				#{$this}__item {
@@ -169,10 +193,10 @@
 			}
 			#{$this}__item {
 				border: 0;
-				border-bottom: 1px solid color(gray, 400);
+				border-bottom: 1px solid color(gray, 200);
 				padding: size(2);
 				background: color(gray, 100);
-				box-shadow: boxShadow(1);
+				box-shadow: boxShadow(2);
 			}
 			#{$this}__link {}
 			#{$this}__items {

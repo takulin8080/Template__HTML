@@ -114,6 +114,7 @@ label {
 	.note {
 		@include fontSize(-2);
 		margin: size(1) 0;
+		color: color(text, -2);
 	}
 	/* uniq ---------------------------------------- */
 	input[data-modifier~='auto-complete'] {}
