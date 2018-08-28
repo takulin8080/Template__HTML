@@ -1,31 +1,6 @@
 /* ============================================================================================== */
-/* foundation/base/setup
+/* foundation/base/heading
 /* ============================================================================================== */
-html {
-	font-size: 62.5%;
-}
-body {
-	font-family: fontFamily();
-	@include fontSize(1);
-	color: color(text);
-	background: color(white);
-}
-img {
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
-}
-p {
-	margin-bottom: size(2);
-}
-a {
-	color: color(link);
-	text-decoration: none;
-	&:hover {
-		color: color(link, hover);
-		text-decoration: underline;
-	}
-	&:visited {
-		color: color(link, visited);
-	}
+[data-heading] {
+	$this: &;
 }
