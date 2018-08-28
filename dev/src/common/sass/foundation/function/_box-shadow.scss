@@ -4,10 +4,6 @@
 /*
 box-shadow値の出力。
 `foundation/variable $boxShadow`で設定。
-
-```scss
-boxShadow($num);
-```
 */
 @function boxShadow($key: default) {
 	@return map-get($boxShadow, $key);

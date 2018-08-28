@@ -38,9 +38,7 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 			}, 200);
 		});
 		$('[data-overlay-layer]').click(function() {
-			if($('body[' + bodyModifier + ']').length) {
-				toggle('false');
-			}
+			toggle('false');
 		});
 	};
 

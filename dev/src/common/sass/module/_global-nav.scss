@@ -12,6 +12,7 @@
 		width: 100%;
 		padding-bottom: size(4);
 		border-top: size(5) solid color(black);
+		box-shadow: boxShadow(900);
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -29,13 +30,13 @@
 				line-height: size(5);
 				width: 4em;
 				text-align: right;
-				color: color(black);
+				color: color(text);
 			}
 			span {
 				transition: all transitionTime();
 				position: absolute;
 				left: 25%;
-				background: color(black);
+				background: color(text);
 				height: 1px;
 				width: 50%;
 				&:nth-of-type(1) {
@@ -52,10 +53,10 @@
 			}
 			&[data-is-active~='true'] {
 				&:before {
-					color: color(text, 50);
+					color: color(text-white);
 				}
 				span {
-					background: color(white);
+					background: color(text-white);
 					&:nth-of-type(1) {
 						margin-top: 0;
 						transform: rotate(-45deg);
@@ -70,47 +71,72 @@
 				}
 			}
 		}
-		&__items {}
+		&__items {
+			font-size: fontSize(-1);
+		}
 		&__item {
 			margin: 0 size(1);
 			padding: 0 size(1);
-			border-bottom: 1px solid color(gray, 400);
+			border-bottom: 1px solid color(gray, 200);
 		}
 		&__link {
-			display: block;
-			padding: size(2) 0;
+			display: flex;
+			align-items: center;
+			min-height: size(6);
+			color: color(text);
+			&:before {
+				font-size: size(3);
+				margin-right: size(1);
+			}
 			&:hover {
 				text-decoration: none;
+				color: color(text);
+			}
+			&:active {
+				color: color(text);
+			}
+			&:visited {
+				color: color(text);
 			}
 		}
 		/* sub category ---------------------------------------- */
 		&__item {
 			#{$this}__title {
+				display: flex;
+				align-items: center;
 				cursor: pointer;
-				display: block;
-				padding: size(2) 0;
+				min-height: size(6);
+				@include materialIcons('chevron_right', after);
+				&:after {
+					transition: all transitionTime();
+					margin-left: auto;
+					font-size: size(3);
+				}
+				&[data-is-active~='true'] {
+					&:after {
+						margin-left: auto;
+						font-size: size(3);
+						transform: rotate(90deg);
+					}
+				}
 			}
 			#{$this}__items {
 				transition: all transitionTime();
-				visibility: hidden;
 				overflow: hidden;
 				height: 0;
-				line-height: 0;
-				padding: 0 size(1);
 				opacity: 0;
 				&[data-is-active~='true'] {
 					background: color(gray, 50);
-					padding: size(1);
 					margin-bottom: size(2);
-					height: auto;
-					overflow: inherit;
-					visibility: visible;
+					height: inherit;
 					opacity: 1;
 				}
-			}
-			#{$this}__item {}
-			#{$this}__link {
-				font-size: fontSize(-1);
+				#{$this}__item {
+					border-bottom: 1px dotted color(gray, 200);
+				}
+				#{$this}__link {
+					padding: size(1) 0;
+				}
 			}
 			#{$this}__items {
 				#{$this}__item {
@@ -168,10 +194,10 @@
 			}
 			#{$this}__item {
 				border: 0;
-				border-bottom: 1px solid color(gray, 400);
+				border-bottom: 1px solid color(gray, 200);
 				padding: size(2);
 				background: color(gray, 100);
-				box-shadow: boxShadow(1);
+				box-shadow: boxShadow(200);
 			}
 			#{$this}__link {}
 			#{$this}__items {

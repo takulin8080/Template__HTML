@@ -2,35 +2,46 @@
 /* foundation/extend/style-setup
 /* ============================================================================================== */
 /*
-タグの基本スタイルを設定したい場合は、他moduleなどに影響が出てしまうため、利用したいコンテンツ毎にextendする。
-
-```scss
-exsample {
-	@extend %styleSetup;
-}
-```
+htmlタグの基本スタイルを設定。
 */
 %styleSetup {
 	/* heading ======================================== */
 	h1 {
-		@include fontSize(5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: fontSize(2);
+		color: color(text);
 		margin-top: size(4);
+		padding-bottom: size(4);
+		border-bottom: 1px solid color(gray, 300);
 		margin-bottom: size(4);
 	}
 	h2 {
-		@include fontSize(4);
+		font-size: fontSize(3);
+		color: color(text);
 		margin-top: size(4);
 		margin-bottom: size(2);
 	}
 	h3 {
-		@include fontSize(2);
+		font-size: fontSize(2);
+		color: color(text);
+		margin-top: size(4);
+		margin-bottom: size(2);
+	}
+	h4 {
+		font-size: fontSize(1);
+		color: color(text, -1);
 		font-weight: bold;
 		margin-top: size(4);
-		margin-bottom: size(1);
+		margin-bottom: size(2);
 	}
-	h4 {}
-	h5 {}
-	h6 {}
+	h5 {
+		font-size: fontSize(-1);
+		color: color(text, -1);
+		font-weight: bold;
+		margin-top: size(4);
+	}
 	/* paragraph ======================================== */
 	p {
 		margin-bottom: size(2);
@@ -91,6 +102,7 @@ exsample {
 		margin-top: size(4);
 		margin-bottom: size(4);
 		border: 2px solid color(gray, 300);
+		box-shadow: boxShadow();
 		caption {
 			text-align: left;
 			font-weight: bold;
