@@ -12,7 +12,7 @@
 		padding: size(1) size(2);
 		background: linear-gradient(color(gray, 50), color(gray, 200));
 		border-right: 1px solid color(gray, 200);
-		@include elevation(1);
+		@include elevation(100);
 		display: inline-flex;
 		vertical-align: middle;
 		justify-content: center;
