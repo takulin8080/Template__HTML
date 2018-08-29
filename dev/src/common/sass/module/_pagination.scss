@@ -12,7 +12,7 @@
 		padding: size(1) size(2);
 		background: linear-gradient(color(gray, 50), color(gray, 200));
 		border-right: 1px solid color(gray, 200);
-		box-shadow: boxShadow(1);
+		@include elevation(1);
 		display: inline-flex;
 		vertical-align: middle;
 		justify-content: center;
@@ -36,11 +36,11 @@
 		}
 		&[data-modifire~='prev'] {
 			border-radius: size(1) 0 0 size(1);
-			@include materialIcons('first_page');
+			@include materialDesignIcon('first_page');
 		}
 		&[data-modifire~='next'] {
 			border-radius: 0 size(1) size(1) 0;
-			@include materialIcons('last_page', after);
+			@include materialDesignIcon('last_page', after);
 		}
 	}
 }

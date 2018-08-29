@@ -8,7 +8,7 @@
 	bottom: 0;
 	width: 100%;
 	cursor: pointer;
-	@include materialIcons('arrow_drop_up');
+	@include materialDesignIcon('arrow_drop_up');
 	&:before {
 		background: color(gray, 900);
 		color: color(gray, 100);

@@ -1,11 +1,10 @@
 /* ============================================================================================== */
-/* scope/dev/modal
+/* foundation/function/inset-shadow
 /* ============================================================================================== */
-body[data-modifier='dev modal'] {
-	div[class^='exsample'] {
-		& > [data-modal-contents] {
-			background: color(white);
-			padding: size(4);
-		}
-	}
+/*
+box-shadow(inset)値の出力。
+`foundation/variable $insetShadow`で設定。
+*/
+@function insetShadow($key: default) {
+	@return map-get($insetShadow, $key);
 }

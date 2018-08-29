@@ -18,13 +18,13 @@
 	line-height: 1;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	box-shadow: boxShadow(100);
 	background: linear-gradient(color(gray, 50), color(gray, 100));
 	color: color(text);
 	font-size: fontSize(-1);
 	height: size(4);
 	padding-left: size(2);
 	padding-right: size(2);
+	@include elevation(1);
 	&:hover {
 		background: color(gray, 50);
 		text-decoration: none;

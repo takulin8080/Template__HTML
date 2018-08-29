@@ -102,7 +102,7 @@ htmlタグの基本スタイルを設定。
 		margin-top: size(4);
 		margin-bottom: size(4);
 		border: 2px solid color(gray, 300);
-		box-shadow: boxShadow();
+		@include elevation(1);
 		caption {
 			text-align: left;
 			font-weight: bold;

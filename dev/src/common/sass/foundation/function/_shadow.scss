@@ -1,10 +1,10 @@
 /* ============================================================================================== */
-/* foundation/function/box-shadow
+/* foundation/function/shadow
 /* ============================================================================================== */
 /*
 box-shadow値の出力。
-`foundation/variable $boxShadow`で設定。
+`foundation/variable $shadow`で設定。
 */
-@function boxShadow($key: default) {
-	@return map-get($boxShadow, $key);
+@function shadow($key: default) {
+	@return map-get($shadow, $key);
 }
