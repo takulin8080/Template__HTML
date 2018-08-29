@@ -26,7 +26,7 @@
 	& [data-modal-contents] {
 		max-height: 75vh;
 		overflow-y: auto;
-		@include elevation(5);
+		@include elevation(500);
 	}
 	& [data-modal-close] {
 		cursor: pointer;

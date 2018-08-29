@@ -12,7 +12,7 @@
 		width: 100%;
 		padding-bottom: size(4);
 		border-top: size(5) solid color(black);
-		@include elevation(5);
+		@include elevation(500);
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -51,7 +51,7 @@
 				}
 			}
 			&[data-is-active~='true'] {
-				z-index: 51;
+				z-index: 501;
 				&:before {
 					color: color(text-white);
 				}
@@ -197,7 +197,7 @@
 				border-bottom: 1px solid color(gray, 200);
 				padding: size(2);
 				background: color(gray, 100);
-				@include elevation(2);
+				@include elevation(200);
 			}
 			#{$this}__link {}
 			#{$this}__items {
