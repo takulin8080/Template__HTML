@@ -7,7 +7,7 @@ input[type='email'] {
 	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
-	box-shadow: boxShadowInset();
+	box-shadow: insetShadow();
 	padding: size(.5) size(1);
 	background-color: color(gray, 50);
 	color: color(text);
@@ -18,7 +18,7 @@ textarea {
 	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
-	box-shadow: boxShadowInset();
+	box-shadow: insetShadow();
 	padding: size(1);
 	background-color: color(gray, 50);
 	color: color(text);
