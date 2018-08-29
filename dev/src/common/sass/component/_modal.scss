@@ -16,25 +16,24 @@
 	max-width: $maxWidth;
 	margin-left: -($maxWidth / 2);
 	padding: size(1) size(2) 0;
-	opacity: 0;
 	position: fixed;
 	top: size(5);
 	left: 50%;
 	transition: opacity transitionTime();
+	opacity: 0;
 	visibility: hidden;
-	z-index: 100;
-	max-height: 75vh;
-	overflow: hidden;
+	z-index: $shadowOverlayPos + 1;
 	& [data-modal-contents] {
 		max-height: 75vh;
 		overflow-y: auto;
+		@include elevation(5);
 	}
 	& [data-modal-close] {
 		cursor: pointer;
 		position: absolute;
 		right: size(1);
 		top: 0;
-		@include materialIcons('cancel');
+		@include materialDesignIcon('cancel');
 		&:before {
 			font-size: size(4);
 			line-height: 1;

@@ -48,7 +48,7 @@ body[data-modifier='dev sitemap'] {
 				}
 				&[data-modifier~='done'] {
 					background: color(success, 50);
-					@include materialIcons('done');
+					@include materialDesignIcon('done');
 					&:before {
 						color: color(success, 700);
 					}
@@ -58,7 +58,7 @@ body[data-modifier='dev sitemap'] {
 				}
 				&[data-modifier~='stop'] {
 					background: color(warning, 50);
-					@include materialIcons('stop');
+					@include materialDesignIcon('stop');
 					&:before {
 						color: color(warning, 700);
 					}

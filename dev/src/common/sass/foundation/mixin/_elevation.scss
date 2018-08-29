@@ -1,10 +1,10 @@
 /* ============================================================================================== */
-/* foundation/function/box-shadow-inset
+/* mixin/elevation
 /* ============================================================================================== */
 /*
-box-shadow(inset)値の出力。
-`foundation/variable $boxShadowInset`で設定。
+要素の高さの管理。
 */
-@function boxShadowInset($key: default) {
-	@return map-get($boxShadowInset, $key);
+@mixin elevation($num: 0) {
+	box-shadow: shadow($num);
+	z-index: $num * 10;
 }

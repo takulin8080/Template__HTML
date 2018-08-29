@@ -26,17 +26,17 @@
 	#{$this}__item {
 		&[data-modifier~='index'] {
 			#{$this}__link {
-				@include materialIcons('home');
+				@include materialDesignIcon('home');
 			}
 		}
 		&[data-modifier~='dev/sitemap'] {
 			#{$this}__link {
-				@include materialIcons('link');
+				@include materialDesignIcon('link');
 			}
 		}
 		&[data-modifier~='dev/index'] {
 			#{$this}__link {
-				@include materialIcons('build');
+				@include materialDesignIcon('build');
 			}
 		}
 	}
