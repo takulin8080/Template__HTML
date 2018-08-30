@@ -102,7 +102,7 @@ htmlタグの基本スタイルを適応。
 		margin-top: size(4);
 		margin-bottom: size(4);
 		border: 2px solid color(gray, 300);
-		@include elevation(100);
+		@include elevation(1);
 		caption {
 			text-align: left;
 			font-weight: bold;

@@ -24,7 +24,7 @@
 	height: size(4);
 	padding-left: size(2);
 	padding-right: size(2);
-	@include elevation(100);
+	@include elevation(1);
 	&:hover {
 		background: color(gray, 50);
 		text-decoration: none;

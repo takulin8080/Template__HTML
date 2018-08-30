@@ -19,7 +19,7 @@
 	overflow-y: auto;
 	position: fixed;
 	transition: all transitionTime();
-	@include elevation(500);
+	@include elevation(5);
 	@if $pos == left {
 		left: -100vw;
 		top: 0;
