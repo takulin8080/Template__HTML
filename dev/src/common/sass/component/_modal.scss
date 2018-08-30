@@ -5,7 +5,6 @@
 `data-modal`を付与することで、コンテンツをモーダル表示。
 - `data-modal-trg="$string"`クリックで`data-modal-tar`をモーダル表示。
 - `data-modal-tar="$string"`対象コンテンツ。
-
 `data-modal-trg`に`data-is-active`を、または、javascriptで`$('exsample').modal();`を設定することでも表示可能。
 */
 [data-modal-tar] {
@@ -26,7 +25,7 @@
 	& [data-modal-contents] {
 		max-height: 75vh;
 		overflow-y: auto;
-		@include elevation(500);
+		@include elevation(5);
 	}
 	& [data-modal-close] {
 		cursor: pointer;
@@ -35,7 +34,7 @@
 		top: 0;
 		@include materialDesignIcon('cancel');
 		&:before {
-			font-size: size(4);
+			font-size: iconSize(3);
 			line-height: 1;
 			background: color(white);
 			border-radius: 100%;

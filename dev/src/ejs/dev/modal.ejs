@@ -19,6 +19,7 @@ dev/modal
 		<% for (var i = 0; i < 10; i++) { %>
 			<p><%- data.common.text %></p>
 		<% } %>
+		<span data-modal-close></span>
 	</div>
 </div>
 
@@ -26,6 +27,7 @@ dev/modal
 	<div>
 		<p>コンテンツを包んでいる'&lt;div data-modal-tar=&quot;exsample&quot;&gt;&lt;div&gt;...&lt;/div&gt;&lt;/div&gt;'はモーダル化するために必須</p>
 		<p>このモーダルは「data-is-active="true"」を付与しているため、ページロード時に表示</p>
+		<span data-modal-close></span>
 	</div>
 </div>
 <%# ---------------------------------------------------------------------------------------------- %>

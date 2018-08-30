@@ -1,6 +1,4 @@
 // ==============================================================================================
-// vendor/slick
+// vendor/material-design-icons
 // ==============================================================================================
-require('slick-carousel');
-require('slick-carousel/slick/slick.css');
-require('slick-carousel/slick/slick-theme.css');
+require('material-design-icons/iconfont/material-icons.css');

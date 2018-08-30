@@ -8,7 +8,7 @@ body[data-modifier='dev active'] {
 		height: auto;
 		background: color(gray, 50);
 		&[data-is-active~='true'] {
-			background: color(yellow);
+			background: color(yellow, 500);
 		}
 	}
 }
