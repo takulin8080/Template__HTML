@@ -20,7 +20,7 @@ textarea {
 	padding: size(1);
 	background-color: color(gray, 50);
 	color: color(text);
-	width: 100%;
+	width: calc(100% - #{size(2)});
 	max-width: 30em;
 	height: 10em;
 }
@@ -94,7 +94,7 @@ label {
 				border-bottom: 0;
 			}
 			&__desc {
-				width: auto;
+				width: 100%;
 				padding-left: 0;
 				padding-bottom: size(2);
 				margin-bottom: size(2);
