@@ -48,7 +48,6 @@
 	},
 	"dependencies": {
 		"jquery": "^3.3.1",
-		"material-design-icons": "^3.0.1",
 		"slick-carousel": "^1.8.1",
 		"svgxuse": "^1.2.6"
 	}
