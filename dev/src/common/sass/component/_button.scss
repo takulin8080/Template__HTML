@@ -2,7 +2,7 @@
 /* component/button
 /* ============================================================================================== */
 /*
-`data-button`、`data-button-group`の管理
+`data-button`、`data-button-group`のスタイル設定・管理
 */
 /* require ======================================== */
 @import 'component/icon';
@@ -101,7 +101,6 @@
 			}
 			&:active {
 				background: color(#{$sign}, 800);
-				box-shadow: none;
 			}
 		}
 	}

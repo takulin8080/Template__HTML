@@ -4,7 +4,6 @@
 input[type='text'],
 input[type='password'],
 input[type='email'] {
-	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
 	box-shadow: insetShadow();
@@ -15,7 +14,6 @@ input[type='email'] {
 	max-width: 30em;
 }
 textarea {
-	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
 	box-shadow: insetShadow();

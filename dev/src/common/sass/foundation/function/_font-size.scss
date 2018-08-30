@@ -4,7 +4,6 @@
 /*
 font-sizeの出力。
 `foundation/variable $fontSize`で設定。
-文章に用いる際は`line-height`が同時に出力される`mixin fontSize`の利用を推奨。
 */
 @function fontSize($key: default) {
 	@return map-get($fontSize, $key);
