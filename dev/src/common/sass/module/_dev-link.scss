@@ -26,6 +26,7 @@
 		}
 		&:before {
 			color: color(black);
+			font-size: iconSize(1);
 		}
 	}
 	#{$this}__item {

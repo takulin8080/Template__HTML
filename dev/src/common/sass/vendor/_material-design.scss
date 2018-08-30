@@ -37,11 +37,39 @@ $materialDesignShadow: (
 	5: (0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22))
 );
 /* icon ======================================== */
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+/* require ---------------------------------------- */
+// @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '../../font/material-icons.scss';
+.material-icons {
+	font-size: 1.8rem;
+}
+[data-material-icons] {
+	@extend .material-icons;
+	font-size: 1.8rem;
+	&[data-material-icons~='50'] {
+		font-size: 1.4rem;
+	}
+	&[data-material-icons~='100'] {
+		font-size: 1.8rem;
+	}
+	&[data-material-icons~='200'] {
+		font-size: 2.4rem;
+	}
+	&[data-material-icons~='300'] {
+		font-size: 3.6rem;
+	}
+	&[data-material-icons~='400'] {
+		font-size: 4.8rem;
+	}
+}
 /* mixin ---------------------------------------- */
-@mixin materialDesignIcon($char, $insert: before) {
+@mixin materialDesignIcon($char, $size: md ,$insert: before) {
 	&:#{$insert} {
 		font-family: 'Material Icons';
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		-moz-osx-font-smoothing: grayscale;
+		font-feature-settings: 'liga';
 		content: $char;
 	}
 }

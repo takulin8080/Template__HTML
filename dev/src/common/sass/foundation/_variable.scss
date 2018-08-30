@@ -25,6 +25,17 @@ $fontSize: (
 	2: 2rem,
 	3: 2.4rem
 );
+/* アイコンサイズの管理 ======================================== */
+$iconSize: (
+	default: 1.8rem,
+	-3: 1.1rem,
+	-2: 1.2rem,
+	-1: 1.4rem,
+	1: 1.8rem,
+	2: 2.4rem,
+	3: 3.6rem,
+	4: 4.8rem
+);
 /* breakpoint ======================================== */
 $breakpoint: (
 	sm: 480px,
@@ -79,7 +90,7 @@ $colorPalette: (
 $commonColorPalette: (
 	white: (default: #ffffff),
 	black: (default: #000000),
-	gray: (default: #9e9e9e, 50: #fafafa, 100: #f5f5f5, 200: #eeeeee, 300: #e0e0e0, 400: #bdbdbd, 500: #9e9e9e, 600: #757575, 700: #616161, 800: #424242, 900: #212121)
+	gray: (50: #fafafa, 100: #f5f5f5, 200: #eeeeee, 300: #e0e0e0, 400: #bdbdbd, 500: #9e9e9e, 600: #757575, 700: #616161, 800: #424242, 900: #212121)
 );
 /* merge vendor palette  ---------------------------------------- */
 $colorPalette: map-merge($colorPalette, $commonColorPalette);
