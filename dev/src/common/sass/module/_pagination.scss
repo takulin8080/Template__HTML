@@ -3,26 +3,32 @@
 /* ============================================================================================== */
 .pagination {
 	$this: &;
-	display: flex;
-	justify-content: center;
-	margin: size(4) 0;
+	margin: size(4) auto;
+	text-align: center;
+	&__inner {
+		display: inline-flex;
+		border-radius: size(1);
+		overflow: hidden;
+		@include elevation(1);
+		background: #0c0;
+	}
 	&__link {
 		border: 0;
 		font-size: fontSize(-1);
 		padding: size(1) size(2);
-		background: linear-gradient(color(gray, 50), color(gray, 200));
+		background: linear-gradient(color(gray, 50), color(gray, 100));
+		color: color(text);
 		border-right: 1px solid color(gray, 200);
-		@include elevation(1);
 		display: inline-flex;
 		vertical-align: middle;
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
 		line-height: 1;
-		color: color(text);
 		&:hover {
-			text-decoration: none;
+			background: color(gray, 50);
 			color: color(text);
+			text-decoration: none;
 		}
 		&:active {
 			background: color(gray, 100);
@@ -32,15 +38,23 @@
 			color: color(text);
 		}
 		&[data-modifire~='current'] {
-			background: color(gray, 200);
+			color: color(text, -2);
+			background: color(gray, 100);
+			&:active {
+				background: color(gray, 100);
+			}
 		}
 		&[data-modifire~='prev'] {
-			border-radius: size(1) 0 0 size(1);
 			@include materialDesignIcon('first_page');
+			&:before {
+				font-size: iconSize(-1);
+			}
 		}
 		&[data-modifire~='next'] {
-			border-radius: 0 size(1) size(1) 0;
-			@include materialDesignIcon('last_page', after);
+			@include materialDesignIcon('last_page');
+			&:before {
+				font-size: iconSize(-1);
+			}
 		}
 	}
 }

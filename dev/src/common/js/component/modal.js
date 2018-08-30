@@ -9,7 +9,7 @@ var tar = 'data-modal-tar';
 var overlay = $('[data-overlay-layer]');
 var bodyModifier = 'data-modal';
 var toggleData = 'data-is-active';
-var close = $('[data-modal-tar] [data-modal-close]');
+var close = $('[data-modal-close]');
 // function ========================================
 $(function() {
 	if($('[' + tar + ']').length == false) {
