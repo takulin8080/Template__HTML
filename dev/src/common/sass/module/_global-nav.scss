@@ -12,7 +12,7 @@
 		width: 100%;
 		padding-bottom: size(4);
 		border-top: size(5) solid color(black);
-		@include elevation(500);
+		@include elevation(5);
 		&-trg {
 			position: fixed;
 			right: 0;
@@ -82,8 +82,8 @@
 		&__link {
 			display: flex;
 			align-items: center;
-			min-height: size(6);
 			color: color(text);
+			height: size(6);
 			&:before {
 				font-size: size(3);
 				margin-right: size(1);
@@ -102,15 +102,15 @@
 		/* sub category ---------------------------------------- */
 		&__item {
 			#{$this}__title {
+				cursor: pointer;
 				display: flex;
 				align-items: center;
-				cursor: pointer;
-				min-height: size(6);
+				height: size(6);
 				@include materialDesignIcon('chevron_right', after);
 				&:after {
 					transition: all transitionTime();
 					margin-left: auto;
-					font-size: size(3);
+					font-size: iconSize(2);
 				}
 				&[data-is-active~='true'] {
 					&:after {
@@ -197,7 +197,7 @@
 				border-bottom: 1px solid color(gray, 200);
 				padding: size(2);
 				background: color(gray, 100);
-				@include elevation(200);
+				@include elevation(2);
 			}
 			#{$this}__link {}
 			#{$this}__items {

@@ -1,6 +1,9 @@
 /* ============================================================================================== */
 /* module/dev-link
 /* ============================================================================================== */
+/*
+開発用
+*/
 .dev-link {
 	$this: &;
 	position: absolute;
@@ -11,16 +14,19 @@
 		margin-bottom: size(1);
 	}
 	&__link {
+		display: flex;
+		background: color(gray, 200);
+		width: size(4);
+		height: size(4);
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
 		&:hover {
 			text-decoration: none;
 		}
 		&:before {
-			display: block;
-			background: color(gray, 100);
-			color: color(text);
-			border-radius: 100%;
-			padding: size(1);
-			line-height: 1;
+			color: color(black);
+			font-size: iconSize(1);
 		}
 	}
 	#{$this}__item {

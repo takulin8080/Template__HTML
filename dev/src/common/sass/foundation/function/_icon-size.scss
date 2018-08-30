@@ -1,10 +1,10 @@
 /* ============================================================================================== */
-/* mixin/elevation
+/* foundation/function/icon-size
 /* ============================================================================================== */
 /*
-要素の高さ[レイヤー]の出力。
+icon-sizeの出力。
+`foundation/variable $iconSize`で設定。
 */
-@mixin elevation($num: 0) {
-	box-shadow: shadow($num);
-	z-index: $num * 100;
+@function iconSize($key: default) {
+	@return map-get($iconSize, $key);
 }

@@ -5,4 +5,4 @@ dev/design/*
 dev/dst
 dev/src/_data.json
 dev/src/common/sass/component/_icon.scss
-dev/src/common/font
+dev/src/common/font/icon.*

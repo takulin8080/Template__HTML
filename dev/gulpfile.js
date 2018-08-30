@@ -51,18 +51,19 @@ var filepath = {
 	sass: {
 		appSrc: ['src/common/sass/app.scss'],
 		vendorSrc: ['src/common/sass/vendor.scss'],
+		vendorWatch: ['src/common/sass/vendor/**/*'],
 		foundationSrc: ['src/common/sass/foundation.scss'],
-		foundationWatch: ['src/common/sass/foundation/**/*'],
+		foundationWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/vendor/**/*'],
 		componentSrc: ['src/common/sass/component.scss'],
 		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
 		layoutSrc: ['src/common/sass/layout.scss'],
-		layoutWatch: ['src/common/sass/layout/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
+		layoutWatch: ['src/common/sass/layout/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
 		moduleSrc: ['src/common/sass/module.scss'],
-		moduleWatch: ['src/common/sass/module/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
+		moduleWatch: ['src/common/sass/module/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
 		scopeSrc: ['src/common/sass/scope.scss'],
-		scopeWatch: ['src/common/sass/scope/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
+		scopeWatch: ['src/common/sass/scope/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
 		utilitySrc: ['src/common/sass/utility.scss'],
-		utilityWatch: ['src/common/sass/utility/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
+		utilityWatch: ['src/common/sass/utility/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
 	},
 	js: {
 		src: 'src/common/js/*.js',
@@ -81,7 +82,7 @@ var filepath = {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/font/**', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/common/css/utility.css'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/common/css/utility.css'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -565,6 +566,7 @@ gulp.task('watch', function() {
 	gulp.watch(filepath.json.watch, ['json']);
 	gulp.watch(filepath.ejs.watch, ['html']);
 	gulp.watch(filepath.font.watch, ['font']);
+	gulp.watch(filepath.sass.vendorWatch, ['cssVendor']);
 	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
 	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
 	gulp.watch(filepath.sass.layoutWatch, ['cssLayout']);

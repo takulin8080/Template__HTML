@@ -4,7 +4,6 @@
 input[type='text'],
 input[type='password'],
 input[type='email'] {
-	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
 	box-shadow: insetShadow();
@@ -15,14 +14,13 @@ input[type='email'] {
 	max-width: 30em;
 }
 textarea {
-	box-sizing: border-box;
 	@include fontSize(1);
 	border: 1px solid color(gray, 200);
 	box-shadow: insetShadow();
 	padding: size(1);
 	background-color: color(gray, 50);
 	color: color(text);
-	width: 100%;
+	width: calc(100% - #{size(2)});
 	max-width: 30em;
 	height: 10em;
 }
@@ -96,7 +94,7 @@ label {
 				border-bottom: 0;
 			}
 			&__desc {
-				width: auto;
+				width: 100%;
 				padding-left: 0;
 				padding-bottom: size(2);
 				margin-bottom: size(2);

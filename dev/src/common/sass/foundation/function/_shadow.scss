@@ -5,6 +5,6 @@
 box-shadow値の出力。
 `foundation/variable $shadow`で設定。
 */
-@function shadow($key: default) {
+@function shadow($key) {
 	@return map-get($shadow, $key);
 }

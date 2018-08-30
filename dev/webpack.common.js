@@ -1,3 +1,4 @@
+const path = require('path');
 const config = {
 	entry: './src/common/js/app.js',
 	output: {
@@ -18,6 +19,11 @@ const config = {
 			test: /\.(eot|svg|woff|woff2|ttf|gif)$/,
 			use: 'url-loader'
 		}]
+	},
+	resolve: {
+		modules: [
+			path.resolve('./node_modules')
+		]
 	},
 	performance: {
 		hints: false

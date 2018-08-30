@@ -9,7 +9,7 @@ var tar = 'data-modal-tar';
 var overlay = $('[data-overlay-layer]');
 var bodyModifier = 'data-modal';
 var toggleData = 'data-is-active';
-var close = $('[data-modal-tar] [data-modal-close]');
+var close = $('[data-modal-close]');
 // function ========================================
 $(function() {
 	if($('[' + tar + ']').length == false) {
@@ -18,9 +18,8 @@ $(function() {
 		for(var i = 0; i < $('[' + tar + ']').length; i++) {
 			var elmTar = $('[' + tar + ']').eq(i);
 			var id = elmTar.attr(tar);
-			var elmTrg = $('[' + trg + '~=' + id + ']')
+			var elmTrg = $('[' + trg + '~=' + id + ']');
 			$('[' + tar + '] > div').attr('data-modal-contents', id);
-			$('[' + tar + ']').append('<span data-modal-close></span>');
 			if(elmTar.attr(toggleData) == 'true') {
 				toggle(id, bodyModifier, 'true');
 			}

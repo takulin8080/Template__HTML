@@ -2,11 +2,11 @@
 /* foundation/function/size
 /* ============================================================================================== */
 /*
-`foundation/variable $size`を基準にしたサイズの出力。
-`margin`, `width`, `line-height`など、あらゆるサイズの指定に利用する。
+`foundation/variable $size`を基準にしたサイズを出力。
+`margin`, `width`など、基本的なサイズの出力に使用することを推奨。
 `size(num)`の引数は`-1`などの負の値や`.5`などの小数を指定することも可能。
 */
 @function size($num: 1) {
-	$sizeSet: $baseSize * $num;
-	@return $sizeSet;
+	$size: $baseSize * $num;
+	@return $size;
 }
