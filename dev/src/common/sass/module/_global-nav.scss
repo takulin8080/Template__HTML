@@ -82,8 +82,8 @@
 		&__link {
 			display: flex;
 			align-items: center;
-			min-height: size(6);
 			color: color(text);
+			height: size(6);
 			&:before {
 				font-size: size(3);
 				margin-right: size(1);
@@ -102,10 +102,10 @@
 		/* sub category ---------------------------------------- */
 		&__item {
 			#{$this}__title {
+				cursor: pointer;
 				display: flex;
 				align-items: center;
-				cursor: pointer;
-				min-height: size(6);
+				height: size(6);
 				@include materialDesignIcon('chevron_right', after);
 				&:after {
 					transition: all transitionTime();
