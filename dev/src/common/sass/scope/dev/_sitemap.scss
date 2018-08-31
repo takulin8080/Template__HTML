@@ -35,11 +35,10 @@ body[data-modifier='dev sitemap'] {
 			&__items {}
 			&__item {
 				background: color(gray, 50);
-				border-bottom: 1px solid color(gray, 300);
-				margin-bottom: size(1);
 				padding: size(1);
 				display: flex;
 				align-items: center;
+				margin-bottom: 1px;
 				&:before {
 					margin-right: size(1);
 				}

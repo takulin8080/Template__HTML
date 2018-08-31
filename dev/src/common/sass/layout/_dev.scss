@@ -17,6 +17,7 @@ body[data-modifier^='dev'] {
 		background: color(white);
 		@include respondTo(mdAndOver) {
 			padding: size(8);
+			@include elevation(1);
 		}
 	}
 }
