@@ -21,7 +21,7 @@ $(function() {
 		return;
 	};
 });
-/* ---------------------------------------- */
+/* plugin ---------------------------------------- */
 $.fn.maxlength = function(num, text) {
 	$(this).attr(tarData, num);
 	var maxlength = $(this).attr(tarData);
