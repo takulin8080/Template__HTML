@@ -3,16 +3,14 @@
 // ==============================================================================================
 // variable ========================================
 var tarData = 'data-scroll-active';
-var activeData = 'data-is-active';
+var booleanData = 'data-is-active';
 // function ========================================
 $(function() {
-	if($('[' + tarData + ']').length == false) {
-		return;
-	} else {
+	if($('[' + tarData + ']').length) {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
 			var trgData = $(this).attr(tarData);
-			tar.attr(activeData, 'false');
+			tar.attr(booleanData, 'false');
 			if(trgData) {
 				var trg = $(trgData);
 			} else {
@@ -22,11 +20,13 @@ $(function() {
 			$(window).scroll(function() {
 				var scrollPos = $(window).scrollTop();
 				if(scrollPos > trgOffset) {
-					tar.attr(activeData, 'true');
+					tar.attr(booleanData, 'true');
 				} else {
-					tar.attr(activeData, 'false');
+					tar.attr(booleanData, 'false');
 				}
 			});
 		});
+	} else {
+		return;
 	};
 });

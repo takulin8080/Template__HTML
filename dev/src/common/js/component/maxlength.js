@@ -2,35 +2,35 @@
 // component/maxlength
 // ==============================================================================================
 // variable ========================================
-var tar = 'data-maxlength';
-var endtext = 'data-maxlength-endtext';
+var tarData = 'data-maxlength';
+var endText = 'data-maxlength-endText';
 // function ========================================
 $(function() {
-	if($('[' + tar + ']').length == false) {
-		return;
-	} else {
-		$('[' + tar + ']').each(function() {
-			var maxlength = $(this).attr(tar);
+	if($('[' + tarData + ']').length) {
+		$('[' + tarData + ']').each(function() {
+			var maxlength = $(this).attr(tarData);
 			var textLength = $(this).text().length;
 			var textTrim = $(this).text().substr(0, maxlength);
 			$(this).html(textTrim);
 			if(maxlength > textLength) {
-				e.attr(tar, 'inrange');
+				e.attr(tarData, 'inrange');
 			}
 			$(this).css('visibility', 'visible');
 		});
+	} else {
+		return;
 	};
 });
-/* ---------------------------------------- */
+/* plugin ---------------------------------------- */
 $.fn.maxlength = function(num, text) {
-	$(this).attr(tar, num);
-	var maxlength = $(this).attr(tar);
+	$(this).attr(tarData, num);
+	var maxlength = $(this).attr(tarData);
 	var textLength = num;
 	var textTrim = $(this).text().substr(0, maxlength);
-	$(this).attr(endtext, text);
+	$(this).attr(endText, text);
 	$(this).html(textTrim);
 	if(maxlength > textLength) {
-		e.attr(tar, 'inrange');
+		e.attr(tarData, 'inrange');
 	}
 	$(this).css('visibility', 'visible');
 };

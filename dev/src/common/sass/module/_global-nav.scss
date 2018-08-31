@@ -51,7 +51,7 @@
 				}
 			}
 			&[data-is-active~='true'] {
-				z-index: 501;
+				z-index: $topElevation;
 				&:before {
 					color: color(text-white);
 				}
@@ -180,8 +180,7 @@
 			}
 			#{$this}__items {
 				position: absolute;
-				top: 0;
-				left: 0;
+				left: size(2);
 				transition: all transitionTime();
 				visibility: hidden;
 				overflow: hidden;
@@ -189,15 +188,14 @@
 				line-height: 0;
 				opacity: 0;
 				display: block;
-				padding-top: size(4);
 				background: transparent;
+				@include elevation(2);
 			}
 			#{$this}__item {
 				border: 0;
 				border-bottom: 1px solid color(gray, 200);
 				padding: size(2);
 				background: color(gray, 100);
-				@include elevation(2);
 			}
 			#{$this}__link {}
 			#{$this}__items {
@@ -220,8 +218,4 @@
 			}
 		}
 	}
-}
-/* bodyModifier ======================================== */
-body[data-global-nav] {
-	&[data-global-nav='true'] {}
 }

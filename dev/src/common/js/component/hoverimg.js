@@ -5,9 +5,7 @@
 var tarData = 'data-hoverimg';
 // function ========================================
 $(function() {
-	if($('[' + tarData + ']').length == false) {
-		return;
-	} else {
+	if($('[' + tarData + ']').length) {
 		$('[' + tarData + ']').each(function() {
 			var defImg = $(this).attr('src');
 			var defHoverImg = $(this).attr(tarData);
@@ -17,5 +15,7 @@ $(function() {
 				$(this).attr('src', defImg);
 			});
 		});
+	} else {
+		return;
 	};
 });

@@ -43,7 +43,7 @@ var filepath = {
 		watch: ['src/_data.json', 'src/**/*.ejs']
 	},
 	font: {
-		src: 'src/common/font/**/*',
+		src: ['src/common/font/**/*', '!src/common/font/icon.scss'],
 		iconSrc: 'src/common/img/icon/*.svg',
 		iconDst: 'src/common/font/',
 		watch: ['src/common/img/icon/*.svg']
@@ -51,19 +51,19 @@ var filepath = {
 	sass: {
 		appSrc: ['src/common/sass/app.scss'],
 		vendorSrc: ['src/common/sass/vendor.scss'],
-		vendorWatch: ['src/common/sass/vendor/**/*'],
+		vendorWatch: ['src/common/sass/vendor/**/*', 'src/common/sass/_variable.scss', ],
 		foundationSrc: ['src/common/sass/foundation.scss'],
-		foundationWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/vendor/**/*'],
+		foundationWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 		componentSrc: ['src/common/sass/component.scss'],
-		componentWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss'],
+		componentWatch: ['src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 		layoutSrc: ['src/common/sass/layout.scss'],
-		layoutWatch: ['src/common/sass/layout/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
+		layoutWatch: ['src/common/sass/layout/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 		moduleSrc: ['src/common/sass/module.scss'],
-		moduleWatch: ['src/common/sass/module/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
+		moduleWatch: ['src/common/sass/module/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 		scopeSrc: ['src/common/sass/scope.scss'],
-		scopeWatch: ['src/common/sass/scope/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
+		scopeWatch: ['src/common/sass/scope/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 		utilitySrc: ['src/common/sass/utility.scss'],
-		utilityWatch: ['src/common/sass/utility/**/*', 'src/common/sass/foundation/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/vendor/**/*'],
+		utilityWatch: ['src/common/sass/utility/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
 	},
 	js: {
 		src: 'src/common/js/*.js',
@@ -82,7 +82,7 @@ var filepath = {
 		watch: ['dst/**/*']
 	}
 }
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', 'src/common/sass/foundation/mixin/_icon.scss', 'src/common/sass/component/_icon.scss', 'dst/', '../release/common/css/utility.css'];
+var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst/', '../release/common/css/utility.css'];
 // =================================================================================================
 // json
 // =================================================================================================
@@ -414,7 +414,7 @@ gulp.task('icon', function() {
 	var fontPath = '../font/'
 	return gulp.src(src).pipe($.svgmin()).pipe($.iconfontCss({
 		fontName: fontName,
-		path: 'src/common/_icon.scss',
+		path: 'src/common/font/icon.scss',
 		targetPath: scss,
 		fontPath: fontPath
 	})).pipe($.iconfont({
