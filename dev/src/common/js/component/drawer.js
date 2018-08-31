@@ -10,7 +10,7 @@ $('body').attr(bodyModifier, 'false');
 module.exports = function(target, trigger) {
 	var tar = $(target);
 	var trg = $(trigger);
-	var toggleData = 'data-is-active';
+	var booleanData = 'data-is-active';
 	if(trg) {
 		var timer = false;
 		var w = $(window).width();
@@ -18,7 +18,7 @@ module.exports = function(target, trigger) {
 		var wr;
 		var hr;
 		trg.click(function() {
-			if($(this).attr(toggleData) == 'true') {
+			if($(this).attr(booleanData) == 'true') {
 				toggle('false');
 			} else {
 				toggle('true');
@@ -46,8 +46,8 @@ module.exports = function(target, trigger) {
 	};
 
 	function toggle(boolean) {
-		tar.attr(toggleData, boolean);
-		trg.attr(toggleData, boolean);
+		tar.attr(booleanData, boolean);
+		trg.attr(booleanData, boolean);
 		$('body').attr(bodyModifier, boolean);
 		overlay(boolean);
 	}

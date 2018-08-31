@@ -3,14 +3,14 @@
 // ==============================================================================================
 // variable ========================================
 var tarData = 'data-scroll-active';
-var toggleData = 'data-is-active';
+var booleanData = 'data-is-active';
 // function ========================================
 $(function() {
 	if($('[' + tarData + ']').length) {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
 			var trgData = $(this).attr(tarData);
-			tar.attr(toggleData, 'false');
+			tar.attr(booleanData, 'false');
 			if(trgData) {
 				var trg = $(trgData);
 			} else {
@@ -20,9 +20,9 @@ $(function() {
 			$(window).scroll(function() {
 				var scrollPos = $(window).scrollTop();
 				if(scrollPos > trgOffset) {
-					tar.attr(toggleData, 'true');
+					tar.attr(booleanData, 'true');
 				} else {
-					tar.attr(toggleData, 'false');
+					tar.attr(booleanData, 'false');
 				}
 			});
 		});
