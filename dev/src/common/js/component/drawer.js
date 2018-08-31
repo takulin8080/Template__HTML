@@ -11,9 +11,7 @@ module.exports = function(target, trigger) {
 	var tar = $(target);
 	var trg = $(trigger);
 	var toggleData = 'data-is-active';
-	if(!trg) {
-		return;
-	} else {
+	if(trg) {
 		var timer = false;
 		var w = $(window).width();
 		var h = $(window).height();
@@ -43,6 +41,8 @@ module.exports = function(target, trigger) {
 				toggle('false');
 			}
 		});
+	} else {
+		return;
 	};
 
 	function toggle(boolean) {

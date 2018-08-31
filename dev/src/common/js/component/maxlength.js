@@ -6,9 +6,7 @@ var tar = 'data-maxlength';
 var endtext = 'data-maxlength-endtext';
 // function ========================================
 $(function() {
-	if($('[' + tar + ']').length == false) {
-		return;
-	} else {
+	if($('[' + tar + ']').length) {
 		$('[' + tar + ']').each(function() {
 			var maxlength = $(this).attr(tar);
 			var textLength = $(this).text().length;
@@ -19,6 +17,8 @@ $(function() {
 			}
 			$(this).css('visibility', 'visible');
 		});
+	} else {
+		return;
 	};
 });
 /* ---------------------------------------- */

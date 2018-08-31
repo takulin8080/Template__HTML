@@ -6,9 +6,7 @@ var tarData = 'data-scroll-active';
 var activeData = 'data-is-active';
 // function ========================================
 $(function() {
-	if($('[' + tarData + ']').length == false) {
-		return;
-	} else {
+	if($('[' + tarData + ']').length) {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
 			var trgData = $(this).attr(tarData);
@@ -28,5 +26,7 @@ $(function() {
 				}
 			});
 		});
+	} else {
+		return;
 	};
 });
