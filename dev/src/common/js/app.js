@@ -11,16 +11,16 @@ require('./vendor/material-design-icons');
 // ==============================================================================================
 // component
 // ==============================================================================================
+require('./component/active');
+require('./component/scroll-active');
 require('./component/pagescroll');
 require('./component/maxlength');
 require('./component/hoverimg');
-require('./component/active');
-require('./component/scroll-active');
 require('./component/modal');
+require('./component/movetotop');
 // ==============================================================================================
 // module
 // ==============================================================================================
-require('./module/movetotop');
 require('./module/global-nav');
 // ==============================================================================================
 // scope
