@@ -25,6 +25,8 @@
 	& [data-modal-contents] {
 		max-height: 75vh;
 		overflow-y: auto;
+		background: color(white);
+		padding: size(4);
 		@include elevation(5);
 	}
 	& [data-modal-close] {
