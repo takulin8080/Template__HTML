@@ -51,7 +51,7 @@
 				}
 			}
 			&[data-is-active~='true'] {
-				z-index: 501;
+				z-index: $topElevation;
 				&:before {
 					color: color(text-white);
 				}
