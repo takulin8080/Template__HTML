@@ -6,7 +6,6 @@ overlay = require('../component/overlay');
 // variable ========================================
 var trg = 'data-modal-trg';
 var tar = 'data-modal-tar';
-var overlay = $('[data-overlay-layer]');
 var bodyModifier = 'data-modal';
 var toggleData = 'data-is-active';
 var close = $('[data-modal-close]');
@@ -40,39 +39,24 @@ $.fn.modal = function() {
 	toggle(id, bodyModifier, 'true');
 };
 /* ---------------------------------------- */
-overlay.click(function() {
+overlayLayer.click(function() {
 	disabled()
 });
 /* ---------------------------------------- */
 close.click(function() {
 	disabled()
 });
-/* ---------------------------------------- */
-$(window).resize(function() {
-	var timer = false;
-	var w = $(window).width();
-	var h = $(window).height();
-	var wr;
-	var hr;
-	timer = setTimeout(function() {
-		wr = $(window).width();
-		hr = $(window).height();
-		if(w != wr || h != hr) {
-			disabled()
-		}
-	}, 200);
-});
 // common fucntion ========================================
 function toggle(id, bodyModifier, boolean) {
 	$('[' + trg + '~=' + id + ']').attr(toggleData, boolean);
 	$('[' + tar + '~=' + id + ']').attr(toggleData, boolean);
 	$('body').attr(bodyModifier, boolean);
-	$('body').attr('data-overlay', boolean);
+	overlay(boolean);
 }
 /* ---------------------------------------- */
 function disabled() {
 	$('[' + tar + ']').attr(toggleData, 'false');
 	$('[' + trg + ']').attr(toggleData, 'false');
 	$('body').attr(bodyModifier, 'false');
-	$('body').attr('data-overlay', 'false');
+	overlay('false');
 }
