@@ -3,8 +3,9 @@
 // ==============================================================================================
 // require ========================================
 overlay = require('../component/overlay');
-// setup ========================================
+// variable ========================================
 var bodyModifier = 'data-drawer-is-active';
+// setup ========================================
 $('body').attr(bodyModifier, 'false');
 /* function ======================================== */
 module.exports = function(target, trigger) {

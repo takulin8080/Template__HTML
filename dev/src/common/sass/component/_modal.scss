@@ -32,6 +32,8 @@
 		position: absolute;
 		right: size(1);
 		top: 0;
+		position: absolute;
+		right: size(1);
 		@include materialDesignIcon('cancel');
 		&:before {
 			font-size: iconSize(3);
