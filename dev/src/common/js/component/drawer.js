@@ -4,14 +4,13 @@
 // require ========================================
 overlay = require('../component/overlay');
 /* function ======================================== */
-module.exports = function(target, trigger, bodyModifier, toggleData) {
+module.exports = function(target, trigger, toggleData) {
 	if(!toggleData) {
 		toggleData = 'data-is-active';
 	}
 	var tar = $(target);
 	var trg = $(trigger);
 	var overlay = $('[data-overlay-layer]');
-	var bodyModifier = bodyModifier;
 	if(!trg) {
 		return;
 	} else {
@@ -45,7 +44,6 @@ module.exports = function(target, trigger, bodyModifier, toggleData) {
 	function toggle(boolean) {
 		tar.attr(toggleData, boolean);
 		trg.attr(toggleData, boolean);
-		$('body').attr(bodyModifier, boolean);
 		$('body').attr('data-overlay', boolean);
 	}
 }
