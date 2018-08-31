@@ -21,7 +21,7 @@
 	transition: opacity transitionTime();
 	opacity: 0;
 	visibility: hidden;
-	z-index: $shadowOverlayPos + 1;
+	z-index: $overlayElevation + 1;
 	& [data-modal-contents] {
 		max-height: 75vh;
 		overflow-y: auto;
@@ -32,6 +32,8 @@
 		position: absolute;
 		right: size(1);
 		top: 0;
+		position: absolute;
+		right: size(1);
 		@include materialDesignIcon('cancel');
 		&:before {
 			font-size: iconSize(3);

@@ -22,14 +22,17 @@ exsample {
 
 @mixin <%= cssClass%>-styles {
 	font-family: "<%= fontName %>";
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
-	text-decoration: none;
+	display: inline-block;
+	line-height: 1;
 	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
 }
 
 %<%= cssClass%> {
@@ -46,7 +49,7 @@ exsample {
 	@return $char;
 }
 
-@mixin <%= cssClass%>($filename, $insert: before, $extend: true) {
+@mixin <%= cssClass%>($filename, $size: 1, $insert: before, $extend: true) {
 	&:#{$insert} {
 		@if $extend {
 			@extend %<%= cssClass%>;
@@ -54,6 +57,7 @@ exsample {
 			@include <%= cssClass%>-styles;
 		}
 		content: <%= cssClass%>-char($filename);
+		font-size: iconSize($size);
 	}
 }
 

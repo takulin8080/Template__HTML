@@ -6,7 +6,7 @@ html {
 }
 body {
 	font-family: fontFamily(sansSerif);
-	@include fontSize(1);
+	@include fontSize();
 	color: color(text);
 	background: color(white);
 }

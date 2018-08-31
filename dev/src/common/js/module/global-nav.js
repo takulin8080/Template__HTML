@@ -4,4 +4,4 @@
 // require ========================================
 var drawer = require('../component/drawer');
 /* setup ======================================== */
-drawer('.global-nav', '[data-global-nav-trg]', 'data-global-nav');
+drawer('.global-nav', '[data-global-nav-trg]');

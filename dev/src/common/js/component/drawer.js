@@ -3,49 +3,53 @@
 // ==============================================================================================
 // require ========================================
 overlay = require('../component/overlay');
+// variable ========================================
+var bodyModifier = 'data-drawer-is-active';
+// setup ========================================
+$('body').attr(bodyModifier, 'false');
 /* function ======================================== */
-module.exports = function(target, trigger, bodyModifier, toggleData) {
-	if(!toggleData) {
-		toggleData = 'data-is-active';
-	}
+module.exports = function(target, trigger) {
 	var tar = $(target);
 	var trg = $(trigger);
-	var overlay = $('[data-overlay-layer]');
-	var bodyModifier = bodyModifier;
-	if(!trg) {
-		return;
-	} else {
+	var booleanData = 'data-is-active';
+	if(trg) {
 		var timer = false;
 		var w = $(window).width();
 		var h = $(window).height();
 		var wr;
 		var hr;
 		trg.click(function() {
-			if($(this).attr(toggleData) == 'true') {
+			if($(this).attr(booleanData) == 'true') {
 				toggle('false');
 			} else {
 				toggle('true');
 			}
 		});
 		$(window).resize(function() {
-			timer = setTimeout(function() {
-				wr = $(window).width();
-				hr = $(window).height();
-				if(w != wr || h != hr) {
-					toggle('false');
-					winWidth = $(window).width();
-				}
-			}, 200);
+			if($('body').attr(bodyModifier) == 'true') {
+				timer = setTimeout(function() {
+					wr = $(window).width();
+					hr = $(window).height();
+					if(w != wr || h != hr) {
+						toggle('false');
+						winWidth = $(window).width();
+					}
+				}, 200);
+			}
 		});
-		$('[data-overlay-layer]').click(function() {
-			toggle('false');
+		overlayLayer.click(function() {
+			if($('body').attr(bodyModifier) == 'true') {
+				toggle('false');
+			}
 		});
+	} else {
+		return;
 	};
 
 	function toggle(boolean) {
-		tar.attr(toggleData, boolean);
-		trg.attr(toggleData, boolean);
+		tar.attr(booleanData, boolean);
+		trg.attr(booleanData, boolean);
 		$('body').attr(bodyModifier, boolean);
-		$('body').attr('data-overlay', boolean);
+		overlay(boolean);
 	}
 }
