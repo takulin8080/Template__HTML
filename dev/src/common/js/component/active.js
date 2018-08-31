@@ -2,34 +2,34 @@
 // component/active
 // ==============================================================================================
 // variable ========================================
-var trgName = 'data-active-trg';
-var tarName = 'data-active-tar';
-var parentName = 'data-active-parent';
-var active = 'data-is-active';
+var tarData = 'data-active-tar';
+var trgData = 'data-active-trg';
+var parentData = 'data-active-parent';
+var toggleData = 'data-is-active';
 // function ========================================
-$('[' + trgName + ']').click(function() {
-	var id = $(this).attr(trgName).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
+$('[' + trgData + ']').click(function() {
+	var id = $(this).attr(trgData).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
 	var falseGroup = function(i) {
-		if(i.closest('[' + parentName + ']').length) {
-			var parent = i.closest('[' + parentName + ']');
-			parent.find('[' + trgName + ']').attr(active, 'false');
-			parent.find('[' + tarName + ']').attr(active, 'false');
+		if(i.closest('[' + parentData + ']').length) {
+			var parent = i.closest('[' + parentData + ']');
+			parent.find('[' + tarData + ']').attr(toggleData, 'false');
+			parent.find('[' + trgData + ']').attr(toggleData, 'false');
 		}
 	}
-	if(~$(this).attr(trgName).indexOf('add')) {
+	if(~$(this).attr(trgData).indexOf('add')) {
 		falseGroup($(this));
-		$('[' + tarName + '~=' + id + ']').attr(active, 'true');
-	} else if(~$(this).attr(trgName).indexOf('remove')) {
+		$('[' + tarData + '~=' + id + ']').attr(toggleData, 'true');
+	} else if(~$(this).attr(trgData).indexOf('remove')) {
 		falseGroup($(this));
-		$('[' + tarName + '~=' + id + ']').attr(active, 'false');
+		$('[' + tarData + '~=' + id + ']').attr(toggleData, 'false');
 	} else {
-		if($(this).attr(active) == 'true') {
-			$(this).attr(active, 'false');
-			$('[' + tarName + '~=' + id + ']').attr(active, 'false');
+		if($(this).attr(toggleData) == 'true') {
+			$(this).attr(toggleData, 'false');
+			$('[' + tarData + '~=' + id + ']').attr(toggleData, 'false');
 		} else {
 			falseGroup($(this));
-			$(this).attr(active, 'true');
-			$('[' + tarName + '~=' + id + ']').attr(active, 'true');
+			$(this).attr(toggleData, 'true');
+			$('[' + tarData + '~=' + id + ']').attr(toggleData, 'true');
 		}
 	}
 });
