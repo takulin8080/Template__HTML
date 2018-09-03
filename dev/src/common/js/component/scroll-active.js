@@ -10,7 +10,7 @@ $(function() {
 		$('[' + tarData + ']').each(function() {
 			var tar = $(this);
 			var trgData = $(this).attr(tarData);
-			tar.attr(booleanData, 'false');
+			tar.attr(booleanData, false);
 			if(trgData) {
 				var trg = $(trgData);
 			} else {
@@ -20,9 +20,11 @@ $(function() {
 			$(window).scroll(function() {
 				var scrollPos = $(window).scrollTop();
 				if(scrollPos > trgOffset) {
-					tar.attr(booleanData, 'true');
+					trg.attr(booleanData, true);
+					tar.attr(booleanData, true);
 				} else {
-					tar.attr(booleanData, 'false');
+					trg.attr(booleanData, false);
+					tar.attr(booleanData, false);
 				}
 			});
 		});
