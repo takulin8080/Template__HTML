@@ -5,9 +5,9 @@ dev/notify
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<h2 class="dev-h2">設定方法</h2>
+<h2 data-dev-heading="level2">設定方法</h2>
 <p>'data-notify="値"'を指定することで、通知ボックスのデザインを適応。'data-notify="inline"'を付与することで、テキストスタイルに変更。</p>
-<h2 class="dev-h3">'data-notiry="値"' [ボックススタイル]</h2>
+<h2 data-dev-heading="level3">'data-notiry="値"' [ボックススタイル]</h2>
 <div data-notify="info">
 	<p>[data-notify="info"]<%- data.common.text %></p>
 </div>
@@ -20,7 +20,7 @@ dev/notify
 <div data-notify="danger">
 	<p>[data-notify="danger inline"]<%- data.common.text %></p>
 </div>
-<h2 class="dev-h3">'data-notiry="値 inline"' [テキストスタイル]</h2>
+<h2 data-dev-heading="level3">'data-notiry="値 inline"' [テキストスタイル]</h2>
 <p><span data-notify="info inline">[data-notify="info inline"]</span></p>
 <p><span data-notify="success inline">[data-notify="success inline"]</span></p>
 <p><span data-notify="warning inline">[data-notify="warning inline"]</span></p>

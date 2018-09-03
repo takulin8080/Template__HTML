@@ -5,6 +5,6 @@
 要素の高さ[レイヤー]の出力。
 */
 @mixin elevation($num: 0) {
-	box-shadow: shadow($num);
+	box-shadow: shadow($num * 100);
 	z-index: $num * 100;
 }

@@ -5,33 +5,37 @@ dev/button
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<h2 class="dev-h2">設定方法</h2>
+<h2 data-dev-heading="level2">設定方法</h2>
 <p>'data-button="値"'を指定することで、ボタンのデザインを適応。なお「a」または「button」で使用されることを想定。<br>また、'data-button-group'で加工ことでグループ化も可能。</p>
-<h3 class="dev-h3">基本スタイル</h3>
+<h3 data-dev-heading="level3">基本スタイル</h3>
 <button data-button>デフォルト</button>
 <button data-button="info">info</button>
 <button data-button="success">success</button>
 <button data-button="warning">warning</button>
 <button data-button="danger">danger</button>
 <button data-button="disabled">disabled</button>
-<h3 class="dev-h3">project専用</h3>
+<h3 data-dev-heading="level3">project専用</h3>
 <button data-button="blue">blue</button>
-<h3 class="dev-h3">サイズ</h3>
+<h3 data-dev-heading="level3">サイズ</h3>
 <button data-button="info">デフォルト</button>
 <button data-button="success sm">small</button>
 <button data-button="warning md">middle</button>
 <button data-button="danger lg">large</button>
-<h3 class="dev-h3">icon使用サンプル [https://material.io/tools/icons]</h3>
+<button data-button="full">full</button>
+<button data-button="full sm">full sm</button>
+<button data-button="full md">full md</button>
+<button data-button="full md">full lg</button>
+<h3 data-dev-heading="level3">icon使用サンプル [https://material.io/tools/icons]</h3>
 <button data-button><i class="material-icons">info</i>info</button>
 <button data-button="sm"><i class="material-icons">settings</i>settings</button>
 <button data-button="md"><i class="material-icons">shopping_cart</i>shopping_cart</button>
 <button data-button="lg"><i class="material-icons">search</i>search</button>
-<h4 class="dev-h4">右側に設置する場合は'data-button="after-icon"'を指定</h4>
+<h4 data-dev-heading="level4">右側に設置する場合は'data-button="after-icon"'を指定</h4>
 <button data-button="after-icon"><i class="material-icons">info</i>info</button>
 <button data-button="sm after-icon"><i class="material-icons">settings</i>settings</button>
 <button data-button="md after-icon"><i class="material-icons">shopping_cart</i>shopping_cart</button>
 <button data-button="lg after-icon"><i class="material-icons">search</i>search</button>
-<h3 class="dev-h3">data-button-group</h3>
+<h3 data-dev-heading="level3">data-button-group</h3>
 <div data-button-group>
 	<button data-button="info">デフォルト</button>
 	<button data-button="info">デフォルト</button>

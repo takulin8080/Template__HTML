@@ -7,21 +7,21 @@
 /* data-loading ======================================== */
 body {
 	[data-loading-layer] {
+		display: none;
 		position: fixed;
 		left: 0;
 		top: 0;
 		height: 100%;
 		width: 100%;
-		display: flex;
 		justify-content: center;
 		align-items: center;
 		z-index: $topElevation;
 		background: color(white);
 	}
-	&[data-loading~="true"] {
+	&[data-loading~="false"] {
 		[data-loading-layer] {}
 	}
-	&[data-loading~="false"] {
+	&[data-loading~="true"] {
 		[data-loading-layer] {
 			@keyframes fadeOut {
 				0% {
@@ -54,6 +54,18 @@ body {
 		100% {
 			transform: scale(1.0);
 			opacity: 1;
+		}
+	}
+}
+/* mixin ======================================== */
+@mixin loadingAnimation($boolean: true) {
+	@if $boolean {
+		[data-loading-layer] {
+			display: flex;
+		}
+	} @else {
+		[data-loading-layer] {
+			display: none;
 		}
 	}
 }

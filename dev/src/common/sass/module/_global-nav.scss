@@ -20,6 +20,7 @@
 			cursor: pointer;
 			height: size(5);
 			width: size(5);
+			z-index: $topElevation;
 			&:before {
 				position: absolute;
 				top: 0;
@@ -51,7 +52,6 @@
 				}
 			}
 			&[data-is-active~='true'] {
-				z-index: $topElevation;
 				&:before {
 					color: color(text-white);
 				}
