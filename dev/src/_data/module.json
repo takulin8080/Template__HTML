@@ -6,6 +6,7 @@
 		"sub-contents",
 		"global-nav",
 		"breadcrumb",
-		"pagination"
+		"pagination",
+		"result-status"
 	]
 }
