@@ -58,11 +58,12 @@ function toggle(id, bodyModifier, boolean) {
 	$('[' + trgData + '~=' + id + ']').attr(booleanData, boolean);
 	$('body').attr(bodyModifier, boolean);
 	overlay(boolean);
-}
+};
 
-function disabled(boolean = false) {
+function disabled() {
+	var boolean = false;
 	$('[' + tarData + ']').attr(booleanData, boolean);
 	$('[' + trgData + ']').attr(booleanData, boolean);
 	$('body').attr(bodyModifier, boolean);
 	overlay(boolean);
-}
+};
