@@ -10,7 +10,7 @@ var booleanData = 'data-is-active';
 var closeData = 'data-modal-close';
 var bodyModifier = 'data-modal-is-active';
 // setup ========================================
-$('body').attr(bodyModifier, 'false');
+$('body').attr(bodyModifier, false);
 $('[' + tarData + ']').append('<div ' + closeData + '></div>');
 // function ========================================
 $(function() {
@@ -21,7 +21,7 @@ $(function() {
 			var trg = $('[' + trgData + '~=' + id + ']');
 			tar.children().first().attr('data-modal-contents', id);
 			if(tar.attr(booleanData) == 'true') {
-				toggle(id, bodyModifier, 'true')
+				toggle(id, bodyModifier, true)
 			}
 		});
 	} else {
@@ -33,21 +33,21 @@ $('[' + trgData + ']').click(function() {
 	var id = $(this).attr(trgData);
 	var tar = $('[' + tarData + '~=' + id + ']');
 	var trg = $('[' + trgData + '~=' + id + ']');
-	toggle(id, bodyModifier, 'true')
+	toggle(id, bodyModifier, true)
 });
 /* close ---------------------------------------- */
 $('[' + closeData + ']').click(function() {
 	disabled()
 });
 overlayLayer.click(function() {
-	if($('body').attr(bodyModifier) == 'true') {
+	if($('body').attr(bodyModifier)) {
 		disabled();
 	}
 });
 /* plugin ---------------------------------------- */
 $.fn.modal = function() {
 	var id = $(this).attr(tarData);
-	toggle(id, bodyModifier, 'true');
+	toggle(id, bodyModifier, true);
 };
 /* common ---------------------------------------- */
 function toggle(id, bodyModifier, boolean) {
@@ -57,9 +57,9 @@ function toggle(id, bodyModifier, boolean) {
 	overlay(boolean);
 }
 
-function disabled() {
-	$('[' + tarData + ']').attr(booleanData, 'false');
-	$('[' + trgData + ']').attr(booleanData, 'false');
-	$('body').attr(bodyModifier, 'false');
-	overlay('false');
+function disabled(boolean = false) {
+	$('[' + tarData + ']').attr(booleanData, boolean);
+	$('[' + trgData + ']').attr(booleanData, boolean);
+	$('body').attr(bodyModifier, boolean);
+	overlay(boolean);
 }

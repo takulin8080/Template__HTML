@@ -6,7 +6,7 @@ overlay = require('../component/overlay');
 // variable ========================================
 var bodyModifier = 'data-drawer-is-active';
 // setup ========================================
-$('body').attr(bodyModifier, 'false');
+$('body').attr(bodyModifier, false);
 /* function ======================================== */
 module.exports = function(target, trigger) {
 	var tar = $(target);
@@ -20,9 +20,9 @@ module.exports = function(target, trigger) {
 		var hr;
 		trg.click(function() {
 			if($(this).attr(booleanData) == 'true') {
-				toggle('false');
+				toggle(false);
 			} else {
-				toggle('true');
+				toggle(true);
 			}
 		});
 		$(window).resize(function() {
@@ -31,7 +31,7 @@ module.exports = function(target, trigger) {
 					wr = $(window).width();
 					hr = $(window).height();
 					if(w != wr || h != hr) {
-						toggle('false');
+						toggle(false);
 						winWidth = $(window).width();
 					}
 				}, 200);
@@ -39,7 +39,7 @@ module.exports = function(target, trigger) {
 		});
 		overlayLayer.click(function() {
 			if($('body').attr(bodyModifier) == 'true') {
-				toggle('false');
+				toggle(false);
 			}
 		});
 	} else {
