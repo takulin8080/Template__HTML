@@ -9,6 +9,7 @@ var trgData = 'data-modal-trg';
 var booleanData = 'data-is-active';
 var closeData = 'data-modal-close';
 var bodyModifier = 'data-modal-is-active';
+var overlayClose = false;
 // setup ========================================
 $('body').attr(bodyModifier, false);
 $('[' + tarData + ']').append('<div ' + closeData + '></div>');
@@ -39,11 +40,13 @@ $('[' + trgData + ']').click(function() {
 $('[' + closeData + ']').click(function() {
 	disabled()
 });
-overlayLayer.click(function() {
-	if($('body').attr(bodyModifier)) {
-		disabled();
-	}
-});
+if(overlayClose) {
+	overlayLayer.click(function() {
+		if($('body').attr(bodyModifier)) {
+			disabled();
+		}
+	});
+}
 /* plugin ---------------------------------------- */
 $.fn.modal = function() {
 	var id = $(this).attr(tarData);
@@ -55,11 +58,12 @@ function toggle(id, bodyModifier, boolean) {
 	$('[' + trgData + '~=' + id + ']').attr(booleanData, boolean);
 	$('body').attr(bodyModifier, boolean);
 	overlay(boolean);
-}
+};
 
-function disabled(boolean = false) {
+function disabled() {
+	var boolean = false;
 	$('[' + tarData + ']').attr(booleanData, boolean);
 	$('[' + trgData + ']').attr(booleanData, boolean);
 	$('body').attr(bodyModifier, boolean);
 	overlay(boolean);
-}
+};

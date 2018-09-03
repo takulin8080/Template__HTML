@@ -18,6 +18,7 @@ require('./component/maxlength');
 require('./component/hoverimg');
 require('./component/modal');
 require('./component/movetotop');
+require('./component/loading');
 // ==============================================================================================
 // module
 // ==============================================================================================

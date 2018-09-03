@@ -5,6 +5,8 @@
 overlay = require('../component/overlay');
 // variable ========================================
 var bodyModifier = 'data-drawer-is-active';
+var overlayClose = true;
+var resizeClose = true;
 // setup ========================================
 $('body').attr(bodyModifier, false);
 /* function ======================================== */
@@ -25,23 +27,27 @@ module.exports = function(target, trigger) {
 				toggle(true);
 			}
 		});
-		$(window).resize(function() {
-			if($('body').attr(bodyModifier) == 'true') {
-				timer = setTimeout(function() {
-					wr = $(window).width();
-					hr = $(window).height();
-					if(w != wr || h != hr) {
-						toggle(false);
-						winWidth = $(window).width();
-					}
-				}, 200);
-			}
-		});
-		overlayLayer.click(function() {
-			if($('body').attr(bodyModifier) == 'true') {
-				toggle(false);
-			}
-		});
+		if(overlayClose) {
+			overlayLayer.click(function() {
+				if($('body').attr(bodyModifier) == 'true') {
+					toggle(false);
+				}
+			});
+		}
+		if(resizeClose) {
+			$(window).resize(function() {
+				if($('body').attr(bodyModifier) == 'true') {
+					timer = setTimeout(function() {
+						wr = $(window).width();
+						hr = $(window).height();
+						if(w != wr || h != hr) {
+							toggle(false);
+							winWidth = $(window).width();
+						}
+					}, 200);
+				}
+			});
+		}
 	} else {
 		return;
 	};

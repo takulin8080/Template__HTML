@@ -6,7 +6,6 @@
 また、defaultでは最後に`...`を付与しているが、`data-maxlength-endtext="$string"`を設定することで、文字を変更可能。
 */
 [data-maxlength] {
-	visibility: hidden;
 	&:after {
 		content: '...';
 		white-space: nowrap;
@@ -20,5 +19,9 @@
 		&:after {
 			display: none;
 		}
+	}
+	opacity: 0;
+	body[data-loading='true'] & {
+		opacity: 1;
 	}
 }
