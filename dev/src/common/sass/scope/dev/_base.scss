@@ -5,7 +5,7 @@ body[data-modifier^='dev'] {
 	.dev-contents {
 		/* html style set ======================================== */
 		color: black;
-		.dev-h1 {
+		[data-dev-heading~='level1'] {
 			color: color(text);
 			font-size: fontSize(3);
 			text-align: center;
@@ -14,14 +14,14 @@ body[data-modifier^='dev'] {
 			padding-bottom: size(4);
 			margin-bottom: size(4);
 		}
-		.dev-h2 {
+		[data-dev-heading~='level2'] {
 			color: color(text-white);
 			font-size: fontSize(1);
 			background: color(gray, 900);
 			padding: size(1);
 			margin: size(4) 0 size(2);
 		}
-		.dev-h3 {
+		[data-dev-heading~='level3'] {
 			color: color(text);
 			font-size: fontSize(1);
 			font-weight: bold;
@@ -29,7 +29,7 @@ body[data-modifier^='dev'] {
 			margin: size(6) 0 size(2);
 			border-left: size(.25) solid color(gray, 700);
 		}
-		.dev-h4 {
+		[data-dev-heading~='level4'] {
 			color: color(text, -1);
 			font-size: fontSize(-1);
 			font-weight: bold;
