@@ -4,7 +4,7 @@
 			"layout": "home",
 			"title": "ホーム",
 			"description": "",
-			"pageModifier": "",
+			"pageModifier": "home",
 			"progress": ""
 		}
 	}
