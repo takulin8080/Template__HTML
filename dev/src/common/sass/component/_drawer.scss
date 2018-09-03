@@ -21,13 +21,13 @@
 	transition: all transitionTime();
 	@include elevation(5);
 	@if $pos == left {
-		left: -100vw;
+		left: calc(-100% + #{size(-8)});
 		top: 0;
 		&[data-is-active~="true"] {
 			left: 0;
 		}
 	} @else if $pos == right {
-		right: -100vw;
+		right: calc(-100% + #{size(-8)});
 		top: 0;
 		&[data-is-active~="true"] {
 			right: 0;
@@ -35,7 +35,7 @@
 	} @else if $pos == top {
 		left: 0;
 		opacity: 0;
-		top: -100vh;
+		top: -100%;
 		visibility: hidden;
 		&[data-is-active~="true"] {
 			opacity: 1;
@@ -43,7 +43,7 @@
 			visibility: visible;
 		}
 	} @else if $pos == bottom {
-		bottom: -100vh;
+		bottom: -100%;
 		left: 0;
 		visibility: hidden;
 		&[data-is-active~="true"] {

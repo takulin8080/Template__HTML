@@ -1,0 +1,68 @@
+/* ============================================================================================== */
+/* module/result-status
+/* ============================================================================================== */
+.result-status {
+	$this: &;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: size(1);
+	border-bottom: 1px solid color(gray, 500);
+	margin-bottom: size(2);
+	& > * {
+		margin-left: size(2);
+	}
+	/* page-num ======================================== */
+	.page-num {
+		margin-right: auto;
+		font-size: fontSize(-1);
+		color: color(text, -1);
+		margin-left: 0;
+	}
+	/* sort ======================================== */
+	.sort {
+		position: relative;
+		&__title {
+			margin-right: auto;
+			font-size: fontSize(-1);
+			color: color(text, -1);
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			@include materialDesignIcon('arrow_drop_down', after);
+			&:after {
+				font-size: iconSize(1);
+				color: color(gray, 400);
+			}
+		}
+		&__items {
+			position: absolute;
+			top: size(4);
+			left: 0;
+			background: #fff;
+			opacity: 0;
+			transition: opacity transitionTime();
+			@include elevation(2);
+			&[data-is-active~='true'] {
+				opacity: 1;
+			}
+		}
+		&__item {
+			.label {
+				display: block;
+				white-space: nowrap;
+				cursor: pointer;
+				color: color(text, -1);
+				padding: 0 size(1);
+			}
+			input[type='radio'] {
+				display: none;
+				&:checked {
+					& + .label {
+						color: color(text);
+					}
+				}
+			}
+		}
+	}
+}

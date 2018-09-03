@@ -1,0 +1,27 @@
+<%#
+=====================================================================================================
+result-status
+=====================================================================================================
+%>
+<%
+if (typeof modifier === 'undefined') { var modifier = ''; };
+var ejspath = '../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!-- result-status -->
+<div class="result-status">
+	<div class="page-num">100件中 / 3ページ</div>
+	<form>
+		<!-- sort -->
+		<div class="sort">
+			<div class="sort__title" data-active-trg="result-status-sort">並び替え</div>
+			<div class="sort__items" data-active-tar="result-status-sort">
+				<div class="sort__item"><label><input type="radio" name="sort" checked="checked"><div class="label">標準</div></label></div>
+				<div class="sort__item"><label><input type="radio" name="sort"><div class="label">新着順</div></label></div>
+				<div class="sort__item"><label><input type="radio" name="sort"><div class="label">人気順</div></label></div>
+			</div>
+		</div>
+		<!-- /sort -->
+	</form>
+</div>
+<!-- /result-status -->

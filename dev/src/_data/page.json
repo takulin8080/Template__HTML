@@ -6,6 +6,13 @@
 			"description": "",
 			"pageModifier": "home",
 			"progress": ""
+		},
+		"exsample": {
+			"layout": "default",
+			"title": "exsample",
+			"description": "",
+			"pageModifier": "",
+			"progress": ""
 		}
 	}
 }
