@@ -5,15 +5,28 @@ dev/active
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<h2 class="dev-h2">設定方法</h2>
-<p>'data-active-trg="id"'と'data-active-tar="id"'が対になっており、'data-active-trg'をクリックするすることでそれぞれに'data-is-active="true"'を付与する。また、'data-active-parent'で全体を囲うことで、active化できるものを１つのみにすることが可能。</p>
+<h2 data-dev-heading="level2">設定方法</h2>
+<p>'data-active-trg="id"'と'data-active-tar="id"'が対になっており、'data-active-trg'をクリックするすることでそれぞれに'data-is-active='を'true/false'と切り替えられる。付与する。また、'data-active-parent'で全体を囲うことで、active化できるものを１つのみにすることが可能。</p>
 <div data-active-parent>
-	<div data-button data-active-trg="exsample1">作動</div>
+	<div data-button data-active-trg="exsample1">toggle</div>
 	<div class="exsample" data-active-tar="exsample1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-	<div data-button data-active-trg="exsample2">作動</div>
+	<div data-button data-active-trg="exsample2">toggle</div>
 	<div class="exsample" data-active-tar="exsample2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-	<div data-button data-active-trg="exsample3">作動</div>
+	<div data-button data-active-trg="exsample3">toggle</div>
 	<div class="exsample" data-active-tar="exsample3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+</div>
+<h3 data-dev-heading="level3">'true', 'false'のみの動作</h3>
+<p>'data-is-active="true"'への切り替えのみをしたい場合、'data-active-trg="id true"'または'data-active-trg="id false"'とすることで切り替え可能。
+<div data-active-parent>
+	<div data-button data-active-trg="exsample4 true">true</div>
+	<div data-button data-active-trg="exsample4 false">false</div>
+	<div class="exsample" data-active-tar="exsample4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+	<div data-button data-active-trg="exsample5 true">true</div>
+	<div data-button data-active-trg="exsample5 false">false</div>
+	<div class="exsample" data-active-tar="exsample5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+	<div data-button data-active-trg="exsample6 true">true</div>
+	<div data-button data-active-trg="exsample6 false">false</div>
+	<div class="exsample" data-active-tar="exsample6">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 </div>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

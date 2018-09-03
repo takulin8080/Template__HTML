@@ -8,31 +8,26 @@ var parentData = 'data-active-parent';
 var booleanData = 'data-is-active';
 // function ========================================
 $('[' + trgData + ']').click(function() {
-	var id = $(this).attr(trgData).replace(/toggle/g, '').replace(/add/g, '').replace(/remove/g, '').replace(/\s+/g, '');
-	if(~$(this).attr(trgData).indexOf('add')) {
-		falseGroup($(this));
-		$('[' + tarData + '~=' + id + ']').attr(booleanData, true);
-	} else if(~$(this).attr(trgData).indexOf('remove')) {
-		falseGroup($(this));
-		$('[' + tarData + '~=' + id + ']').attr(booleanData, false);
+	var id = $(this).attr(trgData).replace(/toggle/g, '').replace(/true/g, '').replace(/false/g, '').replace(/\s+/g, '');
+	var tar = $('[' + tarData + '~=' + id + ']');
+	var trg = $('[' + trgData + '~=' + id + ']');
+	if(~$(this).attr(trgData).indexOf('true')) {
+		toggle(tar, trg, true);
+	} else if(~$(this).attr(trgData).indexOf('false')) {
+		toggle(tar, trg, false);
 	} else {
 		if($(this).attr(booleanData) == 'true') {
-			$(this).attr(booleanData, false);
-			$('[' + tarData + '~=' + id + ']').attr(booleanData, false);
+			toggle(tar, trg, false);
 		} else {
-			falseGroup($(this));
-			$(this).attr(booleanData, true);
-			$('[' + tarData + '~=' + id + ']').attr(booleanData, true);
+			toggle(tar, trg, true);
 		}
 	}
 });
 /* common ---------------------------------------- */
-function toggle(e) {
-	if(e.closest('[' + parentData + ']').length) {
-		var parent = e.closest('[' + parentData + ']');
-		parent.find('[' + tarData + ']').attr(booleanData, false);
-		parent.find('[' + trgData + ']').attr(booleanData, false);
-	}
+function toggle(tar, trg, boolean) {
+	falseGroup(tar);
+	tar.attr(booleanData, boolean);
+	trg.attr(booleanData, boolean);
 }
 
 function falseGroup(e) {
