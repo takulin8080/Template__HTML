@@ -18,10 +18,10 @@ body {
 		z-index: $topElevation;
 		background: color(white);
 	}
-	&[data-loading~="true"] {
+	&[data-loading~="false"] {
 		[data-loading-layer] {}
 	}
-	&[data-loading~="false"] {
+	&[data-loading~="true"] {
 		[data-loading-layer] {
 			@keyframes fadeOut {
 				0% {
