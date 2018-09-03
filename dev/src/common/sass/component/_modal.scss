@@ -23,7 +23,7 @@
 	visibility: hidden;
 	z-index: $overlayElevation + 1;
 	& [data-modal-contents] {
-		max-height: 75vh;
+		max-height: 70vh;
 		overflow-y: auto;
 		background: color(white);
 		padding: size(4);
