@@ -9,41 +9,44 @@ var ejspath = '../';
 <%# ---------------------------------------------------------------------------------------------- %>
 <%# before ======================================== %>
 <% if( modifier == 'before' ){ %>
-	<%- include(ejspath + '_layout/common/_before') %>
-	<%- include(ejspath + '_module/header') %>
-	<%- include(ejspath + '_module/global-nav') %>
-	<%- include(ejspath + '_module/breadcrumb') %>
-	<!-- contents -->
-	<div class="contents">
-		<div class="contents__inner">
-			<!-- main-contents -->
-			<main class="main-contents">
-				<div class="main-contents__inner">
+	<!DOCTYPE html>
+	<html lang="ja">
+		<%- include(ejspath + '_data/_head') %>
+		<body data-modifier="<%- pageModifier %>">
+			<%- include(ejspath + '_module/header') %>
+			<%- include(ejspath + '_module/global-nav') %>
+			<%- include(ejspath + '_module/breadcrumb') %>
+			<!-- contents -->
+			<div class="contents">
+				<div class="contents__inner">
+					<!-- main-contents -->
+					<main class="main-contents">
+						<div class="main-contents__inner">
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
+						</div>
+					</main>
+					<!-- /main-contents -->
 				</div>
-			</main>
-			<!-- /main-contents -->
 			</div>
-		</div>
-		<!-- /contents -->
-	<%- include(ejspath + '_module/footer') %>
-	<!-- JSON-LD -->
-	<script type="application/ld+json">
-		[
-			{
-				"@context": "http://schema.org",
-				"@type": "WebSite",
-				"mainEntityOfPage": {
-					"@type": "WebPage",
-					"@id": "<%- data.site.url %><%- absUrl %>"
-				},
-				"headline": "<%- title %>",
-				"description": "<%- description %>"
-			}
-		]
-	</script>
-	<!-- /JSON-LD -->
-	<%- include(ejspath + '_layout/common/_after') %>
+			<!-- /contents -->
+			<%- include(ejspath + '_module/footer') %>
+			<!-- JSON-LD -->
+			<script type="application/ld+json">
+				[
+					<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
+					<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
+					<%- include(ejspath + '_data/json-ld/_WebPage') %>
+				]
+			</script>
+			<!-- /JSON-LD -->
+			<% if(dev){ %>
+				<%- include(ejspath + '_module/dev-link') %>
+			<% } %>
+			<!-- script -->
+			<script src="<%- path.js %>bundle.js"></script>
+			<!-- /script -->
+		</body>
+	</html>
 <% } %>
