@@ -1,10 +1,10 @@
 {
 	"site": {
-		"title": "exsample page",
-		"description": "",
-		"author": "",
+		"url": "http://www.exsample.com",
+		"title": "exsample",
+		"description": "home:Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		"publicationDate": "2018",
 		"copyright": "exsample.com",
-		"url": "http://www.exsample.com"
+		"gtag": ""
 	}
 }

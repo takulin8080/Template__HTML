@@ -320,14 +320,18 @@ var ejsHierarchy = function(parentArray) {
 }
 var ejsPages = function(pages, hierarchy) {
 	var url;
+	var absUrl;
 	for(var key in pages) {
 		if(relativePath) {
 			url = hierarchy + key + '.html';
+			absUrl = '/' + key + '.html';
+			absUrl = absUrl.replace('index.html', '');
 		} else {
 			url = '/' + key + '.html';
 			url = url.replace('index.html', '');
 		}
 		pages[key].url = url;
+		pages[key].absUrl = absUrl;
 	}
 	return pages;
 }
