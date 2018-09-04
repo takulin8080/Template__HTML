@@ -2,8 +2,7 @@
 	"site": {
 		"url": "http://www.exsample.com",
 		"title": "exsample",
-		"description": "home:Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		"publicationDate": "2018",
+		"description": "site description : Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		"copyright": "exsample.com",
 		"gtag": ""
 	}
