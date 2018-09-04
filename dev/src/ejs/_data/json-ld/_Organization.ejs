@@ -1,0 +1,28 @@
+<%#
+=====================================================================================================
+_data/json-ld/_Organization
+=====================================================================================================
+%>
+{
+	"@context" : "https://schema.org",
+	"@type" : "Organization",
+	"name" : "<%- data.organization.name %>",
+	"logo": "<%- data.site.url %><%- data.organization.logo %>",
+	"url" : "<%- data.organization.url %>",
+	"contactPoint" : [
+		{
+			"@type" : "ContactPoint",
+			"telephone" : "<%- data.organization.contactPoint.telephone %>",
+			"contactType" : "<%- data.organization.contactPoint.contactType %>"
+		}
+	],
+	"sameAs": [
+		<% data.organization.sameAs.forEach(function(value, key) { %>
+			<% if (data.organization.sameAs.length - 1 != key) { %>
+				"<%- value %>",
+			<% } else { %>
+				"<%- value %>"
+			<% } %>
+		<% }) %>
+	]
+}
