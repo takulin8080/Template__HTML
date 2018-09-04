@@ -25,10 +25,25 @@ var ejspath = '../';
 				</div>
 			</main>
 			<!-- /main-contents -->
-			<%- include(ejspath + '_module/sub-contents') %>
+			</div>
 		</div>
-	</div>
-	<!-- /contents -->
+		<!-- /contents -->
 	<%- include(ejspath + '_module/footer') %>
+	<!-- JSON-LD -->
+	<script type="application/ld+json">
+		[
+			{
+				"@context": "http://schema.org",
+				"@type": "WebSite",
+				"mainEntityOfPage": {
+					"@type": "WebPage",
+					"@id": "<%- data.site.url %><%- absUrl %>"
+				},
+				"headline": "<%- title %>",
+				"description": "<%- description %>"
+			}
+		]
+	</script>
+	<!-- /JSON-LD -->
 	<%- include(ejspath + '_layout/common/_after') %>
 <% } %>

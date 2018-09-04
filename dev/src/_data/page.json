@@ -1,4 +1,5 @@
 {
+	"siteNav": ["index", "exsample"],
 	"page": {
 		"index": {
 			"layout": "home",
@@ -9,7 +10,7 @@
 		},
 		"exsample": {
 			"layout": "default",
-			"title": "exsample",
+			"title": "exsamplePage",
 			"description": "",
 			"pageModifier": "",
 			"progress": ""

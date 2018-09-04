@@ -28,5 +28,18 @@ var ejspath = '../';
 	</div>
 	<!-- /contents -->
 	<%- include(ejspath + '_module/footer') %>
+	<!-- JSON-LD -->
+	<script type="application/ld+json">
+		[
+			{
+				"@context": "http://schema.org/",
+				"@type": "WebSite",
+				"url": "<%- data.site.url %>",
+				"name": "<%- data.site.title %>",
+				"description": "<%- data.site.description %>"
+			}
+		]
+	</script>
+	<!-- /JSON-LD -->
 	<%- include(ejspath + '_layout/common/_after') %>
 <% } %>
