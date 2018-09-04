@@ -8,10 +8,10 @@ if (typeof modifier === 'undefined') { var modifier = ''; };
 var ejspath = '../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<!-- breadcrumb -->
-<div class="breadcrumb">
-	<ul class="breadcrumb__items">
-		<% if(parent){ %>
+<% if(parent.length){ %>
+	<!-- breadcrumb -->
+	<div class="breadcrumb">
+		<ul class="breadcrumb__items">
 			<% parent.forEach(function(value, key){ %>
 				<% if(page[value]) { %>
 					<li class="breadcrumb__item">
@@ -19,10 +19,10 @@ var ejspath = '../';
 					</li>
 				<% } %>
 			<% }) %>
-		<% } %>
-		<li class="breadcrumb__item">
-			<a class="breadcrumb__link"><%- title %></a>
-		</li>
-	</ul>
-</div>
-<!-- /breadcrumb -->
+			<li class="breadcrumb__item">
+				<a class="breadcrumb__link"><%- title %></a>
+			</li>
+		</ul>
+	</div>
+	<!-- /breadcrumb -->
+<% } %>

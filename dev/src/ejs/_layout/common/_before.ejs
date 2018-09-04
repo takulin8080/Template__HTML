@@ -1,0 +1,62 @@
+<%#
+=====================================================================================================
+layout/common/_before
+=====================================================================================================
+%>
+<%
+var ejspath = '../../';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<% if( data.site.gtag ){ %>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.site.gtag %>"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', '<%- data.site.gtag %>');
+			</script>
+		<% } %>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>
+			<% if(parent.length){ %>
+				<%- title %>
+				|
+				<% parent.reverse().forEach(function(value, key) { %>
+					<% if (parent.length - 1 != key) {%>
+						<% if (page[value] && value != 'index') { %>
+							<%- page[value].title %>
+							|
+						<% } %>
+					<% } %>
+				<% }) %>
+				<% parent.reverse(); %>
+			<% } %>
+			<%- data.site.title %>
+		</title>
+		<% if( description ){ %>
+			<meta name="description" content="<%- description %>">
+		<% } else { %>
+			<meta name="description" content="<%- data.site.description %>">
+		<% } %>
+		<% if( data.site.author ){ %>
+			<meta name="author" content="<%- data.site.author %>"/>
+		<% } %>
+		<% if(dev){ %>
+			<link rel="stylesheet" href="<%- path.css %>vendor.css">
+			<link rel="stylesheet" href="<%- path.css %>foundation.css">
+			<link rel="stylesheet" href="<%- path.css %>component.css">
+			<link rel="stylesheet" href="<%- path.css %>layout.css">
+			<link rel="stylesheet" href="<%- path.css %>module.css">
+			<link rel="stylesheet" href="<%- path.css %>scope.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+		<% } else { %>
+			<link rel="stylesheet" href="<%- path.css %>app.css">
+			<link rel="stylesheet" href="<%- path.css %>utility.css">
+		<% } %>
+	</head>
+	<body data-modifier="<%- pageModifier %>">

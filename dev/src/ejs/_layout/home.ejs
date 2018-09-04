@@ -9,60 +9,37 @@ var ejspath = '../';
 <%# ---------------------------------------------------------------------------------------------- %>
 <%# before ======================================== %>
 <% if( modifier == 'before' ){ %>
-	<!DOCTYPE html>
-	<html lang="ja">
-		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-			<title>
-				<%- data.site.title %>
-			</title>
-			<% if( description ){ %>
-				<meta name="description" content="<%- description %>">
-			<% } else { %>
-				<meta name="description" content="<%- data.site.description %>">
-			<% } %>
-			<% if( data.site.author ){ %>
-				<meta name="author" content="<%- data.site.author %>"/>
-			<% } %>
-			<% if(dev){ %>
-				<link rel="stylesheet" href="<%- path.css %>vendor.css">
-				<link rel="stylesheet" href="<%- path.css %>foundation.css">
-				<link rel="stylesheet" href="<%- path.css %>component.css">
-				<link rel="stylesheet" href="<%- path.css %>layout.css">
-				<link rel="stylesheet" href="<%- path.css %>module.css">
-				<link rel="stylesheet" href="<%- path.css %>scope.css">
-				<link rel="stylesheet" href="<%- path.css %>utility.css">
-			<% } else { %>
-				<link rel="stylesheet" href="<%- path.css %>app.css">
-				<link rel="stylesheet" href="<%- path.css %>utility.css">
-			<% } %>
-		</head>
-		<body data-modifier="<%- pageModifier %>">
-			<%- include(ejspath + '_module/header') %>
-			<%- include(ejspath + '_module/global-nav') %>
-			<!-- contents -->
-			<div class="contents">
-				<div class="contents__inner">
-					<!-- main-contents -->
-					<main class="main-contents">
-						<div class="main-contents__inner">
+	<%- include(ejspath + '_layout/common/_before') %>
+	<%- include(ejspath + '_module/header') %>
+	<%- include(ejspath + '_module/global-nav') %>
+	<!-- contents -->
+	<div class="contents">
+		<div class="contents__inner">
+			<!-- main-contents -->
+			<main class="main-contents">
+				<div class="main-contents__inner">
 <% } %>
 <%# after ======================================== %>
 <% if( modifier == 'after' ){ %>
-						</div>
-					</main>
-					<!-- /main-contents -->
 				</div>
-			</div>
-			<!-- /contents -->
-			<%- include(ejspath + '_module/footer') %>
-			<% if(dev){ %>
-				<%- include(ejspath + '_module/dev-link') %>
-			<% } %>
-			<!-- script -->
-			<script src="<%- path.js %>bundle.js"></script>
-			<!-- /script -->
-		</body>
-	</html>
+			</main>
+			<!-- /main-contents -->
+		</div>
+	</div>
+	<!-- /contents -->
+	<%- include(ejspath + '_module/footer') %>
+	<!-- JSON-LD -->
+	<script type="application/ld+json">
+		[
+			{
+				"@context": "http://schema.org/",
+				"@type": "WebSite",
+				"url": "<%- data.site.url %>",
+				"name": "<%- data.site.title %>",
+				"description": "<%- data.site.description %>"
+			}
+		]
+	</script>
+	<!-- /JSON-LD -->
+	<%- include(ejspath + '_layout/common/_after') %>
 <% } %>
