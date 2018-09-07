@@ -12,7 +12,7 @@ _data/json-ld/_BreadcrumbList
 				"@type": "ListItem",
 				"position": <%- key + 1 %>,
 				"item": {
-				"@id": "<%- data.site.url %><%- page[value].absUrl %>",
+				"@id": "<%- data.schema.WebSite.url %><%- page[value].absUrl %>",
 				"name": "<%- page[value].title %>"
 				}
 			},
@@ -21,7 +21,7 @@ _data/json-ld/_BreadcrumbList
 			"@type": "ListItem",
 			"position": <%- parent.length + 1 %>,
 			"item": {
-				"@id": "<%- data.site.url %><%- absUrl %>",
+				"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
 				"name": "<%- title %>"
 			}
 		}
