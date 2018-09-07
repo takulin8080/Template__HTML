@@ -32,6 +32,7 @@ var ejspath = '../';
 			</div>
 			<!-- /contents -->
 			<%- include(ejspath + '_module/footer') %>
+			<%- include(ejspath + '_data/json-ld/_schema', { schema: ['Organization', 'LocalBusiness']}) %>
 			<!-- JSON-LD -->
 			<script type="application/ld+json">
 				[

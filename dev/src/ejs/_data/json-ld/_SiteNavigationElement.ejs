@@ -7,8 +7,8 @@ _data/json-ld/_SiteNavigationElement
 	"@context": "http://schema.org/",
 	"@type": "SiteNavigationElement",
 	"name": [
-		<% data.siteNav.forEach(function(value, key) { %>
-			<% if (data.siteNav.length - 1 != key) { %>
+		<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
+			<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
 				"<%- page[value].title %>",
 			<% } else { %>
 				"<%- page[value].title %>"
@@ -16,11 +16,11 @@ _data/json-ld/_SiteNavigationElement
 		<% }) %>
 	],
 	"url": [
-		<% data.siteNav.forEach(function(value, key) { %>
-			<% if (data.siteNav.length - 1 != key) { %>
-				"<%- data.site.url %><%- page[value].absUrl %>",
+		<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
+			<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
+				"<%- data.schema.WebSite.url %><%- page[value].absUrl %>",
 			<% } else { %>
-				"<%- data.site.url %><%- page[value].absUrl %>"
+				"<%- data.schema.WebSite.url %><%- page[value].absUrl %>"
 			<% } %>
 		<% }) %>
 	]
