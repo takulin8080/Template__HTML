@@ -18,11 +18,8 @@ var ejspath = '../';
 			<title>
 				<%- title %>
 				|
-				<%- data.site.title %>
+				<%- data.schema.WebSite.name %>
 			</title>
-			<% if( data.site.author ){ %>
-				<meta name="author" content="<%- data.site.author %>"/>
-			<% } %>
 			<link rel="stylesheet" href="<%- path.css %>vendor.css">
 			<link rel="stylesheet" href="<%- path.css %>foundation.css">
 			<link rel="stylesheet" href="<%- path.css %>component.css">

@@ -32,15 +32,10 @@ var ejspath = '../';
 			</div>
 			<!-- /contents -->
 			<%- include(ejspath + '_module/footer') %>
-			<!-- JSON-LD -->
-			<script type="application/ld+json">
-				[
-					<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
-					<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
-					<%- include(ejspath + '_data/json-ld/_WebPage') %>
-				]
-			</script>
-			<!-- /JSON-LD -->
+			<%- include(ejspath + '_data/json-ld/_schema', { schema: ['Organization']}) %>
+			<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>
+			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>
+			<%- include(ejspath + '_data/json-ld/_WebPage') %>
 			<% if(dev){ %>
 				<%- include(ejspath + '_module/dev-link') %>
 			<% } %>

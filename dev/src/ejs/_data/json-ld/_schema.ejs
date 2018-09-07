@@ -1,0 +1,62 @@
+<%#
+=====================================================================================================
+_data/_json-ld
+=====================================================================================================
+%>
+<%
+if (typeof schema === 'undefined') { var schema = ''; };
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<% if(schema){ %>
+	<script type="application/ld+json">
+		[
+			<% var schemaValue = function(obj, key) { %>
+				<% var obj = obj[key]; %>
+				<% var objArray = Object.keys(obj); %>
+				<% if(obj instanceof Object) { %>
+					<% if(obj instanceof Array) { %>
+						[
+						<% objArray.forEach(function(key, index) { %>
+							<% schemaValue(obj, key) %>
+							<% if( index != objArray.length - 1 ){ %>
+							,
+							<% } %>
+						<% }) %>
+						]
+					<% } else { %>
+						{
+							<% objArray.forEach(function(key, index) { %>
+								"<%- key %>": <% schemaValue(obj, key) %>
+								<% if( index != objArray.length - 1 ){ %>
+								,
+								<% } %>
+							<% }) %>
+						}
+					<% } %>
+				<% } else { %>
+					"<%- obj %>"
+					<% return %>
+				<% } %>
+			<% } %>
+			<%# ======================================== %>
+			<% schema.forEach(function(obj, index) { %>
+				{
+					"@context": "http://schema.org/",
+					"@type": "<%- obj %>",
+					<% var obj = data.schema[obj]; %>
+					<% var objArray = Object.keys(obj); %>
+					<% objArray.forEach(function(key, index) { %>
+						"<%- key %>": <% schemaValue(obj, key) %>
+						<% if( index != objArray.length - 1 ){ %>
+						,
+						<% } %>
+					<% }) %>
+				<% if( index != schema.length - 1 ){ %>
+				},
+				<% } else { %>
+				}
+				<% } %>
+			<% }) %>
+		]
+	</script>
+<% } %>

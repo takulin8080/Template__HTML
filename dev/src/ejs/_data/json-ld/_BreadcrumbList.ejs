@@ -2,28 +2,31 @@
 =====================================================================================================
 _data/json-ld/_BreadcrumbList
 =====================================================================================================
-%>
-{
-	"@context": "http://schema.org/",
-	"@type": "BreadcrumbList",
-	"itemListElement": [
-		<% parent.forEach(function(value, key) { %>
-			{
-				"@type": "ListItem",
-				"position": <%- key + 1 %>,
-				"item": {
-				"@id": "<%- data.site.url %><%- page[value].absUrl %>",
-				"name": "<%- page[value].title %>"
-				}
-			},
-		<% }) %>
+%><script type="application/ld+json">
+	[
 		{
-			"@type": "ListItem",
-			"position": <%- parent.length + 1 %>,
-			"item": {
-				"@id": "<%- data.site.url %><%- absUrl %>",
-				"name": "<%- title %>"
-			}
+			"@context": "http://schema.org/",
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				<% parent.forEach(function(value, key) { %>
+					{
+						"@type": "ListItem",
+						"position": <%- key + 1 %>,
+						"item": {
+						"@id": "<%- data.schema.WebSite.url %><%- page[value].absUrl %>",
+						"name": "<%- page[value].title %>"
+						}
+					},
+				<% }) %>
+				{
+					"@type": "ListItem",
+					"position": <%- parent.length + 1 %>,
+					"item": {
+						"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
+						"name": "<%- title %>"
+					}
+				}
+			]
 		}
 	]
-}
+</script>
