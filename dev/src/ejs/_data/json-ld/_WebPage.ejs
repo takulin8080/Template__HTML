@@ -3,13 +3,17 @@
 _data/json-ld/_WebPage
 =====================================================================================================
 %>
-{
-	"@context": "http://schema.org",
-	"@type": "WebSite",
-	"mainEntityOfPage": {
-		"@type": "WebPage",
-		"@id": "<%- data.schema.WebSite.url %><%- absUrl %>"
-	},
-	"headline": "<%- title %>",
-	"description": "<%- description %>"
-}
+<script type="application/ld+json">
+	[
+		{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "<%- data.schema.WebSite.url %><%- absUrl %>"
+			},
+			"headline": "<%- title %>",
+			"description": "<%- description %>"
+		}
+	]
+</script>

@@ -8,7 +8,6 @@ if (typeof schema === 'undefined') { var schema = ''; };
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% if(schema){ %>
-	<!-- JSON-LD -->
 	<script type="application/ld+json">
 		[
 			<% var schemaValue = function(obj, key) { %>
@@ -60,5 +59,4 @@ if (typeof schema === 'undefined') { var schema = ''; };
 			<% }) %>
 		]
 	</script>
-	<!-- /JSON-LD -->
 <% } %>

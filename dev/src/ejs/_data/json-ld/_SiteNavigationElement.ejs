@@ -3,25 +3,29 @@
 _data/json-ld/_SiteNavigationElement
 =====================================================================================================
 %>
-{
-	"@context": "http://schema.org/",
-	"@type": "SiteNavigationElement",
-	"name": [
-		<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
-			<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
-				"<%- page[value].title %>",
-			<% } else { %>
-				"<%- page[value].title %>"
-			<% } %>
-		<% }) %>
-	],
-	"url": [
-		<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
-			<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
-				"<%- data.schema.WebSite.url %><%- page[value].absUrl %>",
-			<% } else { %>
-				"<%- data.schema.WebSite.url %><%- page[value].absUrl %>"
-			<% } %>
-		<% }) %>
+<script type="application/ld+json">
+	[
+		{
+			"@context": "http://schema.org/",
+			"@type": "SiteNavigationElement",
+			"name": [
+				<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
+					<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
+						"<%- page[value].title %>",
+					<% } else { %>
+						"<%- page[value].title %>"
+					<% } %>
+				<% }) %>
+			],
+			"url": [
+				<% data.schema.SiteNavigationElement.forEach(function(value, key) { %>
+					<% if (data.schema.SiteNavigationElement.length - 1 != key) { %>
+						"<%- data.schema.WebSite.url %><%- page[value].absUrl %>",
+					<% } else { %>
+						"<%- data.schema.WebSite.url %><%- page[value].absUrl %>"
+					<% } %>
+				<% }) %>
+			]
+		}
 	]
-}
+</script>
