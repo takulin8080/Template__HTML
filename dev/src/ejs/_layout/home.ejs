@@ -31,8 +31,18 @@ var ejspath = '../';
 			</div>
 			<!-- /contents -->
 			<%- include(ejspath + '_module/footer') %>
-			<%- include(ejspath + '_data/json-ld/_schema', { schema: ['Organization', 'LocalBusiness']}) %>
-			<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>
+			<%- include(ejspath + '_data/_json-ld/', {
+				Organization:
+					[
+						'exsample'
+					]
+				,
+				Site:
+				[
+					'SiteNavigationElement',
+					'WebSite'
+				]
+			}) %>
 			<% if(dev){ %>
 				<%- include(ejspath + '_module/dev-link') %>
 			<% } %>

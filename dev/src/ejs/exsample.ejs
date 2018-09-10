@@ -5,5 +5,12 @@ exsample
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<h1 data-heading='level1'>
+	<% if (schema.headline) { %>
+		<%- schema.headline %>
+	<% } else { %>
+		<%- title %>
+	<% } %>
+</h1>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>

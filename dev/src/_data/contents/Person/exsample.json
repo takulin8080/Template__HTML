@@ -1,0 +1,13 @@
+{
+	"schema": {
+		"Person": {
+			"exsample" : {
+				"@type": "Person",
+				"@id": "http://www.exsample.com/Person#exsample",
+				"name": "exsample",
+				"image": "http://www.exsample.com/Person/exsample/avatar.jpg",
+				"url": "http://www.exsample.com/Person/exsample"
+			}
+		}
+	}
+}
