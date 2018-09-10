@@ -1,0 +1,175 @@
+<%#
+=====================================================================================================
+_data/_json-ld
+=====================================================================================================
+%>
+<%
+if (typeof Site === 'undefined') { var Site = ''; };
+if (typeof Person === 'undefined') { var Person = ''; };
+if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
+if (typeof Organization === 'undefined') { var Organization = ''; };
+%>
+<%# function ---------------------------------------------------------------------------------------------- %>
+<% var schemaValue = function(obj, key) { %>
+	<% var obj = obj[key]; %>
+	<% var objArray = Object.keys(obj); %>
+	<% if(obj instanceof Object) { %>
+		<% if(obj instanceof Array) { %>
+			[
+			<% objArray.forEach(function(key, index) { %>
+				<% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+					,
+				<% } %>
+			<% }) %>
+			]
+		<% } else { %>
+			{
+				<% objArray.forEach(function(key, index) { %>
+					"<%- key %>": <% schemaValue(obj, key) %>
+					<% if( index != objArray.length - 1 ){ %>
+						,
+					<% } %>
+				<% }) %>
+			}
+		<% } %>
+	<% } else { %>
+		"<%- obj %>"
+		<% return %>
+	<% } %>
+<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!-- JSON-LD -->
+<script type="application/ld+json">
+	[
+		<%# Organization ======================================== %>
+		<% if(Organization){ %>
+			<% Organization.forEach(function(key, index) { %>
+				{
+					"@context": "http://schema.org",
+					<% var obj = data.schema.Organization[key]; %>
+					<% var objArray = Object.keys(obj); %>
+					<% objArray.forEach(function(key, index) { %>
+						"<%- key %>": <% schemaValue(obj, key) %>
+						<% if( index != objArray.length - 1 ){ %>
+						,
+						<% } %>
+					<% }) %>
+				},
+			<% }) %>
+		<% } %>
+		<%# LocalBusiness ======================================== %>
+		<% if(LocalBusiness){ %>
+			<% LocalBusiness.forEach(function(key, index) { %>
+				{
+					"@context": "http://schema.org",
+					<% var obj = data.schema.LocalBusiness[key]; %>
+					<% var objArray = Object.keys(obj); %>
+					<% objArray.forEach(function(key, index) { %>
+						"<%- key %>": <% schemaValue(obj, key) %>
+						<% if( index != objArray.length - 1 ){ %>
+						,
+						<% } %>
+					<% }) %>
+				},
+			<% }) %>
+		<% } %>
+		<%# Person ======================================== %>
+		<% if(Person){ %>
+			<% Person.forEach(function(key, index) { %>
+				{
+					"@context": "http://schema.org",
+					<% var obj = data.schema.Person[key]; %>
+					<% var objArray = Object.keys(obj); %>
+					<% objArray.forEach(function(key, index) { %>
+						"<%- key %>": <% schemaValue(obj, key) %>
+						<% if( index != objArray.length - 1 ){ %>
+						,
+						<% } %>
+					<% }) %>
+				},
+			<% }) %>
+		<% } %>
+		<%# Site ======================================== %>
+		<% if(Site){ %>
+			<% Site.forEach(function(key, index) { %>
+				{
+					"@context": "http://schema.org",
+					<%# WebPage -------------------- %>
+					<% if (key == 'WebPage') { %>
+						"@type": "WebSite",
+						<% if (description) { %>"description": "<%- description %>",<% } %>
+						<% if (schema) { %>
+							<% var obj = schema %>
+							<% var objArray = Object.keys(obj); %>
+							<% objArray.forEach(function(key, index) { %>
+								"<%- key %>": <% schemaValue(obj, key) %>,
+							<% }) %>
+						<% } %>
+						"mainEntityOfPage": {
+							"@type": "WebPage",
+							"@id": "<%- data.schema.WebSite.url %><%- absUrl %>"
+						}
+					<%# BreadcrumbList -------------------- %>
+					<% } else if (key == 'BreadcrumbList') { %>
+						"@type": "BreadcrumbList",
+						"itemListElement": [
+							<% parent.forEach(function(key, index) { %>
+								{
+									"@type": "ListItem",
+									"position": <%- index + 1 %>,
+									"item": {
+										"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>",
+										"name": "<%- page[key].title %>"
+									}
+								},
+							<% }) %>
+							{
+								"@type": "ListItem",
+								"position": <%- parent.length + 1 %>,
+								"item": {
+									"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
+									"name": "<%- title %>"
+								}
+							}
+						]
+					<%# SiteNavigationElement -------------------- %>
+					<% } else if (key == 'SiteNavigationElement') { %>
+						<% var obj = data.schema.SiteNavigationElement; %>
+						"@type": "SiteNavigationElement",
+						"name": [
+							<% obj.forEach(function(key, index) { %>
+								"<%- page[key].title %>"
+								<% if( index != obj.length - 1 ){ %>
+									,
+								<% } %>
+							<% }) %>
+						],
+						"url": [
+							<% obj.forEach(function(key, index) { %>
+								"<%- data.schema.WebSite.url %><%- page[key].absUrl %>"
+								<% if( index != obj.length - 1 ){ %>
+									,
+								<% } %>
+							<% }) %>
+						]
+					<%# other -------------------- %>
+					<% } else { %>
+						<% var obj = data.schema[key]; %>
+						<% var objArray = Object.keys(obj); %>
+						<% objArray.forEach(function(key, index) { %>
+							"<%- key %>": <% schemaValue(obj, key) %>
+							<% if( index != objArray.length - 1 ){ %>
+							,
+							<% } %>
+						<% }) %>
+					<% } %>
+				}
+				<% if( index != Site.length - 1 ){ %>
+					,
+				<% } %>
+			<% }) %>
+		<% } %>
+	]
+</script>
+<!-- /JSON-LD -->
