@@ -1,0 +1,22 @@
+{
+	"schema": {
+		"Organization": {
+			"exsample" : {
+				"@type": "Organization",
+				"@id": "http://www.exsample.com/Organization#OrganizationExsample",
+				"name": "OrganizationExsample",
+				"logo": "http://www.OrganizationExsample.com/logo.png",
+				"url": "http://www.OrganizationExsample.com",
+				"sameAs": [
+					"https://www.facebook.com/OrganizationExsample",
+					"https://www.twitter.com/OrganizationExsample"
+				],
+				"contactPoint": {
+					"@type": "contactPoint",
+					"telephone": "+81-00-0000-0000",
+					"contactType": "customer service"
+				}
+			}
+		}
+	}
+}
