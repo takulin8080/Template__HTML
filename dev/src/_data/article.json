@@ -1,0 +1,28 @@
+{
+	"page": {
+		"article/20201221": {
+			"layout": "article",
+			"pageModifier": "",
+			"title": "articleExsample",
+			"description": "",
+			"schema": {
+				"headline": "articleExsample",
+				"image": {
+					"@type": "ImageObject",
+					"url": "https://exsample.jp/common/article/20201221/image.png",
+					"height": 800,
+					"width": 800
+				},
+				"datePublished": "2020-12-21T00:00:00+08:00",
+				"dateModified": "2020-12-21T00:00:00+08:00",
+				"author": {
+					"@id": "http://www.exsample.com/Person#PersonExsample"
+				},
+				"publisher": {
+					"@id": "http://www.exsample.com/Organization#OrganizationExsample"
+				}
+			},
+			"progress": ""
+		}
+	}
+}

@@ -7,8 +7,12 @@
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 			"url": "http://www.exsample.com",
 			"publisher": {
-				"@id": "http://www.exsample.com/Organization#exsample"
+				"@id": "http://www.exsample.com/Organization#OrganizationExsample"
 			}
 		}
+	},
+	"common": {
+		"copyright": "exsample.com",
+		"gtag": ""
 	}
 }

@@ -1,33 +1,28 @@
 {
+	"schema": {
+		"SiteNavigationElement": [
+			"index",
+			"exsample"
+		]
+	},
 	"page": {
 		"index": {
 			"layout": "home",
 			"pageModifier": "home",
 			"title": "home",
 			"description": "",
+			"schema": {
+				"headline": "exsample"
+			},
 			"progress": ""
 		},
 		"exsample": {
 			"layout": "default",
 			"pageModifier": "",
-			"title": "exsample",
+			"title": "pageExsample",
 			"description": "",
 			"schema": {
-				"headline": "exsample",
-				"image": {
-					"@type": "ImageObject",
-					"url": "https://site-name.jp/thumbnail.png/",
-					"height": 800,
-					"width": 800
-				},
-				"datePublished": "2020-12-21T00:00:00+08:00",
-				"dateModified": "2020-12-21T00:00:00+08:00",
-				"author": {
-					"@id": "http://www.exsample.com/Person#exsample"
-				},
-				"publisher": {
-					"@id": "http://www.exsample.com/Organization#exsample"
-				}
+				"headline": "pageExsample"
 			},
 			"progress": ""
 		}

@@ -3,12 +3,12 @@
 		"LocalBusiness": {
 			"exsample": {
 				"@type": "LocalBusiness",
-				"@id": "http://www.exsample.com/LocalBusiness#exsample",
-				"name": "exsample",
-				"logo": "http://www.example.com/logo.png",
-				"image": "http://www.example.com/image.png",
+				"@id": "http://www.exsample.com/LocalBusiness#LocalBusinessexsample",
+				"name": "LocalBusinessExsample",
+				"logo": "http://www.LocalBusinessExsample.com/logo.png",
+				"image": "http://www.LocalBusinessExsample.com/image.png",
 				"telephone": "+81-00-0000-0000",
-				"url": "http://www.exsample.com",
+				"url": "http://www.LocalBusinessExsample.com",
 				"address": {
 					"@type": "PostalAddress",
 					"streetAddress": "南青山1-2-3",
