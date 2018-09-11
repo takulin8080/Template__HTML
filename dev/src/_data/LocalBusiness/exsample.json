@@ -2,8 +2,8 @@
 	"schema": {
 		"LocalBusiness": {
 			"exsample": {
-				"@type": "LocalBusiness",
 				"@id": "http://www.exsample.com/LocalBusiness#LocalBusinessexsample",
+				"@type": "LocalBusiness",
 				"name": "LocalBusinessExsample",
 				"logo": "http://www.LocalBusinessExsample.com/logo.png",
 				"image": "http://www.LocalBusinessExsample.com/image.png",
