@@ -9,35 +9,6 @@ if (typeof Person === 'undefined') { var Person = ''; };
 if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
 if (typeof Organization === 'undefined') { var Organization = ''; };
 %>
-<%# function ---------------------------------------------------------------------------------------------- %>
-<% var schemaValue = function(obj, key) { %>
-	<% var obj = obj[key]; %>
-	<% var objArray = Object.keys(obj); %>
-	<% if(obj instanceof Object) { %>
-		<% if(obj instanceof Array) { %>
-			[
-			<% objArray.forEach(function(key, index) { %>
-				<% schemaValue(obj, key) %>
-				<% if( index != objArray.length - 1 ){ %>
-					,
-				<% } %>
-			<% }) %>
-			]
-		<% } else { %>
-			{
-				<% objArray.forEach(function(key, index) { %>
-					"<%- key %>": <% schemaValue(obj, key) %>
-					<% if( index != objArray.length - 1 ){ %>
-						,
-					<% } %>
-				<% }) %>
-			}
-		<% } %>
-	<% } else { %>
-		"<%- obj %>"
-		<% return %>
-	<% } %>
-<% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- JSON-LD -->
 <script type="application/ld+json">
@@ -97,34 +68,48 @@ if (typeof Organization === 'undefined') { var Organization = ''; };
 					"@context": "http://schema.org",
 					<%# WebPage -------------------- %>
 					<% if (key == 'WebPage') { %>
-						"@type": "WebSite",
+						"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
 						<% if (description) { %>"description": "<%- description %>",<% } %>
 						<% if (schema) { %>
 							<% var obj = schema %>
 							<% var objArray = Object.keys(obj); %>
 							<% objArray.forEach(function(key, index) { %>
-								"<%- key %>": <% schemaValue(obj, key) %>,
+								"<%- key %>": <% schemaValue(obj, key) %>
+								<% if( index != objArray.length - 1 ){ %>
+									,
+								<% } %>
 							<% }) %>
 						<% } %>
-						"mainEntityOfPage": {
-							"@type": "WebPage",
-							"@id": "<%- data.schema.WebSite.url %><%- absUrl %>"
-						}
 					<%# Article -------------------- %>
 					<% } else if (key == 'Article') { %>
-						"@type": "Article",
+						"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
 						<% if (description) { %>"description": "<%- description %>",<% } %>
 						<% if (schema) { %>
 							<% var obj = schema %>
 							<% var objArray = Object.keys(obj); %>
 							<% objArray.forEach(function(key, index) { %>
-								"<%- key %>": <% schemaValue(obj, key) %>,
+								"<%- key %>": <% schemaValue(obj, key) %>
+								<% if( index != objArray.length - 1 ){ %>
+									,
+								<% } %>
+							<% }) %>,
+							<% parent.reverse(); %>
+							<% parent.forEach(function(key, index) { %>
+								<% if (page[key]) { %>
+									"mainEntityOfPage": {
+										<% if (key == 'index') { %>
+											"@type": "<%- data.schema.WebSite['@type'] %>",
+											"@id": "<%- data.schema.WebSite.url %>"
+										<% } else { %>
+											"@type": "<%- page[key].schema['@type'] %>",
+											"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>"
+										<% } %>
+									}
+									<% parent.reverse(); %>
+									<% return %>
+								<% } %>
 							<% }) %>
 						<% } %>
-						"mainEntityOfPage": {
-							"@type": "WebPage",
-							"@id": "<%- data.schema.WebSite.url %><%- absUrl %>"
-						}
 					<%# BreadcrumbList -------------------- %>
 					<% } else if (key == 'BreadcrumbList') { %>
 						<% var pos = 1 %>
@@ -192,3 +177,32 @@ if (typeof Organization === 'undefined') { var Organization = ''; };
 	]
 </script>
 <!-- /JSON-LD -->
+<%# function ---------------------------------------------------------------------------------------------- %>
+<% function schemaValue(obj, key) { %>
+	<% var obj = obj[key]; %>
+	<% var objArray = Object.keys(obj); %>
+	<% if(obj instanceof Object) { %>
+		<% if(obj instanceof Array) { %>
+			[
+			<% objArray.forEach(function(key, index) { %>
+				<% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+					,
+				<% } %>
+			<% }) %>
+			]
+		<% } else { %>
+			{
+				<% objArray.forEach(function(key, index) { %>
+					"<%- key %>": <% schemaValue(obj, key) %>
+					<% if( index != objArray.length - 1 ){ %>
+						,
+					<% } %>
+				<% }) %>
+			}
+		<% } %>
+	<% } else { %>
+		"<%- obj %>"
+		<% return %>
+	<% } %>
+<% } %>

@@ -11,9 +11,6 @@
 			"pageModifier": "home",
 			"title": "home",
 			"description": "",
-			"schema": {
-				"headline": "exsample"
-			},
 			"progress": ""
 		},
 		"exsample": {
@@ -22,6 +19,7 @@
 			"title": "pageExsample",
 			"description": "",
 			"schema": {
+				"@type": "WebPage",
 				"headline": "pageExsample"
 			},
 			"progress": ""

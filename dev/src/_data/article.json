@@ -6,6 +6,7 @@
 			"title": "articleExsample",
 			"description": "",
 			"schema": {
+				"@type": "Article",
 				"headline": "articleExsample",
 				"image": {
 					"@type": "ImageObject",
