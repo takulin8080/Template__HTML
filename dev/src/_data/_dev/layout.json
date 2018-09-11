@@ -1,7 +1,8 @@
 {
 	"layout": [
-		"default",
 		"dev",
+		"default",
+		"article",
 		"home"
 	]
 }
