@@ -1,0 +1,24 @@
+<%#
+=====================================================================================================
+_data/_json-ld
+=====================================================================================================
+%>
+<%
+if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<!-- JSON-LD -->
+<script type="application/ld+json">
+	[
+		<%# Page ---------------------------------------- %>
+		<% if (pageModifier != 'index' && pageModifier != 'home') { %>
+			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
+			<%- include(ejspath + '_data/json-ld/_Page') %>,
+		<% } %>
+		<%# SiteNavigationElement ---------------------------------------- %>
+		<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
+		<%# WebSite ---------------------------------------- %>
+		<%- include(ejspath + '_data/json-ld/_WebSite') %>
+	]
+</script>
+<!-- /JSON-LD -->

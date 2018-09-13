@@ -1,0 +1,123 @@
+<%#
+=====================================================================================================
+_data/json-ld/Page
+=====================================================================================================
+%>
+<%
+var ejspath = '../../';
+if (typeof schema === 'undefined') { var schema = ''; };
+var publisherId;
+var publisherData;
+var authorId;
+var authorData;
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+{
+	"@context": "http://schema.org",
+	"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
+	<% if (description) { %>"description": "<%- description %>",<% } %>
+	<% if (schema) { %>
+		<% var obj = schema %>
+		<% var objArray = Object.keys(obj); %>
+		<% objArray.forEach(function(key, index) { %>
+			<%# publisher check ---------------------------------------- %>
+			<% if (key == 'publisher') { %>
+				"<%- key %>":
+				<% id = obj[key] %>
+				<% publisherId = data.schema.WebSite.url + '/Organization/' + id %>
+				<% if (data.schema.WebSite.publisher !=  id) { %>
+					<% publisherData = data.schema.Organization[id] %>
+				<% } %>
+				{
+					"@id": "<%- publisherId %>"
+				}
+			<%# author check ---------------------------------------- %>
+			<% } else if (key == 'author') { %>
+				"<%- key %>":
+				<% id = obj[key] %>
+				<% authorId = data.schema.WebSite.url + '/Person/' + id %>
+				<% if (data.schema.WebSite.author !=  id) { %>
+					<% authorData = data.schema.Person[id] %>
+				<% } %>
+				{
+					"@id": "<%- authorId %>"
+				}
+			<%# else ---------------------------------------- %>
+			<% } else { %>
+				"<%- key %>": <% schemaValue(obj, key) %>
+			<% } %>
+			<% if( index != objArray.length - 1 ){ %>
+				,
+			<% } %>
+		<% }) %>
+	<% } %>
+	<%# article check ---------------------------------------- %>
+	<% if (schema['@type'] == 'Article') { %>
+		,
+		"mainEntityOfPage" : {
+			"@type": "WebPage",
+			"@id": "<%- data.schema.WebSite.url %><%- page[parent[parent.length - 1]].absUrl %>"
+		}
+	<% } %>
+}
+<%# publisher ---------------------------------------- %>
+<% if (typeof publisherData != 'undefined') { %>
+	,
+	{
+		"@context": "http://schema.org",
+		"@id": "<%- publisherId %>",
+		"@type": "Organization",
+		<% var obj = publisherData %>
+		<% var objArray = Object.keys(obj); %>
+		<% objArray.forEach(function(key, index) { %>
+			"<%- key %>": <% schemaValue(obj, key) %>
+			<% if( index != objArray.length - 1 ){ %>
+				,
+			<% } %>
+		<% }) %>
+	}
+<% } %>
+<%# author ---------------------------------------- %>
+<% if (typeof authorData != 'undefined') { %>
+	,
+	{
+		"@context": "http://schema.org",
+		"@id": "<%- authorId %>",
+		"@type": "Person",
+		<% var obj = authorData %>
+		<% var objArray = Object.keys(obj); %>
+		<% objArray.forEach(function(key, index) { %>
+			"<%- key %>": <% schemaValue(obj, key) %>
+			<% if( index != objArray.length - 1 ){ %>
+				,
+			<% } %>
+		<% }) %>
+	}
+<% } %>
+<%#  ---------------------------------------------------------------------------------------------- %>
+<% function schemaValue(obj, key) { %>
+	<% var obj = obj[key]; %>
+	<% var objArray = Object.keys(obj); %>
+	<% if (Object.prototype.toString.call(obj) === '[object Object]') { %>
+		{
+			<% objArray.forEach(function(key, index) { %>
+				"<%- key %>": <% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+				,
+				<% } %>
+			<% }) %>
+		}
+	<% } else if (Object.prototype.toString.call(obj) === '[object Array]') { %>
+		[
+			<% objArray.forEach(function(key, index) { %>
+				"<%- obj[key] %>"
+				<% if( index != objArray.length - 1 ){ %>
+				,
+				<% } %>
+			<% }) %>
+		]
+	<% } else { %>
+		"<%- obj %>"
+		<% return %>
+	<% } %>
+<% } %>

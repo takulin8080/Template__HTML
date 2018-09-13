@@ -1,0 +1,37 @@
+<%#
+=====================================================================================================
+_data/json-ld/BreadcrumbList
+=====================================================================================================
+%>
+<%
+var ejspath = '../../';
+var pos = 1;
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		<% parent.forEach(function(key, index) { %>
+			<% if (page[key]) { %>
+				{
+					"@type": "ListItem",
+					"position": <%- pos %>,
+					"item": {
+						"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>",
+						"name": "<%- page[key].title %>"
+					}
+				},
+				<% pos++ %>
+			<% } %>
+		<% }) %>
+		{
+			"@type": "ListItem",
+			"position": <%- pos++ %>,
+			"item": {
+				"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
+				"name": "<%- title %>"
+			}
+		}
+	]
+}

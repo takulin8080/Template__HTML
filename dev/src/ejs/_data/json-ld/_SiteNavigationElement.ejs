@@ -1,0 +1,41 @@
+<%#
+=====================================================================================================
+_data/json-ld/SiteNavigationElement
+=====================================================================================================
+%>
+<%
+var ejspath = '../../';
+var schemaKey = 'SiteNavigationElement';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%
+if (typeof schema === 'undefined') { var schema = ''; };
+%>
+<% if(schema.SiteNavigationElement) { %>
+	<% var obj = schema[schemaKey]; %>
+	<% var objArray = obj; %>
+<% } else { %>
+	<% var obj = data.schema[schemaKey]; %>
+	<% var objArray = obj; %>
+<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
+{
+	"@context": "http://schema.org",
+	"@type": "SiteNavigationElement",
+	"name": [
+		<% objArray.forEach(function(key, index) { %>
+			"<%- page[key].title %>"
+			<% if( index != objArray.length - 1 ){ %>
+				,
+			<% } %>
+		<% }) %>
+	],
+	"url": [
+		<% objArray.forEach(function(key, index) { %>
+			"<%- data.schema.WebSite.url %><%- page[key].absUrl %>"
+			<% if( index != objArray.length - 1 ){ %>
+				,
+			<% } %>
+		<% }) %>
+	]
+}

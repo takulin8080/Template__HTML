@@ -2,8 +2,6 @@
 	"schema": {
 		"Organization": {
 			"exsample" : {
-				"@id": "http://www.exsample.com/Organization#OrganizationExsample",
-				"@type": "Organization",
 				"name": "OrganizationExsample",
 				"logo": "http://www.OrganizationExsample.com/logo.png",
 				"url": "http://www.OrganizationExsample.com",

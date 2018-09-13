@@ -8,7 +8,7 @@
 	"page": {
 		"index": {
 			"layout": "home",
-			"pageModifier": "home",
+			"pageModifier": "",
 			"title": "home",
 			"description": "",
 			"progress": ""
@@ -21,6 +21,17 @@
 			"schema": {
 				"@type": "WebPage",
 				"headline": "pageExsample"
+			},
+			"progress": ""
+		},
+		"article/index": {
+			"layout": "default",
+			"pageModifier": "",
+			"title": "articleIndex",
+			"description": "",
+			"schema": {
+				"@type": "WebPage",
+				"headline": "articleIndex"
 			},
 			"progress": ""
 		}
