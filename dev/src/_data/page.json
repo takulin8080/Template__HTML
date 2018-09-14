@@ -20,7 +20,10 @@
 			"description": "",
 			"schema": {
 				"@type": "WebPage",
-				"headline": "pageExsample"
+				"headline": "pageExsample",
+				"LocalBusiness": [
+					"exsample"
+				]
 			},
 			"progress": ""
 		},

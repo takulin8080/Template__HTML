@@ -4,7 +4,6 @@ _data/_json-ld
 =====================================================================================================
 %>
 <%
-if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- JSON-LD -->
@@ -15,6 +14,8 @@ if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
 			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
 			<%- include(ejspath + '_data/json-ld/_Page') %>,
 		<% } %>
+		<%# LocalBusiness ---------------------------------------- %>
+		<%- include(ejspath + '_data/json-ld/_LocalBusiness') %>,
 		<%# SiteNavigationElement ---------------------------------------- %>
 		<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
 		<%# WebSite ---------------------------------------- %>
