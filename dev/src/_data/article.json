@@ -16,12 +16,8 @@
 				},
 				"datePublished": "2020-12-21T00:00:00+08:00",
 				"dateModified": "2020-12-21T00:00:00+08:00",
-				"author": {
-					"@id": "http://www.exsample.com/Person#PersonExsample"
-				},
-				"publisher": {
-					"@id": "http://www.exsample.com/Organization#OrganizationExsample"
-				}
+				"author": "exsample",
+				"publisher": "exsample"
 			},
 			"progress": ""
 		}

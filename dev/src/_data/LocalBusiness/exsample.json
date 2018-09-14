@@ -2,8 +2,6 @@
 	"schema": {
 		"LocalBusiness": {
 			"exsample": {
-				"@type": "LocalBusiness",
-				"@id": "http://www.exsample.com/LocalBusiness#LocalBusinessexsample",
 				"name": "LocalBusinessExsample",
 				"logo": "http://www.LocalBusinessExsample.com/logo.png",
 				"image": "http://www.LocalBusinessExsample.com/image.png",
@@ -22,21 +20,19 @@
 					"latitude": "00.000000",
 					"longitude": "00.000000"
 				},
-				"openingHoursSpecification": [
-					{
-						"@type":"OpeningHoursSpecification",
-						"dayOfWeek":[
-							"Monday",
-							"Tuesday",
-							"Wednesday",
-							"Thursday",
-							"Friday",
-							"Saturday"
-						],
-						"opens":"10:00",
-						"closes":"18:00"
-					}
-				]
+				"openingHoursSpecification": {
+					"@type":"OpeningHoursSpecification",
+					"dayOfWeek":[
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday"
+					],
+					"opens":"10:00",
+					"closes":"18:00"
+				}
 			}
 		}
 	}

@@ -6,9 +6,7 @@
 			"name": "exsample",
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 			"url": "http://www.exsample.com",
-			"publisher": {
-				"@id": "http://www.exsample.com/Organization#OrganizationExsample"
-			}
+			"publisher": "exsample"
 		}
 	}
 }

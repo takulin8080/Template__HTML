@@ -1,0 +1,58 @@
+<%#
+=====================================================================================================
+_data/json-ld/LocalBusiness
+=====================================================================================================
+%>
+<%
+var ejspath = '../../';
+var schemaKey = 'LocalBusiness';
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%
+if (typeof schema === 'undefined') { var schema = ''; };
+%>
+<% if(schema.LocalBusiness) { %>
+	<% var obj = schema[schemaKey]; %>
+	<% var objArray = obj; %>
+	<% objArray.forEach(function(key, index) { %>
+		<% var obj = data.schema.LocalBusiness[key]; %>
+		<% var objArray = Object.keys(obj); %>
+		{
+			"@context": "http://schema.org",
+			"@type": "LocalBusiness",
+			<% objArray.forEach(function(key, index) { %>
+				"<%- key %>": <% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+					,
+				<% } %>
+			<% }) %>
+		}
+	<% }) %>
+<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<% function schemaValue(obj, key) { %>
+	<% var obj = obj[key]; %>
+	<% var objArray = Object.keys(obj); %>
+	<% if (Object.prototype.toString.call(obj) === '[object Object]') { %>
+		{
+			<% objArray.forEach(function(key, index) { %>
+				"<%- key %>": <% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+				,
+				<% } %>
+			<% }) %>
+		}
+	<% } else if (Object.prototype.toString.call(obj) === '[object Array]') { %>
+		[
+			<% objArray.forEach(function(key, index) { %>
+				"<%- obj[key] %>"
+				<% if( index != objArray.length - 1 ){ %>
+				,
+				<% } %>
+			<% }) %>
+		]
+	<% } else { %>
+		"<%- obj %>"
+		<% return %>
+	<% } %>
+<% } %>
