@@ -5,7 +5,10 @@ _data/json-ld/Page
 %>
 <%
 var ejspath = '../../';
-if (typeof schema === 'undefined') { var schema = ''; };
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%
+if (typeof schema === 'undefined') { var schema = '' };
 var publisherId;
 var publisherData;
 var authorId;

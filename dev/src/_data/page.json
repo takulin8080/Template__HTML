@@ -11,6 +11,10 @@
 			"pageModifier": "",
 			"title": "home",
 			"description": "",
+			"BreadcrumbList": false,
+			"LocalBusiness": [
+				"exsample"
+			],
 			"progress": ""
 		},
 		"exsample": {
@@ -20,10 +24,7 @@
 			"description": "",
 			"schema": {
 				"@type": "WebPage",
-				"headline": "pageExsample",
-				"LocalBusiness": [
-					"exsample"
-				]
+				"headline": "pageExsample"
 			},
 			"progress": ""
 		},
