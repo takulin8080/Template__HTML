@@ -1,6 +1,7 @@
 {
-	"common": {
-		"copyright": "exsample.com",
-		"gtag": ""
-	}
+	"copyright": "exsample.com",
+	"gtag": "",
+	"og": true,
+	"ogLocale": "ja_JP",
+	"fbAppId": ""
 }

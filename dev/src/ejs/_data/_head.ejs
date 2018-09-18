@@ -4,14 +4,14 @@ _data/_head
 =====================================================================================================
 %>
 <head>
-	<% if( data.common.gtag ){ %>
+	<% if(data.gtag){ %>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.common.gtag %>"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-			gtag('config', '<%- data.common.gtag %>');
+			gtag('config', '<%- data.gtag %>');
 		</script>
 	<% } %>
 	<meta charset="utf-8">
@@ -32,10 +32,46 @@ _data/_head
 		<% } %>
 		<%- data.schema.WebSite.name %>
 	</title>
-	<% if( description ){ %>
+	<% if(description){ %>
 		<meta name="description" content="<%- description %>">
 	<% } else { %>
-		<meta name="description" content="<%- data.schema.description %>">
+		<meta name="description" content="<%- data.schema.WebSite.description %>">
+	<% } %>
+	<% if(data.og){ %>
+		<% if(parent.length){ %>
+			<% if (typeof schema.headline === 'undefined') { %>
+				<meta property="og:title" content="<%- title %>" />
+			<% } else { %>
+				<meta property="og:title" content="<%- schema.headline %>" />
+			<% } %>
+		<% } else { %>
+			<meta property="og:title" content="<%- data.schema.WebSite.name %>" />
+		<% } %>
+		<% if(description){ %>
+			<meta property="og:description" content="<%- description %>" />
+		<% } else { %>
+			<meta property="og:description" content="<%- data.schema.WebSite.description %>" />
+		<% } %>
+		<% if(parent.length){ %>
+			<meta property="og:url" content="<%- data.schema.WebSite.url %><%- absUrl %>" />
+			<meta property="og:type" content="article" />
+			<% if (typeof schema.image === 'undefined') { %>
+				<% if (typeof image != 'undefined') { %>
+					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img<%- absUrl.replace('.html', '') %>/image.png" />
+				<% } else { %>
+					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
+				<% } %>
+			<% } else { %>
+				<meta property="og:image" content="<%- schema.image.url %>" />
+			<% } %>
+		<% } else { %>
+			<meta property="og:url" content="<%- data.schema.WebSite.url %>" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
+		<% } %>
+		<meta property="og:site_name" content="<%- data.schema.WebSite.name %>" />
+		<meta property="og:locale" content="<%- data.ogLocale %>" />
+		<meta property="fb:app_id" content="<%- data.fbAppId %>" />
 	<% } %>
 	<% if(dev){ %>
 		<link rel="stylesheet" href="<%- path.css %>vendor.css">

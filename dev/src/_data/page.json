@@ -1,10 +1,8 @@
 {
-	"schema": {
-		"SiteNavigationElement": [
-			"index",
-			"exsample"
-		]
-	},
+	"SiteNavigationElement": [
+		"index",
+		"exsample"
+	],
 	"page": {
 		"index": {
 			"layout": "home",
