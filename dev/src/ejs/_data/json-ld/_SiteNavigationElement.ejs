@@ -9,15 +9,15 @@ var schemaKey = 'SiteNavigationElement';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%
-if (typeof schema === 'undefined') { var schema = ''; };
+if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = '' };
+if(SiteNavigationElement) {
+	var obj = SiteNavigationElement;
+	var objArray = obj;
+} else {
+	var obj = data.schema[schemaKey];
+	var objArray = obj;
+}
 %>
-<% if(schema.SiteNavigationElement) { %>
-	<% var obj = schema[schemaKey]; %>
-	<% var objArray = obj; %>
-<% } else { %>
-	<% var obj = data.schema[schemaKey]; %>
-	<% var objArray = obj; %>
-<% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 {
 	"@context": "http://schema.org",

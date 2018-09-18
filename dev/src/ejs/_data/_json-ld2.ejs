@@ -4,6 +4,9 @@ _data/_json-ld
 =====================================================================================================
 %>
 <%
+if (typeof LocalBusiness === 'undefined') { var LocalBusiness = '' };
+if (typeof BreadcrumbList === 'undefined') { var BreadcrumbList = true };
+if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = true };
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- JSON-LD -->
@@ -11,13 +14,20 @@ _data/_json-ld
 	[
 		<%# Page ---------------------------------------- %>
 		<% if (pageModifier != 'index' && pageModifier != 'home') { %>
-			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
 			<%- include(ejspath + '_data/json-ld/_Page') %>,
 		<% } %>
 		<%# LocalBusiness ---------------------------------------- %>
-		<%- include(ejspath + '_data/json-ld/_LocalBusiness') %>,
+		<% if (LocalBusiness) { %>
+			<%- include(ejspath + '_data/json-ld/_LocalBusiness') %>
+		<% } %>
+		<%# BreadcrumbList ---------------------------------------- %>
+		<% if (BreadcrumbList) { %>
+			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
+		<% } %>
 		<%# SiteNavigationElement ---------------------------------------- %>
-		<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
+		<% if (SiteNavigationElement) { %>
+			<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
+		<% } %>
 		<%# WebSite ---------------------------------------- %>
 		<%- include(ejspath + '_data/json-ld/_WebSite') %>
 	]

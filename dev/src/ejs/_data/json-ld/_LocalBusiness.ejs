@@ -5,30 +5,30 @@ _data/json-ld/LocalBusiness
 %>
 <%
 var ejspath = '../../';
-var schemaKey = 'LocalBusiness';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%
-if (typeof schema === 'undefined') { var schema = ''; };
+var obj = LocalBusiness;
+var objArray = obj;
 %>
-<% if(schema.LocalBusiness) { %>
-	<% var obj = schema[schemaKey]; %>
-	<% var objArray = obj; %>
-	<% objArray.forEach(function(key, index) { %>
-		<% var obj = data.schema.LocalBusiness[key]; %>
-		<% var objArray = Object.keys(obj); %>
-		{
-			"@context": "http://schema.org",
-			"@type": "LocalBusiness",
-			<% objArray.forEach(function(key, index) { %>
-				"<%- key %>": <% schemaValue(obj, key) %>
-				<% if( index != objArray.length - 1 ){ %>
-					,
-				<% } %>
-			<% }) %>
-		}
-	<% }) %>
-<% } %>
+<%# ---------------------------------------------------------------------------------------------- %>
+<% objArray.forEach(function(key, index) { %>
+	{
+		"@context": "http://schema.org",
+		"@type": "LocalBusiness",
+		<% var obj = data.schema.LocalBusiness[key] %>
+		<% var objArray = Object.keys(obj) %>
+		<% objArray.forEach(function(key, index) { %>
+			"<%- key %>": <% schemaValue(obj, key) %>
+			<% if( index != objArray.length - 1 ){ %>
+			,
+			<% } %>
+		<% }) %>
+	}
+	<% if( index != objArray.length - 1 ){ %>
+	,
+	<% } %>
+<% }) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% function schemaValue(obj, key) { %>
 	<% var obj = obj[key]; %>
