@@ -3,17 +3,23 @@
 		"Organization": {
 			"exsample" : {
 				"name": "OrganizationExsample",
-				"logo": "http://www.OrganizationExsample.com/logo.png",
-				"url": "http://www.OrganizationExsample.com",
-				"sameAs": [
-					"https://www.facebook.com/OrganizationExsample",
-					"https://www.twitter.com/OrganizationExsample"
-				],
+				"logo": {
+					"@type": "ImageObject",
+					"url": "http://www.OrganizationExsample.com/logo.png",
+					"width": 600,
+					"height": 60
+				},
+				"foundingDate": "2020",
 				"contactPoint": {
 					"@type": "contactPoint",
 					"telephone": "+81-00-0000-0000",
 					"contactType": "customer service"
-				}
+				},
+				"url": "http://www.OrganizationExsample.com",
+				"sameAs": [
+					"https://www.facebook.com/OrganizationExsample",
+					"https://www.twitter.com/OrganizationExsample"
+				]
 			}
 		}
 	}
