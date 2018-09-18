@@ -4,11 +4,7 @@ _data/json-ld/SiteNavigationElement
 =====================================================================================================
 %>
 <%
-var ejspath = '../../';
 var schemaKey = 'SiteNavigationElement';
-%>
-<%# ---------------------------------------------------------------------------------------------- %>
-<%
 if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = '' };
 if(SiteNavigationElement) {
 	var obj = SiteNavigationElement;
@@ -17,6 +13,7 @@ if(SiteNavigationElement) {
 	var obj = data.schema[schemaKey];
 	var objArray = obj;
 }
+var ejspath = '../../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 {
