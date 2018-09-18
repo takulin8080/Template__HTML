@@ -4,205 +4,32 @@ _data/_json-ld
 =====================================================================================================
 %>
 <%
-if (typeof Site === 'undefined') { var Site = ''; };
-if (typeof Person === 'undefined') { var Person = ''; };
-if (typeof LocalBusiness === 'undefined') { var LocalBusiness = ''; };
-if (typeof Organization === 'undefined') { var Organization = ''; };
+if (typeof LocalBusiness === 'undefined') { var LocalBusiness = '' };
+if (typeof BreadcrumbList === 'undefined') { var BreadcrumbList = true };
+if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = true };
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- JSON-LD -->
 <script type="application/ld+json">
 	[
-		<%# Organization ======================================== %>
-		<% if(Organization){ %>
-			<% Organization.forEach(function(key, index) { %>
-				{
-					"@context": "http://schema.org",
-					<% var obj = data.schema.Organization[key]; %>
-					<% var objArray = Object.keys(obj); %>
-					<% objArray.forEach(function(key, index) { %>
-						"<%- key %>": <% schemaValue(obj, key) %>
-						<% if( index != objArray.length - 1 ){ %>
-						,
-						<% } %>
-					<% }) %>
-				},
-			<% }) %>
+		<%# Page ---------------------------------------- %>
+		<% if (pageModifier != 'index' && pageModifier != 'home') { %>
+			<%- include(ejspath + '_data/json-ld/_Page') %>,
 		<% } %>
-		<%# LocalBusiness ======================================== %>
-		<% if(LocalBusiness){ %>
-			<% LocalBusiness.forEach(function(key, index) { %>
-				{
-					"@context": "http://schema.org",
-					<% var obj = data.schema.LocalBusiness[key]; %>
-					<% var objArray = Object.keys(obj); %>
-					<% objArray.forEach(function(key, index) { %>
-						"<%- key %>": <% schemaValue(obj, key) %>
-						<% if( index != objArray.length - 1 ){ %>
-						,
-						<% } %>
-					<% }) %>
-				},
-			<% }) %>
+		<%# LocalBusiness ---------------------------------------- %>
+		<% if (LocalBusiness) { %>
+			<%- include(ejspath + '_data/json-ld/_LocalBusiness') %>
 		<% } %>
-		<%# Person ======================================== %>
-		<% if(Person){ %>
-			<% Person.forEach(function(key, index) { %>
-				{
-					"@context": "http://schema.org",
-					<% var obj = data.schema.Person[key]; %>
-					<% var objArray = Object.keys(obj); %>
-					<% objArray.forEach(function(key, index) { %>
-						"<%- key %>": <% schemaValue(obj, key) %>
-						<% if( index != objArray.length - 1 ){ %>
-						,
-						<% } %>
-					<% }) %>
-				},
-			<% }) %>
+		<%# BreadcrumbList ---------------------------------------- %>
+		<% if (BreadcrumbList) { %>
+			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
 		<% } %>
-		<%# Site ======================================== %>
-		<% if(Site){ %>
-			<% Site.forEach(function(key, index) { %>
-				{
-					"@context": "http://schema.org",
-					<%# WebPage -------------------- %>
-					<% if (key == 'WebPage') { %>
-						"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
-						<% if (description) { %>"description": "<%- description %>",<% } %>
-						<% if (schema) { %>
-							<% var obj = schema %>
-							<% var objArray = Object.keys(obj); %>
-							<% objArray.forEach(function(key, index) { %>
-								"<%- key %>": <% schemaValue(obj, key) %>
-								<% if( index != objArray.length - 1 ){ %>
-									,
-								<% } %>
-							<% }) %>
-						<% } %>
-					<%# Article -------------------- %>
-					<% } else if (key == 'Article') { %>
-						"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
-						<% if (description) { %>"description": "<%- description %>",<% } %>
-						<% if (schema) { %>
-							<% var obj = schema %>
-							<% var objArray = Object.keys(obj); %>
-							<% objArray.forEach(function(key, index) { %>
-								"<%- key %>": <% schemaValue(obj, key) %>
-								<% if( index != objArray.length - 1 ){ %>
-									,
-								<% } %>
-							<% }) %>,
-							<% parent.reverse(); %>
-							<% parent.forEach(function(key, index) { %>
-								<% if (page[key]) { %>
-									"mainEntityOfPage": {
-										<% if (key == 'index') { %>
-											"@type": "<%- data.schema.WebSite['@type'] %>",
-											"@id": "<%- data.schema.WebSite.url %>"
-										<% } else { %>
-											"@type": "<%- page[key].schema['@type'] %>",
-											"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>"
-										<% } %>
-									}
-									<% parent.reverse(); %>
-									<% return %>
-								<% } %>
-							<% }) %>
-						<% } %>
-					<%# BreadcrumbList -------------------- %>
-					<% } else if (key == 'BreadcrumbList') { %>
-						<% var pos = 1 %>
-						"@type": "BreadcrumbList",
-						"itemListElement": [
-							<% parent.forEach(function(key, index) { %>
-								<% if (page[key]) { %>
-									{
-										"@type": "ListItem",
-										"position": <%- pos %>,
-										"item": {
-											"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>",
-											"name": "<%- page[key].title %>"
-										}
-									},
-									<% pos++ %>
-								<% } %>
-							<% }) %>
-							{
-								"@type": "ListItem",
-								"position": <%- pos++ %>,
-								"item": {
-									"@id": "<%- data.schema.WebSite.url %><%- absUrl %>",
-									"name": "<%- title %>"
-								}
-							}
-						]
-					<%# SiteNavigationElement -------------------- %>
-					<% } else if (key == 'SiteNavigationElement') { %>
-						<% var obj = data.schema.SiteNavigationElement; %>
-						"@type": "SiteNavigationElement",
-						"name": [
-							<% obj.forEach(function(key, index) { %>
-								"<%- page[key].title %>"
-								<% if( index != obj.length - 1 ){ %>
-									,
-								<% } %>
-							<% }) %>
-						],
-						"url": [
-							<% obj.forEach(function(key, index) { %>
-								"<%- data.schema.WebSite.url %><%- page[key].absUrl %>"
-								<% if( index != obj.length - 1 ){ %>
-									,
-								<% } %>
-							<% }) %>
-						]
-					<%# other -------------------- %>
-					<% } else { %>
-						<% var obj = data.schema[key]; %>
-						<% var objArray = Object.keys(obj); %>
-						<% objArray.forEach(function(key, index) { %>
-							"<%- key %>": <% schemaValue(obj, key) %>
-							<% if( index != objArray.length - 1 ){ %>
-							,
-							<% } %>
-						<% }) %>
-					<% } %>
-				}
-				<% if( index != Site.length - 1 ){ %>
-					,
-				<% } %>
-			<% }) %>
+		<%# SiteNavigationElement ---------------------------------------- %>
+		<% if (SiteNavigationElement) { %>
+			<%- include(ejspath + '_data/json-ld/_SiteNavigationElement') %>,
 		<% } %>
+		<%# WebSite ---------------------------------------- %>
+		<%- include(ejspath + '_data/json-ld/_WebSite') %>
 	]
 </script>
 <!-- /JSON-LD -->
-<%# function ---------------------------------------------------------------------------------------------- %>
-<% function schemaValue(obj, key) { %>
-	<% var obj = obj[key]; %>
-	<% var objArray = Object.keys(obj); %>
-	<% if(obj instanceof Object) { %>
-		<% if(obj instanceof Array) { %>
-			[
-			<% objArray.forEach(function(key, index) { %>
-				<% schemaValue(obj, key) %>
-				<% if( index != objArray.length - 1 ){ %>
-					,
-				<% } %>
-			<% }) %>
-			]
-		<% } else { %>
-			{
-				<% objArray.forEach(function(key, index) { %>
-					"<%- key %>": <% schemaValue(obj, key) %>
-					<% if( index != objArray.length - 1 ){ %>
-						,
-					<% } %>
-				<% }) %>
-			}
-		<% } %>
-	<% } else { %>
-		"<%- obj %>"
-		<% return %>
-	<% } %>
-<% } %>
