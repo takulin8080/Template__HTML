@@ -10,7 +10,7 @@
 				"headline": "articleExsample",
 				"image": {
 					"@type": "ImageObject",
-					"url": "https://exsample.jp/common/article/20201221/image.png",
+					"url": "http://exsample.jp/common/article/20201221/image.png",
 					"height": 800,
 					"width": 800
 				},
