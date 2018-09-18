@@ -2,6 +2,7 @@
 	"schema": {
 		"LocalBusiness": {
 			"exsample": {
+				"@type": "LocalBusiness",
 				"name": "LocalBusinessExsample",
 				"logo": {
 					"@type": "ImageObject",
