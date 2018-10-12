@@ -6,6 +6,7 @@ require('./foundation/variable');
 // vendor
 // ==============================================================================================
 $ = require('jquery');
+require('picturefill');
 require('svgxuse');
 require('./vendor/material-design-icons');
 // ==============================================================================================
