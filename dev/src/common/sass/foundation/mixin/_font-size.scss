@@ -7,16 +7,16 @@ font-sizeとそれに合わせたline-heightを出力。
 @mixin fontSize($num: default) {
 	font-size: fontSize($num);
 	@if $num == 2 {
-		line-height: 1.6;
+		line-height: 1.75;
 	} @else if $num == 3 {
-		line-height: 1.6;
+		line-height: 1.75;
 	} @else if $num == -1 {
-		line-height: 1.6;
+		line-height: 1.75;
 	} @else if $num == -2 {
-		line-height: 1.6;
+		line-height: 1.75;
 	} @else if $num == -3 {
-		line-height: 1.6;
+		line-height: 1.75;
 	} @else {
-		line-height: 1.6;
+		line-height: 1.75;
 	}
 }
