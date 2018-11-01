@@ -73,16 +73,5 @@ _data/_head
 		<meta property="og:locale" content="<%- data.ogLocale %>" />
 		<meta property="fb:app_id" content="<%- data.fbAppId %>" />
 	<% } %>
-	<% if(dev){ %>
-		<link rel="stylesheet" href="<%- path.css %>vendor.css">
-		<link rel="stylesheet" href="<%- path.css %>foundation.css">
-		<link rel="stylesheet" href="<%- path.css %>component.css">
-		<link rel="stylesheet" href="<%- path.css %>layout.css">
-		<link rel="stylesheet" href="<%- path.css %>module.css">
-		<link rel="stylesheet" href="<%- path.css %>scope.css">
-		<link rel="stylesheet" href="<%- path.css %>utility.css">
-	<% } else { %>
-		<link rel="stylesheet" href="<%- path.css %>app.css">
-		<link rel="stylesheet" href="<%- path.css %>utility.css">
-	<% } %>
+	<link rel="stylesheet" href="<%- path.css %>style.css">
 </head>
