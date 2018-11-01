@@ -1,118 +1,135 @@
-// =================================================================================================
+// ==============================================================================================
 // plugin
-// =================================================================================================
-var fs = require('fs');
-var browserSync = require('browser-sync');
-var del = require('del');
-var gulp = require('gulp');
-var mkdirp = require('mkdirp');
-var path = require('path');
-var runSequence = require('run-sequence');
-var webpack = require('webpack');
-var webpackStream = require('webpack-stream');
-var webpackDevConfig = require('./webpack.dev.js');
-var webpackProdConfig = require('./webpack.prod.js');
-var $ = require('gulp-load-plugins')();
-// =================================================================================================
-// setup
-// =================================================================================================
-var relativePath = true;
-var filepath = {
-	dst: {
-		src: 'src/',
-		dev: 'dst/',
-		release: '../release/'
-	},
-	common: {
-		all: 'common/**/*',
-		css: 'common/css/',
-		js: 'common/js/',
-		img: 'common/img/',
-		doc: 'common/doc/',
-		font: 'common/font/',
-		sass: 'common/sass/',
-		icon: 'common/'
-	},
-	json: {
-		src: 'src/_data/**/*.json',
-		watch: ['src/_data/**/*.json']
-	},
-	ejs: {
-		src: ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs'],
-		releaseSrc: ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs', '!src/ejs/dev/**/*'],
-		watch: ['src/_data.json', 'src/**/*.ejs']
-	},
-	font: {
-		src: ['src/common/font/**/*', '!src/common/font/icon.scss'],
-		iconSrc: 'src/common/img/icon/*.svg',
-		iconDst: 'src/common/font/',
-		watch: ['src/common/img/icon/*.svg']
-	},
-	sass: {
-		appSrc: ['src/common/sass/app.scss'],
-		vendorSrc: ['src/common/sass/vendor.scss'],
-		vendorWatch: ['src/common/sass/vendor/**/*', 'src/common/sass/_variable.scss', ],
-		foundationSrc: ['src/common/sass/foundation.scss'],
-		foundationWatch: ['src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-		componentSrc: ['src/common/sass/component.scss'],
-		componentWatch: ['src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-		layoutSrc: ['src/common/sass/layout.scss'],
-		layoutWatch: ['src/common/sass/layout/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-		moduleSrc: ['src/common/sass/module.scss'],
-		moduleWatch: ['src/common/sass/module/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-		scopeSrc: ['src/common/sass/scope.scss'],
-		scopeWatch: ['src/common/sass/scope/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-		utilitySrc: ['src/common/sass/utility.scss'],
-		utilityWatch: ['src/common/sass/utility/**/*', 'src/common/sass/component/**/*', '!src/common/sass/component/_icon.scss', 'src/common/sass/foundation/**/*', 'src/common/sass/_variable.scss', 'src/common/sass/vendor/**/*'],
-	},
-	js: {
-		src: 'src/common/js/*.js',
-		filename: 'bundle.js',
-		watch: ['src/common/js/**/*.js']
-	},
-	img: {
-		src: 'src/common/img/**/*.+(jpg|jpeg|png|gif|svg)',
-		watch: ['src/common/img/**']
-	},
-	doc: {
-		src: 'src/common/doc/**/*',
-		watch: ['src/common/doc/**']
-	},
-	browserSync: {
-		watch: ['dst/**/*']
-	}
-}
-var cleanFile = ['src/_data.json', 'src/common/sass/foundation/_icon.scss', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst/', '../release/common/css/utility.css'];
-// =================================================================================================
+// ==============================================================================================
+const $ = require('gulp-load-plugins')();
+const browserSync = require('browser-sync');
+const del = require('del');
+const fs = require("fs");
+const gulp = require('gulp');
+const mkdirp = require('mkdirp');
+const path = require('path');
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
+const webpackDevConfig = require('./webpack.dev.js');
+const webpackProdConfig = require('./webpack.prod.js');
+// ==============================================================================================
+// setting
+// ==============================================================================================
+const relativePath = true;
+// ==============================================================================================
 // json
-// =================================================================================================
-gulp.task('json', ['jsonData'], function() {
-	return jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
-});
-gulp.task('jsonData', function() {
-	var src = filepath.json.src;
-	var dst = filepath.dst.src;
+// ==============================================================================================
+gulp.task('json', (done) => {
+	const src = 'src/_data/**/*.json';
+	const dst = 'src';
 	return gulp.src(src).pipe($.mergeJson({
 		fileName: '_data.json'
 	})).pipe(gulp.dest(dst));
 });
-// =================================================================================================
+// ==============================================================================================
 // html
-// =================================================================================================
-gulp.task('html', function(cb) {
-	runSequence('json', 'fileSetup', 'ejs', cb);
-});
-// -----------------------------------------------
-// fileSetup
-// -----------------------------------------------
-gulp.task('fileSetup', function() {
-	var ejsDst = filepath.dst.src + 'ejs/';
-	var sassDst = filepath.dst.src + filepath.common.sass;
-	var imgDst = filepath.dst.src + filepath.common.img;
-	var dirname = path.dirname;
-	if(!dev) {
-		var overwritecssDst = filepath.dst.release + filepath.common.css + 'utility.css';
+// ==============================================================================================
+// function ========================================
+const ejsHierarchy = (parentArray) => {
+	if(relativePath) {
+		var hierarchy = '';
+		if(parentArray.length != 1) {
+			for(var key in parentArray) {
+				if(key != 0) {
+					hierarchy += '../';
+				}
+			}
+		}
+	} else {
+		hierarchy = '/';
 	}
+	return hierarchy;
+}
+const ejsPages = (pages, hierarchy) => {
+	var url;
+	var absUrl;
+	for(var key in pages) {
+		if(relativePath) {
+			url = hierarchy + key + '.html';
+			absUrl = '/' + key + '.html';
+			absUrl = absUrl.replace('index.html', '');
+		} else {
+			url = '/' + key + '.html';
+			url = url.replace('index.html', '');
+		}
+		pages[key].url = url;
+		pages[key].absUrl = absUrl;
+	}
+	return pages;
+}
+const ejsParent = (parentArray) => {
+	var filename;
+	var parents = [];
+	if(parentArray.length == 1) {
+		if(parentArray == 'index') {
+			return parents;
+		} else {
+			parents.push('index');
+			return parents;
+		}
+	} else {
+		parents.push('index');
+		parentArray.forEach((value, key) => {
+			if(key == 0) {
+				filename = value;
+				parents.push(filename + '/index');
+			} else if(value == 'index') {
+				return parents;
+			} else {
+				filename += '/' + value;
+				parents.push(filename + '/index');
+			}
+		});
+		parents.pop();
+		return parents;
+	}
+}
+const ejsCommon = (hierarchy) => {
+	var common = {
+		css: hierarchy + 'common/css/',
+		img: hierarchy + 'common/img/',
+		js: hierarchy + 'common/js/'
+	}
+	return common;
+}
+const ejsPath = (parentArray) => {
+	var hierarchy = '';
+	if(parentArray.length != 1) {
+		for(var key in parentArray) {
+			if(key != 0) {
+				hierarchy += '../';
+			}
+		}
+	}
+	return hierarchy;
+}
+const pagedataCheck = (data, filename) => {
+	var pagedata = data;
+	if(!pagedata.pageModifier) {
+		pagedata.pageModifier = '';
+		var pageModifierArray = filename.split('/');
+		for(var i in pageModifierArray) {
+			if(i != pageModifierArray.length - 1) {
+				pagedata.pageModifier += pageModifierArray[i] + ' ';
+			} else {
+				pagedata.pageModifier += pageModifierArray[i];
+			}
+		}
+	}
+	return pagedata;
+}
+// fileSetup [ejs, sass, img] ========================================
+gulp.task('fileSetup', (done) => {
+	const jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
+	const ejsDst = 'src/ejs/';
+	const sassDst = 'src/common/sass/';
+	const imgDst = 'src/common/img/';
+	const dirname = path.dirname;
 
 	function appendFile(path, contents, cb) {
 		fs.access(path, function(err) {
@@ -134,8 +151,7 @@ gulp.task('fileSetup', function() {
 			}
 		})
 	};
-	// page
-	// ----------------------
+	// page ----------------------------------------
 	var sassBaseArray = [];
 	for(var key in jsonData.page) {
 		var dataPath = key;
@@ -151,7 +167,7 @@ gulp.task('fileSetup', function() {
 		if(sassBaseArray.indexOf(dataDir) == -1) {
 			sassBaseArray.push(dataDir);
 		}
-		// ejs
+		// ejs --------------------
 		var ejscode = jsonData.fileSetup.ejscode.replace(/filename/g, dataPath).replace(/fileHierarchy/g, ejspath).replace(/(\r\n)/g, '\n');
 		appendFile(ejsDst + dataPath + '.ejs', ejscode, function(err) {
 			if(err) throw err;
@@ -162,13 +178,6 @@ gulp.task('fileSetup', function() {
 			appendFile(sassDst + 'scope/_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
-			// utility.css
-			if(!dev) {
-				var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + dataName + "'").replace(/(\r\n)/g, '\n');
-				appendFile(overwritecssDst, overwritecsscode, function(err) {
-					if(err) throw err;
-				});
-			}
 		} else {
 			var modifierArray = dataPathArray;
 			modifierArray.pop();
@@ -185,15 +194,6 @@ gulp.task('fileSetup', function() {
 			appendFile(sassDst + 'scope/' + dataDir + '_' + dataName + '.scss', sasscode, function(err) {
 				if(err) throw err;
 			});
-			// utility.css
-			if(!dev) {
-				if(baseModifier != 'dev') {
-					var overwritecsscode = jsonData.fileSetup.overwritecsscode.replace(/filename/g, dataPath).replace('modifier', "data-modifier='" + baseModifier + ' ' + dataName + "'").replace(/(\r\n)/g, '\n');
-					appendFile(overwritecssDst, overwritecsscode, function(err) {
-						if(err) throw err;
-					});
-				}
-			}
 		}
 		// img
 		appendDir(imgDst + 'scope/' + dataPath, function(err) {
@@ -211,8 +211,7 @@ gulp.task('fileSetup', function() {
 			});
 		}
 	}
-	// module
-	// ----------------------
+	// module ----------------------------------------
 	for(var i in jsonData.module) {
 		var dataPath = jsonData.module[i];
 		var dataPathArray = dataPath.split('/');
@@ -235,8 +234,7 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 	}
-	// layout
-	// ----------------------
+	// layout ----------------------------------------
 	for(var i in jsonData.layout) {
 		var dataPath = jsonData.layout[i];
 		var dataPathArray = dataPath.split('/');
@@ -259,19 +257,20 @@ gulp.task('fileSetup', function() {
 			if(err) throw err;
 		});
 	}
+	done();
 });
-// -----------------------------------------------
-// ejs
-// -----------------------------------------------
-gulp.task('ejs', function() {
+// ejs ========================================
+gulp.task('ejs', (done) => {
 	if(dev == true) {
-		var src = filepath.ejs.src;
+		var ejsSrc = ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs'];
 	} else {
-		var src = filepath.ejs.releaseSrc;
+		var ejsSrc = ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs', '!src/ejs/dev/**/*'];
 	};
-	var dst = dstDir;
-	var pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	return gulp.src(src).pipe($.plumber({
+	const src = ejsSrc;
+	const dst = dstDir;
+	const jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
+	const pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
+	gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
 		var filename = file.path.replace(/.*\/ejs\/(.*)\.ejs/, '$1');
@@ -299,309 +298,153 @@ gulp.task('ejs', function() {
 		indent_char: '\t',
 		indent_size: 1
 	})).pipe(gulp.dest(dst));
+	done();
 });
-// -----------------------------------------------
-// function
-// -----------------------------------------------
-var ejsHierarchy = function(parentArray) {
-	if(relativePath) {
-		var hierarchy = '';
-		if(parentArray.length != 1) {
-			for(var key in parentArray) {
-				if(key != 0) {
-					hierarchy += '../';
-				}
-			}
-		}
-	} else {
-		var hierarchy = '/';
-	}
-	return hierarchy;
-}
-var ejsPages = function(pages, hierarchy) {
-	var url;
-	var absUrl;
-	for(var key in pages) {
-		if(relativePath) {
-			url = hierarchy + key + '.html';
-			absUrl = '/' + key + '.html';
-			absUrl = absUrl.replace('index.html', '');
-		} else {
-			url = '/' + key + '.html';
-			url = url.replace('index.html', '');
-		}
-		pages[key].url = url;
-		pages[key].absUrl = absUrl;
-	}
-	return pages;
-}
-var ejsParent = function(parentArray) {
-	var filename;
-	var parents = [];
-	if(parentArray.length == 1) {
-		if(parentArray == 'index') {
-			return parents;
-		} else {
-			parents.push('index');
-			return parents;
-		}
-	} else {
-		parents.push('index');
-		parentArray.forEach(function(value, key) {
-			if(key == 0) {
-				filename = value;
-				parents.push(filename + '/index');
-			} else if(value == 'index') {
-				return parents;
-			} else {
-				filename += '/' + value;
-				parents.push(filename + '/index');
-			}
-		});
-		parents.pop();
-		return parents;
-	}
-}
-var ejsCommon = function(hierarchy) {
-	var common = {
-		css: hierarchy + filepath.common.css,
-		img: hierarchy + filepath.common.img,
-		js: hierarchy + filepath.common.js
-	}
-	return common;
-}
-var ejsPath = function(parentArray) {
-	var hierarchy = '';
-	if(parentArray.length != 1) {
-		for(var key in parentArray) {
-			if(key != 0) {
-				hierarchy += '../';
-			}
-		}
-	}
-	return hierarchy;
-}
-var pagedataCheck = function(data, filename) {
-	var pagedata = data;
-	if(!pagedata.pageModifier) {
-		pagedata.pageModifier = '';
-		var pageModifierArray = filename.split('/');
-		for(var i in pageModifierArray) {
-			if(i != pageModifierArray.length - 1) {
-				pagedata.pageModifier += pageModifierArray[i] + ' ';
-			} else {
-				pagedata.pageModifier += pageModifierArray[i];
-			}
-		}
-	}
-	return pagedata;
-}
-// =================================================================================================
-// font
-// =================================================================================================
-gulp.task('font', ['icon'], function() {
-	var src = filepath.font.src;
-	var dst = dstDir + filepath.common.font;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-});
-// -----------------------------------------------
-// icon
-// -----------------------------------------------
-gulp.task('icon', function() {
-	var src = filepath.font.iconSrc;
-	var dst = filepath.font.iconDst;
-	var fontName = 'icon';
-	var template = filepath.dst.src + filepath.common.icon + '_icon.scss';
-	var scss = '../sass/component/_icon.scss';
-	var fontPath = '../font/'
+// html ========================================
+gulp.task('html', gulp.series('json', 'fileSetup', 'ejs', (done) => {
+	done();
+}));
+// ==============================================================================================
+// sass
+// ==============================================================================================
+gulp.task('font', (done) => {
+	const src = 'src/common/img/icon/*.svg';
+	const dst = 'src/common/font';
 	return gulp.src(src).pipe($.svgmin()).pipe($.iconfontCss({
-		fontName: fontName,
+		fontName: 'icon',
 		path: 'src/common/font/icon.scss',
-		targetPath: scss,
-		fontPath: fontPath
+		targetPath: '../sass/component/_icon.scss',
+		fontPath: '../font/'
 	})).pipe($.iconfont({
-		fontName: fontName,
+		fontName: 'icon',
 		formats: ['ttf', 'eot', 'woff', 'svg'],
 		appendCodepoints: false
 	})).pipe(gulp.dest(dst));
 });
-// =================================================================================================
-// css
-// =================================================================================================
-gulp.task('css', function() {
-	var src = filepath.sass.appSrc;
-	var dst = dstDir + filepath.common.css;
+gulp.task('icon', (done) => {
+	const src = ['src/common/font/**/*', '!src/common/font/icon.scss'];
+	const dst = dstDir + 'common/font';
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.cleanCss()).pipe(gulp.dest(dst));
+	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
-gulp.task('cssVendor', function() {
-	var src = filepath.sass.vendorSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssFoundation', function() {
-	var src = filepath.sass.foundationSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssComponent', function() {
-	var src = filepath.sass.componentSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssLayout', function() {
-	var src = filepath.sass.layoutSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssModule', function() {
-	var src = filepath.sass.moduleSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssScope', function() {
-	var src = filepath.sass.scopeSrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-gulp.task('cssUtility', function() {
-	var src = filepath.sass.utilitySrc;
-	var dst = dstDir + filepath.common.css;
-	return gulp.src(src).pipe($.plumber({
-		errorHandler: $.notify.onError('Error: <%= error.message %>')
-	})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
-		grid: true
-	})).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
-});
-// =================================================================================================
+gulp.task('sass', gulp.series('font', 'icon', (done) => {
+	const src = 'src/common/sass/style.scss';
+	const dst = dstDir + 'common/css';
+	if(dev) {
+		gulp.src(src).pipe($.plumber({
+			errorHandler: $.notify.onError('Error: <%= error.message %>')
+		})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+			grid: true
+		})).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
+	} else {
+		gulp.src(src).pipe($.plumber({
+			errorHandler: $.notify.onError('Error: <%= error.message %>')
+		})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
+			grid: true
+		})).pipe($.cleanCss()).pipe(gulp.dest(dst));
+	}
+	done();
+}));
+// ==============================================================================================
 // js
-// =================================================================================================
-gulp.task('js', function() {
-	var src = filepath.js.src;
-	var dst = dstDir + filepath.common.js;
+// ==============================================================================================
+gulp.task('js', (done) => {
+	const src = 'src/common/js/*.js';
+	const dst = dstDir + 'common/js';
 	if(dev) {
 		var webpackConfig = webpackDevConfig;
 	} else {
 		var webpackConfig = webpackProdConfig;
 	}
-	return gulp.src(src).pipe($.plumber({
+	gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe(webpackStream(webpackConfig, webpack)).pipe(gulp.dest(dst));
+	done();
 });
-// =================================================================================================
+// ==============================================================================================
 // img
-// =================================================================================================
-gulp.task('img', function() {
-	var src = filepath.img.src;
-	var dst = dstDir + filepath.common.img;
-	var imageminOptions = {
+// ==============================================================================================
+gulp.task('img', (done) => {
+	const src = 'src/common/img/**/*';
+	const dst = dstDir + 'common/img';
+	const imageminOptions = {
 		optimizationLevel: 7
 	}
 	if(dev) {
-		return gulp.src(src).pipe($.ignore.include({
+		gulp.src(src).pipe($.ignore.include({
 			isFile: true
 		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 	} else {
-		return gulp.src(src).pipe($.ignore.include({
+		gulp.src(src).pipe($.ignore.include({
 			isFile: true
 		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	}
+	done();
 });
-// =================================================================================================
+// ==============================================================================================
 // doc
-// =================================================================================================
-gulp.task('doc', function() {
-	var src = filepath.doc.src;
-	var dst = dstDir + filepath.common.doc;
-	if(dev) {
-		return gulp.src(src).pipe($.ignore.include({
-			isFile: true
-		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	} else {
-		return gulp.src(src).pipe($.ignore.include({
-			isFile: true
-		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	}
+// ==============================================================================================
+gulp.task('doc', (done) => {
+	const src = 'src/common/doc/**/*';
+	const dst = dstDir + 'common/doc';
+	gulp.src(src).pipe($.ignore.include({
+		isFile: true
+	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
+	done();
 });
-// =================================================================================================
+// ==============================================================================================
+// watch
+// ==============================================================================================
+gulp.task('watch', (done) => {
+	gulp.watch(['src/_data/**/*.json', 'src/**/*.ejs'], gulp.task('html'));
+	gulp.watch(['src/common/sass/**/*.scss', '!src/common/sass/component/_icon.scss'], gulp.task('sass'));
+	gulp.watch(['src/common/js/**/*'], gulp.task('js'));
+	gulp.watch(['src/common/img/**/*'], gulp.task('img'));
+	done();
+});
+// ==============================================================================================
 // browserSync
-// =================================================================================================
-gulp.task('browserSync', function() {
-	return browserSync({
+// ==============================================================================================
+gulp.task('browserSync', (done) => {
+	browserSync({
 		server: {
 			baseDir: dstDir
 		},
 		open: 'external',
 		port: 9000,
-		files: filepath.browserSync.watch
+		files: dstDir + '**/*'
 	});
+	done();
 });
-// =================================================================================================
-// watch
-// =================================================================================================
-gulp.task('watch', function() {
-	gulp.watch(filepath.json.watch, ['json']);
-	gulp.watch(filepath.ejs.watch, ['html']);
-	gulp.watch(filepath.font.watch, ['font']);
-	gulp.watch(filepath.sass.vendorWatch, ['cssVendor']);
-	gulp.watch(filepath.sass.foundationWatch, ['cssFoundation']);
-	gulp.watch(filepath.sass.componentWatch, ['cssComponent']);
-	gulp.watch(filepath.sass.layoutWatch, ['cssLayout']);
-	gulp.watch(filepath.sass.moduleWatch, ['cssModule']);
-	gulp.watch(filepath.sass.scopeWatch, ['cssScope']);
-	gulp.watch(filepath.sass.utilityWatch, ['cssUtility']);
-	gulp.watch(filepath.js.watch, ['js']);
-	gulp.watch(filepath.img.watch, ['img']);
-	gulp.watch(filepath.doc.watch, ['doc']);
-});
-// =================================================================================================
+// ==============================================================================================
 // DEVELOPMENT
-// =================================================================================================
-gulp.task('1 ============== DEVELOPMENT', function(cb) {
-	dstDir = filepath.dst.dev;
+// ==============================================================================================
+gulp.task('setupDevelopment', (done) => {
 	dev = true;
-	runSequence('html', 'icon', 'font', 'cssVendor', 'cssFoundation', 'cssComponent', 'cssLayout', 'cssModule', 'cssScope', 'cssUtility', 'js', 'img', 'doc', 'watch', 'browserSync', cb);
+	dstDir = 'dst/';
+	done();
 });
-// =================================================================================================
+gulp.task('1 ============== DEVELOPMENT', gulp.series('setupDevelopment', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'watch', 'browserSync'), (done) => {
+	done();
+});
+// ==============================================================================================
 // RELEASE
-// =================================================================================================
-gulp.task('2 ============== RELEASE', function(cb) {
-	dstDir = filepath.dst.release;
+// ==============================================================================================
+gulp.task('setupRelease', (done) => {
 	dev = false;
-	runSequence('html', 'font', 'css', 'js', 'img', 'doc', 'browserSync', cb);
+	dstDir = '../release/';
+	done();
 });
-// =================================================================================================
+gulp.task('2 ============== RELEASE', gulp.series('setupRelease', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync'), (done) => {
+	done();
+});
+// ==============================================================================================
 // CLEAN
-// =================================================================================================
-gulp.task('X ============== CLEAN', function(cb) {
-	return del(cleanFile, {
+// ==============================================================================================
+gulp.task('X ============== CLEAN', (done) => {
+	del(['src/_data.json', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/component/_icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst'], {
 		force: true
 	});
+	done();
 });
