@@ -329,7 +329,7 @@ gulp.task('icon', (done) => {
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 gulp.task('sass', gulp.series('font', 'icon', (done) => {
-	const src = 'src/common/sass/style.scss';
+	const src = ['src/common/sass/**/*.scss', '!src/common/sass/**/_*.scss'];
 	const dst = dstDir + 'common/css';
 	if(dev) {
 		gulp.src(src).pipe($.plumber({
