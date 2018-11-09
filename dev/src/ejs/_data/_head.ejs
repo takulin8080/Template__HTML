@@ -3,7 +3,7 @@
 _data/_head
 =====================================================================================================
 %>
-<head>
+<head <% if(data.og){ %>prefix="og: http://ogp.me/ns#<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article') { %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#<% } else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#<% }} else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#<% }}%>"<% } %>>
 	<% if(data.gtag){ %>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
@@ -71,7 +71,16 @@ _data/_head
 		<% } %>
 		<meta property="og:site_name" content="<%- data.schema.WebSite.name %>" />
 		<meta property="og:locale" content="<%- data.ogLocale %>" />
-		<meta property="fb:app_id" content="<%- data.fbAppId %>" />
+		<% if(data.fbAppId){ %>
+			<meta property="fb:app_id" content="<%- data.fbAppId %>" />
+			<% if(parent.length){ if(schema['@type'] == 'Article') { %>
+				<meta property="article:publisher" content="<%- data.fbUrl %>">
+			<% }} %>
+		<% } %>
+		<% if(data.twitterSite){ %>
+			<meta property="twitter:site" content="@<%- data.twitterSite %>" />
+			<meta property="twitter:card" content="<%- data.twitterCard %>">
+		<% } %>
 	<% } %>
 	<link rel="stylesheet" href="<%- path.css %>style.css">
 </head>
