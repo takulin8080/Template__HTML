@@ -3,5 +3,8 @@
 	"gtag": "",
 	"og": true,
 	"ogLocale": "ja_JP",
-	"fbAppId": ""
+	"fbAppId": "FacebookAppID",
+	"fbUrl": "FacebookURL",
+	"twitterSite": "twitterId",
+	"twitterCard": "summary"
 }
