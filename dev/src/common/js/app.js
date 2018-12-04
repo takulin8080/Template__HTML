@@ -8,7 +8,6 @@ require('./foundation/variable');
 $ = require('jquery');
 require('picturefill');
 require('svgxuse');
-require('./vendor/material-design-icons');
 // ==============================================================================================
 // component
 // ==============================================================================================
