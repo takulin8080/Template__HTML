@@ -37,10 +37,7 @@ $materialDesignShadow: (
 	500: (0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22))
 );
 /* icon ======================================== */
-/* require ---------------------------------------- */
-// webpackにてinclude済み。※下記の方法で指定も可能。
-// @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-/* @import '../../font/material-icons.scss'; node_modulesよりコピー作成
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 /* mixin ---------------------------------------- */
 i.material-icons {
 	font-size: 1.8rem;
