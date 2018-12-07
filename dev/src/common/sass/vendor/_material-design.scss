@@ -50,9 +50,5 @@ i.material-icons {
 		-moz-osx-font-smoothing: grayscale;
 		font-feature-settings: 'liga';
 		content: $char;
-		opacity: 0;
-		body[data-loading='true'] & {
-			opacity: 1;
-		}
 	}
 }
