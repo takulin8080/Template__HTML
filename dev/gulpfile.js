@@ -310,7 +310,7 @@ gulp.task('html', gulp.series('json', 'fileSetup', 'ejs', (done) => {
 gulp.task('font', (done) => {
 	const src = 'src/common/img/icon/*.svg';
 	const dst = 'src/common/font';
-	return gulp.src(src).pipe($.svgmin()).pipe($.iconfontCss({
+	return gulp.src(src).pipe($.imagemin()).pipe($.iconfontCss({
 		fontName: 'icon',
 		path: 'src/common/font/icon.scss',
 		targetPath: '../sass/component/_icon.scss',
@@ -369,17 +369,16 @@ gulp.task('img', (done) => {
 	const src = 'src/common/img/**/*';
 	const dst = dstDir + 'common/img';
 	const imageminOptions = {
-		optimizationLevel: 7
+		interlaced: true,
+		progressive: true,
+		optimizationLevel: 5,
+		svgoPlugins: [{
+			removeViewBox: true
+		}]
 	}
-	if(dev) {
-		gulp.src(src).pipe($.ignore.include({
-			isFile: true
-		})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	} else {
-		gulp.src(src).pipe($.ignore.include({
-			isFile: true
-		})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
-	}
+	gulp.src(src).pipe($.ignore.include({
+		isFile: true
+	})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
 	done();
 });
 // ==============================================================================================

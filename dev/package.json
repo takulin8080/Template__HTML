@@ -33,7 +33,6 @@
 		"gulp-sass": "^4.0.2",
 		"gulp-sass-glob": "^1.0.9",
 		"gulp-sourcemaps": "^2.6.4",
-		"gulp-svgmin": "^2.1.0",
 		"import-glob-loader": "^1.1.0",
 		"mkdirp": "^0.5.1",
 		"npm": "^6.4.1",
