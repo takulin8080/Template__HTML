@@ -3,8 +3,8 @@
 // ==============================================================================================
 // breakpoint ========================================
 breakpointSm = '480';
-breakpointMd = '768px';
-breakpointLg = '1000px';
+breakpointMd = '768';
+breakpointLg = '1000';
 // duration time ========================================
 durationTime1 = 400;
 durationTime2 = 800;

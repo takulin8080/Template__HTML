@@ -35,8 +35,8 @@ module.exports = function(target, trigger) {
 			});
 		}
 		if(resizeClose) {
-			$(window).resize(function() {
-				if($('body').attr(bodyModifier) == 'true') {
+			$(window).resize(function() {;
+				if($('body').attr(bodyModifier) == 'true' && $(window).width() > breakpointMd) {
 					timer = setTimeout(function() {
 						wr = $(window).width();
 						hr = $(window).height();
