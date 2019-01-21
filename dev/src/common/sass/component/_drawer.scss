@@ -10,6 +10,7 @@
 @include drawer(right) { 右からスライド表示};
 @include drawer(bottom) { 下からスライド表示};
 @include drawer(left) { 左からスライド表示};
+@include drawer(zoom) { zoom in };
 ```
 */
 @mixin drawer($pos: left) {
@@ -18,38 +19,44 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: fixed;
+	opacity: 0;
+	visibility: hidden;
 	transition: all transitionTime();
 	@include elevation(5);
+	&[data-is-active~="true"] {
+		opacity: 1;
+		visibility: visible;
+	}
 	@if $pos == left {
-		left: calc(-100% + #{size(-8)});
 		top: 0;
+		left: calc(-100% + #{size(-8)});
 		&[data-is-active~="true"] {
 			left: 0;
 		}
 	} @else if $pos == right {
-		right: calc(-100% + #{size(-8)});
 		top: 0;
+		right: calc(-100% + #{size(-8)});
 		&[data-is-active~="true"] {
 			right: 0;
 		}
 	} @else if $pos == top {
-		left: 0;
-		opacity: 0;
 		top: -100%;
-		visibility: hidden;
+		left: 0;
 		&[data-is-active~="true"] {
-			opacity: 1;
 			top: 0;
-			visibility: visible;
 		}
 	} @else if $pos == bottom {
 		bottom: -100%;
 		left: 0;
-		visibility: hidden;
 		&[data-is-active~="true"] {
-			opacity: 1;
 			bottom: 0;
-			visibility: visible;
+		}
+	} @else if $pos == zoom {
+		top: 0;
+		left: 0;
+		transform: scale(.1);
+		&[data-is-active~="true"] {
+			transform: scale(1);
 		}
 	}
 }
