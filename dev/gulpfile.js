@@ -19,7 +19,7 @@ const relativePath = true;
 // ==============================================================================================
 // json
 // ==============================================================================================
-gulp.task('json', (done) => {
+gulp.task('json', () => {
 	const src = 'src/_data/**/*.json';
 	const dst = 'src';
 	return gulp.src(src).pipe($.mergeJson({
@@ -260,7 +260,7 @@ gulp.task('fileSetup', (done) => {
 	done();
 });
 // ejs ========================================
-gulp.task('ejs', (done) => {
+gulp.task('ejs', () => {
 	if(dev == true) {
 		var ejsSrc = ['src/ejs/**/*.ejs', '!src/ejs/_**/*', '!src/ejs/**/_*.ejs'];
 	} else {
@@ -270,7 +270,7 @@ gulp.task('ejs', (done) => {
 	const dst = dstDir;
 	const jsonData = JSON.parse(fs.readFileSync('src/_data.json'));
 	const pages = JSON.parse(fs.readFileSync('src/_data.json')).page;
-	gulp.src(src).pipe($.plumber({
+	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('<%= error.message %>')
 	})).pipe($.data(function(file) {
 		var filename = file.path.replace(/.*\/ejs\/(.*)\.ejs/, '$1');
@@ -298,7 +298,6 @@ gulp.task('ejs', (done) => {
 		indent_char: '\t',
 		indent_size: 1
 	})).pipe(gulp.dest(dst));
-	done();
 });
 // html ========================================
 gulp.task('html', gulp.series('json', 'fileSetup', 'ejs', (done) => {
@@ -307,7 +306,7 @@ gulp.task('html', gulp.series('json', 'fileSetup', 'ejs', (done) => {
 // ==============================================================================================
 // sass
 // ==============================================================================================
-gulp.task('font', (done) => {
+gulp.task('font', () => {
 	const src = 'src/common/img/icon/*.svg';
 	const dst = 'src/common/font';
 	return gulp.src(src).pipe($.imagemin()).pipe($.iconfontCss({
@@ -321,35 +320,34 @@ gulp.task('font', (done) => {
 		appendCodepoints: false
 	})).pipe(gulp.dest(dst));
 });
-gulp.task('icon', (done) => {
+gulp.task('icon', () => {
 	const src = ['src/common/font/**/*', '!src/common/font/icon.scss'];
 	const dst = dstDir + 'common/font';
 	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
-gulp.task('sass', gulp.series('font', 'icon', (done) => {
+gulp.task('sass', gulp.series('font', 'icon', () => {
 	const src = ['src/common/sass/**/*.scss', '!src/common/sass/**/_*.scss'];
 	const dst = dstDir + 'common/css';
 	if(dev) {
-		gulp.src(src).pipe($.plumber({
+		return gulp.src(src).pipe($.plumber({
 			errorHandler: $.notify.onError('Error: <%= error.message %>')
 		})).pipe($.sourcemaps.init()).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 			grid: true
 		})).pipe($.cleanCss()).pipe($.sourcemaps.write('./')).pipe(gulp.dest(dst));
 	} else {
-		gulp.src(src).pipe($.plumber({
+		return gulp.src(src).pipe($.plumber({
 			errorHandler: $.notify.onError('Error: <%= error.message %>')
 		})).pipe($.sassGlob()).pipe($.sass()).pipe($.autoprefixer({
 			grid: true
 		})).pipe($.cleanCss()).pipe(gulp.dest(dst));
 	}
-	done();
 }));
 // ==============================================================================================
 // js
 // ==============================================================================================
-gulp.task('js', (done) => {
+gulp.task('js', () => {
 	const src = 'src/common/js/*.js';
 	const dst = dstDir + 'common/js';
 	if(dev) {
@@ -357,15 +355,14 @@ gulp.task('js', (done) => {
 	} else {
 		var webpackConfig = webpackProdConfig;
 	}
-	gulp.src(src).pipe($.plumber({
+	return gulp.src(src).pipe($.plumber({
 		errorHandler: $.notify.onError('Error: <%= error.message %>')
 	})).pipe(webpackStream(webpackConfig, webpack)).pipe(gulp.dest(dst));
-	done();
 });
 // ==============================================================================================
 // img
 // ==============================================================================================
-gulp.task('img', (done) => {
+gulp.task('img', () => {
 	const src = 'src/common/img/**/*';
 	const dst = dstDir + 'common/img';
 	const imageminOptions = {
@@ -376,21 +373,19 @@ gulp.task('img', (done) => {
 			removeViewBox: true
 		}]
 	}
-	gulp.src(src).pipe($.ignore.include({
+	return gulp.src(src).pipe($.ignore.include({
 		isFile: true
 	})).pipe($.changed(dst)).pipe($.imagemin(imageminOptions)).pipe(gulp.dest(dst));
-	done();
 });
 // ==============================================================================================
 // doc
 // ==============================================================================================
-gulp.task('doc', (done) => {
+gulp.task('doc', () => {
 	const src = 'src/common/doc/**/*';
 	const dst = dstDir + 'common/doc';
-	gulp.src(src).pipe($.ignore.include({
+	return gulp.src(src).pipe($.ignore.include({
 		isFile: true
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
-	done();
 });
 // ==============================================================================================
 // watch
