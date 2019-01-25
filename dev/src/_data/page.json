@@ -1,7 +1,8 @@
 {
 	"SiteNavigationElement": [
 		"index",
-		"exsample"
+		"exsample",
+		"article/index"
 	],
 	"page": {
 		"index": {
@@ -10,9 +11,6 @@
 			"title": "home",
 			"description": "",
 			"BreadcrumbList": false,
-			"LocalBusiness": [
-				"exsample"
-			],
 			"progress": ""
 		},
 		"exsample": {
