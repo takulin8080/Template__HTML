@@ -1,0 +1,44 @@
+{
+	"schema": {
+		"WebSite": {
+			"@id": "http://www.exsample.com",
+			"@type": "WebSite",
+			"name": "exsample",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"url": "http://www.exsample.com"
+		},
+		"Corporation": {
+			"@type": "Corporation",
+			"name": "exsample",
+			"foundingDate": "2020",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "南青山1-2-3",
+				"addressLocality": "港区",
+				"addressRegion": "東京都",
+				"postalCode": "000-0000",
+				"addressCountry": "JP"
+			},
+			"telephone": "000-0000-0000",
+			"url": "http://www.Corporation.com",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "http://www.Corporation.com/logo.png",
+				"width": 600,
+				"height": 60
+			},
+			"sameAs": [
+				"https://www.facebook.com/Corporation",
+				"https://www.twitter.com/Corporation"
+			]
+		}
+	},
+	"copyright": "exsample.com",
+	"gtag": "",
+	"og": true,
+	"ogLocale": "ja_JP",
+	"fbAppId": "FacebookAppID",
+	"fbUrl": "FacebookURL",
+	"twitterSite": "twitterId",
+	"twitterCard": "summary"
+}

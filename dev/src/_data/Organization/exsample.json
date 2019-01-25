@@ -3,19 +3,23 @@
 		"Organization": {
 			"exsample" : {
 				"name": "OrganizationExsample",
+				"foundingDate": "2020",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "南青山1-2-3",
+					"addressLocality": "港区",
+					"addressRegion": "東京都",
+					"postalCode": "000-0000",
+					"addressCountry": "JP"
+				},
+				"telephone": "000-0000-0000",
+				"url": "http://www.OrganizationExsample.com",
 				"logo": {
 					"@type": "ImageObject",
 					"url": "http://www.OrganizationExsample.com/logo.png",
 					"width": 600,
 					"height": 60
 				},
-				"foundingDate": "2020",
-				"contactPoint": {
-					"@type": "contactPoint",
-					"telephone": "+81-00-0000-0000",
-					"contactType": "customer service"
-				},
-				"url": "http://www.OrganizationExsample.com",
 				"sameAs": [
 					"https://www.facebook.com/OrganizationExsample",
 					"https://www.twitter.com/OrganizationExsample"
