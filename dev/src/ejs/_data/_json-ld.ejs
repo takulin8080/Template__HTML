@@ -4,6 +4,7 @@ _data/_json-ld
 =====================================================================================================
 %>
 <%
+if (typeof Corporation === 'undefined') { var Corporation = true };
 if (typeof LocalBusiness === 'undefined') { var LocalBusiness = '' };
 if (typeof BreadcrumbList === 'undefined') { var BreadcrumbList = true };
 if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = true };
@@ -15,6 +16,10 @@ if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = 
 		<%# Page ---------------------------------------- %>
 		<% if (pageModifier != 'index' && pageModifier != 'home') { %>
 			<%- include(ejspath + '_data/json-ld/_Page') %>,
+		<% } %>
+		<%# Corporation ---------------------------------------- %>
+		<% if (Corporation) { %>
+			<%- include(ejspath + '_data/json-ld/_Corporation') %>,
 		<% } %>
 		<%# LocalBusiness ---------------------------------------- %>
 		<% if (LocalBusiness) { %>
