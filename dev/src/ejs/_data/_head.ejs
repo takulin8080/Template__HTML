@@ -39,10 +39,10 @@ _data/_head
 	<% } %>
 	<% if(data.og){ %>
 		<% if(parent.length){ %>
-			<% if (typeof schema.headline === 'undefined') { %>
+			<% if (typeof data.schema.headline === 'undefined') { %>
 				<meta property="og:title" content="<%- title %>" />
 			<% } else { %>
-				<meta property="og:title" content="<%- schema.headline %>" />
+				<meta property="og:title" content="<%- data.schema.headline %>" />
 			<% } %>
 		<% } else { %>
 			<meta property="og:title" content="<%- data.schema.WebSite.name %>" />
@@ -55,14 +55,14 @@ _data/_head
 		<% if(parent.length){ %>
 			<meta property="og:url" content="<%- data.schema.WebSite.url %><%- absUrl %>" />
 			<meta property="og:type" content="article" />
-			<% if (typeof schema.image === 'undefined') { %>
+			<% if (typeof data.schema.image === 'undefined') { %>
 				<% if (typeof image != 'undefined') { %>
 					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img<%- absUrl.replace('.html', '') %>/image.png" />
 				<% } else { %>
 					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
 				<% } %>
 			<% } else { %>
-				<meta property="og:image" content="<%- schema.image.url %>" />
+				<meta property="og:image" content="<%- data.schema.image.url %>" />
 			<% } %>
 		<% } else { %>
 			<meta property="og:url" content="<%- data.schema.WebSite.url %>" />
