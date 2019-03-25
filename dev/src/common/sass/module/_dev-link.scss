@@ -9,7 +9,10 @@
 	position: absolute;
 	left: size(2);
 	top: size(2);
-	&__items {}
+	&__items {
+		list-style: none;
+		margin-left: 0;
+	}
 	&__item {
 		margin-bottom: size(1);
 	}

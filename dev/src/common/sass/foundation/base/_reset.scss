@@ -1,21 +1,23 @@
 /* ============================================================================================== */
 /* foundation/base/reset
 /* ============================================================================================== */
-a,
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
 abbr,
-acronym,
 address,
-applet,
 article,
 aside,
 audio,
 b,
-big,
 blockquote,
 body,
 canvas,
 caption,
-center,
 cite,
 code,
 dd,
@@ -26,7 +28,6 @@ div,
 dl,
 dt,
 em,
-embed,
 fieldset,
 figcaption,
 figure,
@@ -54,17 +55,13 @@ menu,
 nav,
 object,
 ol,
-output,
 p,
 pre,
 q,
-ruby,
-s,
 samp,
 section,
 small,
 span,
-strike,
 strong,
 sub,
 summary,
@@ -77,21 +74,20 @@ th,
 thead,
 time,
 tr,
-tt,
-u,
 ul,
 var,
 video {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	outline: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
-	box-sizing: border-box;
+	background: transparent;
 }
-/*  HTML5 display-role reset for older browsers
-*/
+body {
+	line-height: 1;
+}
 article,
 aside,
 details,
@@ -100,18 +96,12 @@ figure,
 footer,
 header,
 hgroup,
-main,
 menu,
 nav,
 section {
 	display: block;
-	box-sizing: border-box;
 }
-body {
-	line-height: 1;
-}
-ol,
-ul {
+nav ul {
 	list-style: none;
 }
 blockquote,
@@ -125,7 +115,59 @@ q:before {
 	content: '';
 	content: none;
 }
+a {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+/* change colours to suit your needs */
+ins {
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
+}
+/* change colours to suit your needs */
+mark {
+	background-color: #ff9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+del {
+	text-decoration: line-through;
+}
+abbr[title],
+dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+/* change border colour to suit your needs */
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #cccccc;
+	margin: 1em 0;
+	padding: 0;
+}
+input,
+select {
+	vertical-align: middle;
+}
+/* ======================================== */
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+/* ======================================== */
+ol,
+ul {
+	margin-left: size(4);
 }
