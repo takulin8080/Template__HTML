@@ -4,7 +4,6 @@
 // setup ========================================
 $('body').attr('data-overlay', 'false');
 $('body').append('<div data-overlay-layer></div>');
-overlayLayer = $('[data-overlay-layer]');
 var scrollPosY;
 // function ========================================
 module.exports = function(boolean) {

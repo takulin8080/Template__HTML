@@ -6,7 +6,8 @@ html {
 }
 body {
 	font-family: fontFamily(sansSerif);
-	@include fontSize();
+	@include fontSize(1);
+	font-weight: 400;
 	color: color(text);
 	background: color(white);
 }
@@ -16,7 +17,7 @@ img {
 	vertical-align: middle;
 }
 p {
-	margin-bottom: size(2);
+	margin: size(2) 0;
 }
 a {
 	color: color(link);
