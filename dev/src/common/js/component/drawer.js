@@ -7,6 +7,7 @@ overlay = require('../component/overlay');
 var bodyModifier = 'data-drawer-is-active';
 var overlayClose = true;
 var resizeClose = true;
+var overlayLayer = $('[data-overlay-layer]');
 // setup ========================================
 $('body').attr(bodyModifier, false);
 /* function ======================================== */
