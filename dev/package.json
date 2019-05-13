@@ -10,7 +10,7 @@
 		"@babel/preset-env": "^7.4.4",
 		"acorn": "^6.1.1",
 		"ajv": "^6.10.0",
-		"babel-loader": "^8.0.5",
+		"babel-loader": "^8.0.6",
 		"browser-sync": "^2.26.5",
 		"css-loader": "^2.1.1",
 		"del": "^3.0.0",
@@ -42,7 +42,7 @@
 		"style-loader": "^0.23.1",
 		"tunnel-agent": "^0.6.0",
 		"url-loader": "^1.1.2",
-		"webpack": "^4.30.0",
+		"webpack": "^4.31.0",
 		"webpack-merge": "^4.2.1",
 		"webpack-stream": "^5.2.1"
 	},
