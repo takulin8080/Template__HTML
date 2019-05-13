@@ -16,10 +16,6 @@
 			"layout": "dev",
 			"title": "フォームテンプレート"
 		},
-		"dev/section": {
-			"layout": "dev",
-			"title": "section [汎用 コンテンツボックス]"
-		},
 		"dev/button": {
 			"layout": "dev",
 			"title": "button"
