@@ -2,32 +2,24 @@
 /* module/movetotop
 /* ============================================================================================== */
 [data-movetotop] {
-	display: none;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	z-index: $overlayElevation - 1;
 	cursor: pointer;
-	@include materialDesignIcon('arrow_drop_up');
+	@include materialDesignIcon('expand_less');
 	&:before {
+		position: fixed;
 		background: color(gray, 900);
 		color: color(gray, 100);
 		font-size: iconSize(3);
 		height: size(6);
 		line-height: size(6);
 		width: size(6);
+		border-radius: 100%;
+		right: size(2);
+		bottom: size(2);
 		text-align: center;
-		position: absolute;
-		right: 0;
-		bottom: 0;
-	}
-	&:hover {
-		opacity: opacity();
-	}
-	@include respondTo(lg) {
-		left: 50%;
-		margin-left: -#{$siteWidth/2};
-		width: calc(#{$siteWidth} + #{size(8)});
+		@include respondTo(lg) {
+			right: auto;
+			left: 50%;
+			margin-left: $siteWidth/2;
+		}
 	}
 }
