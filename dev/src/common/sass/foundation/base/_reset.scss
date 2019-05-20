@@ -124,14 +124,14 @@ a {
 }
 /* change colours to suit your needs */
 ins {
-	background-color: #ff9;
-	color: #000;
+	background-color: color(yellow, 200);
+	color: color(text);
 	text-decoration: none;
 }
 /* change colours to suit your needs */
 mark {
-	background-color: #ff9;
-	color: #000;
+	background-color: color(yellow, 200);
+	color: color(text);
 	font-style: italic;
 	font-weight: bold;
 }
@@ -152,7 +152,7 @@ hr {
 	display: block;
 	height: 1px;
 	border: 0;
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid color(gray, 300);
 	margin: 1em 0;
 	padding: 0;
 }
