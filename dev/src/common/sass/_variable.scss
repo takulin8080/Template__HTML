@@ -11,9 +11,9 @@ $responsive: true;
 /* imgフォルダパス ======================================== */
 $imgPath: '../img/';
 /* フォントの管理 ======================================== */
-@import url(//fonts.googleapis.com/css?family=Arimo:400,700);
-@import url(//fonts.googleapis.com/earlyaccess/notosansjp.css);
-@import url(//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
 $fontFamily: (
 	sansSerif: ('Arimo', 'Noto Sans JP', sans-serif),
 	serif: ('游明朝', YuMincho, 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'ＭＳ 明朝', serif),
@@ -71,7 +71,7 @@ $colorPalette: (
 	text-white: (default: rgba(255, 255, 255, 1), 1: rgba(255, 255, 255, 1), -1: rgba(255, 255, 255, .7), -2: rgba(255, 255, 255, .3)),
 	link: (default: rgb(26, 13, 171), hover: rgb(13, 71, 161), visited: rgb(102, 0, 153)),
 	// project color
-	project: (primary: rgb(121, 85, 72), secondary: rgb(76, 175, 80), accent: rgb(238, 120, 31)),
+	project: (primary: rgb(0, 79, 64), secondary: rgb(0, 195, 164), accent: rgb(255, 0, 128)),
 	// sign color
 	info: (default: rgb(5, 73, 182), 50: rgb(227, 243, 255), 100: rgb(187, 224, 255), 200: rgb(142, 205, 255), 300: rgb(92, 185, 255), 400: rgb(48, 170, 255), 500: rgb(0, 155, 255), 600: rgb(0, 140, 251), 700: rgb(0, 122, 231), 800: rgb(0, 104, 213), 900: rgb(5, 73, 182)),
 	success: (default: rgb(0, 106, 32), 50: rgb(232, 247, 234), 100: rgb(200, 235, 204), 200: rgb(164, 222, 171), 300: rgb(126, 210, 137), 400: rgb(96, 199, 111), 500: rgb(64, 189, 84), 600: rgb(55, 173, 75), 700: rgb(43, 155, 63), 800: rgb(31, 137, 52), 900: rgb(0, 106, 32)),
