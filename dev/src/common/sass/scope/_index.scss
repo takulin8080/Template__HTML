@@ -3,7 +3,4 @@
 /* ============================================================================================== */
 body[data-modifier='index'] {
 	@include loadingAnimation(true);
-	.test {
-		@include icon('home');
-	}
 }
