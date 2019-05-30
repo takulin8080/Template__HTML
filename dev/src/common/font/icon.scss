@@ -57,7 +57,8 @@ exsample {
 			@include <%= cssClass%>-styles;
 		}
 		content: <%= cssClass%>-char($filename);
-		font-size: iconSize($size);
+		margin-left: size(.5);
+		margin-right: size(.5);
 	}
 }
 

@@ -61,7 +61,7 @@
 		&:after,
 		&:before,
 		i {
-			font-size: iconSize(-1);
+			font-size: size(1.5);
 		}
 	}
 	&[data-button~='md'] {
@@ -72,7 +72,7 @@
 		&:after,
 		&:before,
 		i {
-			font-size: iconSize(1);
+			font-size: size(2);
 		}
 	}
 	&[data-button~='lg'] {
@@ -83,7 +83,7 @@
 		&:after,
 		&:before,
 		i {
-			font-size: iconSize(1);
+			font-size: size(2.5);
 		}
 	}
 	&[data-button~='full'] {
@@ -108,9 +108,6 @@
 	@include buttonSignColor(warning);
 	@include buttonSignColor(danger);
 	/* project color ---------------------------------------- */
-	&[data-button~='test'] {
-		@include icon(home);
-	}
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
