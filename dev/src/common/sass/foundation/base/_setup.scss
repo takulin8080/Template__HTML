@@ -10,7 +10,6 @@ body {
 	@include respondTo(mdAndOver) {
 		@include fontSize(2);
 	}
-	font-weight: 400;
 	color: color(text);
 	background: color(white);
 }

@@ -29,7 +29,7 @@
 		}
 		&:before {
 			color: color(black);
-			font-size: iconSize(1);
+			font-size: size(2);
 		}
 	}
 	#{$this}__item {

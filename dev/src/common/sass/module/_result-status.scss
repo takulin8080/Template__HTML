@@ -31,7 +31,7 @@
 			cursor: pointer;
 			@include materialDesignIcon('arrow_drop_down', after);
 			&:after {
-				font-size: iconSize(1);
+				font-size: size(2);
 				color: color(gray, 400);
 			}
 		}

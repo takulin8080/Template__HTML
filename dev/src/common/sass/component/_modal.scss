@@ -38,7 +38,7 @@
 		right: size(1);
 		@include materialDesignIcon('cancel');
 		&:before {
-			font-size: iconSize(3);
+			font-size: size(5);
 			line-height: 1;
 			background: color(white);
 			border-radius: 100%;

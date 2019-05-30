@@ -32,10 +32,6 @@
 			"layout": "dev",
 			"title": "hoverimg [マウスオーバー画像変更]"
 		},
-		"dev/column": {
-			"layout": "dev",
-			"title": "column [横並びレイアウト]"
-		},
 		"dev/active": {
 			"layout": "dev",
 			"title": "active [data-is-active操作]"
@@ -47,10 +43,6 @@
 		"dev/modal": {
 			"layout": "dev",
 			"title": "modal"
-		},
-		"dev/hide": {
-			"layout": "dev",
-			"title": "hide [画面サイズによる非表示化]"
 		}
 	}
 }
