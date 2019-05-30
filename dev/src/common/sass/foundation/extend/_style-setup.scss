@@ -4,43 +4,17 @@
 /*
 htmlタグの基本スタイルを適応。
 */
-%styleSetup {
+%styleSetup,
+[data-style-setup] {
 	/* heading ======================================== */
 	h1 {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: fontSize(2);
-		color: color(text);
-		margin-top: size(4);
-		padding-bottom: size(4);
-		border-bottom: 1px solid color(gray, 300);
-		margin-bottom: size(4);
+		@extend %heading1;
 	}
 	h2 {
-		font-size: fontSize(3);
-		color: color(text);
-		margin-top: size(4);
-		margin-bottom: size(2);
+		@extend %heading2;
 	}
 	h3 {
-		font-size: fontSize(2);
-		color: color(text);
-		margin-top: size(4);
-		margin-bottom: size(2);
-	}
-	h4 {
-		font-size: fontSize(1);
-		color: color(text, -1);
-		font-weight: bold;
-		margin-top: size(4);
-		margin-bottom: size(2);
-	}
-	h5 {
-		font-size: fontSize(-1);
-		color: color(text, -1);
-		font-weight: bold;
-		margin-top: size(4);
+		@extend %heading3;
 	}
 	/* paragraph ======================================== */
 	p {
