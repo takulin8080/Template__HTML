@@ -21,7 +21,8 @@
 		white-space: nowrap;
 	}
 	&__link {
-		display: block;
+		display: flex;
+		align-items: center;
 		line-height: size(5);
 		text-decoration: none;
 		&:hover {
@@ -30,7 +31,7 @@
 		}
 		@include materialDesignIcon('chevron_right', 'after');
 		&:after {
-			font-size: iconSize(-1);
+			font-size: size(2);
 			margin-left: size(1);
 			margin-right: size(1);
 		}

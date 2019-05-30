@@ -5,5 +5,11 @@ index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<%- include(ejspath + '_module/result-status') %>
+<%- include(ejspath + '_module/pagination') %>
+<button data-button="sm"><i class="material-icons">accessibility</i>テスト</button>
+<button data-button="md"><i class="material-icons">accessibility</i>テスト</button>
+<button data-button="lg"><i class="material-icons">accessibility</i>テスト</button>
+<div class="test">テスト</div>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
