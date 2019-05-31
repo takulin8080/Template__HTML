@@ -1,7 +1,8 @@
 .DS_Store
 dev/node_modules
-dev/design/*
-!dev/design/*.xd
+dev/design/assets
+dev/design/material
+dev/design/src
 dev/dst
 dev/src/_data.json
 dev/src/common/sass/component/_icon.scss
