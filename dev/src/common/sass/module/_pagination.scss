@@ -5,13 +5,14 @@
 	$this: &;
 	margin: size(4) auto;
 	text-align: center;
-	&__inner {
+	& > .inner {
 		display: inline-flex;
 		border-radius: size(1);
 		overflow: hidden;
 		@include elevation(1);
 	}
-	&__link {
+	/* link ======================================== */
+	#{$this}__link {
 		border: 0;
 		font-size: fontSize(-1);
 		padding: size(1) size(2);
