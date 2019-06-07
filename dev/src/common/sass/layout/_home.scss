@@ -5,7 +5,9 @@ body[data-layout='home'] {
 	@include loadingAnimation();
 	/* contents ======================================== */
 	.contents {
-		& > .inner {}
+		& > .inner {
+			@extend %wrap;
+		}
 		/* main-contents ---------------------------------------- */
 		.main-contents {
 			& > .inner {}

@@ -4,7 +4,9 @@
 body[data-layout='article'] {
 	/* contents ======================================== */
 	.contents {
-		& > .inner {}
+		& > .inner {
+			@extend %wrap;
+		}
 		/* main-contents ---------------------------------------- */
 		.main-contents {
 			& > .inner {}
