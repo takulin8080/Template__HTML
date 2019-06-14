@@ -26,7 +26,7 @@ if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = 
 			<%- include(ejspath + '_data/json-ld/_LocalBusiness') %>
 		<% } %>
 		<%# BreadcrumbList ---------------------------------------- %>
-		<% if (BreadcrumbList) { %>
+		<% if (BreadcrumbList && pageModifier != 'index' && pageModifier != 'home') { %>
 			<%- include(ejspath + '_data/json-ld/_BreadcrumbList') %>,
 		<% } %>
 		<%# SiteNavigationElement ---------------------------------------- %>

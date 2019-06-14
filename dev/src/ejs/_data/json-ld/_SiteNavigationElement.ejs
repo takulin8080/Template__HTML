@@ -21,7 +21,11 @@ var ejspath = '../../';
 	"@type": "SiteNavigationElement",
 	"name": [
 		<% objArray.forEach(function(key, index) { %>
-			"<%- page[key].title %>"
+			<% if (!index) { %>
+				"<%- data.schema.WebSite.name %>"
+			<% } else { %>
+				"<%- page[key].title %>"
+			<% } %>
 			<% if( index != objArray.length - 1 ){ %>
 				,
 			<% } %>
