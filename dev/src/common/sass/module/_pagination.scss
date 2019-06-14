@@ -3,7 +3,7 @@
 /* ============================================================================================== */
 .pagination {
 	$this: &;
-	margin: size(4) auto;
+	margin: size(6) auto;
 	text-align: center;
 	& > .inner {
 		display: inline-flex;
