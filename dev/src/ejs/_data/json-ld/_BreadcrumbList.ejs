@@ -4,7 +4,6 @@ _data/json-ld/BreadcrumbList
 =====================================================================================================
 %>
 <%
-var pos = 1;
 var ejspath = '../../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
@@ -12,6 +11,7 @@ var ejspath = '../../';
 	"@context": "http://schema.org",
 	"@type": "BreadcrumbList",
 	"itemListElement": [
+		<% var pos = 1 %>
 		<% parent.forEach(function(key, index) { %>
 			<% if (page[key]) { %>
 				{
@@ -19,7 +19,12 @@ var ejspath = '../../';
 					"position": <%- pos %>,
 					"item": {
 						"@id": "<%- data.schema.WebSite.url %><%- page[key].absUrl %>",
-						"name": "<%- page[key].title %>"
+						"name":
+						<% if(!index) { %>
+							"<%- data.schema.WebSite.name %>"
+						<% } else { %>
+							"<%- page[key].title %>"
+						<% } %>
 					}
 				},
 				<% pos++ %>
