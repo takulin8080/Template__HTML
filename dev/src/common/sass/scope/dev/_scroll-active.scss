@@ -3,7 +3,7 @@
 /* ============================================================================================== */
 body[data-modifier='dev scroll-active'] {
 	.exsample {
-		padding: size(2);
+		padding: size(3);
 		&[data-is-active~='true'] {
 			background: color(yellow, 500);
 		}

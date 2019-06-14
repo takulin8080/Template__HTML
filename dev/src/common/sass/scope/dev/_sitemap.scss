@@ -31,8 +31,11 @@ body[data-modifier='dev sitemap'] {
 		}
 		/* dev-sitemap ======================================== */
 		.dev-sitemap {
-			margin: 0 size(2);
-			&__items {}
+			&__items {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
 			&__item {
 				background: color(gray, 50);
 				padding: size(1);

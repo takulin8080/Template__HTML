@@ -3,8 +3,8 @@
 /* ============================================================================================== */
 body[data-modifier='dev active'] {
 	.exsample {
-		margin: size(2) 0;
-		padding: size(2);
+		margin: size(3) 0;
+		padding: size(3);
 		height: auto;
 		background: color(gray, 50);
 		&[data-is-active~='true'] {
