@@ -6,16 +6,17 @@
 $baseSize: 0.8rem;
 /* サイト最大幅の設定 ======================================== */
 $siteWidth: 1000px;
+/* サイト最小幅の設定 ======================================== */
+$siteWidthMin: 300px;
 /* レスポンシブの有効化 ======================================== */
 $responsive: true;
 /* imgフォルダパス ======================================== */
 $imgPath: '../img/';
 /* フォントの管理 ======================================== */
-@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
 $fontFamily: (
-	sansSerif: ('Arimo', 'Noto Sans JP', sans-serif),
+	sansSerif: ('Noto Sans JP', sans-serif),
 	serif: ('游明朝', YuMincho, 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'ＭＳ 明朝', serif),
 	roboto: ('Roboto Slab', sans-serif)
 );

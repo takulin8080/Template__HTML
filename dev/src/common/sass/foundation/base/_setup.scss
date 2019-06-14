@@ -7,11 +7,12 @@ html {
 body {
 	font-family: fontFamily(sansSerif);
 	@include fontSize(1);
+	color: color(text);
+	background: color(white);
+	min-width: $siteWidthMin;
 	@include respondTo(mdAndOver) {
 		@include fontSize(2);
 	}
-	color: color(text);
-	background: color(white);
 }
 img {
 	max-width: 100%;
