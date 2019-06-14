@@ -22,8 +22,8 @@
 	color: color(text);
 	font-size: fontSize(-1);
 	height: size(4);
-	padding-left: size(2);
-	padding-right: size(2);
+	padding-left: size(3);
+	padding-right: size(3);
 	@include elevation(1);
 	&:hover {
 		background: color(gray, 50);
@@ -67,8 +67,8 @@
 	&[data-button~='md'] {
 		font-size: fontSize(-1);
 		height: size(4);
-		padding-left: size(2);
-		padding-right: size(2);
+		padding-left: size(3);
+		padding-right: size(3);
 		&:after,
 		&:before,
 		i {
@@ -83,7 +83,7 @@
 		&:after,
 		&:before,
 		i {
-			font-size: size(2.5);
+			font-size: size(2);
 		}
 	}
 	&[data-button~='full'] {
@@ -137,7 +137,7 @@
 		justify-content: center;
 	}
 	[data-button] {
-		margin: 0 size(.5) size(2);
+		margin: 0 size(.5) size(3);
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
 		&[data-button~='lg'] {}
