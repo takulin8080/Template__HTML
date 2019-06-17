@@ -42,7 +42,7 @@ dev/sitemap
 <div class="dev-sitemap">
 	<ul class="dev-sitemap__items">
 		<% Object.keys(page).forEach(function(value, key){ %>
-			<% if (value.indexOf('dev')) { %>
+			<% if (value.indexOf('dev') && value.search(/^article\/[0-9]/)) { %>
 				<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 					<a class="dev-sitemap__link" href="<%- page[value].url %>">
 						<span class="dev-sitemap__url"><%- page[value].url %></span>

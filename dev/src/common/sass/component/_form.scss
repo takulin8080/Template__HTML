@@ -11,7 +11,7 @@ input[type='email'] {
 	background-color: color(gray, 50);
 	color: color(text);
 	margin-right: size(.5);
-	max-width: 30em;
+	max-width: 100%;
 }
 textarea {
 	@include fontSize(1);
@@ -21,7 +21,7 @@ textarea {
 	background-color: color(gray, 50);
 	color: color(text);
 	width: calc(100% - #{size(2)});
-	max-width: 30em;
+	max-width: 100%;
 	height: 10em;
 }
 select {
