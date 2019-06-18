@@ -26,88 +26,115 @@
 	padding-right: size(3);
 	@include elevation(1);
 	&:hover {
-		background: color(gray, 50);
+		background: color(gray, 100);
 		text-decoration: none;
 	}
 	&:active {
-		background: color(gray, 100);
+		background: color(gray, 50);
 	}
 	/* icon -------------------- */
 	&:before {
-		margin-left: size(-.5);
-		margin-right: size(1);
+		font-size: 1em;
+		margin-left: -.25em;
+		margin-right: 0.25em;
 	}
 	&:after {
-		margin-left: size(1);
-		margin-right: size(-.5);
+		font-size: 1em;
+		margin-left: 0.25em;
+		margin-right: -.25em;
 	}
 	i {
-		margin-left: size(-.5);
-		margin-right: size(.5);
+		font-size: 1em;
+		margin-left: -.25em;
+		margin-right: 0.25em;
 	}
 	&[data-button~='after-icon'] {
 		i {
 			order: 2;
-			margin-left: size(1);
-			margin-right: size(-.5);
+			margin-left: 0.25em;
+			margin-right: -.25em;
 		}
 	}
 	/* size ---------------------------------------- */
-	&[data-button~='sm'] {
-		font-size: fontSize(-2);
-		height: size(3);
-		padding-left: size(1.5);
-		padding-right: size(1.5);
-		&:after,
-		&:before,
-		i {
-			font-size: size(1.5);
-		}
+	&[data-button~='tiny'] {
+		font-size: fontSize(-3);
+		height: 2em;
+		padding: 0 1em;
 	}
-	&[data-button~='md'] {
+	&[data-button~='small'] {
 		font-size: fontSize(-1);
-		height: size(4);
-		padding-left: size(3);
-		padding-right: size(3);
-		&:after,
-		&:before,
-		i {
-			font-size: size(2);
-		}
+		height: 2em;
+		padding: 0 1.5em;
 	}
-	&[data-button~='lg'] {
+	&[data-button~='middle'] {
 		font-size: fontSize(1);
-		height: size(5);
-		padding-left: size(4);
-		padding-right: size(4);
-		&:after,
-		&:before,
-		i {
-			font-size: size(2);
-		}
+		height: 2.5em;
+		padding: 0.5em 1.5em;
+	}
+	&[data-button~='large'] {
+		font-size: fontSize(3);
+		height: 2.5em;
+		padding: 0.5em 2em;
+	}
+	&[data-button~='huge'] {
+		font-size: fontSize(5);
+		height: 2em;
+		padding: 0.5em 2em;
 	}
 	&[data-button~='full'] {
 		width: 100%;
 		display: block;
 	}
 	/* sign color ---------------------------------------- */
-	@mixin buttonSignColor($sign) {
-		&[data-button~="#{$sign}"] {
-			color: color(#{$sign}, 50);
-			background: linear-gradient(color(#{$sign}, 700), color(#{$sign}, 800));
+	@each $modifier, $color in map-get($colorPalette, sign) {
+		&[data-button~="#{$modifier}"] {
+			color: color(text-white);
+			background: linear-gradient(rgba(color(sign, #{$modifier}), .85), rgba(color(sign, #{$modifier}), 1));
 			&:hover {
-				background: color(#{$sign}, 700);
+				background: rgba(color(sign, #{$modifier}), 1);
 			}
 			&:active {
-				background: color(#{$sign}, 800);
+				background: rgba(color(sign, #{$modifier}), .85);
+			}
+			&[data-button~="frame"] {
+				background: color(white);
+				color: rgba(color(sign, #{$modifier}), 1);
+				border: 2px solid rgba(color(sign, #{$modifier}), 1);
+				@include elevation(0);
+				&:hover {
+					background: rgba(color(sign, #{$modifier}), .05);
+				}
+				&:active {
+					background: rgba(color(sign, #{$modifier}), .1);
+				}
 			}
 		}
 	}
-	@include buttonSignColor(info);
-	@include buttonSignColor(success);
-	@include buttonSignColor(warning);
-	@include buttonSignColor(danger);
 	/* project color ---------------------------------------- */
+	@each $modifier, $color in map-get($colorPalette, project) {
+		&[data-button~="#{$modifier}"] {
+			color: color(text-white);
+			background: linear-gradient(rgba(color(project, #{$modifier}), .85), rgba(color(project, #{$modifier}), 1));
+			&:hover {
+				background: rgba(color(project, #{$modifier}), 1);
+			}
+			&:active {
+				background: rgba(color(project, #{$modifier}), .85);
+			}
+			&[data-button~="frame"] {
+				background: color(white);
+				color: rgba(color(project, #{$modifier}), 1);
+				border: 2px solid rgba(color(project, #{$modifier}), 1);
+				@include elevation(0);
+				&:hover {
+					background: rgba(color(project, #{$modifier}), .05);
+				}
+				&:active {
+					background: rgba(color(project, #{$modifier}), .1);
+				}
+			}
+		}
+	}
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;

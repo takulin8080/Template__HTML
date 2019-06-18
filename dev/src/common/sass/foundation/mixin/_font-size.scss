@@ -4,28 +4,24 @@
 /*
 font-sizeとそれに合わせたline-heightを出力。
 */
-@mixin fontSize($num: default) {
+@mixin fontSize($num: 1) {
 	font-size: fontSize($num);
+	letter-spacing: 0.05em;
 	@if $num == 1 {
-		line-height: 1.85;
-		letter-spacing: 0.05em;
+		line-height: 2;
 	} @else if $num == -1 {
-		line-height: 1.75;
-		letter-spacing: 0.05em;
+		line-height: 2;
 	} @else if $num == -2 {
-		line-height: 1.65;
-		letter-spacing: 0.05em;
+		line-height: 2;
 	} @else if $num == -3 {
-		line-height: 1.55;
-		letter-spacing: 0.05em;
+		line-height: 2.2;
 	} @else if $num == 2 {
-		line-height: 1.75;
-		letter-spacing: 0.05em;
+		line-height: 2;
 	} @else if $num == 3 {
-		line-height: 1.65;
-		letter-spacing: 0.05em;
-	} @else {
-		line-height: 1.85;
-		letter-spacing: 0.05em;
+		line-height: 2;
+	} @else if $num == 4 {
+		line-height: 1.8;
+	} @else if $num == 5 {
+		line-height: 1.8;
 	}
 }
