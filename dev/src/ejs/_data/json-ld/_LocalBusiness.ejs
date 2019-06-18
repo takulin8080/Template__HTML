@@ -23,20 +23,22 @@ _data/json-ld/LocalBusiness
 				<% } %>
 			<% }) %>
 		}
-		<% if( index != objArray.length - 1 ){ %>
+		<% if( index != objArrayId.length - 1 ){ %>
 		,
 		<% } %>
 	<% }) %>
 <% } else { %>
-	"@context": "http://schema.org",
-	<% var obj = data.schema.LocalBusiness[objId] %>
-	<% var objArray = Object.keys(obj) %>
-	<% objArray.forEach(function(key, index) { %>
-		"<%- key %>": <% schemaValue(obj, key) %>
-		<% if( index != objArray.length - 1 ){ %>
-		,
-		<% } %>
-	<% }) %>
+	{
+		"@context": "http://schema.org",
+		<% var obj = data.schema.LocalBusiness[objId] %>
+		<% var objArray = Object.keys(obj) %>
+		<% objArray.forEach(function(key, index) { %>
+			"<%- key %>": <% schemaValue(obj, key) %>
+			<% if( index != objArray.length - 1 ){ %>
+			,
+			<% } %>
+		<% }) %>
+	}
 <% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% function schemaValue(obj, key) { %>
