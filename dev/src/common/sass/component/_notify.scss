@@ -8,31 +8,24 @@
 [data-notify] {
 	padding: size(1) size(2);
 	margin-bottom: size(2);
-	font-size: fontSize(-1);
 	background: color(gray, 50);
 	overflow: auto;
 	border-radius: size(.5);
 	& > *:last-child {
 		margin-bottom: 0;
 	}
-	/* box style ======================================== */
-	@mixin notifySignColor($sign) {
-		&[data-notify~="#{$sign}"] {
-			color: color(#{$sign}, 700);
-			background-color: color(#{$sign}, 50);
+	/* color ---------------------------------------- */
+	@each $modifier, $color in map-get($colorPalette, sign) {
+		&[data-notify~="#{$modifier}"] {
+			color: color(sign, #{$modifier});
+			background-color: rgba(color(sign, #{$modifier}), 0.1);
+			&[data-notify~='inline'] {
+				padding: 0;
+				margin: 0;
+				background: transparent;
+				overflow: visible;
+				border-radius: 0;
+			}
 		}
-	}
-	@include notifySignColor(info);
-	@include notifySignColor(success);
-	@include notifySignColor(warning);
-	@include notifySignColor(danger);
-	/* inline ======================================== */
-	&[data-notify~='inline'] {
-		padding: 0;
-		margin: 0;
-		font-size: fontSize(1);
-		background: transparent;
-		overflow: visible;
-		border-radius: 0;
 	}
 }

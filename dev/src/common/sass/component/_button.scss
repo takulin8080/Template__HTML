@@ -26,11 +26,11 @@
 	padding-right: size(3);
 	@include elevation(1);
 	&:hover {
-		background: color(gray, 50);
+		background: color(gray, 100);
 		text-decoration: none;
 	}
 	&:active {
-		background: color(gray, 100);
+		background: color(gray, 50);
 	}
 	/* icon -------------------- */
 	&:before {
@@ -91,23 +91,55 @@
 		display: block;
 	}
 	/* sign color ---------------------------------------- */
-	@mixin buttonSignColor($sign) {
-		&[data-button~="#{$sign}"] {
-			color: color(#{$sign}, 50);
-			background: linear-gradient(color(#{$sign}, 700), color(#{$sign}, 800));
+	@each $modifier, $color in map-get($colorPalette, sign) {
+		&[data-button~="#{$modifier}"] {
+			color: color(text-white);
+			background: linear-gradient(rgba(color(sign, #{$modifier}), .85), rgba(color(sign, #{$modifier}), 1));
 			&:hover {
-				background: color(#{$sign}, 700);
+				background: rgba(color(sign, #{$modifier}), 1);
 			}
 			&:active {
-				background: color(#{$sign}, 800);
+				background: rgba(color(sign, #{$modifier}), .85);
+			}
+			&[data-button~="frame"] {
+				background: color(white);
+				color: rgba(color(sign, #{$modifier}), 1);
+				border: 2px solid rgba(color(sign, #{$modifier}), 1);
+				@include elevation(0);
+				&:hover {
+					background: rgba(color(sign, #{$modifier}), .05);
+				}
+				&:active {
+					background: rgba(color(sign, #{$modifier}), .1);
+				}
 			}
 		}
 	}
-	@include buttonSignColor(info);
-	@include buttonSignColor(success);
-	@include buttonSignColor(warning);
-	@include buttonSignColor(danger);
 	/* project color ---------------------------------------- */
+	@each $modifier, $color in map-get($colorPalette, project) {
+		&[data-button~="#{$modifier}"] {
+			color: color(text-white);
+			background: linear-gradient(rgba(color(project, #{$modifier}), .85), rgba(color(project, #{$modifier}), 1));
+			&:hover {
+				background: rgba(color(project, #{$modifier}), 1);
+			}
+			&:active {
+				background: rgba(color(project, #{$modifier}), .85);
+			}
+			&[data-button~="frame"] {
+				background: color(white);
+				color: rgba(color(project, #{$modifier}), 1);
+				border: 2px solid rgba(color(project, #{$modifier}), 1);
+				@include elevation(0);
+				&:hover {
+					background: rgba(color(project, #{$modifier}), .05);
+				}
+				&:active {
+					background: rgba(color(project, #{$modifier}), .1);
+				}
+			}
+		}
+	}
 	/* uniq ---------------------------------------- */
 	&[data-button~='disabled'] {
 		cursor: default;
