@@ -11,6 +11,7 @@
 	background: color(gray, 50);
 	overflow: auto;
 	border-radius: size(.5);
+	@include fontSize(-1);
 	& > *:last-child {
 		margin-bottom: 0;
 	}
