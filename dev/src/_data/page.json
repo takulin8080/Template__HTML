@@ -18,6 +18,8 @@
 			"pageModifier": "",
 			"title": "pageExsample",
 			"description": "",
+			"BreadcrumbList": true,
+			"LocalBusiness": "exsample",
 			"schema": {
 				"@type": "WebPage",
 				"headline": "pageExsample"
@@ -29,6 +31,7 @@
 			"pageModifier": "",
 			"title": "articleIndex",
 			"description": "",
+			"BreadcrumbList": true,
 			"schema": {
 				"@type": "WebPage",
 				"headline": "articleIndex"
