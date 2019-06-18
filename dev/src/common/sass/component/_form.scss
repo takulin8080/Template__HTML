@@ -50,14 +50,14 @@ label {
 	&__items {
 		display: flex;
 		flex-wrap: wrap;
-		margin-bottom: size(3);
+		margin: size(3) 0;
 	}
 	&__title {
 		font-weight: bold;
 		color: color(text);
 		width: 20rem;
-		padding-bottom: size(3);
-		margin-bottom: size(3);
+		padding-bottom: 1em;
+		margin-bottom: 1em;
 		border-bottom: 1px solid color(gray, 200);
 		text-align: right;
 		&[data-modifier~='req'] {
@@ -76,8 +76,8 @@ label {
 		width: calc(100% - 20rem);
 		color: color(text, -1);
 		padding-left: size(4);
-		padding-bottom: size(3);
-		margin-bottom: size(3);
+		padding-bottom: 1em;
+		margin-bottom: 1em;
 		border-bottom: 1px solid color(gray, 200);
 	}
 	@if $responsive {
@@ -96,8 +96,8 @@ label {
 			&__desc {
 				width: 100%;
 				padding-left: 0;
-				padding-bottom: size(3);
-				margin-bottom: size(3);
+				padding-bottom: 1em;
+				margin-bottom: 1em;
 			}
 		}
 	}
