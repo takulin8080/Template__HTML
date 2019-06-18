@@ -11,23 +11,23 @@
 %heading2 {
 	@include fontSize(4);
 	font-weight: 700;
-	margin: 1em 0;
+	margin: 2em 0 1em;
 }
 [data-heading='3'],
 %heading3 {
 	@include fontSize(3);
 	font-weight: 700;
-	margin: 1em 0;
+	margin: 2em 0 1em;
 }
 [data-heading='4'],
 %heading4 {
 	@include fontSize(2);
 	font-weight: 700;
-	margin: 1em 0;
+	margin: 2em 0 1em;
 }
 [data-heading='5'],
 %heading5 {
 	@include fontSize(1);
 	font-weight: 700;
-	margin: 1em 0;
+	margin: 2em 0 1em;
 }
