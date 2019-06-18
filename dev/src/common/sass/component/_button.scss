@@ -34,57 +34,52 @@
 	}
 	/* icon -------------------- */
 	&:before {
-		margin-left: size(-.5);
-		margin-right: size(1);
+		font-size: 1em;
+		margin-left: -.25em;
+		margin-right: 0.25em;
 	}
 	&:after {
-		margin-left: size(1);
-		margin-right: size(-.5);
+		font-size: 1em;
+		margin-left: 0.25em;
+		margin-right: -.25em;
 	}
 	i {
-		margin-left: size(-.5);
-		margin-right: size(.5);
+		font-size: 1em;
+		margin-left: -.25em;
+		margin-right: 0.25em;
 	}
 	&[data-button~='after-icon'] {
 		i {
 			order: 2;
-			margin-left: size(1);
-			margin-right: size(-.5);
+			margin-left: 0.25em;
+			margin-right: -.25em;
 		}
 	}
 	/* size ---------------------------------------- */
-	&[data-button~='sm'] {
-		font-size: fontSize(-2);
-		height: size(3);
-		padding-left: size(1.5);
-		padding-right: size(1.5);
-		&:after,
-		&:before,
-		i {
-			font-size: size(1.5);
-		}
+	&[data-button~='tiny'] {
+		font-size: fontSize(-3);
+		height: 2em;
+		padding: 0 1em;
 	}
-	&[data-button~='md'] {
+	&[data-button~='small'] {
 		font-size: fontSize(-1);
-		height: size(4);
-		padding-left: size(3);
-		padding-right: size(3);
-		&:after,
-		&:before,
-		i {
-			font-size: size(2);
-		}
+		height: 2em;
+		padding: 0 1.5em;
 	}
-	&[data-button~='lg'] {
+	&[data-button~='middle'] {
 		font-size: fontSize(1);
-		height: size(5);
-		padding-left: size(4);
-		padding-right: size(4);
-		&:after,
-		&:before,
-		i {
-			font-size: size(2);
-		}
+		height: 2.5em;
+		padding: 0.5em 1.5em;
+	}
+	&[data-button~='large'] {
+		font-size: fontSize(3);
+		height: 2.5em;
+		padding: 0.5em 2em;
+	}
+	&[data-button~='huge'] {
+		font-size: fontSize(5);
+		height: 2em;
+		padding: 0.5em 2em;
 	}
 	&[data-button~='full'] {
 		width: 100%;

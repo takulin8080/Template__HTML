@@ -15,13 +15,12 @@ dev/button
 <button data-button="success">success</button>
 <button data-button="warning">warning</button>
 <button data-button="danger">danger</button>
-<button data-button="disabled">disabled</button>
-<button data-button="positive frame">positive</button>
-<button data-button="negative frame">negative</button>
-<button data-button="info frame">info</button>
-<button data-button="success frame">success</button>
-<button data-button="warning frame">warning</button>
-<button data-button="danger frame">danger</button>
+<button data-button="positive frame">positive frame</button>
+<button data-button="negative frame">negative frame</button>
+<button data-button="info frame">info frame</button>
+<button data-button="success frame">success frame</button>
+<button data-button="warning frame">warning frame</button>
+<button data-button="danger frame">danger frame</button>
 <h3 data-dev-heading="level3">project専用</h3>
 <button data-button="primary">primary</button>
 <button data-button="secondary">secondary</button>
@@ -29,45 +28,52 @@ dev/button
 <button data-button="primary frame">primary</button>
 <button data-button="secondary frame">secondary</button>
 <button data-button="accent frame">accent</button>
+<h3 data-dev-heading="level3">非稼動ボタン[操作不可]</h3>
+<button data-button="disabled">disabled</button>
 <h3 data-dev-heading="level3">サイズ</h3>
-<button data-button="info">デフォルト</button>
-<button data-button="success sm">small</button>
-<button data-button="warning md">middle</button>
-<button data-button="danger lg">large</button>
-<button data-button="full">full</button>
-<button data-button="full sm">full sm</button>
-<button data-button="full md">full md</button>
-<button data-button="full md">full lg</button>
+<button data-button>default[middle]</button>
+<button data-button="tiny">tiny</button>
+<button data-button="small">small</button>
+<button data-button="middle">middle</button>
+<button data-button="large">large</button>
+<button data-button="huge">huge</button>
+<button data-button="full tiny">full tiny</button>
+<button data-button="full small">full small</button>
+<button data-button="full middle">full middle</button>
+<button data-button="full large">full large</button>
+<button data-button="full huge">full huge</button>
 <h3 data-dev-heading="level3">icon使用サンプル [https://material.io/tools/icons]</h3>
-<button data-button><i class="material-icons">info</i>info</button>
-<button data-button="sm"><i class="material-icons">settings</i>settings</button>
-<button data-button="md"><i class="material-icons">shopping_cart</i>shopping_cart</button>
-<button data-button="lg"><i class="material-icons">search</i>search</button>
+<button data-button="tiny"><i class="material-icons">info</i>tiny</button>
+<button data-button="small"><i class="material-icons">info</i>small</button>
+<button data-button="middle"><i class="material-icons">info</i>middle</button>
+<button data-button="large"><i class="material-icons">info</i>large</button>
+<button data-button="huge"><i class="material-icons">info</i>huge</button>
 <h4 data-dev-heading="level4">右側に設置する場合は'data-button="after-icon"'を指定</h4>
-<button data-button="after-icon"><i class="material-icons">info</i>info</button>
-<button data-button="sm after-icon"><i class="material-icons">settings</i>settings</button>
-<button data-button="md after-icon"><i class="material-icons">shopping_cart</i>shopping_cart</button>
-<button data-button="lg after-icon"><i class="material-icons">search</i>search</button>
+<button data-button="tiny after-icon"><i class="material-icons">info</i>tiny</button>
+<button data-button="small after-icon"><i class="material-icons">info</i>small</button>
+<button data-button="middle after-icon"><i class="material-icons">info</i>middle</button>
+<button data-button="large after-icon"><i class="material-icons">info</i>large</button>
+<button data-button="huge after-icon"><i class="material-icons">info</i>huge</button>
 <h3 data-dev-heading="level3">data-button-group</h3>
 <div data-button-group>
-	<button data-button="info">デフォルト</button>
-	<button data-button="info">デフォルト</button>
-	<button data-button="info">デフォルト</button>
+	<button data-button>デフォルト</button>
+	<button data-button>デフォルト</button>
+	<button data-button>デフォルト</button>
 </div>
 <div data-button-group="left">
-	<button data-button="info">left</button>
-	<button data-button="info">left</button>
-	<button data-button="info">left</button>
+	<button data-button>left</button>
+	<button data-button>left</button>
+	<button data-button>left</button>
 </div>
 <div data-button-group="center">
-	<button data-button="info">center</button>
-	<button data-button="info">center</button>
-	<button data-button="info">center</button>
+	<button data-button>center</button>
+	<button data-button>center</button>
+	<button data-button>center</button>
 </div>
 <div data-button-group="right">
-	<button data-button="info">right</button>
-	<button data-button="info">right</button>
-	<button data-button="info">right</button>
+	<button data-button>right</button>
+	<button data-button>right</button>
+	<button data-button>right</button>
 </div>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'after'}) %>
