@@ -3,16 +3,34 @@
 _data/json-ld/LocalBusiness
 =====================================================================================================
 %>
-<%
-var obj = LocalBusiness;
-var objArray = obj;
-var ejspath = '../../';
-%>
+<% if (LocalBusiness) {
+	var objId = LocalBusiness;
+	if (objId instanceof Array) {
+		var objArrayId = objId;
+	}
+} %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<% objArray.forEach(function(key, index) { %>
+<% if (objArrayId) { %>
+	<% objArrayId.forEach(function(key, index) { %>
+		{
+			"@context": "http://schema.org",
+			<% var obj = data.schema.LocalBusiness[key] %>
+			<% var objArray = Object.keys(obj) %>
+			<% objArray.forEach(function(key, index) { %>
+				"<%- key %>": <% schemaValue(obj, key) %>
+				<% if( index != objArray.length - 1 ){ %>
+				,
+				<% } %>
+			<% }) %>
+		}
+		<% if( index != objArrayId.length - 1 ){ %>
+		,
+		<% } %>
+	<% }) %>
+<% } else { %>
 	{
 		"@context": "http://schema.org",
-		<% var obj = data.schema.LocalBusiness[key] %>
+		<% var obj = data.schema.LocalBusiness[objId] %>
 		<% var objArray = Object.keys(obj) %>
 		<% objArray.forEach(function(key, index) { %>
 			"<%- key %>": <% schemaValue(obj, key) %>
@@ -21,10 +39,7 @@ var ejspath = '../../';
 			<% } %>
 		<% }) %>
 	}
-	<% if( index != objArray.length - 1 ){ %>
-	,
-	<% } %>
-<% }) %>
+<% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% function schemaValue(obj, key) { %>
 	<% var obj = obj[key]; %>

@@ -22,6 +22,7 @@
 				"@type": "WebPage",
 				"headline": "pageExsample"
 			},
+			"LocalBusiness": ["exsample", "exsample"],
 			"progress": ""
 		},
 		"article/index": {
