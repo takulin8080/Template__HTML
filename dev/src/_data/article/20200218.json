@@ -1,0 +1,28 @@
+{
+	"page": {
+		"article/20200218": {
+			"public": true,
+			"layout": "article",
+			"pageModifier": "",
+			"title": "articleExsample",
+			"description": "",
+			"timePublished": "2020.2.18",
+			"timeModified": "2020.2.20",
+			"content": "<h2 data-heading=\"2\">Dummy Title</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><img src=\"https://picsum.photos/1200/675\" alt=\"\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+			"schema": {
+				"@type": "Article",
+				"headline": "articleExsample",
+				"image": {
+					"@type": "ImageObject",
+					"url": "https://picsum.photos/1200/800"
+				},
+				"datePublished": "2020-02-18T00:00:00+08:00",
+				"dateModified": "2020-02-18T00:00:00+08:00",
+				"author": "exsample",
+				"publisher": "exsample"
+			},
+			"LocalBusiness": "exsample",
+			"progress": ""
+		}
+	}
+}

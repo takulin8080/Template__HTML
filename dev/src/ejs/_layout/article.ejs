@@ -8,7 +8,7 @@ var ejspath = '../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%# before ======================================== %>
-<% if( modifier == 'before' ){ %>
+<% if( modifier == 'before' ) { %>
 <!DOCTYPE html>
 <html lang="ja">
 <% if (public) { %>
@@ -25,30 +25,42 @@ var ejspath = '../';
 			<main class="main-contents">
 				<div class="inner">
 					<article>
-						<h1>
-							<%- title %>
-						</h1>
-						<!-- time -->
-						<div class="time">
-							<time class="time__published" itemprop="dateCreated datePublished" datetime="<%- schema.datePublished %>">
-								<%- timePublished %></time>
-							<% if (timeModified) { %>
-							<time class="time__modified" itemprop="dateModified" datetime="<%- schema.dateModified %>">
-								<%- timeModified %></time>
-							<%} %>
-						</div>
-						<!-- /time -->
-					</article>
-					<% } %>
-					<%# after ======================================== %>
-					<% } else { %>
+						<header>
+							<!-- title -->
+							<div class="title">
+								<h1>
+									<%- title %>
+								</h1>
+							</div>
+							<!-- /title -->
+							<!-- time -->
+							<div class="time">
+								<time class="time__published" itemprop="dateCreated datePublished" datetime="<%- schema.datePublished %>">
+									<%- timePublished %></time>
+								<% if (timeModified) { %>
+								<time class="time__modified" itemprop="dateModified" datetime="<%- schema.dateModified %>">&nbsp;|&nbsp;UPDATE&thinsp;:&thinsp;
+									<%- timeModified %></time>
+								<% } %>
+							</div>
+							<!-- /time -->
+							<!-- image -->
+							<div class="image">
+								<img src="<%- schema.image.url %>" alt="<%- title %>">
+							</div>
+							<!-- /image -->
+						</header>
+						<%- content %>
+						<% } else { %>
 
-					<head>
-						<meta http-equiv="refresh" content="0; URL='<%- data.schema.WebSite.url %>'" />
-					</head>
-					<% } %>
-					<% if( modifier == 'after' ){ %>
-					<% if (public) { %>
+						<head>
+							<meta http-equiv="refresh" content="0; URL='<%- data.schema.WebSite.url %>'" />
+						</head>
+						<% } %>
+						<% } %>
+						<%# after ======================================== %>
+						<% if( modifier == 'after' ){ %>
+						<% if (public) { %>
+					</article>
 				</div>
 			</main>
 			<!-- /main-contents -->
