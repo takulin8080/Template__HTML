@@ -1,6 +1,7 @@
 {
 	"layout": [
 		"dev",
+		"error",
 		"default",
 		"article",
 		"home"
