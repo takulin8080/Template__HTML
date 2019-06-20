@@ -4,24 +4,25 @@ dev-link
 =====================================================================================================
 %>
 <%
-if (typeof modifier === 'undefined') { var modifier = ''; };
+
+if (typeof modifier === 'undefined') { var modifier = ''; };
 var ejspath = '../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- dev-link -->
 <% if(dev){ %>
-	<div class="dev-link">
-		<ul class="dev-link__items">
-			<li class="dev-link__item" data-modifier="index">
-				<a class="dev-link__link" title="<%- page['index'].title %>" href="<%- page['index'].url %>"></a>
-			</li>
-			<li class="dev-link__item" data-modifier="dev/sitemap">
-				<a class="dev-link__link" title="<%- page['dev/sitemap'].title %>" href="<%- page['dev/sitemap'].url %>"></a>
-			</li>
-			<li class="dev-link__item" data-modifier="dev/index">
-				<a class="dev-link__link" title="<%- page['dev/index'].title %>" href="<%- page['dev/index'].url %>"></a>
-			</li>
-		</ul>
-	</div>
+<div class="dev-link">
+	<ul class="dev-link__items">
+		<li class="dev-link__item" data-modifier="index">
+			<a class="dev-link__link" title="<%- page['index'].title %>" href="<%- page['index'].url %>"></a>
+		</li>
+		<li class="dev-link__item" data-modifier="dev/sitemap">
+			<a class="dev-link__link" title="<%- page['dev/sitemap'].title %>" href="<%- page['dev/sitemap'].url %>"></a>
+		</li>
+		<li class="dev-link__item" data-modifier="dev/index">
+			<a class="dev-link__link" title="<%- page['dev/index'].title %>" href="<%- page['dev/index'].url %>"></a>
+		</li>
+	</ul>
+</div>
 <% } %>
 <!-- /dev-link -->

@@ -20,10 +20,11 @@
 	border-radius: size(.5);
 	background: linear-gradient(color(gray, 50), color(gray, 100));
 	color: color(text);
-	font-size: fontSize(-1);
-	height: size(4);
-	padding-left: size(3);
-	padding-right: size(3);
+	font-size: fontSize(1);
+	font-weight: 600;
+	height: 2.5em;
+	padding: 0.5em 1.5em;
+	margin: 1em 0.25em;
 	@include elevation(1);
 	&:hover {
 		background: color(gray, 100);
@@ -73,28 +74,31 @@
 	}
 	&[data-button~='large'] {
 		font-size: fontSize(3);
+		border-radius: size(.75);
 		height: 2.5em;
 		padding: 0.5em 2em;
 	}
 	&[data-button~='huge'] {
 		font-size: fontSize(5);
+		border-radius: size(1);
 		height: 2em;
 		padding: 0.5em 2em;
 	}
 	&[data-button~='full'] {
 		width: 100%;
 		display: block;
+		margin: 1em 0;
 	}
 	/* sign color ---------------------------------------- */
 	@each $modifier, $color in map-get($colorPalette, sign) {
 		&[data-button~="#{$modifier}"] {
 			color: color(text-white);
-			background: linear-gradient(rgba(color(sign, #{$modifier}), .85), rgba(color(sign, #{$modifier}), 1));
+			background: linear-gradient(rgba(color(sign, #{$modifier}), 1), rgba(color(sign, #{$modifier}), 1));
 			&:hover {
-				background: rgba(color(sign, #{$modifier}), 1);
+				background: rgba(color(sign, #{$modifier}), .9);
 			}
 			&:active {
-				background: rgba(color(sign, #{$modifier}), .85);
+				background: rgba(color(sign, #{$modifier}), .8);
 			}
 			&[data-button~="frame"] {
 				background: color(white);
@@ -114,12 +118,12 @@
 	@each $modifier, $color in map-get($colorPalette, project) {
 		&[data-button~="#{$modifier}"] {
 			color: color(text-white);
-			background: linear-gradient(rgba(color(project, #{$modifier}), .85), rgba(color(project, #{$modifier}), 1));
+			background: linear-gradient(rgba(color(project, #{$modifier}), 1), rgba(color(project, #{$modifier}), 1));
 			&:hover {
-				background: rgba(color(project, #{$modifier}), 1);
+				background: rgba(color(project, #{$modifier}), .9);
 			}
 			&:active {
-				background: rgba(color(project, #{$modifier}), .85);
+				background: rgba(color(project, #{$modifier}), .8);
 			}
 			&[data-button~="frame"] {
 				background: color(white);
@@ -159,12 +163,10 @@
 		justify-content: flex-end;
 	}
 	@include respondTo(xs) {
-		margin-right: 0;
-		margin-left: 0;
 		justify-content: center;
 	}
 	[data-button] {
-		margin: 0 size(.5) size(3);
+		margin: 1em 0.5em;
 		&[data-button~='sm'] {}
 		&[data-button~='md'] {}
 		&[data-button~='lg'] {}
