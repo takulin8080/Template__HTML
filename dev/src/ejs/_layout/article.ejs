@@ -11,6 +11,7 @@ var ejspath = '../';
 <% if( modifier == 'before' ){ %>
 <!DOCTYPE html>
 <html lang="ja">
+<% if (public) { %>
 <%- include(ejspath + '_data/_head') %>
 
 <body data-modifier="<%- pageModifier %>" data-layout="<%- layout %>">
@@ -23,9 +24,31 @@ var ejspath = '../';
 			<!-- main-contents -->
 			<main class="main-contents">
 				<div class="inner">
+					<article>
+						<h1>
+							<%- title %>
+						</h1>
+						<!-- time -->
+						<div class="time">
+							<time class="time__published" itemprop="dateCreated datePublished" datetime="<%- schema.datePublished %>">
+								<%- timePublished %></time>
+							<% if (timeModified) { %>
+							<time class="time__modified" itemprop="dateModified" datetime="<%- schema.dateModified %>">
+								<%- timeModified %></time>
+							<%} %>
+						</div>
+						<!-- /time -->
+					</article>
 					<% } %>
 					<%# after ======================================== %>
+					<% } else { %>
+
+					<head>
+						<meta http-equiv="refresh" content="0; URL='<%- data.schema.WebSite.url %>'" />
+					</head>
+					<% } %>
 					<% if( modifier == 'after' ){ %>
+					<% if (public) { %>
 				</div>
 			</main>
 			<!-- /main-contents -->
@@ -43,6 +66,7 @@ var ejspath = '../';
 	<script src="<%- path.js %>bundle.js"></script>
 	<!-- /script -->
 </body>
+<% } %>
 
 </html>
 <% } %>
