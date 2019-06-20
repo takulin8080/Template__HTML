@@ -5,6 +5,14 @@
 		"article/index"
 	],
 	"page": {
+		"404": {
+			"layout": "error",
+			"pageModifier": "",
+			"title": "お探しのページが見つかりません Page not found",
+			"description": "",
+			"BreadcrumbList": false,
+			"progress": ""
+		},
 		"index": {
 			"layout": "home",
 			"pageModifier": "",
