@@ -13,9 +13,7 @@
 				"headline": "articleExsample",
 				"image": {
 					"@type": "ImageObject",
-					"url": "http://exsample.jp/common/article/20201221/image.png",
-					"height": 800,
-					"width": 800
+					"url": "http://exsample.jp/common/article/20201221/image.png"
 				},
 				"datePublished": "2020-12-21T00:00:00+08:00",
 				"dateModified": "2020-12-21T00:00:00+08:00",
