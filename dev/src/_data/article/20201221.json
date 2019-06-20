@@ -1,6 +1,7 @@
 {
 	"page": {
 		"article/20201221": {
+			"public": true,
 			"layout": "article",
 			"pageModifier": "",
 			"title": "articleExsample",

@@ -1,7 +1,7 @@
 {
 	"schema": {
 		"Organization": {
-			"exsample" : {
+			"exsample": {
 				"name": "OrganizationExsample",
 				"foundingDate": "2020",
 				"address": {

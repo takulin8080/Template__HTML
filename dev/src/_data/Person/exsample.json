@@ -1,7 +1,7 @@
 {
 	"schema": {
 		"Person": {
-			"exsample" : {
+			"exsample": {
 				"name": "PersonExsample",
 				"image": "http://www.PersonExsample.com/avatar.jpg",
 				"url": "http://www.PersonExsample.com"
