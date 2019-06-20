@@ -8,12 +8,13 @@
 			"description": "",
 			"timePublished": "2020.12.30",
 			"timeModified": "",
+			"content": "",
 			"schema": {
 				"@type": "Article",
 				"headline": "articleExsample",
 				"image": {
 					"@type": "ImageObject",
-					"url": "http://exsample.jp/common/article/20201221/image.png"
+					"url": "https://www.google.co.jp/common/article/20201221/image.png"
 				},
 				"datePublished": "2020-12-30T00:00:00+08:00",
 				"dateModified": "2020-12-30T00:00:00+08:00",

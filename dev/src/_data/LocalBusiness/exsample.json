@@ -13,7 +13,7 @@
 					"addressCountry": "JP"
 				},
 				"telephone": "000-0000-0000",
-				"url": "http://www.LocalBusinessExsample.com",
+				"url": "https://www.LocalBusinessExsample.com",
 				"openingHoursSpecification": {
 					"@type": "OpeningHoursSpecification",
 					"dayOfWeek": [
@@ -29,12 +29,12 @@
 				},
 				"logo": {
 					"@type": "ImageObject",
-					"url": "http://www.LocalBusinessExsample.com/logo.png",
+					"url": "https://www.LocalBusinessExsample.com/logo.png",
 					"width": 600,
 					"height": 60
 				},
 				"priceRange": "￥1,000～￥3,000",
-				"image": "http://www.LocalBusinessExsample.com/image.png",
+				"image": "https://www.LocalBusinessExsample.com/image.png",
 				"geo": {
 					"@type": "GeoCoordinates",
 					"latitude": "00.000000",

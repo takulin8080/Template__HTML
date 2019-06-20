@@ -13,10 +13,10 @@
 					"addressCountry": "JP"
 				},
 				"telephone": "000-0000-0000",
-				"url": "http://www.OrganizationExsample.com",
+				"url": "https://www.OrganizationExsample.com",
 				"logo": {
 					"@type": "ImageObject",
-					"url": "http://www.OrganizationExsample.com/logo.png",
+					"url": "https://www.OrganizationExsample.com/logo.png",
 					"width": 600,
 					"height": 60
 				},

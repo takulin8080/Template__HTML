@@ -1,11 +1,11 @@
 {
 	"schema": {
 		"WebSite": {
-			"@id": "http://www.exsample.com",
+			"@id": "https://www.google.co.jp",
 			"@type": "WebSite",
 			"name": "exsample",
 			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"url": "http://www.exsample.com"
+			"url": "https://www.google.co.jp"
 		},
 		"Corporation": {
 			"@type": "Corporation",
@@ -20,10 +20,10 @@
 				"addressCountry": "JP"
 			},
 			"telephone": "000-0000-0000",
-			"url": "http://www.Corporation.com",
+			"url": "https://www.Corporation.com",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "http://www.Corporation.com/logo.png",
+				"url": "https://www.Corporation.com/logo.png",
 				"width": 600,
 				"height": 60
 			},
