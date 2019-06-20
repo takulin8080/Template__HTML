@@ -17,7 +17,18 @@ body {
 img {
 	max-width: 100%;
 	height: auto;
-	vertical-align: middle;
+	vertical-align: bottom;
+}
+figure {
+	margin: 2em 0;
+	& > figcaption {
+		color: color(text, -1);
+		margin-top: 0.5em;
+		@include fontSize(-1);
+		@include respondTo(mdAndOver) {
+			@include fontSize(1);
+		}
+	}
 }
 p {
 	margin: 1em 0;

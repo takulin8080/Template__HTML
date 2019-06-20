@@ -3,84 +3,91 @@
 _data/_head
 =====================================================================================================
 %>
-<head <% if(data.og){ %>prefix="og: http://ogp.me/ns#<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article') { %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#<% } else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#<% }} else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#<% }}%>"<% } %>>
+
+<head <% if(data.og){ %>prefix="og: http://ogp.me/ns#
+	<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article') { %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#
+	<% } else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#
+	<% }} else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#
+	<% }}%>"
+	<% } %>>
 	<% if(data.gtag){ %>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', '<%- data.gtag %>');
-		</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', '<%- data.gtag %>');
+	</script>
 	<% } %>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>
 		<% if(parent.length){ %>
-			<%- title %>
-			|
-			<% parent.reverse().forEach(function(value, key) { %>
-				<% if (parent.length - 1 != key) {%>
-					<% if (page[value] && value != 'index') { %>
-						<%- page[value].title %>
-						|
-					<% } %>
-				<% } %>
-			<% }) %>
-			<% parent.reverse(); %>
+		<%- title %> |
+		<% parent.reverse().forEach(function(value, key) { %>
+		<% if (parent.length - 1 != key) {%>
+		<% if (page[value] && value != 'index') { %>
+		<%- page[value].title %> |
+		<% } %>
+		<% } %>
+		<% }) %>
+		<% parent.reverse(); %>
 		<% } %>
 		<%- data.schema.WebSite.name %>
 	</title>
 	<% if(description){ %>
-		<meta name="description" content="<%- description %>">
+	<meta name="description" content="<%- description %>">
 	<% } else { %>
-		<meta name="description" content="<%- data.schema.WebSite.description %>">
+	<meta name="description" content="<%- data.schema.WebSite.description %>">
 	<% } %>
 	<% if(data.og){ %>
-		<% if(parent.length){ %>
-			<% if (typeof data.schema.headline === 'undefined') { %>
-				<meta property="og:title" content="<%- title %>" />
-			<% } else { %>
-				<meta property="og:title" content="<%- data.schema.headline %>" />
-			<% } %>
-		<% } else { %>
-			<meta property="og:title" content="<%- data.schema.WebSite.name %>" />
-		<% } %>
-		<% if(description){ %>
-			<meta property="og:description" content="<%- description %>" />
-		<% } else { %>
-			<meta property="og:description" content="<%- data.schema.WebSite.description %>" />
-		<% } %>
-		<% if(parent.length){ %>
-			<meta property="og:url" content="<%- data.schema.WebSite.url %><%- absUrl %>" />
-			<meta property="og:type" content="article" />
-			<% if (typeof data.schema.image === 'undefined') { %>
-				<% if (typeof image != 'undefined') { %>
-					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img<%- absUrl.replace('.html', '') %>/image.png" />
-				<% } else { %>
-					<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
-				<% } %>
-			<% } else { %>
-				<meta property="og:image" content="<%- data.schema.image.url %>" />
-			<% } %>
-		<% } else { %>
-			<meta property="og:url" content="<%- data.schema.WebSite.url %>" />
-			<meta property="og:type" content="website" />
-			<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
-		<% } %>
-		<meta property="og:site_name" content="<%- data.schema.WebSite.name %>" />
-		<meta property="og:locale" content="<%- data.ogLocale %>" />
-		<% if(data.fbAppId){ %>
-			<meta property="fb:app_id" content="<%- data.fbAppId %>" />
-			<% if(parent.length){ if(schema['@type'] == 'Article') { %>
-				<meta property="article:publisher" content="<%- data.fbUrl %>">
-			<% }} %>
-		<% } %>
-		<% if(data.twitterSite){ %>
-			<meta name="twitter:site" content="@<%- data.twitterSite %>" />
-			<meta name="twitter:card" content="<%- data.twitterCard %>">
-		<% } %>
+	<% if(parent.length){ %>
+	<% if (typeof data.schema.headline === 'undefined') { %>
+	<meta property="og:title" content="<%- title %>" />
+	<% } else { %>
+	<meta property="og:title" content="<%- data.schema.headline %>" />
+	<% } %>
+	<% } else { %>
+	<meta property="og:title" content="<%- data.schema.WebSite.name %>" />
+	<% } %>
+	<% if(description){ %>
+	<meta property="og:description" content="<%- description %>" />
+	<% } else { %>
+	<meta property="og:description" content="<%- data.schema.WebSite.description %>" />
+	<% } %>
+	<% if(parent.length){ %>
+	<meta property="og:url" content="<%- data.schema.WebSite.url %><%- absUrl %>" />
+	<meta property="og:type" content="article" />
+	<% if (typeof data.schema.image === 'undefined') { %>
+	<% if (typeof image != 'undefined') { %>
+	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img<%- absUrl.replace('.html', '') %>/image.png" />
+	<% } else { %>
+	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
+	<% } %>
+	<% } else { %>
+	<meta property="og:image" content="<%- data.schema.image.url %>" />
+	<% } %>
+	<% } else { %>
+	<meta property="og:url" content="<%- data.schema.WebSite.url %>" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
+	<% } %>
+	<meta property="og:site_name" content="<%- data.schema.WebSite.name %>" />
+	<meta property="og:locale" content="<%- data.ogLocale %>" />
+	<% if(data.fbAppId){ %>
+	<meta property="fb:app_id" content="<%- data.fbAppId %>" />
+	<% if(parent.length){ if(schema['@type'] == 'Article') { %>
+	<meta property="article:publisher" content="<%- data.fbUrl %>">
+	<% }} %>
+	<% } %>
+	<% if(data.twitterSite){ %>
+	<meta name="twitter:site" content="@<%- data.twitterSite %>" />
+	<meta name="twitter:card" content="<%- data.twitterCard %>">
+	<% } %>
 	<% } %>
 	<link rel="stylesheet" href="<%- path.css %>style.css">
 </head>

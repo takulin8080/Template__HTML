@@ -6,9 +6,10 @@ dev/index
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% var item = function(file){ %>
-	<li>
-		<a href="<%- page['dev/' + file].url %>"><%- page['dev/' + file].title %></a>
-	</li>
+<li>
+	<a href="<%- page['dev/' + file].url %>">
+		<%- page['dev/' + file].title %></a>
+</li>
 <% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <h2 data-dev-heading="level2">サイトマップ</h2>

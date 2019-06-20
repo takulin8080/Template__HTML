@@ -8,39 +8,77 @@ var ejspath = '../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <%# before ======================================== %>
-<% if( modifier == 'before' ){ %>
-	<!DOCTYPE html>
-	<html lang="ja">
-		<%- include(ejspath + '_data/_head') %>
-		<body data-modifier="<%- pageModifier %>" data-layout="<%- layout %>">
-			<%- include(ejspath + '_module/header') %>
-			<%- include(ejspath + '_module/global-nav') %>
-			<%- include(ejspath + '_module/breadcrumb') %>
-			<!-- contents -->
-			<div class="contents">
+<% if( modifier == 'before' ) { %>
+<!DOCTYPE html>
+<html lang="ja">
+<% if (public) { %>
+<%- include(ejspath + '_data/_head') %>
+
+<body data-modifier="<%- pageModifier %>" data-layout="<%- layout %>">
+	<%- include(ejspath + '_module/header') %>
+	<%- include(ejspath + '_module/global-nav') %>
+	<%- include(ejspath + '_module/breadcrumb') %>
+	<!-- contents -->
+	<div class="contents">
+		<div class="inner">
+			<!-- main-contents -->
+			<main class="main-contents">
 				<div class="inner">
-					<!-- main-contents -->
-					<main class="main-contents">
-						<div class="inner">
-<% } %>
-<%# after ======================================== %>
-<% if( modifier == 'after' ){ %>
-						</div>
-					</main>
-					<!-- /main-contents -->
+					<article>
+						<header>
+							<!-- title -->
+							<div class="title">
+								<h1>
+									<%- title %>
+								</h1>
+							</div>
+							<!-- /title -->
+							<!-- time -->
+							<div class="time">
+								<time class="time__published" itemprop="dateCreated datePublished" datetime="<%- schema.datePublished %>">
+									<%- timePublished %></time>
+								<% if (timeModified) { %>
+								<time class="time__modified" itemprop="dateModified" datetime="<%- schema.dateModified %>">&nbsp;|&nbsp;UPDATE&thinsp;:&thinsp;
+									<%- timeModified %></time>
+								<% } %>
+							</div>
+							<!-- /time -->
+							<!-- image -->
+							<div class="image">
+								<img src="<%- schema.image.url %>" alt="<%- title %>">
+							</div>
+							<!-- /image -->
+						</header>
+						<%- content %>
+						<% } else { %>
+
+						<head>
+							<meta http-equiv="refresh" content="0; URL='<%- data.schema.WebSite.url %>'" />
+						</head>
+						<% } %>
+						<% } %>
+						<%# after ======================================== %>
+						<% if( modifier == 'after' ){ %>
+						<% if (public) { %>
+					</article>
 				</div>
-			</div>
-			<!-- /contents -->
-			<%- include(ejspath + '_module/footer') %>
-			<% if(data.jsonLd){ %>
-				<%- include(ejspath + '_data/_json-ld') %>
-			<% } %>
-			<% if(dev){ %>
-				<%- include(ejspath + '_module/dev-link') %>
-			<% } %>
-			<!-- script -->
-			<script src="<%- path.js %>bundle.js"></script>
-			<!-- /script -->
-		</body>
-	</html>
+			</main>
+			<!-- /main-contents -->
+		</div>
+	</div>
+	<!-- /contents -->
+	<%- include(ejspath + '_module/footer') %>
+	<% if(data.jsonLd){ %>
+	<%- include(ejspath + '_data/_json-ld') %>
+	<% } %>
+	<% if(dev){ %>
+	<%- include(ejspath + '_module/dev-link') %>
+	<% } %>
+	<!-- script -->
+	<script src="<%- path.js %>bundle.js"></script>
+	<!-- /script -->
+</body>
+<% } %>
+
+</html>
 <% } %>

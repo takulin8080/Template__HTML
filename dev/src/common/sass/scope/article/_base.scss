@@ -1,4 +1,38 @@
 /* ============================================================================================== */
 /* scope/article/base
 /* ============================================================================================== */
-body[data-modifier^='article'] {}
+body[data-modifier^='article'] {
+	.main-contents {
+		& > .inner {
+			& > article {
+				/* header ======================================== */
+				& > header {
+					display: flex;
+					flex-direction: column;
+					/* title ---------------------------------------- */
+					& > .title {
+						order: 1;
+						h1 {
+							@extend %heading1;
+							margin-bottom: 0;
+						}
+					}
+					/* time ---------------------------------------- */
+					& > .time {
+						order: 2;
+						@include fontSize(-1);
+						display: flex;
+						&__published {}
+						&__modified {}
+					}
+					/* image ---------------------------------------- */
+					& > .image {
+						order: 3;
+						margin: 2em 0;
+						img {}
+					}
+				}
+			}
+		}
+	}
+}
