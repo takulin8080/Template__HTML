@@ -15,8 +15,8 @@
 				"telephone": "000-0000-0000",
 				"url": "http://www.LocalBusinessExsample.com",
 				"openingHoursSpecification": {
-					"@type":"OpeningHoursSpecification",
-					"dayOfWeek":[
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": [
 						"Monday",
 						"Tuesday",
 						"Wednesday",
@@ -24,8 +24,8 @@
 						"Friday",
 						"Saturday"
 					],
-					"opens":"10:00",
-					"closes":"18:00"
+					"opens": "10:00",
+					"closes": "18:00"
 				},
 				"logo": {
 					"@type": "ImageObject",
