@@ -9,35 +9,39 @@ var ejspath = '../';
 <%# ---------------------------------------------------------------------------------------------- %>
 <%# before ======================================== %>
 <% if( modifier == 'before' ){ %>
-	<!DOCTYPE html>
-	<html lang="ja">
-		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-			<meta name="robots" content="noindex">
-			<title>
-				<%- title %>
-				|
-				<%- data.schema.WebSite.name %>
-			</title>
-			<link rel="stylesheet" href="<%- path.css %>style.css">
-		</head>
-		<body data-modifier="<%- pageModifier %>" data-layout="<%- layout %>">
-			<!-- dev-contents -->
-			<main class="dev-contents">
-				<h1 data-dev-heading="level1"><%- title %></h1>
-<% } %>
-<%# after ======================================== %>
-<% if( modifier == 'after' ){ %>
-				<% if (pageModifier != 'dev index') { %>
-					<a class="to-index" href="<%- page['dev/index'].url %>">&lt; 開発用ページ一覧に戻る</a>
-				<% } %>
-			</main>
-			<!-- /dev-contents -->
-			<%- include(ejspath + '_module/dev-link') %>
-			<!-- script -->
-			<script src="<%- path.js %>bundle.js"></script>
-			<!-- /script -->
-		</body>
-	</html>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="robots" content="noindex">
+	<title>
+		<%- title %> |
+		<%- data.schema.WebSite.name %>
+	</title>
+	<link rel="stylesheet" href="<%- path.css %>style.css">
+</head>
+
+<body data-modifier="<%- pageModifier %>" data-layout="<%- layout %>">
+	<!-- dev-contents -->
+	<main class="dev-contents">
+		<h1 data-dev-heading="level1">
+			<%- title %>
+		</h1>
+		<% } %>
+		<%# after ======================================== %>
+		<% if( modifier == 'after' ){ %>
+		<% if (pageModifier != 'dev index') { %>
+		<a class="to-index" href="<%- page['dev/index'].url %>">&lt; 開発用ページ一覧に戻る</a>
+		<% } %>
+	</main>
+	<!-- /dev-contents -->
+	<%- include(ejspath + '_module/dev-link') %>
+	<!-- script -->
+	<script src="<%- path.js %>bundle.js"></script>
+	<!-- /script -->
+</body>
+
+</html>
 <% } %>

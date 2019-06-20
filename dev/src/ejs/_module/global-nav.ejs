@@ -9,9 +9,10 @@ var ejspath = '../';
 %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <% var item = function(file){ %>
-	<li class="global-nav__item" data-modifier="<%- file %>">
-		<a class="global-nav__link" href="<%- page[file].url %>"><%- page[file].title %></a>
-	</li>
+<li class="global-nav__item" data-modifier="<%- file %>">
+	<a class="global-nav__link" href="<%- page[file].url %>">
+		<%- page[file].title %></a>
+</li>
 <% } %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- global-nav -->
