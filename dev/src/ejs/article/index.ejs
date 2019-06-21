@@ -5,6 +5,9 @@ article/index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
+<h2 data-heading='2'>時間</h2>
+<p>
+</p>
 <!-- article-list -->
 <div class="article-list">
 	<ul class="article-list__items">
@@ -14,7 +17,7 @@ article/index
 		<li class="article-list__item">
 			<a class="article-list__link" href="<%- tarPage.url %>">
 				<span class="time">
-					<%-tarPage.timePublished %></span>
+					<%- tarPage.timePublished %></span>
 				<span class="title">
 					<%- tarPage.title %></span>
 			</a>
