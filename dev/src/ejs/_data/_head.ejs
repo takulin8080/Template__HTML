@@ -10,7 +10,7 @@ _data/_head
 	<% }} else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#
 	<% }}%>"
 	<% } %>>
-	<% if(data.gtag){ %>
+	<% if(data.gtag && !dev){ %>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
 	<script>
