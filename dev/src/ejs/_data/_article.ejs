@@ -1,0 +1,24 @@
+<%#
+=====================================================================================================
+_data/_article
+=====================================================================================================
+%>
+<%
+var articleTar = ['article', 'news'];
+var articleArray = [];
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<%
+Object.keys(articleTar).forEach(function(key) {
+	var articleCat = articleTar[key];
+	articleArray.push(articleCat);
+	articleArray[articleCat] = [];
+	Object.keys(page).forEach(function(value, key) {
+		if (!value.indexOf(articleCat + '/') && !~value.indexOf('index')) {
+			articleArray[articleCat].push(page[value]);
+		}
+	});
+});
+%>
+<%# ---------------------------------------------------------------------------------------------- %>
+<% article = articleArray; %>
