@@ -12,11 +12,11 @@ var ejspath = '../';
 <!-- breadcrumb -->
 <div class="breadcrumb">
 	<ul class="breadcrumb__items">
-		<% parent.forEach(function(value, key){ %>
-		<% if(page[value]) { %>
+		<% parent.forEach(function(index){ %>
+		<% if(page[index]) { %>
 		<li class="breadcrumb__item">
-			<a class="breadcrumb__link" href="<%- page[value].url %>">
-				<%- page[value].title %></a>
+			<a class="breadcrumb__link" href="<%- page[index].url %>">
+				<%- page[index].title %></a>
 		</li>
 		<% } %>
 		<% }) %>
