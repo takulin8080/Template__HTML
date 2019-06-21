@@ -5,27 +5,18 @@ article/index
 %>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
-<%
-var articleList = [];
-Object.keys(page).forEach(function(value, key) {
-	if (!value.indexOf('article/') && !~value.indexOf('index')) {
-		articleList.push(value);
-	}
-});
-%>
-<%# ---------------------------------------------------------------------------------------------- %>
 <!-- article-list -->
 <div class="article-list">
 	<ul class="article-list__items">
-		<% Object.keys(articleList).forEach(function(value, key){ %>
-		<% var tarPage = articleList[value]; %>
-		<% if (page[tarPage].public) { %>
+		<% Object.keys(article.article).forEach(function(value, key){ %>
+		<% var tarPage = article.article[key]; %>
+		<% if (tarPage.public) { %>
 		<li class="article-list__item">
-			<a class="article-list__link" href="<%- page[tarPage].url %>">
+			<a class="article-list__link" href="<%- tarPage.url %>">
 				<span class="time">
-					<%- page[tarPage].timePublished %></span>
+					<%-tarPage.timePublished %></span>
 				<span class="title">
-					<%- page[tarPage].title %></span>
+					<%- tarPage.title %></span>
 			</a>
 		</li>
 		<% } %>
