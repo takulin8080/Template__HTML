@@ -3,6 +3,8 @@
 _data/_head
 =====================================================================================================
 %>
+<% include(ejspath + '_data/_article'); %>
+<%# ---------------------------------------------------------------------------------------------- %>
 
 <head <% if(data.og && layout!='error' ){ %>prefix="og: http://ogp.me/ns#
 	<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article') { %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#

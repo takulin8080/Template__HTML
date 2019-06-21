@@ -10,7 +10,7 @@
 		"Corporation": {
 			"@type": "Corporation",
 			"name": "exsample",
-			"foundingDate": "2020",
+			"foundingDate": "2020.12.21",
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "南青山1-2-3",
