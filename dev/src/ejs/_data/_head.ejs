@@ -30,8 +30,8 @@ _data/_head
 	<title>
 		<% if(parent.length){ %>
 		<%- title %> |
-		<% parent.reverse().forEach(function(value, key) { %>
-		<% if (parent.length - 1 != key) {%>
+		<% parent.reverse().forEach(function(value, index) { %>
+		<% if (parent.length - 1 != index) {%>
 		<% if (page[value] && value != 'index') { %>
 		<%- page[value].title %> |
 		<% } %>

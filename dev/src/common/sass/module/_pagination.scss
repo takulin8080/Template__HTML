@@ -3,7 +3,7 @@
 /* ============================================================================================== */
 .pagination {
 	$this: &;
-	margin: size(6) auto;
+	margin: 2em auto;
 	text-align: center;
 	& > .inner {
 		display: inline-flex;
@@ -15,7 +15,12 @@
 	#{$this}__link {
 		border: 0;
 		font-size: fontSize(-1);
-		padding: size(1) size(2);
+		line-height: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: size(4);
+		height: size(4);
 		background: linear-gradient(color(gray, 50), color(gray, 100));
 		color: color(text);
 		border-right: 1px solid color(gray, 200);
@@ -24,7 +29,6 @@
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		line-height: 1;
 		&:hover {
 			background: color(gray, 50);
 			color: color(text);
@@ -37,20 +41,34 @@
 		&:visited {
 			color: color(text);
 		}
-		&[data-modifire~='current'] {
+		&[data-modifier~='current'] {
 			color: color(text, -2);
 			background: color(gray, 100);
 			&:active {
 				background: color(gray, 100);
 			}
 		}
-		&[data-modifire~='prev'] {
+		&[data-modifier~='prev'] {
+			@include materialDesignIcon('chevron_left');
+			&:before {
+				font-size: size(2);
+			}
+		}
+		&[data-modifier~='next'] {
+			@include materialDesignIcon('chevron_right');
+			&:before {
+				font-size: size(2);
+			}
+		}
+		&[data-modifier~='first'] {
+			min-width: size(5);
 			@include materialDesignIcon('first_page');
 			&:before {
 				font-size: size(2);
 			}
 		}
-		&[data-modifire~='next'] {
+		&[data-modifier~='last'] {
+			min-width: size(5);
 			@include materialDesignIcon('last_page');
 			&:before {
 				font-size: size(2);

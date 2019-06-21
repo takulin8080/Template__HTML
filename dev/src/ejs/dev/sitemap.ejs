@@ -9,7 +9,7 @@ dev/sitemap
 	pageUndoneNum = 0;
 	pageStopNum = 0;
 	pageNoneNum = 0;
-	Object.keys(page).forEach(function(value, key){
+	Object.keys(page).forEach(function(value){
 		if (value.indexOf('dev')) {
 			pageAllNum++;
 			if(page[value].progress == 'done') {
@@ -56,7 +56,7 @@ dev/sitemap
 <!-- dev-sitemap -->
 <div class="dev-sitemap">
 	<ul class="dev-sitemap__items">
-		<% Object.keys(page).forEach(function(value, key){ %>
+		<% Object.keys(page).forEach(function(value){ %>
 		<% if (value.indexOf('dev')) { %>
 		<li class="dev-sitemap__item" data-modifier="<%- page[value].progress %>">
 			<a class="dev-sitemap__link" href="<%- page[value].url %>">
