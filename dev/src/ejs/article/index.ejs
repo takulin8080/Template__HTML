@@ -3,6 +3,10 @@
 article/index
 =====================================================================================================
 %>
+<%
+	var date = new Date();
+	date = date.toISOString();
+%>
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- article-list -->
@@ -10,11 +14,11 @@ article/index
 	<ul class="article-list__items">
 		<% Object.keys(article.article).forEach(function(value, key){ %>
 		<% var tarPage = article.article[key]; %>
-		<% if (tarPage.public) { %>
+		<% if (tarPage.public && tarPage.schema.datePublished <= date && tarPage.schema.dateModified <= date) { %>
 		<li class="article-list__item">
 			<a class="article-list__link" href="<%- tarPage.url %>">
 				<span class="time">
-					<%-tarPage.timePublished %></span>
+					<%- tarPage.timePublished %></span>
 				<span class="title">
 					<%- tarPage.title %></span>
 			</a>
