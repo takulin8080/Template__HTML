@@ -12,7 +12,7 @@ if (typeof SiteNavigationElement === 'undefined') { var SiteNavigationElement = 
 <%# ---------------------------------------------------------------------------------------------- %>
 <!-- JSON-LD -->
 <script type="application/ld+json">
-	[<%# Page ---------------------------------------- %>
+	[<%# Page ======================================== %>
 		<% if (pageModifier != 'index' && pageModifier != 'home' && layout != 'error') { %>
 		<%- include(ejspath + '_data/json-ld/_Page') %>, <% } %>
 		<%# Corporation ---------------------------------------- %>
