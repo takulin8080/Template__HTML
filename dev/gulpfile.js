@@ -430,7 +430,13 @@ gulp.task('setupRelease', (done) => {
 	dstDir = '../release/';
 	done();
 });
-gulp.task('2 ============== RELEASE', gulp.series('setupRelease', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync'), (done) => {
+gulp.task('releaseDel', (done) => {
+	del(['dst/_data.json', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/component/_icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst', '../releace'], {
+		force: true
+	});
+	done();
+});
+gulp.task('2 ============== RELEASE', gulp.series('setupRelease', 'releaseDel', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync'), (done) => {
 	done();
 });
 // ==============================================================================================
