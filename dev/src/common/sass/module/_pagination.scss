@@ -5,7 +5,7 @@
 	$this: &;
 	margin: 2em auto;
 	text-align: center;
-	& > .inner {
+	&__inner {
 		display: inline-flex;
 		border-radius: size(1);
 		overflow: hidden;

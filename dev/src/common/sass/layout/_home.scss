@@ -5,20 +5,20 @@ body[data-layout='home'] {
 	@include loadingAnimation();
 	/* contents ======================================== */
 	.contents {
-		& > .inner {
+		&__inner {
 			@extend %wrap;
 		}
 		/* main-contents ---------------------------------------- */
 		.main-contents {
-			& > .inner {}
+			&__inner {}
 		}
 		/* sub-contents ---------------------------------------- */
 		.sub-contents:nth-of-type(1) {
-			& > .inner {}
+			&__inner {}
 		}
 		/* sub-contents ---------------------------------------- */
 		.sub-contents:nth-of-type(2) {
-			& > .inner {}
+			&__inner {}
 		}
 	}
 }
