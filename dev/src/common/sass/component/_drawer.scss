@@ -11,6 +11,7 @@
 @include drawer(bottom) { 下からスライド表示};
 @include drawer(left) { 左からスライド表示};
 @include drawer(zoom) { zoom in };
+@include drawer(fade) { fade in };
 ```
 */
 @mixin drawer($pos: left) {
@@ -58,7 +59,7 @@
 		&[data-is-active~="true"] {
 			transform: scale(1);
 		}
-	} @else if $pos == overlay {
+	} @else if $pos == fade {
 		top: 0;
 		left: 0;
 	}
