@@ -16,6 +16,7 @@ const webpackProdConfig = require('./webpack.prod.js');
 // setting
 // ==============================================================================================
 const relativePath = true;
+const projectUrl = 'https://www.google.co.jp';
 // ==============================================================================================
 // json
 // ==============================================================================================
@@ -388,6 +389,18 @@ gulp.task('doc', () => {
 	})).pipe($.changed(dst)).pipe(gulp.dest(dst));
 });
 // ==============================================================================================
+// sitemap
+// ==============================================================================================
+gulp.task('sitemap', () => {
+	const src = '../release/**/*.html';
+	const dst = '../release';
+	return gulp.src(src, {
+		read: false
+	}).pipe($.sitemap({
+		siteUrl: projectUrl
+	})).pipe(gulp.dest(dst));
+});
+// ==============================================================================================
 // watch
 // ==============================================================================================
 gulp.task('watch', (done) => {
@@ -395,6 +408,7 @@ gulp.task('watch', (done) => {
 	gulp.watch(['src/common/sass/**/*.scss', '!src/common/sass/component/_icon.scss'], gulp.task('sass'));
 	gulp.watch(['src/common/js/**/*'], gulp.task('js'));
 	gulp.watch(['src/common/img/**/*'], gulp.task('img'));
+	gulp.watch(['src/common/doc/**/*'], gulp.task('doc'));
 	done();
 });
 // ==============================================================================================
@@ -436,7 +450,7 @@ gulp.task('releaseDel', (done) => {
 	});
 	done();
 });
-gulp.task('2 ============== RELEASE', gulp.series('setupRelease', 'releaseDel', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync'), (done) => {
+gulp.task('2 ============== RELEASE', gulp.series('setupRelease', 'releaseDel', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync', 'sitemap'), (done) => {
 	done();
 });
 // ==============================================================================================

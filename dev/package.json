@@ -33,6 +33,7 @@
 		"gulp-rename": "^1.4.0",
 		"gulp-sass": "^4.0.2",
 		"gulp-sass-glob": "^1.0.9",
+		"gulp-sitemap": "^7.3.0",
 		"gulp-sourcemaps": "^2.6.5",
 		"import-glob-loader": "^1.1.0",
 		"mkdirp": "^0.5.1",
