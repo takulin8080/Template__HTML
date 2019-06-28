@@ -36,7 +36,7 @@
 		"gulp-sourcemaps": "^2.6.5",
 		"import-glob-loader": "^1.1.0",
 		"mkdirp": "^0.5.1",
-		"npm": "^6.9.0",
+		"npm": "^6.4.1",
 		"path": "^0.12.7",
 		"sass-loader": "^7.1.0",
 		"style-loader": "^0.23.1",
