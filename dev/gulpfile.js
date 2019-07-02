@@ -450,7 +450,7 @@ gulp.task('releaseDel', (done) => {
 	});
 	done();
 });
-gulp.task('2 ============== RELEASE', gulp.series('setupRelease', 'releaseDel', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync', 'sitemap'), (done) => {
+gulp.task('2 ============== RELEASE', gulp.series('releaseDel', 'setupRelease', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync', 'sitemap'), (done) => {
 	done();
 });
 // ==============================================================================================
