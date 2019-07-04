@@ -76,7 +76,7 @@ $colorPalette: (
 	// project color
 	project: (primary: rgb(0, 79, 64), secondary: rgb(0, 195, 164), accent: rgb(255, 0, 128)),
 	// sign color
-	sign: (positive: rgb(0, 191, 46), negative: rgb(240, 0, 21), info: rgb(0, 133, 214), success: rgb(0, 191, 46), danger: rgb(240, 0, 21), warning: rgb(255, 188, 0))
+	sign: (positive: rgb(30, 86, 31), success: rgb(30, 86, 31), negative: rgb(151, 57, 55), error: rgb(151, 57, 55), info: rgb(14, 86, 108), warning: rgb(122, 77, 5))
 );
 /* common color  ---------------------------------------- */
 $commonColorPalette: (
