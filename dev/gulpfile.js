@@ -433,7 +433,7 @@ gulp.task('setupDevelopment', (done) => {
 	dstDir = 'dst/';
 	done();
 });
-gulp.task('1 ============== DEVELOPMENT', gulp.series('setupDevelopment', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'watch', 'browserSync'), (done) => {
+gulp.task('_run', gulp.series('setupDevelopment', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'watch', 'browserSync'), (done) => {
 	done();
 });
 // ==============================================================================================
@@ -450,13 +450,13 @@ gulp.task('releaseDel', (done) => {
 	});
 	done();
 });
-gulp.task('2 ============== RELEASE', gulp.series('releaseDel', 'setupRelease', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync', 'sitemap'), (done) => {
+gulp.task('_release', gulp.series('releaseDel', 'setupRelease', gulp.parallel('html', 'sass', 'js', 'img', 'doc'), 'browserSync', 'sitemap'), (done) => {
 	done();
 });
 // ==============================================================================================
 // CLEAN
 // ==============================================================================================
-gulp.task('X ============== CLEAN', (done) => {
+gulp.task('_clean', (done) => {
 	del(['src/_data.json', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/component/_icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst'], {
 		force: true
 	});
