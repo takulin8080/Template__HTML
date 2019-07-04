@@ -90,7 +90,7 @@ _data/_head
 	<meta name="twitter:card" content="<%- data.twitterCard %>">
 	<% } %>
 	<% } %>
-	<link rel="stylesheet" href="<%- path.css %>style.css">
+	<% if(data.favicon){ %>
 	<link rel="apple-touch-icon" sizes="180x180" href="<%- path.img %>favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<%- path.img %>favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="<%- path.img %>favicon/favicon-16x16.png">
@@ -98,4 +98,6 @@ _data/_head
 	<link rel="mask-icon" href="<%- path.img %>favicon/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="theme-color" content="#ffffff">
+	<% } %>
+	<link rel="stylesheet" href="<%- path.css %>style.css">
 </head>

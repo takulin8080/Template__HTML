@@ -35,6 +35,7 @@
 	},
 	"copyright": "exsample.com",
 	"gtag": "",
+	"favicon": true,
 	"jsonLd": true,
 	"og": true,
 	"ogLocale": "ja_JP",
