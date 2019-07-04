@@ -10,7 +10,7 @@
 	margin-bottom: size(2);
 	background: color(gray, 50);
 	overflow: auto;
-	border-radius: size(.5);
+	border-radius: size(1);
 	@include fontSize(-1);
 	& > *:last-child {
 		margin-bottom: 0;
@@ -19,12 +19,13 @@
 	@each $modifier, $color in map-get($colorPalette, sign) {
 		&[data-notify~="#{$modifier}"] {
 			color: color(sign, #{$modifier});
-			background-color: rgba(color(sign, #{$modifier}), 0.1);
+			background-color: rgba(color(sign, #{$modifier}), 0.05);
+			border: 1px solid rgba(color(sign, #{$modifier}), 0.1);
 			&[data-notify~='inline'] {
 				padding: 0;
 				margin: 0;
-				background: transparent;
 				overflow: visible;
+				border: 0;
 				border-radius: 0;
 			}
 		}
