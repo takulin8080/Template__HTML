@@ -15,8 +15,7 @@ _data/_head
 	<% if(data.gtag && !dev){ %>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
+	<script> window.dataLayer = window.dataLayer || [];
 
 		function gtag() {
 			dataLayer.push(arguments);
@@ -92,4 +91,11 @@ _data/_head
 	<% } %>
 	<% } %>
 	<link rel="stylesheet" href="<%- path.css %>style.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="<%- path.img %>favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="<%- path.img %>favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="<%- path.img %>favicon/favicon-16x16.png">
+	<link rel="manifest" href="<%- path.img %>favicon/site.webmanifest">
+	<link rel="mask-icon" href="<%- path.img %>favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
 </head>
