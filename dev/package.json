@@ -6,9 +6,9 @@
 	"repository": "project",
 	"license": "ISC",
 	"devDependencies": {
-		"@babel/core": "^7.4.5",
-		"@babel/preset-env": "^7.4.5",
-		"acorn": "^6.1.1",
+		"@babel/core": "^7.5.0",
+		"@babel/preset-env": "^7.5.0",
+		"acorn": "^6.2.0",
 		"ajv": "^6.10.0",
 		"babel-loader": "^8.0.6",
 		"browser-sync": "^2.26.7",
