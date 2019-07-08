@@ -69,21 +69,19 @@ $transitionTime: (
 );
 /* 色の管理 ======================================== */
 $colorPalette: (
-	// base color
+	// base
+	white: (default: #FFFFFF),
+	black: (default: #000000),
+	gray: (50: #FAFAFA, 100: #F5F5F5, 200: #EEEEEE, 300: #E0E0E0, 400: #BDBDBD, 500: #9E9E9E, 600: #757575, 700: #616161, 800: #424242, 900: #212121),
 	text: (default: rgba(0, 0, 0, .87), 1: rgba(0, 0, 0, .87), -1: rgba(0, 0, 0, .54), -2: rgba(0, 0, 0, .38)),
 	text-white: (default: rgba(255, 255, 255, 1), 1: rgba(255, 255, 255, 1), -1: rgba(255, 255, 255, .7), -2: rgba(255, 255, 255, .3)),
 	link: (default: #1A0DAB, hover: #0D47A1, visited: #660099),
-	// project color
+	// project
 	project: (primary: #004D40, secondary: #00BFA5, accent: #EE1F7F),
-	// sign color
+	// button
+	buttonColor: (default: #E0E1E2, primary: #2185D0, secondary: #1B1C1D, red: #DB2828, orange: #F2711C, yellow: #FBBD08, olive: #B5CC18, green: #21BA45, teal: #00B5AD, blue: #2185D0, violet: #6435C9, purple: #A333C8, pink: #E03997, brown: #A5673F, gray: #767676, black: #1B1C1D),
+	// sign
 	sign: (positive: #00796B, success: #00796B, negative: #DB2828, error: #DB2828, info: #2185D0, warning: #A5673F)
 );
-/* common color  ---------------------------------------- */
-$commonColorPalette: (
-	white: (default: #FFFFFF),
-	black: (default: #000000),
-	gray: (50: #FAFAFA, 100: #F5F5F5, 200: #EEEEEE, 300: #E0E0E0, 400: #BDBDBD, 500: #9E9E9E, 600: #757575, 700: #616161, 800: #424242, 900: #212121)
-);
 /* merge vendor palette  ---------------------------------------- */
-$colorPalette: map-merge($colorPalette, $commonColorPalette);
 $colorPalette: map-merge($colorPalette, $materialDesignColor);
