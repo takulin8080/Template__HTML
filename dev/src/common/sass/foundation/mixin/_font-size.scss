@@ -17,6 +17,9 @@ font-sizeとそれに合わせたline-heightを出力。
 	} @else if $num == -2 {
 		line-height: 1.7;
 		letter-spacing: 0.05em;
+	} @else if $num == -3 {
+		line-height: 1.7;
+		letter-spacing: 0.05em;
 	} @else if $num == 2 {
 		line-height: 2;
 		letter-spacing: 0;
