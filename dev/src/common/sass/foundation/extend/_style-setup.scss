@@ -19,9 +19,6 @@ htmlタグの基本スタイルを適応。
 	h4 {
 		@extend %heading4;
 	}
-	h5 {
-		@extend %heading5;
-	}
 	/* paragraph ======================================== */
 	p {
 		margin: 1em 0;
