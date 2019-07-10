@@ -10,7 +10,9 @@
 			"pageModifier": "",
 			"title": "お探しのページが見つかりません Page not found",
 			"description": "",
-			"BreadcrumbList": false,
+			"schema": {
+				"@type": "WebPage"
+			},
 			"progress": ""
 		},
 		"index": {
@@ -27,10 +29,9 @@
 			"title": "pageExsample",
 			"description": "",
 			"schema": {
-				"@type": "WebPage",
-				"headline": "pageExsample"
+				"@type": "WebPage"
 			},
-			"LocalBusiness": ["exsample", "exsample"],
+			"LocalBusiness": ["exsample"],
 			"progress": ""
 		},
 		"article/index": {
@@ -39,8 +40,7 @@
 			"title": "articleIndex",
 			"description": "",
 			"schema": {
-				"@type": "WebPage",
-				"headline": "articleIndex"
+				"@type": "WebPage"
 			},
 			"progress": ""
 		}

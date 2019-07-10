@@ -28,13 +28,13 @@ var ejspath = '../';
 				</div>
 			</main>
 			<!-- /main-contents -->
+			<% if(data.jsonLd){ %>
+			<%- include(ejspath + '_data/_json-ld') %>
+			<% } %>
 		</div>
 	</div>
 	<!-- /contents -->
 	<%- include(ejspath + '_module/footer') %>
-	<% if(data.jsonLd){ %>
-	<%- include(ejspath + '_data/_json-ld') %>
-	<% } %>
 	<% if(dev){ %>
 	<%- include(ejspath + '_module/dev-link') %>
 	<% } %>
