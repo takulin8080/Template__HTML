@@ -153,7 +153,7 @@
 		cursor: default;
 		background: color(gray, 300);
 		color: color(text, -2);
-		box-shadow: none;
+		@include elevation(0);
 		&:hover {
 			background: color(gray, 300);
 		}
@@ -162,7 +162,7 @@
 		}
 	}
 }
-/* buttons ======================================== */
+/* data-button-group ======================================== */
 [data-button-group] {
 	display: flex;
 	flex-wrap: wrap;

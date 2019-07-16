@@ -1,8 +1,8 @@
 const path = require('path');
 const config = {
-	entry: './src/common/js/app.js',
+	entry: './src/common/js/script.js',
 	output: {
-		filename: 'bundle.js'
+		filename: 'script.js'
 	},
 	module: {
 		rules: [{
