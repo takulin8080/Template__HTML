@@ -3,30 +3,24 @@
 /* ============================================================================================== */
 [data-heading='1'],
 %heading1 {
-	@include fontSize(5);
+	@include fontSize(4);
 	font-weight: 700;
 	margin: 1em 0;
 }
 [data-heading='2'],
 %heading2 {
-	@include fontSize(4);
+	@include fontSize(3);
 	font-weight: 700;
 	margin: 2em 0 1em;
 }
 [data-heading='3'],
 %heading3 {
-	@include fontSize(3);
+	@include fontSize(2);
 	font-weight: 700;
 	margin: 2em 0 1em;
 }
 [data-heading='4'],
 %heading4 {
-	@include fontSize(2);
-	font-weight: 700;
-	margin: 2em 0 1em;
-}
-[data-heading='5'],
-%heading5 {
 	@include fontSize(1);
 	font-weight: 700;
 	margin: 2em 0 1em;

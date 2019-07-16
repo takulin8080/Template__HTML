@@ -3,6 +3,7 @@
 /* ============================================================================================== */
 body[data-layout='dev'] {
 	padding: 0;
+	display: block;
 	@include respondTo(mdAndOver) {
 		background: color(gray, 100);
 		padding: size(4) 0;

@@ -14,23 +14,26 @@ $responsive: true;
 $imgPath: '../img/';
 /* フォントの管理 ======================================== */
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import url(https://fonts.googleapis.com/css?family=Sawarabi+Mincho);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(https://fonts.googleapis.com/css?family=Oswald&display=swap);
 $fontFamily: (
-	sansSerif: ('Noto Sans JP', sans-serif),
-	serif: ('游明朝', YuMincho, 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'ＭＳ 明朝', serif),
-	roboto: ('Roboto Slab', sans-serif)
+	sansSerif: (Noto Sans JP, sans-serif),
+	serif: (Sawarabi Mincho, sans-serif),
+	roboto: (Roboto Slab, serif),
+	oswald: (Oswald, serif)
 );
 /* フォントサイズの管理 ======================================== */
 $fontSize: (
-	default: 1.4rem,
+	default: 1.6rem,
 	-3: 1rem,
 	-2: 1.1rem,
-	-1: 1.2rem,
-	1: 1.4rem,
-	2: 1.6rem,
-	3: 1.8rem,
-	4: 2.4rem,
-	5: 2.8rem
+	-1: 1.4rem,
+	1: 1.6rem,
+	2: 1.7rem,
+	3: 2.4rem,
+	4: 2.8rem,
+	5: 3.2rem
 );
 /* breakpoint ======================================== */
 $breakpoint: (
@@ -69,21 +72,19 @@ $transitionTime: (
 );
 /* 色の管理 ======================================== */
 $colorPalette: (
-	// base color
+	white: (default: #FFFFFF),
+	black: (default: #000000),
+	// text
 	text: (default: rgba(0, 0, 0, .87), 1: rgba(0, 0, 0, .87), -1: rgba(0, 0, 0, .54), -2: rgba(0, 0, 0, .38)),
 	text-white: (default: rgba(255, 255, 255, 1), 1: rgba(255, 255, 255, 1), -1: rgba(255, 255, 255, .7), -2: rgba(255, 255, 255, .3)),
-	link: (default: rgb(26, 13, 171), hover: rgb(13, 71, 161), visited: rgb(102, 0, 153)),
-	// project color
-	project: (primary: rgb(0, 79, 64), secondary: rgb(0, 195, 164), accent: rgb(255, 0, 128)),
-	// sign color
-	sign: (positive: rgb(0, 191, 46), negative: rgb(240, 0, 21), info: rgb(0, 133, 214), success: rgb(0, 191, 46), danger: rgb(240, 0, 21), warning: rgb(255, 188, 0))
-);
-/* common color  ---------------------------------------- */
-$commonColorPalette: (
-	white: (default: rgb(255, 255, 255)),
-	black: (default: rgb(0, 0, 0)),
-	gray: (50: rgb(250, 250, 250), 100: rgb(245, 245, 245), 200: rgb(238, 238, 238), 300: rgb(224, 224, 224), 400: rgb(189, 189, 189), 500: rgb(158, 158, 158), 600: rgb(117, 117, 117), 700: rgb(97, 97, 97), 800: rgb(66, 66, 66), 900: rgb(33, 33, 33))
+	// link
+	link: (default: #1A0DAB, hover: #0D47A1, visited: #660099),
+	// project
+	project: (primary: #004D40, secondary: #00BFA5, accent: #EE1F7F),
+	// button
+	buttonColor: (default: #E0E1E2, primary: #2185D0, secondary: #1B1C1D, red: #DB2828, orange: #F2711C, yellow: #FBBD08, olive: #B5CC18, green: #21BA45, teal: #00B5AD, blue: #2185D0, violet: #6435C9, purple: #A333C8, pink: #E03997, brown: #A5673F, gray: #767676, black: #1B1C1D),
+	// sign
+	sign: (positive: #00796B, success: #00796B, negative: #DB2828, error: #DB2828, info: #2185D0, warning: #A5673F)
 );
 /* merge vendor palette  ---------------------------------------- */
-$colorPalette: map-merge($colorPalette, $commonColorPalette);
 $colorPalette: map-merge($colorPalette, $materialDesignColor);

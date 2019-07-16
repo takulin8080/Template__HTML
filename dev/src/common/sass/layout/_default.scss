@@ -2,8 +2,16 @@
 /* layout/default
 /* ============================================================================================== */
 body {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	min-height: 100vh;
 	/* contents ======================================== */
 	.contents {
+		padding-bottom: size(12);
+		@include respondTo(mdAndOver) {
+			padding-bottom: size(16);
+		}
 		&__inner {
 			@extend %wrap;
 		}
@@ -13,11 +21,15 @@ body {
 		}
 		/* sub-contents ---------------------------------------- */
 		.sub-contents:nth-of-type(1) {
-			&__inner {}
+			& > .sub-contents__inner {}
 		}
 		/* sub-contents ---------------------------------------- */
 		.sub-contents:nth-of-type(2) {
-			&__inner {}
+			& > .sub-contents__inner {}
 		}
+	}
+	/* footer ======================================== */
+	& > .footer {
+		margin-top: auto;
 	}
 }

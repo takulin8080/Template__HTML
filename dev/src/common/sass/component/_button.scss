@@ -18,20 +18,14 @@
 	line-height: 1;
 	/* default style ---------------------------------------- */
 	border-radius: size(.5);
-	background: linear-gradient(color(gray, 50), color(gray, 100));
 	color: color(text);
 	font-size: fontSize(1);
-	font-weight: 600;
+	font-weight: 500;
 	height: 2.5em;
 	padding: 0.5em 1.5em;
 	margin: 1em 0.25em;
-	@include elevation(1);
 	&:hover {
-		background: color(gray, 100);
 		text-decoration: none;
-	}
-	&:active {
-		background: color(gray, 50);
 	}
 	/* icon -------------------- */
 	&:before {
@@ -57,7 +51,7 @@
 		}
 	}
 	/* size ---------------------------------------- */
-	&[data-button~='tiny'] {
+	&[data-button~='mini'] {
 		font-size: fontSize(-3);
 		height: 2em;
 		padding: 0 1em;
@@ -67,7 +61,7 @@
 		height: 2em;
 		padding: 0 1.5em;
 	}
-	&[data-button~='middle'] {
+	&[data-button~='regular'] {
 		font-size: fontSize(1);
 		height: 2.5em;
 		padding: 0.5em 1.5em;
@@ -89,65 +83,86 @@
 		display: block;
 		margin: 1em 0;
 	}
-	/* sign color ---------------------------------------- */
-	@each $modifier, $color in map-get($colorPalette, sign) {
-		&[data-button~="#{$modifier}"] {
-			color: color(text-white);
-			background: linear-gradient(rgba(color(sign, #{$modifier}), 1), rgba(color(sign, #{$modifier}), 1));
-			&:hover {
-				background: rgba(color(sign, #{$modifier}), .9);
-			}
-			&:active {
-				background: rgba(color(sign, #{$modifier}), .8);
-			}
-			&[data-button~="frame"] {
-				background: color(white);
-				color: rgba(color(sign, #{$modifier}), 1);
-				border: 2px solid rgba(color(sign, #{$modifier}), 1);
-				@include elevation(0);
+	/* button color ---------------------------------------- */
+	@each $modifier, $color in map-get($colorPalette, buttonColor) {
+		@if $modifier != 'default' {
+			&[data-button~="#{$modifier}"] {
+				color: color(text-white);
+				background: rgba($color, 1);
 				&:hover {
-					background: rgba(color(sign, #{$modifier}), .05);
+					background: rgba($color, .9);
 				}
 				&:active {
-					background: rgba(color(sign, #{$modifier}), .1);
+					background: rgba($color, .75);
+				}
+				&[data-button~="frame"] {
+					background: color(white);
+					color: rgba($color, 1);
+					border: 2px solid rgba($color, 1);
+					@include elevation(0);
+					&:hover {
+						background: rgba($color, .05);
+					}
+					&:active {
+						background: rgba($color, .1);
+					}
+				}
+			}
+		} @else {
+			&[data-button] {
+				background: rgba($color, 1);
+				&:hover {
+					background: rgba($color, .9);
+				}
+				&:active {
+					background: rgba($color, .75);
 				}
 			}
 		}
 	}
 	/* project color ---------------------------------------- */
 	@each $modifier, $color in map-get($colorPalette, project) {
-		&[data-button~="#{$modifier}"] {
-			color: color(text-white);
-			background: linear-gradient(rgba(color(project, #{$modifier}), 1), rgba(color(project, #{$modifier}), 1));
-			&:hover {
-				background: rgba(color(project, #{$modifier}), .9);
-			}
-			&:active {
-				background: rgba(color(project, #{$modifier}), .8);
-			}
-			&[data-button~="frame"] {
-				background: color(white);
-				color: rgba(color(project, #{$modifier}), 1);
-				border: 2px solid rgba(color(project, #{$modifier}), 1);
-				@include elevation(0);
+		&[data-button~="project"] {
+			&[data-button~="#{$modifier}"] {
+				color: color(text-white);
+				background: rgba($color, 1);
 				&:hover {
-					background: rgba(color(project, #{$modifier}), .05);
+					background: rgba($color, .9);
 				}
 				&:active {
-					background: rgba(color(project, #{$modifier}), .1);
+					background: rgba($color, .75);
+				}
+				&[data-button~="frame"] {
+					background: color(white);
+					color: rgba($color, 1);
+					border: 2px solid rgba($color, 1);
+					@include elevation(0);
+					&:hover {
+						background: rgba($color, .05);
+					}
+					&:active {
+						background: rgba($color, .1);
+					}
 				}
 			}
 		}
 	}
 	/* uniq ---------------------------------------- */
+	&[data-button]:disabled,
 	&[data-button~='disabled'] {
 		cursor: default;
 		background: color(gray, 300);
 		color: color(text, -2);
-		box-shadow: none;
+		@include elevation(0);
+		&:hover {
+			background: color(gray, 300);
+		}
+		&:active {
+			background: color(gray, 300);
+		}
 	}
 }
-/* buttons ======================================== */
+/* data-button-group ======================================== */
 [data-button-group] {
 	display: flex;
 	flex-wrap: wrap;

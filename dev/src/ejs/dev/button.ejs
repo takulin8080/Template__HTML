@@ -6,54 +6,85 @@ dev/button
 <%- include(ejspath + '_layout/' + layout, {modifier: 'before'}) %>
 <%# ---------------------------------------------------------------------------------------------- %>
 <h2 data-dev-heading="level2">設定方法</h2>
-<p>'data-button="値"'を指定することで、ボタンのデザインを適応。なお「a」または「button」で使用されることを想定。<br>また、'data-button-group'で加工ことでグループ化も可能。</p>
+<p>'data-button="値"'を指定することで、ボタンのデザインを適応。なお「a」または「button」で使用されることを想定。<br>また'data-button-group'で囲う事でグループ化も可能。</p>
 <h3 data-dev-heading="level3">基本スタイル</h3>
-<button data-button>デフォルト</button>
-<button data-button="positive">positive</button>
-<button data-button="negative">negative</button>
-<button data-button="info">info</button>
-<button data-button="success">success</button>
-<button data-button="warning">warning</button>
-<button data-button="danger">danger</button>
-<button data-button="positive frame">positive frame</button>
-<button data-button="negative frame">negative frame</button>
-<button data-button="info frame">info frame</button>
-<button data-button="success frame">success frame</button>
-<button data-button="warning frame">warning frame</button>
-<button data-button="danger frame">danger frame</button>
+<div>
+	<button data-button>デフォルト</button>
+	<button data-button="primary">primary</button>
+	<button data-button="secondary">secondary</button>
+	<button data-button="red">red</button>
+	<button data-button="orange">orange</button>
+	<button data-button="yellow">yellow</button>
+	<button data-button="olive">olive</button>
+	<button data-button="green">green</button>
+	<button data-button="teal">teal</button>
+	<button data-button="blue">blue</button>
+	<button data-button="violet">violet</button>
+	<button data-button="purple">purple</button>
+	<button data-button="pink">pink</button>
+	<button data-button="brown">brown</button>
+	<button data-button="gray">gray</button>
+	<button data-button="black">black</button>
+	<button data-button="primary frame">primary</button>
+	<button data-button="secondary frame">secondary</button>
+	<button data-button="red frame">red</button>
+	<button data-button="orange frame">orange</button>
+	<button data-button="yellow frame">yellow</button>
+	<button data-button="olive frame">olive</button>
+	<button data-button="green frame">green</button>
+	<button data-button="teal frame">teal</button>
+	<button data-button="blue frame">blue</button>
+	<button data-button="violet frame">violet</button>
+	<button data-button="purple frame">purple</button>
+	<button data-button="pink frame">pink</button>
+	<button data-button="brown frame">brown</button>
+	<button data-button="gray frame">gray</button>
+	<button data-button="black frame">black</button>
+</div>
 <h3 data-dev-heading="level3">project専用</h3>
-<button data-button="primary">primary</button>
-<button data-button="secondary">secondary</button>
-<button data-button="accent">accent</button>
-<button data-button="primary frame">primary</button>
-<button data-button="secondary frame">secondary</button>
-<button data-button="accent frame">accent</button>
+<div>
+	<button data-button="project primary">project primary</button>
+	<button data-button="project secondary">project secondary</button>
+	<button data-button="project accent">project accent</button>
+	<button data-button="project primary frame">project primary</button>
+	<button data-button="project secondary frame">project secondary</button>
+	<button data-button="project accent frame">project accent</button>
+</div>
 <h3 data-dev-heading="level3">非稼動ボタン[操作不可]</h3>
-<button data-button="disabled">disabled</button>
+<div>
+	<button data-button disabled>button disabled</button>
+	<button data-button="disabled">data-button="disabled"</button>
+</div>
 <h3 data-dev-heading="level3">サイズ</h3>
-<button data-button>default[middle]</button>
-<button data-button="tiny">tiny</button>
-<button data-button="small">small</button>
-<button data-button="middle">middle</button>
-<button data-button="large">large</button>
-<button data-button="huge">huge</button>
-<button data-button="full tiny">full tiny</button>
-<button data-button="full small">full small</button>
-<button data-button="full middle">full middle</button>
-<button data-button="full large">full large</button>
-<button data-button="full huge">full huge</button>
+<div>
+	<button data-button>default[regular]</button>
+	<button data-button="mini">mini</button>
+	<button data-button="small">small</button>
+	<button data-button="regular">regular</button>
+	<button data-button="large">large</button>
+	<button data-button="huge">huge</button>
+	<button data-button="full mini">full mini</button>
+	<button data-button="full small">full small</button>
+	<button data-button="full regular">full regular</button>
+	<button data-button="full large">full large</button>
+	<button data-button="full huge">full huge</button>
+</div>
 <h3 data-dev-heading="level3">icon使用サンプル [https://material.io/tools/icons]</h3>
-<button data-button="tiny"><i class="material-icons">info</i>tiny</button>
-<button data-button="small"><i class="material-icons">info</i>small</button>
-<button data-button="middle"><i class="material-icons">info</i>middle</button>
-<button data-button="large"><i class="material-icons">info</i>large</button>
-<button data-button="huge"><i class="material-icons">info</i>huge</button>
+<div>
+	<button data-button="mini"><i class="material-icons">info</i>mini</button>
+	<button data-button="small"><i class="material-icons">info</i>small</button>
+	<button data-button="regular"><i class="material-icons">info</i>regular</button>
+	<button data-button="large"><i class="material-icons">info</i>large</button>
+	<button data-button="huge"><i class="material-icons">info</i>huge</button>
+</div>
 <h4 data-dev-heading="level4">右側に設置する場合は'data-button="after-icon"'を指定</h4>
-<button data-button="tiny after-icon"><i class="material-icons">info</i>tiny</button>
-<button data-button="small after-icon"><i class="material-icons">info</i>small</button>
-<button data-button="middle after-icon"><i class="material-icons">info</i>middle</button>
-<button data-button="large after-icon"><i class="material-icons">info</i>large</button>
-<button data-button="huge after-icon"><i class="material-icons">info</i>huge</button>
+<div>
+	<button data-button="mini after-icon"><i class="material-icons">info</i>mini</button>
+	<button data-button="small after-icon"><i class="material-icons">info</i>small</button>
+	<button data-button="regular after-icon"><i class="material-icons">info</i>regular</button>
+	<button data-button="large after-icon"><i class="material-icons">info</i>large</button>
+	<button data-button="huge after-icon"><i class="material-icons">info</i>huge</button>
+</div>
 <h3 data-dev-heading="level3">data-button-group</h3>
 <div data-button-group>
 	<button data-button>デフォルト</button>

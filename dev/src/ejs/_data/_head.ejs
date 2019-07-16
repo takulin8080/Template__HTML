@@ -3,21 +3,25 @@
 _data/_head
 =====================================================================================================
 %>
-<% include(ejspath + '_data/_article'); %>
+<%
+if (typeof schema === 'undefined') { var schema = '' };
+include(ejspath + '_data/_article');
+%>
 <%# ---------------------------------------------------------------------------------------------- %>
 
 <head <% if(data.og && layout!='error' ){ %>prefix="og: http://ogp.me/ns#
-	<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article') { %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#
+	<% if(data.fbAppId){ if(parent.length){ if(schema['@type'] == 'Article'){ %> fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#
 	<% } else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#
 	<% }} else { %> fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#
 	<% }}%>"
 	<% } %>>
+	<%# gtag %>
 	<% if(data.gtag && !dev){ %>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<%- data.gtag %>"></script>
 	<script> window.dataLayer = window.dataLayer || [];
 
-		function gtag() {
+		function gtag(){
 			dataLayer.push(arguments);
 		}
 		gtag('js', new Date());
@@ -25,13 +29,14 @@ _data/_head
 	</script>
 	<% } %>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%# title %>
 	<title>
 		<% if(parent.length){ %>
 		<%- title %> |
-		<% parent.reverse().forEach(function(value, index) { %>
-		<% if (parent.length - 1 != index) {%>
-		<% if (page[value] && value != 'index') { %>
+		<% parent.reverse().forEach(function(value, key){ %>
+		<% if (parent.length - 1 != key){%>
+		<% if (page[value] && value != 'index'){ %>
 		<%- page[value].title %> |
 		<% } %>
 		<% } %>
@@ -40,56 +45,58 @@ _data/_head
 		<% } %>
 		<%- data.schema.WebSite.name %>
 	</title>
+	<%# description %>
 	<% if(description){ %>
 	<meta name="description" content="<%- description %>">
 	<% } else { %>
 	<meta name="description" content="<%- data.schema.WebSite.description %>">
 	<% } %>
+	<%# og %>
 	<% if(data.og && layout!='error'){ %>
+	<%# og:title %>
 	<% if(parent.length){ %>
-	<% if (typeof data.schema.headline === 'undefined') { %>
 	<meta property="og:title" content="<%- title %>" />
-	<% } else { %>
-	<meta property="og:title" content="<%- data.schema.headline %>" />
-	<% } %>
 	<% } else { %>
 	<meta property="og:title" content="<%- data.schema.WebSite.name %>" />
 	<% } %>
+	<%# og:description %>
 	<% if(description){ %>
 	<meta property="og:description" content="<%- description %>" />
 	<% } else { %>
 	<meta property="og:description" content="<%- data.schema.WebSite.description %>" />
 	<% } %>
+	<%# og:url, type, image %>
 	<% if(parent.length){ %>
 	<meta property="og:url" content="<%- data.schema.WebSite.url %><%- absUrl %>" />
 	<meta property="og:type" content="article" />
-	<% if (typeof data.schema.image === 'undefined') { %>
-	<% if (typeof image != 'undefined') { %>
-	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img<%- absUrl.replace('.html', '') %>/image.png" />
+	<% if(schema.image){ %>
+	<meta property="og:image" content="<%- schema.image.url %>" />
 	<% } else { %>
-	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
-	<% } %>
-	<% } else { %>
-	<meta property="og:image" content="<%- data.schema.image.url %>" />
+	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/doc/image.png" />
 	<% } %>
 	<% } else { %>
 	<meta property="og:url" content="<%- data.schema.WebSite.url %>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/img/image.png" />
+	<meta property="og:image" content="<%- data.schema.WebSite.url %>/common/doc/image.png" />
 	<% } %>
+	<%# og:site_name %>
 	<meta property="og:site_name" content="<%- data.schema.WebSite.name %>" />
+	<%# og:locale %>
 	<meta property="og:locale" content="<%- data.ogLocale %>" />
 	<% if(data.fbAppId){ %>
 	<meta property="fb:app_id" content="<%- data.fbAppId %>" />
-	<% if(parent.length){ if(schema['@type'] == 'Article') { %>
+	<% if(parent.length){ if(schema['@type'] == 'Article'){ %>
 	<meta property="article:publisher" content="<%- data.fbUrl %>">
-	<% }} %>
 	<% } %>
+	<% } %>
+	<% } %>
+	<%# twitter %>
 	<% if(data.twitterSite){ %>
 	<meta name="twitter:site" content="@<%- data.twitterSite %>" />
 	<meta name="twitter:card" content="<%- data.twitterCard %>">
 	<% } %>
 	<% } %>
+	<%# favicon %>
 	<% if(data.favicon){ %>
 	<link rel="apple-touch-icon" sizes="180x180" href="<%- path.img %>favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<%- path.img %>favicon/favicon-32x32.png">
@@ -99,5 +106,6 @@ _data/_head
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="theme-color" content="#ffffff">
 	<% } %>
+	<%# css %>
 	<link rel="stylesheet" href="<%- path.css %>style.css">
 </head>
