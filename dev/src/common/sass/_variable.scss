@@ -14,11 +14,14 @@ $responsive: true;
 $imgPath: '../img/';
 /* フォントの管理 ======================================== */
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import url(https://fonts.googleapis.com/css?family=Sawarabi+Mincho);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(https://fonts.googleapis.com/css?family=Oswald&display=swap);
 $fontFamily: (
-	sansSerif: ('Noto Sans JP', sans-serif),
-	serif: ('游明朝', YuMincho, 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'ＭＳ 明朝', serif),
-	roboto: ('Roboto Slab', sans-serif)
+	sansSerif: (Noto Sans JP, sans-serif),
+	serif: (Sawarabi Mincho, sans-serif),
+	roboto: (Roboto Slab, serif),
+	oswald: (Oswald, serif)
 );
 /* フォントサイズの管理 ======================================== */
 $fontSize: (
