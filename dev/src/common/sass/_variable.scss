@@ -69,12 +69,12 @@ $transitionTime: (
 );
 /* 色の管理 ======================================== */
 $colorPalette: (
-	// base
 	white: (default: #FFFFFF),
 	black: (default: #000000),
-	gray: (50: #FAFAFA, 100: #F5F5F5, 200: #EEEEEE, 300: #E0E0E0, 400: #BDBDBD, 500: #9E9E9E, 600: #757575, 700: #616161, 800: #424242, 900: #212121),
+	// text
 	text: (default: rgba(0, 0, 0, .87), 1: rgba(0, 0, 0, .87), -1: rgba(0, 0, 0, .54), -2: rgba(0, 0, 0, .38)),
 	text-white: (default: rgba(255, 255, 255, 1), 1: rgba(255, 255, 255, 1), -1: rgba(255, 255, 255, .7), -2: rgba(255, 255, 255, .3)),
+	// link
 	link: (default: #1A0DAB, hover: #0D47A1, visited: #660099),
 	// project
 	project: (primary: #004D40, secondary: #00BFA5, accent: #EE1F7F),
