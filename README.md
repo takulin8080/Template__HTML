@@ -1,10 +1,6 @@
 # HTML Template gulp
 「node + gulp」を利用した『フロントエンド開発（HTML）テンプレート』。
 
-## 更新履歴
-- 3.0.0 | 2019.07.16
-- 0.0.0 | 3.0.0より前
-
 ---
 
 ## 本プログラムの機能と目的
@@ -18,7 +14,6 @@
 ### 「json」管理リスト
 
 #### 主要構成要素
-
 - サイト情報  
 /dev/src/_data/_variabble.json
 - ページ構成  
@@ -29,7 +24,6 @@
 /dev/src/_data/_dev/module.json
 
 #### 「json-ld / schema.org」専用
-
 - LocalBusiness  
 /dev/src/_data/LocalBusiness/*.json
 - Organization  
@@ -40,7 +34,6 @@
 /dev/src/_data/article/*.json
 
 #### その他
-
 - 開発用ページ（サイト構成パーツなどの解説）  
 /dev/src/_data/_dev/page.json
 - 自動出力ファイル用（ejs, scss, imgを生成）  
@@ -69,17 +62,17 @@
 ---
 
 ## バージョン履歴
+- 3.0.0 | 2019.07.16
+- 0.0.0 | 3.0.0より前
 
 ### 3.0.0
-
 本バージョンより「readme.md」を作成。
 
-#### 動作環境
+### 動作環境
 - node version 12.6.0
 - npm version 6.10.0
 
-#### gulp メインタスク 実行内容
-
+### gulp メインタスク 実行内容
 - _run  
 開発用の出力ファイルを「『/dev/dst』フォルダ」に生成、プレビュー。
 - _release  
@@ -91,5 +84,4 @@
 不要なファイル（使用していない画像、アイコンなど...）が増えた場合に利用。
 
 ### 0.0.0 (3.0.0より前)
-
 「readme」なし。使用非推奨。
