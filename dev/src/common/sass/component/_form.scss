@@ -53,17 +53,19 @@ label {
 		margin: size(3) 0;
 	}
 	&__title {
-		font-weight: bold;
-		color: color(text);
+		font-weight: 500;
 		width: 20rem;
 		padding-bottom: 1em;
 		margin-bottom: 1em;
 		border-bottom: 1px solid color(gray, 200);
 		text-align: right;
+		& > label {
+			font-weight: inherit;
+		}
 		&[data-modifier~='req'] {
 			&:after {
 				content: '※';
-				font-size: fontSize(-1);
+				font-size: fontSize(-2);
 				color: color(sign, danger);
 				font-weight: normal;
 				.formbox[data-modifier~='confirm'] & {
