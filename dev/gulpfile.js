@@ -17,6 +17,7 @@ const webpackProdConfig = require('./webpack.prod.js');
 // ==============================================================================================
 const relativePath = true;
 const projectUrl = 'https://www.google.co.jp';
+const sitemap = true;
 // ==============================================================================================
 // json
 // ==============================================================================================
@@ -392,13 +393,15 @@ gulp.task('doc', () => {
 // sitemap
 // ==============================================================================================
 gulp.task('sitemap', () => {
-	const src = '../release/**/*.html';
-	const dst = '../release';
-	return gulp.src(src, {
-		read: false
-	}).pipe($.sitemap({
-		siteUrl: projectUrl
-	})).pipe(gulp.dest(dst));
+	if(sitemap) {
+		const src = '../release/**/*.html';
+		const dst = '../release';
+		return gulp.src(src, {
+			read: false
+		}).pipe($.sitemap({
+			siteUrl: projectUrl
+		})).pipe(gulp.dest(dst));
+	}
 });
 // ==============================================================================================
 // watch
