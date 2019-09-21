@@ -15,17 +15,14 @@ body[data-modifier='dev sitemap'] {
 				white-space: nowrap;
 				overflow: hidden;
 				font-weight: bold;
+				background: color(gray, 50);
 				&[data-modifier~='done'] {
 					background: color(sign, positive);
-					color: color(sign, positive);
-				}
-				&[data-modifier~='undone'] {
-					background: color(white);
-					color: color(text);
+					color: color(text-white);
 				}
 				&[data-modifier~='stop'] {
 					background: color(sign, negative);
-					color: color(sign, negative);
+					color: color(text-white);
 				}
 			}
 		}
@@ -49,29 +46,26 @@ body[data-modifier='dev sitemap'] {
 					color: color(text);
 				}
 				&[data-modifier~='done'] {
-					background: color(sign, positive);
+					background: rgba(color(sign, positive), .1);
+					color: color(sign, positive);
 					@include materialDesignIcon('done');
-					&:before {
-						color: color(sign, positive);
-					}
+					&:before {}
 					.dev-sitemap__link {
-						color: color(text);
+						color: color(sign, positive);
 					}
 				}
 				&[data-modifier~='stop'] {
-					background: color(sign, negative);
-					@include materialDesignIcon('stop');
-					&:before {
-						color: color(sign, negative);
-					}
+					background: rgba(color(sign, negative), .1);
+					color: color(sign, negative);
+					@include materialDesignIcon('error');
+					&:before {}
 					.dev-sitemap__link {
-						color: color(text);
+						color: color(sign, negative);
 					}
 				}
 			}
 			&__url {}
 			&__title {
-				color: color(text, -2);
 				font-size: fontSize(-2);
 				&:before {
 					content: '[ ';
