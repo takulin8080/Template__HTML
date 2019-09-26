@@ -6,8 +6,8 @@
 	"repository": "project",
 	"license": "ISC",
 	"devDependencies": {
-		"@babel/core": "^7.6.0",
-		"@babel/preset-env": "^7.6.0",
+		"@babel/core": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
 		"acorn": "^6.3.0",
 		"ajv": "^6.10.2",
 		"babel-loader": "^8.0.6",
@@ -43,7 +43,7 @@
 		"style-loader": "^0.23.1",
 		"tunnel-agent": "^0.6.0",
 		"url-loader": "^1.1.2",
-		"webpack": "^4.40.0",
+		"webpack": "^4.41.0",
 		"webpack-merge": "^4.2.2",
 		"webpack-stream": "^5.2.1"
 	},
