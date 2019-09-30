@@ -1,6 +1,15 @@
 # HTML Template gulp
 「node + gulp」を利用したフロントエンド開発（HTML）タスクランナー。
 
+## Author
+<dl>
+	<dt>Taku Suzuki</dt>
+	<dd><a href="https://github.com/takulin8080">github.com/takulin8080</a></dd>
+</dl>
+
+## Copyright
+&copy; 2017, <a href="https://github.com/takulin8080">Taku Suzuki</a>.
+
 ---
 
 ## 本プログラムの機能と目的
