@@ -448,7 +448,7 @@ gulp.task('setupRelease', (done) => {
 	done();
 });
 gulp.task('releaseDel', (done) => {
-	del(['dst/_data.json', 'src/common/font/icon.*', '!src/common/font/icon.scss', 'src/common/sass/component/_icon.scss', 'src/common/sass/foundation/mixin/_icon.scss', 'dst', '../releace'], {
+	del(['dst/_data.json', '../releace'], {
 		force: true
 	});
 	done();
