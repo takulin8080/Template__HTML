@@ -52,8 +52,8 @@
 ---
 
 ## 動作環境
-- node version 12.11.x
-- npm version 6.11.x
+- node version 12.x.x
+- npm version 6.x.x
 
 ## メインタスク実行内容
 
