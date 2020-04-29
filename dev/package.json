@@ -48,7 +48,7 @@
 		"webpack-stream": "^5.2.1"
 	},
 	"dependencies": {
-		"jquery": "^3.4.1",
+		"jquery": "^3.5.0",
 		"picturefill": "^3.0.3",
 		"slick-carousel": "^1.8.1",
 		"svgxuse": "^1.2.6"
